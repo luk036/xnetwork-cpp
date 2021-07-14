@@ -55,13 +55,13 @@ add_library(XNCpp ${headers} ${sources})
 set_target_properties(XNCpp PROPERTIES CXX_STANDARD 17)
 
 # being a cross-platform target, we enforce standards conformance on MSVC
-target_compile_options(XNCpp INTERFACE "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
+target_compile_options(XNCpp PUBLIC "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
 
 # Link dependencies
 target_link_libraries(XNCpp PRIVATE fmt::fmt ${Boost_LIBRARIES})
 
 target_include_directories(
-  XNCpp INTERFACE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+  XNCpp PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
                  $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
 )
 
