@@ -26,6 +26,9 @@ jobs:
           path: "**/cpm_modules"
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
 
+      - name: Install dependencies
+        run: brew install boost
+
       - name: configure
         run: cmake -Stest -Bbuild -DCMAKE_BUILD_TYPE=Debug
 

@@ -1,0 +1,18 @@
+ports:
+- port: 8050
+  onOpen: open-preview
+- port: 8888
+  onOpen: open-browser
+image:
+  file: .gitpod.Dockerfile
+tasks:
+  - init: >
+      chmod +x envconfig.sh &&
+      ./envconfig.sh
+  - command: >
+      export CMAKE_PREFIX=/opt/conda
+
+vscode:
+  extensions:
+    - ms-vscode.cmake-tools
+    - twxs.cmake

@@ -25,6 +25,9 @@ jobs:
           path: "**/cpm_modules"
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
 
+      - name: Install dependencies
+        run: sudo apt-get install libboost-dev
+
       - name: configure
         run: cmake -Sstandalone -Bbuild -DCMAKE_BUILD_TYPE=Debug -DCMAKE_BUILD_TYPE=Debug
 
@@ -32,4 +35,4 @@ jobs:
         run: cmake --build build -j4
 
       - name: run
-        run: ./build/Greeter
+        run: ./build/XNCpp

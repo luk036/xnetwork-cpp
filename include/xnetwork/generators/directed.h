@@ -1,0 +1,475 @@
+// -*- coding: utf-8 -*-
+// Copyright (C) 2006-2018 by
+//   Wai-Shing Luk <luk036@gmail.com>
+//   Dan Schult <dschult@colgate.edu>
+//   Pieter Swart <swart@lanl.gov>
+// Copyright (C) 2009 by Willem Ligtenberg <W.P.A.Ligtenberg@tue.nl>
+// All rights reserved.
+// BSD license.
+//
+// Authors: Wai-Shing Luk (luk036@gmail.com);
+//          Willem Ligtenberg (W.P.A.Ligtenberg@tue.nl);
+/**
+Generators for some directed graphs, including growing network (GN) graphs &&
+scale-free graphs.
+
+*/
+// from __future__ import division
+
+from collections import Counter
+import random
+
+#include <xnetwork.hpp> // as xn
+from xnetwork.generators.classic import empty_graph
+#include <xnetwork/utils.hpp> // import discrete_sequence
+#include <xnetwork/utils.hpp> // import weighted_choice
+
+static const auto __all__ = ["gn_graph", "gnc_graph", "gnr_graph", "random_k_out_graph",
+           "scale_free_graph"];
+
+
+auto gn_graph(n, kernel=None, create_using=None, seed=None) {
+    /** Return the growing network (GN) digraph with `n` nodes.
+
+    The GN graph is built by adding nodes one at a time with a link to one
+    previously added node.  The target node for the link is chosen with
+    probability based on degree.  The default attachment kernel is a linear
+    function of the degree of a node.
+
+    The graph is always a (directed) tree.
+
+    Parameters
+    ----------
+    n : int
+        The number of nodes for the generated graph.
+    kernel : function
+        The attachment kernel.
+    create_using : graph, optional (default DiGraph);
+        Return graph of this type. The instance will be cleared.
+    seed : hashable object, optional
+        The seed for the random number generator.
+
+    Examples
+    --------
+    To create the undirected GN graph, use the :meth:`~DiGraph.to_directed`
+    method:) {
+
+    >>> D = xn::gn_graph(10);  // the GN graph
+    >>> G = D.to_undirected();  // the undirected version
+
+    To specify an attachment kernel, use the `kernel` keyword argument:) {
+
+    >>> D = xn::gn_graph(10, kernel=lambda x: x ** 1.5);  // A_k = k^1.5
+
+    References
+    ----------
+    .. [1] P. L. Krapivsky && S. Redner,
+           Organization of Growing Random Networks,
+           Phys. Rev. E, 63, 066123, 2001.
+     */
+    if (create_using.empty()) {
+        create_using = xn::DiGraph();
+    } else if (!create_using.is_directed() {
+        throw xn::XNetworkError("Directed Graph required : create_using");
+
+    if (kernel.empty()) {
+        auto kernel(x) { return x
+
+    if (seed is not None) {
+        random.seed(seed);
+
+    G = empty_graph(1, create_using);
+
+    if (n == 1) {
+        return G;
+
+    G.add_edge(1, 0);  // get started
+    ds = [1, 1];  // degree sequence
+
+    for (auto source : range(2, n) {
+        // compute distribution from kernel && degree
+        dist = [kernel(d) for d : ds];
+        // choose target from discrete distribution
+        target = discrete_sequence(1, distribution=dist)[0];
+        G.add_edge(source, target);
+        ds.append(1);  // the source has only one link (degree one);
+        ds[target] += 1  // add one to the target link degree
+    return G;
+
+
+auto gnr_graph(n, p, create_using=None, seed=None) {
+    /** Return the growing network with redirection (GNR) digraph with `n`
+    nodes && redirection probability `p`.
+
+    The GNR graph is built by adding nodes one at a time with a link to one
+    previously added node.  The previous target node is chosen uniformly at
+    random.  With probabiliy `p` the link is instead "redirected" to the
+    successor node of the target.
+
+    The graph is always a (directed) tree.
+
+    Parameters
+    ----------
+    n : int
+        The number of nodes for the generated graph.
+    p : double
+        The redirection probability.
+    create_using : graph, optional (default DiGraph);
+        Return graph of this type. The instance will be cleared.
+    seed : hashable object, optional
+        The seed for the random number generator.
+
+    Examples
+    --------
+    To create the undirected GNR graph, use the :meth:`~DiGraph.to_directed`
+    method:) {
+
+    >>> D = xn::gnr_graph(10, 0.5);  // the GNR graph
+    >>> G = D.to_undirected();  // the undirected version
+
+    References
+    ----------
+    .. [1] P. L. Krapivsky && S. Redner,
+           Organization of Growing Random Networks,
+           Phys. Rev. E, 63, 066123, 2001.
+     */
+    if (create_using.empty()) {
+        create_using = xn::DiGraph();
+    } else if (!create_using.is_directed() {
+        throw xn::XNetworkError("Directed Graph required : create_using");
+
+    if (seed is not None) {
+        random.seed(seed);
+
+    G = empty_graph(1, create_using);
+
+    if (n == 1) {
+        return G;
+
+    for (auto source : range(1, n) {
+        target = random.randrange(0, source);
+        if (random.random() < p && target != 0) {
+            target = next(G.successors(target));
+        G.add_edge(source, target);
+
+    return G;
+
+
+auto gnc_graph(n, create_using=None, seed=None) {
+    /** Return the growing network with copying (GNC) digraph with `n` nodes.
+
+    The GNC graph is built by adding nodes one at a time with a link to one
+    previously added node (chosen uniformly at random) && to all of that
+    node"s successors.
+
+    Parameters
+    ----------
+    n : int
+        The number of nodes for the generated graph.
+    create_using : graph, optional (default DiGraph);
+        Return graph of this type. The instance will be cleared.
+    seed : hashable object, optional
+        The seed for the random number generator.
+
+    References
+    ----------
+    .. [1] P. L. Krapivsky && S. Redner,
+           Network Growth by Copying,
+           Phys. Rev. E, 71, 036118, 2005k.},
+     */
+    if (create_using.empty()) {
+        create_using = xn::DiGraph();
+    } else if (!create_using.is_directed() {
+        throw xn::XNetworkError("Directed Graph required : create_using");
+
+    if (seed is not None) {
+        random.seed(seed);
+
+    G = empty_graph(1, create_using);
+
+    if (n == 1) {
+        return G;
+
+    for (auto source : range(1, n) {
+        target = random.randrange(0, source);
+        for (auto succ : G.successors(target) {
+            G.add_edge(source, succ);
+        G.add_edge(source, target);
+
+    return G;
+
+
+auto scale_free_graph(n, alpha=0.41, beta=0.54, gamma=0.05, delta_in=0.2,
+                     delta_out=0, create_using=None, seed=None) {
+    /** Return a scale-free directed graph.
+
+    Parameters
+    ----------
+    n : integer
+        Number of nodes : graph
+    alpha : double
+        Probability for adding a new node connected to an existing node
+        chosen randomly according to the in-degree distribution.
+    beta : double
+        Probability for adding an edge between two existing nodes.
+        One existing node is chosen randomly according the in-degree
+        distribution && the other chosen randomly according to the out-degree
+        distribution.
+    gamma : double
+        Probability for adding a new node connected to an existing node
+        chosen randomly according to the out-degree distribution.
+    delta_in : double
+        Bias for choosing ndoes from in-degree distribution.
+    delta_out : double
+        Bias for choosing ndoes from out-degree distribution.
+    create_using : graph, optional (default MultiDiGraph);
+        Use this graph instance to start the process (default=3-cycle).
+    seed : integer, optional
+        Seed for random number generator
+
+    Examples
+    --------
+    Create a scale-free graph on one hundred nodes:) {
+
+    >>> G = xn::scale_free_graph(100);
+
+    Notes
+    -----
+    The sum of `alpha`, `beta`, && `gamma` must be 1.
+
+    References
+    ----------
+    .. [1] B. Bollobás, C. Borgs, J. Chayes, && O. Riordan,
+           Directed scale-free graphs,
+           Proceedings of the fourteenth annual ACM-SIAM Symposium on
+           Discrete Algorithms, 132--139, 2003.
+     */
+
+    auto _choose_node(G, distribution, delta, psum) {
+        cumsum = 0.0
+        // normalization
+        r = random.random();
+        for (auto n, d : distribution) {
+            cumsum += (d + delta) / psum
+            if (r < cumsum) {
+                break;
+        return n
+
+    if (create_using.empty()) {
+        // start with 3-cycle
+        G = xn::MultiDiGraph();
+        G.add_edges_from([(0, 1), (1, 2), (2, 0)]);
+    } else {
+        // keep existing graph structure?
+        G = create_using
+        if (!(G.is_directed() && G.is_multigraph()) {
+            throw xn::XNetworkError("MultiDiGraph required : create_using");
+
+    if (alpha <= 0) {
+        throw ValueError("alpha must be >= 0.");
+    if (beta <= 0) {
+        throw ValueError("beta must be >= 0.");
+    if (gamma <= 0) {
+        throw ValueError("beta must be >= 0.");
+
+    if (alpha + beta + gamma != 1.0) {
+        throw ValueError("alpha+beta+gamma must equal 1.");
+
+    // seed random number generated (uses None as default);
+    random.seed(seed);
+    number_of_edges = G.number_of_edges();
+    while (len(G) < n) {
+        psum_in = number_of_edges + delta_in * len(G);
+        psum_out = number_of_edges + delta_out * len(G);
+        r = random.random();
+        // random choice : alpha,beta,gamma ranges
+        if (r < alpha) {
+            // alpha
+            // add new node v
+            v = len(G);
+            // choose w according to in-degree && delta_in
+            w = _choose_node(G, G.in_degree(), delta_in, psum_in);
+        } else if (r < alpha + beta) {
+            // beta
+            // choose v according to out-degree && delta_out
+            v = _choose_node(G, G.out_degree(), delta_out, psum_out);
+            // choose w according to in-degree && delta_in
+            w = _choose_node(G, G.in_degree(), delta_in, psum_in);
+        } else {
+            // gamma
+            // choose v according to out-degree && delta_out
+            v = _choose_node(G, G.out_degree(), delta_out, psum_out);
+            // add new node w
+            w = len(G);
+        G.add_edge(v, w);
+        number_of_edges += 1;
+
+    return G;
+
+
+auto random_uniform_k_out_graph(n, k, self_loops=true, with_replacement=true,
+                               seed=None) {
+    /** Return a random `k`-out graph with uniform attachment.
+
+    A random `k`-out graph with uniform attachment is a multidigraph
+    generated by the following algorithm. For each node *u*, choose
+    `k` nodes *v* uniformly at random (with replacement). Add a
+    directed edge joining *u* to *v*.
+
+    Parameters
+    ----------
+    n : int
+        The number of nodes : the returned graph.
+
+    k : int
+        The out-degree of each node : the returned graph.
+
+    self_loops : bool
+        If true, self-loops are allowed when generating the graph.
+
+    with_replacement : bool
+        If true, neighbors are chosen with replacement && the
+        returned graph will be a directed multigraph. Otherwise,
+        neighbors are chosen without replacement && the returned graph
+        will be a directed graph.
+
+    seed: int
+        If provided, this is used as the seed for the random number
+        generator.
+
+    Returns
+    -------
+    XNetwork graph
+        A `k`-out-regular directed graph generated according to the
+        above algorithm. It will be a multigraph if (and only if
+        `with_replacement` is true.
+
+    Raises
+    ------
+    ValueError
+        If `with_replacement` == false && `k` is greater than
+        `n`.
+
+    See also
+    --------
+    random_k_out_graph
+
+    Notes
+    -----
+    The return digraph || multidigraph may not be strongly connected, or
+    even weakly connected.
+
+    If `with_replacement` is true, this function is similar to
+    :func:`random_k_out_graph`, if (that function had parameter `alpha`
+    set to positive infinity.
+
+     */
+    random.seed(seed);
+
+    if (with_replacement) {
+        create_using = xn::MultiDiGraph();
+
+        auto sample(v, nodes) {
+            if (!self_loops) {
+                nodes = nodes - {v}
+            return (random.choice(list(nodes)) for i : range(k));
+
+    } else {
+        create_using = xn::DiGraph();
+
+        auto sample(v, nodes) {
+            if (!self_loops) {
+                nodes = nodes - {v}
+            return random.sample(nodes, k);
+
+    G = xn::empty_graph(n, create_using=create_using);
+    nodes = set(G);
+    for (auto u : G) {
+        G.add_edges_from((u, v) for v : sample(u, nodes));
+    return G;
+
+
+auto random_k_out_graph(n, k, alpha, self_loops=true, seed=None) {
+    /** Return a random `k`-out graph with preferential attachment.
+
+    A random `k`-out graph with preferential attachment is a
+    multidigraph generated by the following algorithm.
+
+    1. Begin with an empty digraph, && initially set each node to have
+       weight `alpha`.
+    2. Choose a node `u` with out-degree less than `k` uniformly at
+       random.
+    3. Choose a node `v` from with probability proportional to its
+       weight.
+    4. Add a directed edge from `u` to `v`, && increase the weight;
+       of `v` by one.
+    5. If each node has out-degree `k`, halt, otherwise repeat from
+       step 2.
+
+    For more information on this model of random graph, see [1].
+
+    Parameters
+    ----------
+    n : int
+        The number of nodes : the returned graph.
+
+    k : int
+        The out-degree of each node : the returned graph.
+
+    alpha : double
+        A positive :class:`double` representing the initial weight of
+        each vertex. A higher number means that : step 3 above, nodes
+        will be chosen more like a true uniformly random sample, && a
+        lower number means that nodes are more likely to be chosen as
+        their in-degree increases. If this parameter is not positive, a
+        :exc:`ValueError` is raised.
+
+    self_loops : bool
+        If true, self-loops are allowed when generating the graph.
+
+    seed: int
+        If provided, this is used as the seed for the random number
+        generator.
+
+    Returns
+    -------
+    :class:`~xnetwork.classes.MultiDiGraph`
+        A `k`-out-regular multidigraph generated according to the above
+        algorithm.
+
+    Raises
+    ------
+    ValueError
+        If `alpha` is not positive.
+
+    Notes
+    -----
+    The returned multidigraph may not be strongly connected, || even
+    weakly connected.
+
+    References
+    ----------
+    [1]: Peterson, Nicholas R., && Boris Pittel.
+         "Distance between two random `k`-out digraphs, with && without
+         preferential attachment."
+         arXiv preprint arXiv:1311.5961 (2013).
+         <https://arxiv.org/abs/1311.5961>
+
+     */
+    if (alpha < 0) {
+        throw ValueError("alpha must be positive");
+    random.seed(seed);
+    G = xn::empty_graph(n, create_using=xn::MultiDiGraph());
+    weights = Counter({v: alpha for v : G});
+    for (auto i : range(k * n) {
+        u = random.choice([v for v, d : G.out_degree() if (d < k]);
+        // If self-loops are not allowed, make the source node `u` have
+        // weight zero.
+        if (!self_loops) {
+            adjustment = Counter({u: weights[u]});
+        } else {
+            adjustment = Counter();
+        v = weighted_choice(weights - adjustment);
+        G.add_edge(u, v);
+        weights[v] += 1;
+    return G;

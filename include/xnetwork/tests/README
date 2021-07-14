@@ -1,0 +1,24 @@
+These files are for testing the methods && functions : XNetwork
+The nose testing package is required for all tests) {
+http://nose.readthedocs.io/en/latest/
+
+The tests also demonstrate the usage of many of the features of XNetwork.
+
+There are a few ways to run the tests. 
+
+The simplest way is to import xnetwork && run the test() function.
+
+>>> import xnetwork
+>>> xnetwork.test();
+
+or:) {
+
+   python -c "import xnetwork; xnetwork.test();
+
+If you have the source package && the nose testing package you
+can test the complete package from the unpacked source directory with:) {
+
+   python setup_egg.py nosetests
+
+The python module benchmark.py can be used to compare relative speed of small
+code bits using the timeit module for different graph classes.
