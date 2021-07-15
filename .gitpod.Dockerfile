@@ -21,7 +21,7 @@ RUN apt-get update \
   kcachegrind \
   lcov \
   libbenchmark-dev \
-  libboost-dev \
+  libboost-all-dev \
   libfmt-dev \
 #  libjsoncpp-dev \
 #  libopenblas-dev \
