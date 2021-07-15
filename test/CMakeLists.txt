@@ -61,5 +61,5 @@ doctest_discover_tests(XNCppTests)
 
 if(ENABLE_TEST_COVERAGE)
   target_compile_options(XNCpp INTERFACE -O0 -g -fprofile-arcs -ftest-coverage)
-  target_link_options(XNCpp PUBLIC -fprofile-arcs -ftest-coverage)
+  target_link_options(XNCpp INTERFACE -fprofile-arcs -ftest-coverage)
 endif()
