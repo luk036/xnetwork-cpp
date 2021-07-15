@@ -24,25 +24,33 @@ inline auto create_test_case4(const Container& weights)
  *
  * @tparam Graph
  * @param G
- * @return true
- * @return false
  */
 template <typename Graph>
-void do_case(const Graph& )
+static void do_case(const Graph& G)
 {
-    // const auto get_weight = [&](const auto& edge) -> int {
-    //     const auto [u, v] = G.end_points(edge);
-    //     return G[u][v];
-    // };
+    auto count = 0U;
+    for ([[maybe_unused]] auto _ : G)
+    {
+        ++count;
+    }
 
-    // auto dist = py::dict<std::string, int> {};
-    // for (auto&& v : G)
-    // {
-    //     dist[v] = 0;
-    // }
-    // auto N = negCycleFinder<Graph>(G);
-    // const auto cycle = N.find_neg_cycle(std::move(dist), get_weight);
-    // return !cycle.empty();
+    CHECK(G.number_of_nodes() == count);
+
+    auto count2 = 0U;
+    for ([[maybe_unused]] auto _ : G.edges())
+    {
+        ++count2;
+    }
+
+    // CHECK(G.number_of_edges() == count2);
+
+    auto deg = 0U;
+    for ([[maybe_unused]] auto _ : G["B"])
+    {
+        ++deg;
+    }
+
+    CHECK(G.degree("B") == deg);
 }
 
 
@@ -58,38 +66,3 @@ TEST_CASE("Test xnetwork Negative Cycle")
     // CHECK(hasNeg);
 }
 
-/*!
- * @brief
- *
- */
-TEST_CASE("Test No Negative Cycle")
-{
-    auto weights = std::array<int, 5> {2, 1, 1, 1, 1};
-    auto G = create_test_case4(weights);
-    do_case(G);
-    // CHECK(!hasNeg);
-}
-
-// /*!
-//  * @brief
-//  *
-//  */
-// TEST_CASE("Test Timing Graph")
-// {
-//     auto weights = std::array<int, 8> {7, 0, 3, 1, 6, 4, 2, 5};
-//     auto G = create_test_case_timing(weights);
-//     const auto hasNeg = do_case(G);
-//     CHECK(!hasNeg);
-// }
-
-// /*!
-//  * @brief
-//  *
-//  */
-// TEST_CASE("Test Timing Graph (2)")
-// {
-//     auto weights = std::array<int, 8> {3, -4, -1, -1, 2, 0, -2, 1};
-//     auto G = create_test_case_timing(weights);
-//     const auto hasNeg = do_case(G);
-//     CHECK(hasNeg);
-// }

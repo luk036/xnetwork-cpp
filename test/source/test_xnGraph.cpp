@@ -4,6 +4,37 @@
 #include <py2cpp/py2cpp.hpp>
 #include <xnetwork/classes/graph.hpp>
 
+/*!
+ * @brief
+ *
+ * @tparam Graph
+ * @param G
+ */
+template <typename Graph>
+static void do_case(const Graph& G)
+{
+    auto count = 0U;
+    for ([[maybe_unused]] auto _ : G)
+    {
+        ++count;
+    }
+    CHECK(G.number_of_nodes() == count);
+
+    auto count2 = 0U;
+    for ([[maybe_unused]] auto _ : G.edges())
+    {
+        ++count2;
+    }
+    // CHECK(G.number_of_edges() == count2);
+
+    auto deg = 0U;
+    for ([[maybe_unused]] auto _ : G[1U])
+    {
+        ++deg;
+    }
+    CHECK(G.degree(1U) == deg);
+}
+
 /**
  * @brief Create a test netlist object
  *
@@ -28,21 +59,7 @@ TEST_CASE("Test xn::Graph")
     G.add_edge(a1, n2);
     G.add_edge(a2, n2);
 
-    auto count = 0;
-    for ([[maybe_unused]] auto _ : G)
-    {
-        ++count;
-    }
-
-    CHECK(G.number_of_nodes() == count);
-
-    auto deg = 0;
-    for ([[maybe_unused]] auto _ : G[a1])
-    {
-        ++deg;
-    }
-
-    CHECK(G.degree(a1) == deg);
+    do_case(G);
 }
 
 
@@ -73,19 +90,5 @@ TEST_CASE("Test xn::Graph (not simple graph)")
     G.add_edge(a3, n3);
     G.add_edge(a2, n2);
 
-    auto count = 0;
-    for ([[maybe_unused]] auto _ : G)
-    {
-        ++count;
-    }
-
-    CHECK(G.number_of_nodes() == count);
-
-    auto deg = 0;
-    for ([[maybe_unused]] auto _ : G[a2])
-    {
-        ++deg;
-    }
-
-    CHECK(G.degree(a2) == deg);
+    do_case(G);
 }

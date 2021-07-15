@@ -349,7 +349,7 @@ class DiGraphS : public Graph<nodeview_t, adjlist_t, adjlist_outer_dict_factory>
         // datadict.update(attr);
         this->_succ[u].insert(v);
         // this->_prev[v].insert(u);
-        this->_num_of_edges += 1;
+        // this->_num_of_edges += 1;
     }
 
     template <typename U = key_type>
@@ -367,7 +367,7 @@ class DiGraphS : public Graph<nodeview_t, adjlist_t, adjlist_outer_dict_factory>
         auto data = this->_adj[u].get(v, T {});
         this->_succ[u][v] = data;
         // this->_prev[v][u] = data;
-        this->_num_of_edges += 1;
+        // this->_num_of_edges += 1;
     }
 
     template <typename T>
@@ -376,7 +376,7 @@ class DiGraphS : public Graph<nodeview_t, adjlist_t, adjlist_outer_dict_factory>
         // assert(this->s->_node.contains(u));
         // assert(this->s->_node.contains(v));
         this->_succ[u][v] = data;
-        this->_num_of_edges += 1;
+        // this->_num_of_edges += 1;
     }
 
     template <typename C1, typename C2>
@@ -501,7 +501,7 @@ class DiGraphS : public Graph<nodeview_t, adjlist_t, adjlist_outer_dict_factory>
         auto func = [&](typename coro_t::push_type& yield)
         {
             if constexpr (std::is_same_v<nodeview_t,
-                              decltype(py::range<int>(0))>)
+                              decltype(py::range<uint32_t>(uint32_t{}))>)
             { // this->_succ???
                 for (auto&& [n, nbrs] : py::enumerate(this->_adj))
                 {

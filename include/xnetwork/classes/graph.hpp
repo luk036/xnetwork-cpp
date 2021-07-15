@@ -1,6 +1,7 @@
 #pragma once
 
 #include <any>
+#include <boost/coroutine2/all.hpp>
 #include <cassert>
 #include <py2cpp/py2cpp.hpp>
 // #include <range/v3/view/enumerate.hpp>
@@ -536,10 +537,10 @@ class Graph : public object
         return this->_node.size();
     }
 
-    auto number_of_edges() const
-    {
-        return this->_num_of_edges;
-    }
+    // auto number_of_edges() const
+    // {
+    //     return this->_num_of_edges;
+    // }
 
     /*! Return the number of nodes : the graph.
 
@@ -650,7 +651,7 @@ class Graph : public object
         // set
         this->_adj[u].insert(v);
         this->_adj[v].insert(u);
-        this->_num_of_edges += 1;
+        // this->_num_of_edges += 1;
     }
 
     template <typename U = key_type>
@@ -668,7 +669,7 @@ class Graph : public object
         auto data = this->_adj[u].get(v, T {});
         this->_adj[u][v] = data;
         this->_adj[v][u] = data; // ???
-        this->_num_of_edges += 1;
+        // this->_num_of_edges += 1;
     }
 
     template <typename T>
@@ -678,7 +679,7 @@ class Graph : public object
         // assert(this->_node.contains(v));
         this->_adj[u][v] = data;
         this->_adj[v][u] = data;
-        this->_num_of_edges += 1;
+        // this->_num_of_edges += 1;
     }
 
     template <typename C1>
@@ -687,7 +688,7 @@ class Graph : public object
         for (const auto& e : edges)
         {
             this->add_edge(e.first, e.second);
-            this->_num_of_edges += 1;
+            // this->_num_of_edges += 1;
         }
     }
 
@@ -698,7 +699,7 @@ class Graph : public object
         for (const auto& e : edges)
         {
             this->add_edge(e.first, e.second, *it);
-            this->_num_of_edges += 1;
+            // this->_num_of_edges += 1;
             ++it;
         }
     }
@@ -807,6 +808,101 @@ class Graph : public object
     //     this->operator[]("edges") = std::any(edges);
     //     return edges;
     // }
+    /// @property
+    /*! An OutEdgeView of the DiGraph as G.edges().
+
+        edges(self, nbunch=None, data=False, default=None)
+
+        The OutEdgeView provides set-like operations on the edge-tuples
+        as well as edge attribute lookup. When called, it also provides
+        an EdgeDataView object which allows control of access to edge
+        attributes (but does not provide set-like operations).
+        Hence, `G.edges()[u, v]['color']` provides the value of the color
+        attribute for edge `(u, v)` while
+        `for (u, v, c) in G.edges().data('color', default='red'):`
+        iterates through all the edges yielding the color attribute
+        with default `'red'` if no color attribute exists.
+
+        Parameters
+        ----------
+        nbunch : single node, container, or all nodes (default= all nodes)
+            The view will only report edges incident to these nodes.
+        data : string or bool, optional (default=False)
+            The edge attribute returned in 3-tuple (u, v, ddict[data]).
+            If True, return edge attribute dict in 3-tuple (u, v, ddict).
+            If False, return 2-tuple (u, v).
+        default : value, optional (default=None)
+            Value used for edges that don't have the requested attribute.
+            Only relevant if data is not True or False.
+
+        Returns
+        -------
+        edges : OutEdgeView
+            A view of edge attributes, usually it iterates over (u, v)
+            or (u, v, d) tuples of edges, but can also be used for
+            attribute lookup as `edges[u, v]['foo']`.
+
+        See Also
+        --------
+        in_edges, out_edges
+
+        Notes
+        -----
+        Nodes in nbunch that are not in the graph will be (quietly) ignored.
+        For directed graphs this returns the out-edges.
+
+        Examples
+        --------
+        >>> G = nx.DiGraph()   # or MultiDiGraph, etc
+        >>> nx.add_path(G, [0, 1, 2])
+        >>> G.add_edge(2, 3, weight=5)
+        >>> [e for e in G.edges()]
+        [(0, 1), (1, 2), (2, 3)]
+        >>> G.edges().data()  # default data is {} (empty dict)
+        OutEdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {'weight': 5})])
+        >>> G.edges().data('weight', default=1)
+        OutEdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)])
+        >>> G.edges()([0, 2])  # only edges incident to these nodes
+        OutEdgeDataView([(0, 1), (2, 3)])
+        >>> G.edges()(0)  # only edges incident to a single node (use G.adj[0]?)
+        OutEdgeDataView([(0, 1)])
+
+    */
+    using coro_t = boost::coroutines2::coroutine<edge_t>;
+    using pull_t = typename coro_t::pull_type;
+
+    /// @TODO: sync with networkx
+    auto edges() const -> pull_t
+    {
+        auto func = [&](typename coro_t::push_type& yield)
+        {
+            if constexpr (std::is_same_v<nodeview_t,
+                              decltype(py::range<uint32_t>(uint32_t{}))>)
+            { // this->_succ???
+                for (auto&& [n, nbrs] : py::enumerate(this->_adj))
+                {
+                    for (auto&& nbr : nbrs)
+                    {
+                        yield(edge_t {Node(n), Node(nbr)});
+                    }
+                }
+            }
+            else
+            {
+                for (auto&& [n, nbrs] : this->_adj.items())
+                {
+                    for (auto&& nbr : nbrs)
+                    {
+                        yield(edge_t {n, nbr});
+                    }
+                }
+            }
+        };
+
+
+        return pull_t(func);
+    }
+
 
     // /// @property
     // auto degree() {

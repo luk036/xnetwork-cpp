@@ -1,0 +1,56 @@
+// -*- coding: utf-8 -*-
+#include <array>
+#include <doctest/doctest.h>
+#include <py2cpp/fractions.hpp> // import Fraction
+#include <xnetwork/classes/digraphs.hpp>
+#include <xnetwork/generators/testcases.hpp>
+
+/*!
+ * @brief
+ *
+ * @tparam Graph
+ * @param G
+ */
+template <typename Graph>
+static void do_case(const Graph& G)
+{
+    auto count = 0U;
+    for ([[maybe_unused]] auto _ : G)
+    {
+        ++count;
+    }
+
+    CHECK(G.number_of_nodes() == count);
+
+    auto count2 = 0U;
+    for ([[maybe_unused]] auto _ : G.edges())
+    {
+        ++count2;
+    }
+
+    // CHECK(G.number_of_edges() == count2);
+
+    auto deg = 0U;
+    for ([[maybe_unused]] auto _ : G[1U])
+    {
+        ++deg;
+    }
+
+    CHECK(G.degree(1U) == deg);
+}
+
+TEST_CASE("Test Cycle Ratio")
+{
+    const auto indices = std::array<int, 5> {0, 1, 2, 3, 4};
+    auto G = create_test_case1(indices);
+    do_case(G);
+}
+
+TEST_CASE("Test Cycle Ratio of Timing Graph")
+{
+    // make sure no parallel edges!!!
+
+    const auto indices = std::array<int, 6> {0, 1, 2, 3, 4, 5};
+    auto G = create_test_case2(indices);
+    do_case(G);
+}
