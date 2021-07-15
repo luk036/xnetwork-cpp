@@ -39,7 +39,7 @@ jobs:
           conda list
           conda config --show-sources
           conda config --show
-          conda install -c conda-forge cmake boost=1.71
+          conda install -c conda-forge cmake boost
   
       - name: configure
         run: cmake -Stest -Bbuild
