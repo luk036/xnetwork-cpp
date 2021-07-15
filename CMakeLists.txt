@@ -50,7 +50,8 @@ file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/
 
 # Note: for header-only libraries change all PUBLIC flags to INTERFACE and create an interface
 # target: add_library(XNCpp INTERFACE)
-add_library(XNCpp ${headers} ${sources})
+# add_library(XNCpp ${headers} ${sources})
+add_library(XNCpp INTERFACE)
 
 set_target_properties(XNCpp PROPERTIES CXX_STANDARD 17)
 
@@ -58,7 +59,7 @@ set_target_properties(XNCpp PROPERTIES CXX_STANDARD 17)
 target_compile_options(XNCpp INTERFACE "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
 
 # Link dependencies
-target_link_libraries(XNCpp PRIVATE fmt::fmt ${Boost_LIBRARIES})
+target_link_libraries(XNCpp INTERFACE fmt::fmt ${Boost_LIBRARIES})
 
 target_include_directories(
   XNCpp INTERFACE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>

@@ -20,15 +20,15 @@ CPMAddPackage("gh:TheLartians/Format.cmake@1.7.0")
 
 if(TEST_INSTALLED_VERSION)
   find_package(XNCpp REQUIRED)
+  find_package (Boost REQUIRED COMPONENTS coroutine context system)
+  if (Boost_FOUND)
+      message(STATUS "Found boost: ${Boost_INCLUDE_DIRS}")
+      include_directories(${Boost_INCLUDE_DIRS})
+  endif (Boost_FOUND)
+
 else()
   CPMAddPackage(NAME XNCpp SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 endif()
-
-find_package (Boost REQUIRED COMPONENTS coroutine context system)
-if (Boost_FOUND)
-    message(STATUS "Found boost: ${Boost_INCLUDE_DIRS}")
-    include_directories(${Boost_INCLUDE_DIRS})
-endif (Boost_FOUND)
 
 # ---- Create binary ----
 
@@ -40,9 +40,9 @@ set_target_properties(XNCppTests PROPERTIES CXX_STANDARD 17)
 # enable compiler warnings
 if(NOT TEST_INSTALLED_VERSION)
   if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    target_compile_options(XNCpp PUBLIC -Wall -Wpedantic -Wextra -Werror)
+    target_compile_options(XNCpp INTERFACE -Wall -Wpedantic -Wextra -Werror)
   elseif(MSVC)
-    target_compile_options(XNCpp PUBLIC /W4 /WX)
+    target_compile_options(XNCpp INTERFACE /W4 /WX)
     target_compile_definitions(XNCppTests PUBLIC DOCTEST_CONFIG_USE_STD_HEADERS)
   endif()
 endif()
@@ -60,6 +60,6 @@ doctest_discover_tests(XNCppTests)
 # ---- code coverage ----
 
 if(ENABLE_TEST_COVERAGE)
-  target_compile_options(XNCpp PUBLIC -O0 -g -fprofile-arcs -ftest-coverage)
+  target_compile_options(XNCpp INTERFACE -O0 -g -fprofile-arcs -ftest-coverage)
   target_link_options(XNCpp PUBLIC -fprofile-arcs -ftest-coverage)
 endif()
