@@ -25,16 +25,14 @@ template <typename Graph> static void do_case(const Graph& G) {
     // {
     //     ++count2;
     // }
-
     // CHECK(G.number_of_edges() == count2);
 
-    // auto deg = 0U;
-    // for ([[maybe_unused]] auto _ : G[1U])
-    // {
-    //     ++deg;
-    // }
+    auto deg = 0U;
+    for ([[maybe_unused]] auto _ : G[1U]) {
+        ++deg;
+    }
 
-    // CHECK(G.degree(1U) == deg);
+    CHECK(G.degree(1U) == deg);
 }
 
 TEST_CASE("Test Cycle Ratio") {

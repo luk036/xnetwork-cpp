@@ -30,7 +30,7 @@ endif()
 if(TEST_INSTALLED_VERSION)
   find_package(XNetwork REQUIRED)
 
-  # --- My addons ----  
+  # --- My addons ----
   CPMAddPackage(
     NAME cppcoro
     GIT_TAG 1.0
