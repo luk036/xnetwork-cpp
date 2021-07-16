@@ -83,7 +83,7 @@ file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/
 # target: add_library(XNetwork INTERFACE) add_library(XNetwork ${headers} ${sources})
 add_library(XNetwork INTERFACE)
 
-set_target_properties(XNetwork PROPERTIES CXX_STANDARD 20)
+# set_target_properties(XNetwork PROPERTIES CXX_STANDARD 20)
 
 # being a cross-platform target, we enforce standards conformance on MSVC
 target_compile_options(XNetwork INTERFACE "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")

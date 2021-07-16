@@ -118,7 +118,7 @@ from collections import Counter from itertools import chain try {
                                  Self loops are counted : the total number of edges so graphs with
                                  self loops can have density higher than 1.
                                   */
-                                      n
+                                    n
                                     = number_of_nodes(G);
                                 m = number_of_edges(G);
                                 if (m == 0 || n <= 1) {
@@ -1156,8 +1156,8 @@ auto non_edges(graph) {
                                                                                                                                                                                                                                                                                                                                                                 throw xn::XNetworkError(
                                                                                                                                                                                                                                                                                                                                                                     "v is not : the graph.");
 
-                                                                                                                                                                                                                                                                                                                                                            // Return a generator explicitly instead of yielding so that the above
-                                                                                                                                                                                                                                                                                                                                                            // checks are executed eagerly.
+                                                                                                                                                                                                                                                                                                                                                                // Return a generator explicitly instead of yielding so that the above
+                                                                                                                                                                                                                                                                                                                                                                // checks are executed eagerly.
     return (w for w : G[u] if (w : G[v] && w not : (u, v));
 
 
