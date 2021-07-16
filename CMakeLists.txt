@@ -36,8 +36,11 @@ CPMAddPackage(
 find_package(Boost REQUIRED)
 if(Boost_FOUND)
   message(STATUS "Found boost: ${Boost_INCLUDE_DIRS}")
-  include_directories(${Boost_INCLUDE_DIRS})
-endif(Boost_FOUND)
+  # add_library(Boost::boost INTERFACE IMPORTED GLOBAL)
+  target_include_directories(Boost::boost SYSTEM INTERFACE ${Boost_INCLUDE_DIRS})
+  # Disable autolink
+  target_compile_definitions(Boost::boost INTERFACE BOOST_ALL_NO_LIB=1)
+endif()
 
 CPMAddPackage(
   NAME cppcoro
@@ -89,7 +92,7 @@ add_library(XNetwork INTERFACE)
 target_compile_options(XNetwork INTERFACE "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
 
 # Link dependencies
-target_link_libraries(XNetwork INTERFACE fmt::fmt ${Boost_LIBRARIES} cppcoro::cppcoro)
+target_link_libraries(XNetwork INTERFACE fmt::fmt Boost::boost cppcoro::cppcoro)
 
 target_include_directories(
   XNetwork INTERFACE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>

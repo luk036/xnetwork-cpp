@@ -21,8 +21,11 @@ CPMAddPackage(NAME XNetwork SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 find_package(Boost REQUIRED)
 if(Boost_FOUND)
   message(STATUS "Found boost: ${Boost_INCLUDE_DIRS}")
-  include_directories(${Boost_INCLUDE_DIRS})
-endif(Boost_FOUND)
+  # add_library(Boost::boost INTERFACE IMPORTED GLOBAL)
+  target_include_directories(Boost::boost SYSTEM INTERFACE ${Boost_INCLUDE_DIRS})
+  # Disable autolink
+  target_compile_definitions(Boost::boost INTERFACE BOOST_ALL_NO_LIB=1)
+endif()
 
 # ---- Create standalone executable ----
 
@@ -32,4 +35,4 @@ add_executable(XNetworkStandalone ${sources})
 
 set_target_properties(XNetworkStandalone PROPERTIES CXX_STANDARD 20 OUTPUT_NAME "XNetwork")
 
-target_link_libraries(XNetworkStandalone XNetwork::XNetwork cxxopts ${Boost_LIBRARIES})
+target_link_libraries(XNetworkStandalone XNetwork::XNetwork cxxopts Boost::boost)
