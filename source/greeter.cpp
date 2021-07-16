@@ -3,9 +3,9 @@
 
 using namespace xn;
 
-XNCpp::XNCpp(std::string _name) : name(std::move(_name)) {}
+XNetwork::XNetwork(std::string _name) : name(std::move(_name)) {}
 
-std::string XNCpp::greet(LanguageCode lang) const {
+std::string XNetwork::greet(LanguageCode lang) const {
   switch (lang) {
     default:
     case LanguageCode::EN:

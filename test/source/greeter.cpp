@@ -4,10 +4,10 @@
 
 #include <string>
 
-// TEST_CASE("XNCpp") {
+// TEST_CASE("XNetwork") {
 //   using namespace xn;
 
-//   XNCpp xn("Tests");
+//   XNetwork xn("Tests");
 
 //   CHECK(xn.greet(LanguageCode::EN) == "Hello, Tests!");
 //   CHECK(xn.greet(LanguageCode::DE) == "Hallo Tests!");
@@ -15,7 +15,7 @@
 //   CHECK(xn.greet(LanguageCode::FR) == "Bonjour Tests!");
 // }
 
-TEST_CASE("XNCpp version") {
-  static_assert(std::string_view(XNCPP_VERSION) == std::string_view("1.0"));
-  CHECK(std::string(XNCPP_VERSION) == std::string("1.0"));
+TEST_CASE("XNetwork version") {
+  static_assert(std::string_view(XNETWORK_VERSION) == std::string_view("1.0"));
+  CHECK(std::string(XNETWORK_VERSION) == std::string("1.0"));
 }

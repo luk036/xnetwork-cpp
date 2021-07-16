@@ -36,7 +36,7 @@ auto main(int argc, char** argv) -> int {
   }
 
   if (result["version"].as<bool>()) {
-    std::cout << "XNCpp, version " << XNCPP_VERSION << std::endl;
+    std::cout << "XNetwork, version " << XNETWORK_VERSION << std::endl;
     return 0;
   }
 
@@ -46,7 +46,7 @@ auto main(int argc, char** argv) -> int {
     return 1;
   }
 
-  // xn::XNCpp xn(name);
+  // xn::XNetwork xn(name);
   // std::cout << xn.greet(langIt->second) << std::endl;
 
   return 0;

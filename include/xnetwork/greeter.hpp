@@ -4,13 +4,13 @@
 
 namespace xn {
 
-  /**  Language codes to be used with the XNCpp class */
+  /**  Language codes to be used with the XNetwork class */
   enum class LanguageCode { EN, DE, ES, FR };
 
   /**
    * @brief A class for saying hello in multiple languages
    */
-  class XNCpp {
+  class XNetwork {
     std::string name;
 
   public:
@@ -18,7 +18,7 @@ namespace xn {
      * @brief Creates a new xn
      * @param name the name to greet
      */
-    XNCpp(std::string name);
+    XNetwork(std::string name);
 
     /**
      * @brief Creates a localized string containing the greeting

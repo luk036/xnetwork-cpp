@@ -35,4 +35,4 @@ jobs:
         run: cmake --build build -j4
 
       - name: run
-        run: ./build/XNCpp
+        run: ./build/XNetwork

@@ -33,8 +33,8 @@ This template is the result of learnings from many previous projects and should 
 ### Adjust the template to your needs
 
 - Use this repo [as a template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
-- Replace all occurrences of "XNCpp" in the relevant CMakeLists.txt with the name of your project
-  - Capitalization matters here: `XNCpp` means the name of the project, while `xn` is used in file names.
+- Replace all occurrences of "XNetwork" in the relevant CMakeLists.txt with the name of your project
+  - Capitalization matters here: `XNetwork` means the name of the project, while `xn` is used in file names.
   - Remember to rename the `include/xn` directory to use your project's lowercase name and update all relevant `#include`s accordingly.
 - Replace the source files with your own
 - For header-only libraries: see the comments in [CMakeLists.txt](CMakeLists.txt)
@@ -54,7 +54,7 @@ Use the following command to build and run the executable target.
 ```bash
 cmake -S standalone -B build/standalone
 cmake --build build/standalone
-./build/standalone/XNCpp --help
+./build/standalone/XNetwork --help
 ```
 
 ### Build and run test suite
@@ -67,7 +67,7 @@ cmake --build build/test
 CTEST_OUTPUT_ON_FAILURE=1 cmake --build build/test --target test
 
 # or simply call the executable: 
-./build/test/XNCppTests
+./build/test/XNetworkTests
 ```
 
 To collect code coverage information, run CMake with the `-DENABLE_TEST_COVERAGE=1` option.
@@ -113,11 +113,11 @@ cmake -S all -B build
 cmake --build build
 
 # run tests
-./build/test/XNCppTests
+./build/test/XNetworkTests
 # format code
 cmake --build build --target fix-format
 # run standalone
-./build/standalone/XNCpp --help
+./build/standalone/XNetwork --help
 # build docs
 cmake --build build --target GenerateDocs
 ```
