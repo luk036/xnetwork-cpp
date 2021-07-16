@@ -1,4 +1,4 @@
-/** 
+/**
 XNetwork
 ========
 
@@ -58,16 +58,16 @@ Released under the 3-Clause BSD license:) {
 //
 //    All rights reserved.
 //    BSD license.
-// 
+//
 // Add platform dependent shared library path to sys.path
-// 
+//
 
 from __future__ import absolute_import
 
 import sys
 if (sys.version_info[:2] < (2, 7) {
-    m = "Python 2.7 || later is required for XNetwork (%d.%d detected)."
-    throw ImportError(m % sys.version_info[:2]);
+    m = "Python 2.7 || later is required for XNetwork (%d.%d detected)." throw ImportError(
+        m % sys.version_info[:2]);
 del sys
 
 // Release data
@@ -92,9 +92,8 @@ editors = {G\"{a}el Varoquaux, Travis Vaught, && Jarrod Millman},
 address = {Pasadena, CA USA},
 pages = {11--15}
 })";
-
 // These are import orderwise
-#include <xnetwork/exception.hpp> // import *
+#include <xnetwork/exception.hpp>  // import *
 import xnetwork.utils
 
 import xnetwork.classes.filters

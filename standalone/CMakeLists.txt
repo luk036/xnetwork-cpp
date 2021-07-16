@@ -30,6 +30,6 @@ file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
 
 add_executable(XNetworkStandalone ${sources})
 
-set_target_properties(XNetworkStandalone PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "XNetwork")
+set_target_properties(XNetworkStandalone PROPERTIES CXX_STANDARD 20 OUTPUT_NAME "XNetwork")
 
 target_link_libraries(XNetworkStandalone XNetwork::XNetwork cxxopts ${Boost_LIBRARIES})

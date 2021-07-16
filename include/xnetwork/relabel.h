@@ -4,12 +4,11 @@
 //
 //    All rights reserved.
 //    BSD license.
-#include <xnetwork.hpp> // as xn
+#include <xnetwork.hpp>  // as xn
 
-static const auto __all__ = ["convert_node_labels_to_integers", "relabel_nodes"];
+static const auto __all__ = [ "convert_node_labels_to_integers", "relabel_nodes" ];
 
-
-auto relabel_nodes(G, mapping, copy=true) {
+auto relabel_nodes(G, mapping, copy = true) {
     /** Relabel the nodes of the graph G.
 
     Parameters
@@ -92,46 +91,45 @@ auto relabel_nodes(G, mapping, copy=true) {
     if (!hasattr(mapping, "operator[]") {
         m = {n: mapping(n) for n : G}
     } else {
-        m = mapping
-    if (copy) {
-        return _relabel_copy(G, m);
-    } else {
-        return _relabel_inplace(G, m);
+        m = mapping if (copy) { return _relabel_copy(G, m); }
+        else {
+            return _relabel_inplace(G, m);
 
+            auto _relabel_inplace(G, mapping) {
+                old_labels = set(mapping.keys());
+                new_labels = set(mapping.values());
+                if (len(old_labels & new_labels) > 0) {
+                    // labels sets overlap
+                    // can we topological sort && still do the relabeling?
+                    D = xn::DiGraph(list(mapping.items()));
+                    D.remove_edges_from(xn::selfloop_edges(D));
+                    try {
+                        nodes = reversed(list(xn::topological_sort(D)));
+                    } catch (xn::XNetworkUnfeasible) {
+                        throw xn::XNetworkUnfeasible("The node label sets are overlapping ";
+                                                     "and no ordering can resolve the ";
+                                                     "mapping. Use copy=true.");
+                    }
+                    else {
+                        // non-overlapping label sets
+                        nodes = old_labels
 
-auto _relabel_inplace(G, mapping) {
-    old_labels = set(mapping.keys());
-    new_labels = set(mapping.values());
-    if (len(old_labels & new_labels) > 0) {
-        // labels sets overlap
-        // can we topological sort && still do the relabeling?
-        D = xn::DiGraph(list(mapping.items()));
-        D.remove_edges_from(xn::selfloop_edges(D));
-        try {
-            nodes = reversed(list(xn::topological_sort(D)));
-        } catch (xn::XNetworkUnfeasible) {
-            throw xn::XNetworkUnfeasible("The node label sets are overlapping ";
-                                        "and no ordering can resolve the ";
-                                        "mapping. Use copy=true.");
-    } else {
-        // non-overlapping label sets
-        nodes = old_labels
+                            multigraph
+                            = G.is_multigraph();
+                        directed = G.is_directed();
 
-    multigraph = G.is_multigraph();
-    directed = G.is_directed();
-
-    for (auto old : nodes) {
-        try {
-            new = mapping[old];
-        } catch (KeyError) {
-            continue;
-        if (new == old) {
-            continue;
-        try {
-            G.add_node(new, **G.nodes[old]);
-        } catch (KeyError) {
-            throw KeyError("Node %s is not : the graph" % old);
-        if (multigraph) {
+                        for (auto old : nodes) {
+                            try {
+                                new = mapping[old];
+                            } catch (KeyError) {
+                                continue;
+                                if (new == old) {
+                                    continue;
+                                    try {
+                                        G.add_node(new, **G.nodes[old]);
+                                    } catch (KeyError) {
+                                        throw KeyError("Node %s is not : the graph" % old);
+                                        if (multigraph) {
             new_edges = [(new, new if (old == target else target, key, data);
                          for (auto [_, target, key, data);
                          : G.edges(old, data=true, keys=true)];
@@ -151,7 +149,7 @@ auto _relabel_inplace(G, mapping) {
 
 
 auto _relabel_copy(G, mapping) {
-    H = G.fresh_copy();
+                                                        H = G.fresh_copy();
     H.add_nodes_from(mapping.get(n, n) for n : G);
     H._node.update((mapping.get(n, n), d.copy()) for n, d : G.nodes.items());
     if (G.is_multigraph() {
@@ -166,60 +164,92 @@ auto _relabel_copy(G, mapping) {
 
 auto convert_node_labels_to_integers(G, first_label=0, ordering="default",
                                     label_attribute=None) {
-    /** Return a copy of the graph G with the nodes relabeled using
-    consecutive integers.
+                                                                /** Return a copy of the graph G
+                                                                with the nodes relabeled using
+                                                                consecutive integers.
 
-    Parameters
-    ----------
-    G : graph
-       A XNetwork graph
+                                                                Parameters
+                                                                ----------
+                                                                G : graph
+                                                                   A XNetwork graph
 
-    first_label : int, optional (default=0);
-       An integer specifying the starting offset : numbering nodes.
-       The new integer labels are numbered first_label, ..., n-1+first_label.
+                                                                first_label : int, optional
+                                                                (default=0); An integer specifying
+                                                                the starting offset : numbering
+                                                                nodes. The new integer labels are
+                                                                numbered first_label, ...,
+                                                                n-1+first_label.
 
-    ordering : string
-       "default" : inherit node ordering from G.nodes();
-       "sorted"  : inherit node ordering from sorted(G.nodes());
-       "increasing degree" : nodes are sorted by increasing degree
-       "decreasing degree" : nodes are sorted by decreasing degree
+                                                                ordering : string
+                                                                   "default" : inherit node ordering
+                                                                from G.nodes(); "sorted"  : inherit
+                                                                node ordering from
+                                                                sorted(G.nodes()); "increasing
+                                                                degree" : nodes are sorted by
+                                                                increasing degree "decreasing
+                                                                degree" : nodes are sorted by
+                                                                decreasing degree
 
-    label_attribute : string, optional (default=None);
-       Name of node attribute to store old label.  If None no attribute
-       is created.
+                                                                label_attribute : string, optional
+                                                                (default=None); Name of node
+                                                                attribute to store old label.  If
+                                                                None no attribute is created.
 
-    Notes
-    -----
-    Node && edge attribute data are copied to the new (relabeled) graph.
+                                                                Notes
+                                                                -----
+                                                                Node && edge attribute data are
+                                                                copied to the new (relabeled) graph.
 
-    There is no guarantee that the relabeling of nodes to integers will
-    give the same two integers for two (even identical graphs).
-    Use the `ordering` argument to try to preserve the order.
+                                                                There is no guarantee that the
+                                                                relabeling of nodes to integers will
+                                                                give the same two integers for two
+                                                                (even identical graphs). Use the
+                                                                `ordering` argument to try to
+                                                                preserve the order.
 
-    See Also
-    --------
-    relabel_nodes;
-     */
-    N = G.number_of_nodes() + first_label
-    if (ordering == "default") {
-        mapping = dict(zip(G.nodes(), range(first_label, N)));
-    } else if (ordering == "sorted") {
-        nlist = sorted(G.nodes());
-        mapping = dict(zip(nlist, range(first_label, N)));
-    } else if (ordering == "increasing degree") {
+                                                                See Also
+                                                                --------
+                                                                relabel_nodes;
+                                                                 */
+                                                                N = G.number_of_nodes()
+                                                                    + first_label if (
+                                                                        ordering == "default") {
+                                                                    mapping = dict(
+                                                                        zip(G.nodes(),
+                                                                            range(first_label, N)));
+                                                                }
+                                                                else if (ordering == "sorted") {
+                                                                    nlist = sorted(G.nodes());
+                                                                    mapping = dict(
+                                                                        zip(nlist,
+                                                                            range(first_label, N)));
+                                                                }
+                                                                else if (ordering
+                                                                         == "increasing degree") {
         dv_pairs = [(d, n) for (auto n, d] : G.degree()];
         dv_pairs.sort();  // in-place sort from lowest to highest degree
         mapping = dict(zip([n for d, n : dv_pairs], range(first_label, N)));
-    } else if (ordering == "decreasing degree") {
+                                                                }
+                                                                else if (ordering
+                                                                         == "decreasing degree") {
         dv_pairs = [(d, n) for (auto n, d] : G.degree()];
         dv_pairs.sort();  // in-place sort from lowest to highest degree
         dv_pairs.reverse();
         mapping = dict(zip([n for d, n : dv_pairs], range(first_label, N)));
-    } else {
-        throw xn::XNetworkError("Unknown node ordering: %s" % ordering);
-    H = relabel_nodes(G, mapping);
-    // create node attribute with the old label
-    if (label_attribute is not None) {
-        xn::set_node_attributes(H, {v: k for k, v : mapping.items()},
-                               label_attribute);
-    return H
+                                                                }
+                                                                else {
+                                                                    throw xn::XNetworkError(
+                                                                        "Unknown node ordering: %s"
+                                                                        % ordering);
+                                                                    H = relabel_nodes(G, mapping);
+                                                                    // create node attribute with
+                                                                    // the old label
+                                                                    if (label_attribute
+                                                                            is not None) {
+                                                                        xn::set_node_attributes(
+                                                                            H,
+                                                                            {
+                                                                                v: k for k, v : mapping.items()
+                                                                            },
+                                                                            label_attribute);
+                                                                    return H

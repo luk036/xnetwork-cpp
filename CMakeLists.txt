@@ -39,6 +39,37 @@ if(Boost_FOUND)
   include_directories(${Boost_INCLUDE_DIRS})
 endif(Boost_FOUND)
 
+CPMAddPackage(
+  NAME cppcoro
+  GIT_TAG 1.0
+  GITHUB_REPOSITORY luk036/cppcoro
+)
+# print_target_properties(cppcoro)
+if(cppcoro_ADDED)
+  message(STATUS "Found cppcoro: ${cppcoro_SOURCE_DIR}")
+  add_library(cppcoro::cppcoro INTERFACE IMPORTED GLOBAL)
+  target_include_directories(cppcoro::cppcoro SYSTEM INTERFACE ${cppcoro_SOURCE_DIR}/include)
+endif(cppcoro_ADDED)
+
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  # using GCC
+  add_compile_options(-fcoroutines -Wall -Wnon-virtual-dtor -Wunused -pedantic)
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  # using clang
+  add_compile_options(
+    -fcoroutines-ts
+    -stdlib=libc++
+    -fno-exceptions
+    -Wall
+    -Wnon-virtual-dtor
+    -Wunused
+    -pedantic
+  )
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+  # using Visual Studio C++
+  add_compile_options(/std:c++latest /await /W3 /WX)
+endif()
+
 # ---- Add source files ----
 
 # Note: globbing sources is considered bad practice as CMake's generators may not detect new files
@@ -52,13 +83,13 @@ file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/
 # target: add_library(XNetwork INTERFACE) add_library(XNetwork ${headers} ${sources})
 add_library(XNetwork INTERFACE)
 
-set_target_properties(XNetwork PROPERTIES CXX_STANDARD 17)
+set_target_properties(XNetwork PROPERTIES CXX_STANDARD 20)
 
 # being a cross-platform target, we enforce standards conformance on MSVC
 target_compile_options(XNetwork INTERFACE "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
 
 # Link dependencies
-target_link_libraries(XNetwork INTERFACE fmt::fmt ${Boost_LIBRARIES})
+target_link_libraries(XNetwork INTERFACE fmt::fmt ${Boost_LIBRARIES} cppcoro::cppcoro)
 
 target_include_directories(
   XNetwork INTERFACE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>

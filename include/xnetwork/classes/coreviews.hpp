@@ -16,7 +16,6 @@
 // #include <xnetwork.hpp> // as xn
 #include <iterator>
 
-
 /*
 static const auto __all__ = {
     "AtlasView",
@@ -47,43 +46,23 @@ static const auto __all__ = {
 
     Interface: Mapping
 */
-template <typename Atlas>
-class AtlasView
-{
+template <typename Atlas> class AtlasView {
   public:
     Atlas& _atlas;
 
-    explicit AtlasView(Atlas& d)
-        : _atlas {d}
-    {
-    }
+    explicit AtlasView(Atlas& d) : _atlas{d} {}
 
-    [[nodiscard]] auto size() const -> size_t
-    {
-        return this->_atlas.size();
-    }
+    [[nodiscard]] auto size() const -> size_t { return this->_atlas.size(); }
 
-    [[nodiscard]] auto begin() const
-    {
-        return std::begin(this->_atlas);
-    }
+    [[nodiscard]] auto begin() const { return std::begin(this->_atlas); }
 
-    [[nodiscard]] auto end() const
-    {
-        return std::end(this->_atlas);
-    }
+    [[nodiscard]] auto end() const { return std::end(this->_atlas); }
 
-    template <typename T>
-    auto operator[](const T& key) const -> const auto&
-    {
+    template <typename T> auto operator[](const T& key) const -> const auto& {
         return this->_atlas.at(key);
     }
 
-    template <typename T>
-    auto operator[](const T& key) -> auto&
-    {
-        return this->_atlas.at(key);
-    }
+    template <typename T> auto operator[](const T& key) -> auto& { return this->_atlas.at(key); }
 
     // auto copy( ) {
     //     return std::tuple{n: self[n].copy() for n : this->_atlas};
@@ -109,14 +88,9 @@ class AtlasView
     AtlasView - View into dict-of-dict
     MultiAdjacencyView - View into dict-of-dict-of-dict-of-dict
 */
-template <typename Atlas>
-class AdjacencyView : public AtlasView<Atlas>
-{
+template <typename Atlas> class AdjacencyView : public AtlasView<Atlas> {
   public:
-    explicit AdjacencyView(Atlas& d)
-        : AtlasView<Atlas> {d}
-    {
-    }
+    explicit AdjacencyView(Atlas& d) : AtlasView<Atlas>{d} {}
 
     // template <typename T>
     // auto operator[](const T& name) const

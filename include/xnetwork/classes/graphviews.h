@@ -47,129 +47,168 @@ Often it is easiest to use `.copy()` to avoid chains.
 */
 // from collections import Mapping
 
-from xnetwork.classes import Graph, DiGraph, MultiGraph, MultiDiGraph
-#include <xnetwork/classes/coreviews.hpp> // import ReadOnlyGraph, \
+from xnetwork.classes import Graph, DiGraph, MultiGraph,
+    MultiDiGraph
+#include <xnetwork/classes/coreviews.hpp>  // import ReadOnlyGraph, \
     AtlasView, AdjacencyView, MultiAdjacencyView, \
     FilterAtlas, FilterAdjacency, FilterMultiAdjacency, \
     UnionAdjacency, UnionMultiAdjacency
-from xnetwork.classes.filters import no_filter, show_nodes, show_edges
-#include <xnetwork/exception.hpp> // import XNetworkError, XNetworkNotImplemented
-#include <xnetwork/utils.hpp> // import not_implemented_for
+        from xnetwork.classes.filters import no_filter,
+    show_nodes,
+    show_edges
+#include <xnetwork/exception.hpp>  // import XNetworkError, XNetworkNotImplemented
+#include <xnetwork/utils.hpp>      // import not_implemented_for
 
-
-static const auto __all__ = ["SubGraph", "SubDiGraph", "SubMultiGraph", "SubMultiDiGraph",
-           "ReverseView", "MultiReverseView",
-           "DiGraphView", "MultiDiGraphView",
-           "GraphView", "MultiGraphView",
-           ];
-
+    static const auto __all__
+    = [
+          "SubGraph",
+          "SubDiGraph",
+          "SubMultiGraph",
+          "SubMultiDiGraph",
+          "ReverseView",
+          "MultiReverseView",
+          "DiGraphView",
+          "MultiDiGraphView",
+          "GraphView",
+          "MultiGraphView",
+      ];
 
 class SubGraph(ReadOnlyGraph, Graph) {
-    explicit _Self( graph, filter_node=no_filter, filter_edge=no_filter) {
-        this->_graph = graph
-        this->root_graph = graph.root_graph
-        this->_NODE_OK = filter_node
-        this->_EDGE_OK = filter_edge
+    explicit _Self(graph, filter_node = no_filter, filter_edge = no_filter) {
+        this->_graph = graph this->root_graph = graph.root_graph this->_NODE_OK
+            = filter_node this->_EDGE_OK = filter_edge
 
-        // Set graph interface
-        this->graph = graph.graph
-        this->_node = FilterAtlas(graph._node, filter_node);
+                                           // Set graph interface
+                                           this->graph
+            = graph.graph this->_node = FilterAtlas(graph._node, filter_node);
         this->_adj = FilterAdjacency(graph._adj, filter_node, filter_edge);
 
-
-class SubDiGraph(ReadOnlyGraph, DiGraph) {
-    explicit _Self( graph, filter_node=no_filter, filter_edge=no_filter) {
+        class SubDiGraph(ReadOnlyGraph, DiGraph) {
+            explicit _Self(graph, filter_node = no_filter, filter_edge = no_filter) {
         this->_graph = graph
         this->root_graph = graph
         while (hasattr(this->root_graph, "_graph") {
-            this->root_graph = this->root_graph._graph
-        this->_NODE_OK = filter_node
-        this->_EDGE_OK = filter_edge
+                    this->root_graph = this->root_graph._graph this->_NODE_OK
+                        = filter_node this->_EDGE_OK = filter_edge
 
-        // Set graph interface
-        this->graph = graph.graph
-        this->_node = FilterAtlas(graph._node, filter_node);
-        this->_adj = FilterAdjacency(graph._adj, filter_node, filter_edge);
-        this->_pred = FilterAdjacency(graph._pred, filter_node,
-                                     lambda u, v: filter_edge(v, u));
-        this->_succ = this->_adj;
+                                                       // Set graph interface
+                                                       this->graph
+                        = graph.graph this->_node = FilterAtlas(graph._node, filter_node);
+                    this->_adj = FilterAdjacency(graph._adj, filter_node, filter_edge);
+                    this->_pred = FilterAdjacency(graph._pred, filter_node, lambda u, v
+                                                  : filter_edge(v, u));
+                    this->_succ = this->_adj;
 
-
-class SubMultiGraph(ReadOnlyGraph, MultiGraph) {
-    explicit _Self( graph, filter_node=no_filter, filter_edge=no_filter) {
+                    class SubMultiGraph(ReadOnlyGraph, MultiGraph) {
+                        explicit _Self(graph, filter_node = no_filter, filter_edge = no_filter) {
         this->_graph = graph
         this->root_graph = graph
         while (hasattr(this->root_graph, "_graph") {
-            this->root_graph = this->root_graph._graph
-        this->_NODE_OK = filter_node
-        this->_EDGE_OK = filter_edge
+                                this->root_graph = this->root_graph._graph this->_NODE_OK
+                                    = filter_node this->_EDGE_OK = filter_edge
 
-        // Set graph interface
-        this->graph = graph.graph
-        this->_node = FilterAtlas(graph._node, filter_node);
-        this->_adj = FilterMultiAdjacency(graph._adj, filter_node, filter_edge);
+                                                                   // Set graph interface
+                                                                   this->graph
+                                    = graph.graph this->_node
+                                    = FilterAtlas(graph._node, filter_node);
+                                this->_adj
+                                    = FilterMultiAdjacency(graph._adj, filter_node, filter_edge);
 
-
-class SubMultiDiGraph(ReadOnlyGraph, MultiDiGraph) {
-    explicit _Self( graph, filter_node=no_filter, filter_edge=no_filter) {
+                                class SubMultiDiGraph(ReadOnlyGraph, MultiDiGraph) {
+                                    explicit _Self(graph, filter_node = no_filter,
+                                                   filter_edge = no_filter) {
         this->_graph = graph
         this->root_graph = graph
         while (hasattr(this->root_graph, "_graph") {
-            this->root_graph = this->root_graph._graph
-        this->_NODE_OK = filter_node
-        this->_EDGE_OK = filter_edge
+                                            this->root_graph
+                                                = this->root_graph._graph this->_NODE_OK
+                                                = filter_node this->_EDGE_OK
+                                                = filter_edge
 
-        // Set graph interface
-        this->graph = graph.graph
-        this->_node = FilterAtlas(graph._node, filter_node);
-        FMA = FilterMultiAdjacency
-        this->_adj = FMA(graph._adj, filter_node, filter_edge);
-        this->_pred = FMA(graph._pred, filter_node,
-                         lambda u, v, k: filter_edge(v, u, k));
-        this->_succ = this->_adj;
+                                                  // Set graph interface
+                                                  this->graph
+                                                = graph.graph this->_node
+                                                = FilterAtlas(graph._node, filter_node);
+                                            FMA = FilterMultiAdjacency this->_adj
+                                                = FMA(graph._adj, filter_node, filter_edge);
+                                            this->_pred
+                                                = FMA(graph._pred, filter_node, lambda u, v, k
+                                                      : filter_edge(v, u, k));
+                                            this->_succ = this->_adj;
 
-
-class ReverseView(ReadOnlyGraph, DiGraph) {
-    explicit _Self( graph) {
+                                            class ReverseView(ReadOnlyGraph, DiGraph) {
+                                                explicit _Self(graph) {
         if (!graph.is_directed() {
-            const auto msg = "not implemented for undirected type"
-            throw XNetworkNotImplemented(msg);
+                                                        const auto msg
+                                                            = "not implemented for undirected "
+                                                              "type" throw XNetworkNotImplemented(
+                                                                  msg);
 
         this->_graph = graph
         this->root_graph = graph
         while (hasattr(this->root_graph, "_graph") {
-            this->root_graph = this->root_graph._graph
-        // Set graph interface
-        this->graph = graph.graph
-        this->_node = graph._node
-        this->_adj = graph._pred;
-        this->_pred = graph._succ;
-        this->_succ = this->_adj;
+                                                            this->root_graph
+                                                                = this->root_graph
+                                                                      ._graph
+                                                                  // Set graph interface
+                                                                  this->graph
+                                                                = graph.graph this->_node
+                                                                = graph._node this->_adj
+                                                                = graph._pred;
+                                                            this->_pred = graph._succ;
+                                                            this->_succ = this->_adj;
 
-
-class MultiReverseView(ReadOnlyGraph, MultiDiGraph) {
-    explicit _Self( graph) {
+                                                            class MultiReverseView(ReadOnlyGraph,
+                                                                                   MultiDiGraph) {
+                                                                explicit _Self(graph) {
         if (!graph.is_directed() {
-            const auto msg = "not implemented for undirected type"
-            throw XNetworkNotImplemented(msg);
+                                                                        const auto msg
+                                                                            = "not implemented for "
+                                                                              "undirected "
+                                                                              "typ"
+                                                                              "e" throw XNetworkNotImplemented(
+                                                                                  msg);
 
         this->_graph = graph
         this->root_graph = graph
         while (hasattr(this->root_graph, "_graph") {
-            this->root_graph = this->root_graph._graph
-        // Set graph interface
-        this->graph = graph.graph
-        this->_node = graph._node
-        this->_adj = graph._pred;
-        this->_pred = graph._succ;
-        this->_succ = this->_adj;
+                                                                            this->root_graph
+                                                                                = this->root_graph
+                                                                                      ._graph
+                                                                                  // Set graph
+                                                                                  // interface
+                                                                                  this->graph
+                                                                                = graph.graph this
+                                                                                      ->_node
+                                                                                = graph._node this
+                                                                                      ->_adj
+                                                                                = graph._pred;
+                                                                            this->_pred
+                                                                                = graph._succ;
+                                                                            this->_succ
+                                                                                = this->_adj;
 
-
-class DiGraphView(ReadOnlyGraph, DiGraph) {
-    explicit _Self( graph) {
+                                                                            class DiGraphView(
+                                                                                ReadOnlyGraph,
+                                                                                DiGraph) {
+                                                                                explicit _Self(
+                                                                                    graph) {
         if (graph.is_multigraph() {
-            const auto msg = "Wrong View class. Use MultiDiGraphView.";
-            throw XNetworkError(msg);
+                                                                                        const auto
+                                                                                            msg
+                                                                                            = "Wron"
+                                                                                              "g "
+                                                                                              "View"
+                                                                                              " cla"
+                                                                                              "ss. "
+                                                                                              "Use "
+                                                                                              "Mult"
+                                                                                              "iDiG"
+                                                                                              "raph"
+                                                                                              "View"
+                                                                                              ".";
+                                                                                        throw XNetworkError(
+                                                                                            msg);
         this->_graph = graph
         this->root_graph = graph
         while (hasattr(this->root_graph, "_graph") {
@@ -177,19 +216,33 @@ class DiGraphView(ReadOnlyGraph, DiGraph) {
         this->graph = graph.graph
         this->_node = graph._node
         if (graph.is_directed() {
-            this->_pred = graph._pred;
-            this->_succ = graph._succ;
+                                                                                                this->_pred
+                                                                                                    = graph
+                                                                                                          ._pred;
+                                                                                                this->_succ
+                                                                                                    = graph
+                                                                                                          ._succ;
         } else {
-            this->_pred = graph._adj
-            this->_succ = graph._adj
-        this->_adj = this->_succ;
+                                                                                                this->_pred
+                                                                                                    = graph
+                                                                                                          ._adj this
+                                                                                                          ->_succ
+                                                                                                    = graph
+                                                                                                          ._adj this
+                                                                                                          ->_adj
+                                                                                                    = this->_succ;
 
-
-class MultiDiGraphView(ReadOnlyGraph, MultiDiGraph) {
-    explicit _Self( graph) {
+                                                                                                class MultiDiGraphView(
+                                                                                                    ReadOnlyGraph,
+                                                                                                    MultiDiGraph) {
+                                                                                                    explicit _Self(
+                                                                                                        graph) {
         if (!graph.is_multigraph() {
-            const auto msg = "Wrong View class. Use DiGraphView.";
-            throw XNetworkError(msg);
+                                                                                                            const auto
+                                                                                                                msg
+                                                                                                                = "Wrong View class. Use DiGraphView.";
+                                                                                                            throw XNetworkError(
+                                                                                                                msg);
         this->_graph = graph
         this->root_graph = graph
         while (hasattr(this->root_graph, "_graph") {
@@ -197,21 +250,36 @@ class MultiDiGraphView(ReadOnlyGraph, MultiDiGraph) {
         this->graph = graph.graph
         this->_node = graph._node
         if (graph.is_directed() {
-            this->_pred = graph._pred;
-            this->_succ = graph._succ;
+                                                                                                                    this->_pred
+                                                                                                                        = graph
+                                                                                                                              ._pred;
+                                                                                                                    this->_succ
+                                                                                                                        = graph
+                                                                                                                              ._succ;
         } else {
-            this->_pred = graph._adj
-            this->_succ = graph._adj
-        this->_adj = this->_succ;
+                                                                                                                    this->_pred
+                                                                                                                        = graph
+                                                                                                                              ._adj this
+                                                                                                                              ->_succ
+                                                                                                                        = graph
+                                                                                                                              ._adj this
+                                                                                                                              ->_adj
+                                                                                                                        = this->_succ;
 
+                                                                                                                    class GraphView(
+                                                                                                                        ReadOnlyGraph,
+                                                                                                                        Graph) {
+                                                                                                                        UnionAdj
+                                                                                                                            = UnionAdjacency
 
-class GraphView(ReadOnlyGraph, Graph) {
-    UnionAdj = UnionAdjacency
-
-    explicit _Self( graph) {
+                                                                                                                            explicit _Self(
+                                                                                                                                graph) {
         if (graph.is_multigraph() {
-            const auto msg = "Wrong View class. Use MultiGraphView.";
-            throw XNetworkError(msg);
+                                                                                                                                const auto
+                                                                                                                                    msg
+                                                                                                                                    = "Wrong View class. Use MultiGraphView.";
+                                                                                                                                throw XNetworkError(
+                                                                                                                                    msg);
         this->_graph = graph
         this->root_graph = graph
         while (hasattr(this->root_graph, "_graph") {
@@ -219,18 +287,31 @@ class GraphView(ReadOnlyGraph, Graph) {
         this->graph = graph.graph
         this->_node = graph._node
         if (graph.is_directed() {
-            this->_adj = this->UnionAdj(graph._succ, graph._pred);
+                                                                                                                                        this->_adj = this->UnionAdj(
+                                                                                                                                            graph
+                                                                                                                                                ._succ,
+                                                                                                                                            graph
+                                                                                                                                                ._pred);
         } else {
-            this->_adj = graph._adj
+                                                                                                                                        this->_adj
+                                                                                                                                            = graph
+                                                                                                                                                  ._adj
 
+                                                                                                                                              class
+                                                                                                                                              MultiGraphView(
+                                                                                                                                                  ReadOnlyGraph,
+                                                                                                                                                  MultiGraph) {
+                                                                                                                                            UnionAdj
+                                                                                                                                                = UnionMultiAdjacency
 
-class MultiGraphView(ReadOnlyGraph, MultiGraph) {
-    UnionAdj = UnionMultiAdjacency
-
-    explicit _Self( graph) {
+                                                                                                                                                explicit _Self(
+                                                                                                                                                    graph) {
         if (!graph.is_multigraph() {
-            const auto msg = "Wrong View class. Use GraphView.";
-            throw XNetworkError(msg);
+                                                                                                                                                    const auto
+                                                                                                                                                        msg
+                                                                                                                                                        = "Wrong View class. Use GraphView.";
+                                                                                                                                                    throw XNetworkError(
+                                                                                                                                                        msg);
         this->_graph = graph
         this->root_graph = graph
         while (hasattr(this->root_graph, "_graph") {
@@ -238,6 +319,12 @@ class MultiGraphView(ReadOnlyGraph, MultiGraph) {
         this->graph = graph.graph
         this->_node = graph._node
         if (graph.is_directed() {
-            this->_adj = this->UnionAdj(graph._succ, graph._pred);
+                                                                                                                                                            this->_adj = this->UnionAdj(
+                                                                                                                                                                graph
+                                                                                                                                                                    ._succ,
+                                                                                                                                                                graph
+                                                                                                                                                                    ._pred);
         } else {
-            this->_adj = graph._adj
+                                                                                                                                                        this->_adj
+                                                                                                                                                            = graph
+                                                                                                                                                                  ._adj

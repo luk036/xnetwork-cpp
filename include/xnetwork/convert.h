@@ -22,15 +22,15 @@ nx_agraph, nx_pydot
 //    All rights reserved.
 //    BSD license.
 // import warnings
-#include <xnetwork.hpp> // as xn
-__author__ = R"(\n)".join(["Wai-Shing Luk <luk036@gmail.com>",
-                            "Pieter Swart (swart@lanl.gov)",
-                            "Dan Schult(dschult@colgate.edu)"]);
-static const auto __all__ = ["to_xnetwork_graph",
-           "from_dict_of_dicts", "to_dict_of_dicts",
-           "from_dict_of_lists", "to_dict_of_lists",
-           "from_edgelist", "to_edgelist"];
-
+#include <xnetwork.hpp>  // as xn
+__author__ = R"(\n)".join([
+    "Wai-Shing Luk <luk036@gmail.com>", "Pieter Swart (swart@lanl.gov)",
+    "Dan Schult(dschult@colgate.edu)"
+]);
+static const auto __all__ = [
+    "to_xnetwork_graph", "from_dict_of_dicts", "to_dict_of_dicts", "from_dict_of_lists",
+    "to_dict_of_lists", "from_edgelist", "to_edgelist"
+];
 
 auto _prep_create_using(create_using) {
     /** Return a graph object ready to be populated.
@@ -42,96 +42,100 @@ auto _prep_create_using(create_using) {
      */
     if (create_using.empty()) {
         return xn::Graph();
-    try {
-        create_using.clear();
+        try {
+            create_using.clear();
     except) {
         throw TypeError("Input graph is not a xnetwork graph type");
-    return create_using
+        return create_using
 
+            auto
+            to_xnetwork_graph(data, create_using = None, multigraph_input = false) {
+            /** Make a XNetwork graph from a known data structure.
 
-auto to_xnetwork_graph(data, create_using=None, multigraph_input=false) {
-    /** Make a XNetwork graph from a known data structure.
+            The preferred way to call this is automatically
+            from the class constructor
 
-    The preferred way to call this is automatically
-    from the class constructor
+            >>> d = {0: {1: {"weight":1}}} // dict-of-dicts single edge (0,1);
+            >>> G = xn::Graph(d);
 
-    >>> d = {0: {1: {"weight":1}}} // dict-of-dicts single edge (0,1);
-    >>> G = xn::Graph(d);
+            instead of the equivalent
 
-    instead of the equivalent
+            >>> G = xn::from_dict_of_dicts(d);
 
-    >>> G = xn::from_dict_of_dicts(d);
+            Parameters
+            ----------
+            data : object to be converted
 
-    Parameters
-    ----------
-    data : object to be converted
+               Current known types are) {
+                 any XNetwork graph
+                 dict-of-dicts
+                 dict-of-lists
+                 list of edges
+                 Pandas DataFrame (row per edge);
+                 numpy matrix
+                 numpy ndarray
+                 scipy sparse matrix
+                 pygraphviz agraph
 
-       Current known types are) {
-         any XNetwork graph
-         dict-of-dicts
-         dict-of-lists
-         list of edges
-         Pandas DataFrame (row per edge);
-         numpy matrix
-         numpy ndarray
-         scipy sparse matrix
-         pygraphviz agraph
+            create_using : XNetwork graph
+               Use specified graph for result.  Otherwise a new graph is created.
 
-    create_using : XNetwork graph
-       Use specified graph for result.  Otherwise a new graph is created.
+            multigraph_input : bool (default false);
+              If true &&  data is a dict_of_dicts,
+              try to create a multigraph assuming dict_of_dict_of_lists.
+              If data && create_using are both multigraphs then create
+              a multigraph from a multigraph.
 
-    multigraph_input : bool (default false);
-      If true &&  data is a dict_of_dicts,
-      try to create a multigraph assuming dict_of_dict_of_lists.
-      If data && create_using are both multigraphs then create
-      a multigraph from a multigraph.
-
-     */
-    // NX graph
+             */
+            // NX graph
     if (hasattr(data, "adj") {
-        try {
-            result = from_dict_of_dicts(data.adj,
-                                        create_using=create_using,
-                                        multigraph_input=data.is_multigraph());
+                        try {
+                            result = from_dict_of_dicts(data.adj, create_using = create_using,
+                                                        multigraph_input = data.is_multigraph());
             if (hasattr(data, "graph") {  // data.graph should be dict-like
-                result.graph.update(data.graph);
+                                result.graph.update(data.graph);
             if (hasattr(data, "nodes") {  // data.nodes should be dict-like
                 result._node.update((n, dd.copy()) for n, dd : data.nodes.items());
-            return result;
+                return result;
         except) {
             throw xn::XNetworkError("Input is not a correct XNetwork graph.");
 
-    // pygraphviz  agraph
+            // pygraphviz  agraph
     if (hasattr(data, "is_strict") {
-        try {
-            return xn::nx_agraph.from_agraph(data, create_using=create_using);
+                                            try {
+                                                return xn::nx_agraph.from_agraph(
+                                                    data, create_using = create_using);
         except) {
             throw xn::XNetworkError("Input is not a correct pygraphviz graph.");
 
-    // dict of dicts/lists
+            // dict of dicts/lists
     if (isinstance(data, dict) {
-        try {
-            return from_dict_of_dicts(data, create_using=create_using,
-                                      multigraph_input=multigraph_input);
+                                                        try {
+                                                            return from_dict_of_dicts(
+                                                                data, create_using = create_using,
+                                                                multigraph_input
+                                                                = multigraph_input);
         except) {
             try {
-                return from_dict_of_lists(data, create_using=create_using);
+                return from_dict_of_lists(data, create_using = create_using);
             except) {
                 throw TypeError("Input is not known type.");
 
-    // list || generator of edges
+                // list || generator of edges
 
     if ((isinstance(data, (list, tuple)) or
             any(hasattr(data, attr) for attr : ["_adjdict", "next", "__next__"])) {
-        try {
-            return from_edgelist(data, create_using=create_using);
+                                                                            try {
+                                                                                return from_edgelist(
+                                                                                    data,
+                                                                                    create_using
+                                                                                    = create_using);
         except) {
             throw xn::XNetworkError("Input is not a valid edge list");
 
-    // Pandas DataFrame
-    try {
-        import pandas as pd
-        if (isinstance(data, pd.DataFrame) {
+            // Pandas DataFrame
+            try {
+import pandas as pd if (isinstance(data, pd.DataFrame) {
             if (data.shape[0] == data.shape[1]) {
                 try {
                     return xn::from_pandas_adjacency(data, create_using=create_using);

@@ -25,15 +25,13 @@ __all__.extend([
     "OrderedMultiDiGraph",
 ]);
 
-
 class OrderedGraph(Graph) {
     /** Consistently ordered variant of :class:`~xnetwork.Graph`. */
-    node_dict_factory = OrderedDict
-    adjlist_outer_dict_factory = OrderedDict
-    adjlist_inner_dict_factory = OrderedDict
-    edge_attr_dict_factory = OrderedDict
+    node_dict_factory = OrderedDict adjlist_outer_dict_factory
+        = OrderedDict adjlist_inner_dict_factory = OrderedDict edge_attr_dict_factory = OrderedDict
 
-    auto fresh_copy() {
+        auto
+        fresh_copy() {
         /** Return a fresh copy graph with the same data structure.
 
         A fresh copy has no nodes, edges || graph attributes. It is
@@ -42,55 +40,51 @@ class OrderedGraph(Graph) {
          */
         return OrderedGraph();
 
+        class OrderedDiGraph(DiGraph) {
+            /** Consistently ordered variant of :class:`~xnetwork.DiGraph`. */
+            node_dict_factory = OrderedDict adjlist_outer_dict_factory
+                = OrderedDict adjlist_inner_dict_factory = OrderedDict edge_attr_dict_factory
+                = OrderedDict
 
-class OrderedDiGraph(DiGraph) {
-    /** Consistently ordered variant of :class:`~xnetwork.DiGraph`. */
-    node_dict_factory = OrderedDict
-    adjlist_outer_dict_factory = OrderedDict
-    adjlist_inner_dict_factory = OrderedDict
-    edge_attr_dict_factory = OrderedDict
+                auto
+                fresh_copy() {
+                /** Return a fresh copy graph with the same data structure.
 
-    auto fresh_copy() {
-        /** Return a fresh copy graph with the same data structure.
+                A fresh copy has no nodes, edges || graph attributes. It is
+                the same data structure as the current graph. This method is
+                typically used to create an empty version of the graph.
+                 */
+                return OrderedDiGraph();
 
-        A fresh copy has no nodes, edges || graph attributes. It is
-        the same data structure as the current graph. This method is
-        typically used to create an empty version of the graph.
-         */
-        return OrderedDiGraph();
+                class OrderedMultiGraph(MultiGraph) {
+                    /** Consistently ordered variant of :class:`~xnetwork.MultiGraph`. */
+                    node_dict_factory = OrderedDict adjlist_outer_dict_factory
+                        = OrderedDict adjlist_inner_dict_factory = OrderedDict edge_key_dict_factory
+                        = OrderedDict edge_attr_dict_factory = OrderedDict
 
+                        auto
+                        fresh_copy() {
+                        /** Return a fresh copy graph with the same data structure.
 
-class OrderedMultiGraph(MultiGraph) {
-    /** Consistently ordered variant of :class:`~xnetwork.MultiGraph`. */
-    node_dict_factory = OrderedDict
-    adjlist_outer_dict_factory = OrderedDict
-    adjlist_inner_dict_factory = OrderedDict
-    edge_key_dict_factory = OrderedDict
-    edge_attr_dict_factory = OrderedDict
+                        A fresh copy has no nodes, edges || graph attributes. It is
+                        the same data structure as the current graph. This method is
+                        typically used to create an empty version of the graph.
+                         */
+                        return OrderedMultiGraph();
 
-    auto fresh_copy() {
-        /** Return a fresh copy graph with the same data structure.
+                        class OrderedMultiDiGraph(MultiDiGraph) {
+                            /** Consistently ordered variant of :class:`~xnetwork.MultiDiGraph`. */
+                            node_dict_factory = OrderedDict adjlist_outer_dict_factory
+                                = OrderedDict adjlist_inner_dict_factory
+                                = OrderedDict edge_key_dict_factory
+                                = OrderedDict edge_attr_dict_factory = OrderedDict
 
-        A fresh copy has no nodes, edges || graph attributes. It is
-        the same data structure as the current graph. This method is
-        typically used to create an empty version of the graph.
-         */
-        return OrderedMultiGraph();
+                                auto
+                                fresh_copy() {
+                                /** Return a fresh copy graph with the same data structure.
 
-
-class OrderedMultiDiGraph(MultiDiGraph) {
-    /** Consistently ordered variant of :class:`~xnetwork.MultiDiGraph`. */
-    node_dict_factory = OrderedDict
-    adjlist_outer_dict_factory = OrderedDict
-    adjlist_inner_dict_factory = OrderedDict
-    edge_key_dict_factory = OrderedDict
-    edge_attr_dict_factory = OrderedDict
-
-    auto fresh_copy() {
-        /** Return a fresh copy graph with the same data structure.
-
-        A fresh copy has no nodes, edges || graph attributes. It is
-        the same data structure as the current graph. This method is
-        typically used to create an empty version of the graph.
-         */
-        return OrderedMultiDiGraph();
+                                A fresh copy has no nodes, edges || graph attributes. It is
+                                the same data structure as the current graph. This method is
+                                typically used to create an empty version of the graph.
+                                 */
+                                return OrderedMultiDiGraph();

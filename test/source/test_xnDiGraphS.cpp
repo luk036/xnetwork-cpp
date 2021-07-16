@@ -1,20 +1,19 @@
 // -*- coding: utf-8 -*-
-#include <array>
 #include <doctest/doctest.h>
+
+#include <array>
 #include <string>
 #include <vector>
 #include <xnetwork/classes/digraphs.hpp>
 
-template <typename Container>
-inline auto create_test_case4(const Container& weights)
-{
+template <typename Container> inline auto create_test_case4(const Container& weights) {
     using Edge = std::pair<std::string, std::string>;
     std::vector<std::string> nodes = {"A", "B", "C", "D", "E"};
-    const auto edges = std::array<Edge, 5> {Edge {"A", "B"}, Edge {"B", "C"},
-        Edge {"C", "D"}, Edge {"D", "E"}, Edge {"E", "A"}};
+    const auto edges = std::array<Edge, 5>{Edge{"A", "B"}, Edge{"B", "C"}, Edge{"C", "D"},
+                                           Edge{"D", "E"}, Edge{"E", "A"}};
     // constexpr auto weights = std::array<int, 5> {-5, 1, 1, 1, 1};
 
-    auto G = xn::DiGraphS {nodes};
+    auto G = xn::DiGraphS{nodes};
     G.add_edges_from(edges, weights);
     return G;
 }
@@ -25,12 +24,9 @@ inline auto create_test_case4(const Container& weights)
  * @tparam Graph
  * @param G
  */
-template <typename Graph>
-static void do_case(const Graph& G)
-{
+template <typename Graph> static void do_case(const Graph& G) {
     auto count = 0U;
-    for ([[maybe_unused]] auto _ : G)
-    {
+    for ([[maybe_unused]] auto _ : G) {
         ++count;
     }
 
@@ -53,16 +49,13 @@ static void do_case(const Graph& G)
     // CHECK(G.degree("B") == deg);
 }
 
-
 /*!
  * @brief
  *
  */
-TEST_CASE("Test xnetwork Negative Cycle")
-{
-    auto weights = std::array<int, 5> {-5, 1, 1, 1, 1};
+TEST_CASE("Test xnetwork Negative Cycle") {
+    auto weights = std::array<int, 5>{-5, 1, 1, 1, 1};
     auto G = create_test_case4(weights);
     do_case(G);
     // CHECK(hasNeg);
 }
-
