@@ -58,7 +58,7 @@ set_target_properties(XNetwork PROPERTIES CXX_STANDARD 17)
 target_compile_options(XNetwork INTERFACE "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
 
 # Link dependencies
-target_link_libraries(XNetwork PRIVATE fmt::fmt ${Boost_LIBRARIES})
+target_link_libraries(XNetwork INTERFACE fmt::fmt ${Boost_LIBRARIES})
 
 target_include_directories(
   XNetwork INTERFACE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
