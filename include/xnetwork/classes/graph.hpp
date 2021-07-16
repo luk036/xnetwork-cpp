@@ -1,8 +1,9 @@
 #pragma once
 
 #include <any>
-#include <boost/coroutine2/all.hpp>
+// #include <boost/coroutine2/all.hpp>
 #include <cassert>
+#include <cppcoro/generator.hpp>
 #include <py2cpp/py2cpp.hpp>
 // #include <range/v3/view/enumerate.hpp>
 #include <string_view>
@@ -801,29 +802,46 @@ namespace xn {
             OutEdgeDataView([(0, 1)])
 
         */
-        using coro_t = boost::coroutines2::coroutine<edge_t>;
-        using pull_t = typename coro_t::pull_type;
+        // using coro_t = boost::coroutines2::coroutine<edge_t>;
+        // using pull_t = typename coro_t::pull_type;
 
-        /// @TODO: sync with networkx
-        auto edges() const -> pull_t {
-            auto func = [&](typename coro_t::push_type& yield) {
-                if constexpr (std::is_same_v<nodeview_t, decltype(py::range<uint32_t>(
-                                                             uint32_t{}))>) {  // this->_succ???
-                    for (auto&& [n, nbrs] : py::enumerate(this->_adj)) {
-                        for (auto&& nbr : nbrs) {
-                            yield(edge_t{Node(n), Node(nbr)});
-                        }
-                    }
-                } else {
-                    for (auto&& [n, nbrs] : this->_adj.items()) {
-                        for (auto&& nbr : nbrs) {
-                            yield(edge_t{n, nbr});
-                        }
+        // /// @TODO: sync with networkx
+        // auto edges() const -> pull_t {
+        //     auto func = [&](typename coro_t::push_type& yield) {
+        //         if constexpr (std::is_same_v<nodeview_t, decltype(py::range<uint32_t>(
+        //                                                      uint32_t{}))>) {  // this->_succ???
+        //             for (auto&& [n, nbrs] : py::enumerate(this->_adj)) {
+        //                 for (auto&& nbr : nbrs) {
+        //                     yield(edge_t{Node(n), Node(nbr)});
+        //                 }
+        //             }
+        //         } else {
+        //             for (auto&& [n, nbrs] : this->_adj.items()) {
+        //                 for (auto&& nbr : nbrs) {
+        //                     yield(edge_t{n, nbr});
+        //                 }
+        //             }
+        //         }
+        //     };
+
+        //     return pull_t(func);
+        // }
+
+        auto edges() const -> cppcoro::generator<edge_t> {
+            if constexpr (std::is_same_v<nodeview_t, decltype(py::range<uint32_t>(
+                                                         uint32_t{}))>) {  // this->_succ???
+                for (auto&& [n, nbrs] : py::enumerate(this->_adj)) {
+                    for (auto&& nbr : nbrs) {
+                        co_yield edge_t{Node(n), Node(nbr)};
                     }
                 }
-            };
-
-            return pull_t(func);
+            } else {
+                for (auto&& [n, nbrs] : this->_adj.items()) {
+                    for (auto&& nbr : nbrs) {
+                        co_yield edge_t{n, nbr};
+                    }
+                }
+            }
         }
 
         // /// @property

@@ -33,7 +33,7 @@ jobs:
           sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 90 
 
       - name: Install dependencies
-        run: sudo apt-get install libboost-all-dev
+        run: sudo apt-get install libboost-dev
 
       - name: configure
         run: cmake -Stest -Bbuild -DENABLE_TEST_COVERAGE=1 -DCMAKE_BUILD_TYPE=Debug

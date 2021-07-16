@@ -21,8 +21,7 @@ CPMAddPackage("gh:TheLartians/Format.cmake@1.7.0")
 if(TEST_INSTALLED_VERSION)
   find_package(XNetwork REQUIRED)
 
-  find_package(Boost REQUIRED COMPONENTS coroutine context system)
-
+  find_package(Boost REQUIRED)
   if(Boost_FOUND)
     message(STATUS "Found boost: ${Boost_INCLUDE_DIRS}")
     include_directories(${Boost_INCLUDE_DIRS})

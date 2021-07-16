@@ -33,7 +33,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get install libboost-all-dev
+          sudo apt-get install libboost-dev
 
       - name: build and install library
         run: |
