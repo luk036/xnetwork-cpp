@@ -39,12 +39,11 @@ template <typename Graph> static void do_case(const Graph& G) {
     // }
     // CHECK(G.number_of_edges() == count2);
 
-    auto deg = 0U;
-    for ([[maybe_unused]] auto _ : G["B"]) {
-        ++deg;
-    }
-
-    CHECK(G.degree("B") == deg);
+    // auto deg = 0U;
+    // for ([[maybe_unused]] auto _ : G["B"]) {
+    //     ++deg;
+    // }
+    // CHECK(G.degree("B") == deg);
 }
 
 /*!
