@@ -38,4 +38,4 @@ jobs:
         run: cmake -Stest -Bbuild
 
       - name: check style
-        run: cmake --build build --target check-cmake-format
+        run: cmake --build build --target check-format
