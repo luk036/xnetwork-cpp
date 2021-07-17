@@ -54,7 +54,7 @@ add_library(XNetwork INTERFACE)
 target_compile_options(XNetwork INTERFACE "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
 
 # Link dependencies
-target_link_libraries(XNetwork INTERFACE fmt::fmt Boost::boost cppcoro::cppcoro)
+target_link_libraries(XNetwork INTERFACE fmt::fmt cppcoro::cppcoro)
 
 target_include_directories(
   XNetwork INTERFACE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
