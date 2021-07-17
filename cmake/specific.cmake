@@ -27,5 +27,5 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   add_compile_options(-fcoroutines-ts -stdlib=libc++)
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   # using Visual Studio C++
-  add_compile_options(/std:c++latest /await /W3 /WX)
+  add_compile_options(/std:c++latest /await)
 endif()
