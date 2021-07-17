@@ -6,7 +6,7 @@
 #include <xnetwork/classes/digraphs.hpp>
 #include <xnetwork/generators/testcases.hpp>
 
-/*!
+/**
  * @brief
  *
  * @tparam Graph

@@ -10,7 +10,7 @@
 // Authors: Wai-Shing Luk (luk036@gmail.com),
 //          Pieter Swart (swart@lanl.gov),
 //          Dan Schult(dschult@colgate.edu);
-/*!
+/**
  */
 // from collections import Mapping
 // #include <xnetwork.hpp> // as xn
@@ -33,7 +33,7 @@ static const auto __all__ = {
 };
 */
 
-/*! An AtlasView is a Read-only Mapping of Mappings.
+/** An AtlasView is a Read-only Mapping of Mappings.
 
     It is a View into a dict-of-dict data structure.
     The inner level of dict is read-write. But the
@@ -77,7 +77,7 @@ template <typename Atlas> class AtlasView {
     // }
 };
 
-/*! An AdjacencyView is a Read-only Map of Maps of Maps.
+/** An AdjacencyView is a Read-only Map of Maps of Maps.
 
     It is a View into a dict-of-dict-of-dict data structure.
     The inner level of dict is read-write. But the
@@ -104,7 +104,7 @@ template <typename Atlas> class AdjacencyView : public AtlasView<Atlas> {
 };
 
 // class MultiAdjacencyView(AdjacencyView) {
-//     /*! An MultiAdjacencyView is a Read-only Map of Maps of Maps of Maps.
+//     /** An MultiAdjacencyView is a Read-only Map of Maps of Maps of Maps.
 
 //     It is a View into a dict-of-dict-of-dict-of-dict data structure.
 //     The inner level of dict is read-write. But the
@@ -129,7 +129,7 @@ template <typename Atlas> class AdjacencyView : public AtlasView<Atlas> {
 // };
 
 // class UnionAtlas : public Mapping {
-//     /*! A read-only union of two atlases (dict-of-dict).
+//     /** A read-only union of two atlases (dict-of-dict).
 
 //     The two dict-of-dicts represent the inner dict of
 //     an Adjacency:  `G.succ[node]` and `G.pred[node]`.
@@ -198,7 +198,7 @@ template <typename Atlas> class AdjacencyView : public AtlasView<Atlas> {
 // };
 
 // class UnionAdjacency : public Mapping {
-//     /*! A read-only union of dict Adjacencies as a Map of Maps of Maps.
+//     /** A read-only union of dict Adjacencies as a Map of Maps of Maps.
 
 //     The two input dict-of-dict-of-dicts represent the union of
 //     `G.succ` and `G.pred`. Return values are UnionAtlas
@@ -262,7 +262,7 @@ template <typename Atlas> class AdjacencyView : public AtlasView<Atlas> {
 // };
 
 // class UnionMultiInner(UnionAtlas) {
-//     /*! A read-only union of two inner dicts of MultiAdjacencies.
+//     /** A read-only union of two inner dicts of MultiAdjacencies.
 
 //     The two input dict-of-dict-of-dicts represent the union of
 //     `G.succ[node]` and `G.pred[node]` for MultiDiGraphs.
@@ -297,7 +297,7 @@ template <typename Atlas> class AdjacencyView : public AtlasView<Atlas> {
 //     }
 
 // class UnionMultiAdjacency(UnionAdjacency) {
-//     /*! A read-only union of two dict MultiAdjacencies.
+//     /** A read-only union of two dict MultiAdjacencies.
 
 //     The two input dict-of-dict-of-dict-of-dicts represent the union of
 //     `G.succ` and `G.pred` for MultiDiGraphs. Return values are
@@ -317,7 +317,7 @@ template <typename Atlas> class AdjacencyView : public AtlasView<Atlas> {
 //     }
 
 // class ReadOnlyGraph: public object {
-//     /*! A Mixin Class to mask the write methods of a graph class. */
+//     /** A Mixin Class to mask the write methods of a graph class. */
 
 //     auto not_allowed( *args, **kwds) {
 //         const auto msg = "SubGraph Views are readonly. Mutations not

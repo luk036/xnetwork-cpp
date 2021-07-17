@@ -2,7 +2,7 @@
 // Initially implemented by Wai-Shing Luk <luk036@gmail.com>
 //
 
-/*! @file include/fractions.hpp
+/** @file include/fractions.hpp
  *  This is a C++ Library header.
  */
 
@@ -14,7 +14,7 @@
 
 namespace fun {
 
-    /*!
+    /**
      * @brief Greatest common divider
      *
      * @tparam _Mn
@@ -26,7 +26,7 @@ namespace fun {
         return __m == 0 ? abs(__n) : __n == 0 ? abs(__m) : gcd(__n, __m % __n);
     }
 
-    /*!
+    /**
      * @brief Least common multiple
      *
      * @tparam _Mn
@@ -44,7 +44,7 @@ namespace fun {
         Z _numerator;
         Z _denominator;
 
-        /*!
+        /**
          * @brief Construct a new Fraction object
          *
          * @param[in] numerator
@@ -56,14 +56,14 @@ namespace fun {
             _denominator = (common == Z(0)) ? Z(0) : denominator / common;
         }
 
-        /*!
+        /**
          * @brief Construct a new Fraction object
          *
          * @param[in] numerator
          */
         constexpr explicit Fraction(const Z& numerator) : _numerator{numerator}, _denominator{1} {}
 
-        /*!
+        /**
          * @brief Construct a new Fraction object
          *
          */
@@ -71,41 +71,41 @@ namespace fun {
         // Fraction(const _Self &) = delete;
         // Fraction(_Self &&) = default;
 
-        /*!
+        /**
          * @brief
          *
          * @return const Z&
          */
         constexpr const Z& numerator() const { return _numerator; }
 
-        /*!
+        /**
          * @brief
          *
          * @return const Z&
          */
         constexpr const Z& denominator() const { return _denominator; }
 
-        /*!
+        /**
          * @brief
          *
          * @return _Self
          */
         constexpr _Self abs() const { return _Self(std::abs(_numerator), std::abs(_denominator)); }
 
-        /*!
+        /**
          * @brief
          *
          */
         constexpr void reciprocal() { std::swap(_numerator, _denominator); }
 
-        /*!
+        /**
          * @brief
          *
          * @return _Self
          */
         constexpr _Self operator-() const { return _Self(-_numerator, _denominator); }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -122,7 +122,7 @@ namespace fun {
             return _Self(n, common);
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -130,7 +130,7 @@ namespace fun {
          */
         constexpr _Self operator-(const _Self& frac) const { return *this + (-frac); }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -142,7 +142,7 @@ namespace fun {
             return _Self(n, d);
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -153,7 +153,7 @@ namespace fun {
             return *this * frac;
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] i
@@ -164,7 +164,7 @@ namespace fun {
             return _Self(n, _denominator);
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] i
@@ -172,7 +172,7 @@ namespace fun {
          */
         constexpr _Self operator-(const Z& i) const { return *this + (-i); }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] i
@@ -183,7 +183,7 @@ namespace fun {
             return _Self(n, _denominator);
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] i
@@ -194,7 +194,7 @@ namespace fun {
             return _Self(_numerator, d);
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -202,7 +202,7 @@ namespace fun {
          */
         constexpr _Self operator+=(const _Self& frac) { return *this = *this + frac; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -210,7 +210,7 @@ namespace fun {
          */
         constexpr _Self operator-=(const _Self& frac) { return *this = *this - frac; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -218,7 +218,7 @@ namespace fun {
          */
         constexpr _Self operator*=(const _Self& frac) { return *this = *this * frac; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -226,7 +226,7 @@ namespace fun {
          */
         constexpr _Self operator/=(const _Self& frac) { return *this = *this / frac; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] i
@@ -234,7 +234,7 @@ namespace fun {
          */
         constexpr _Self operator+=(const Z& i) { return *this = *this + i; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] i
@@ -242,7 +242,7 @@ namespace fun {
          */
         constexpr _Self operator-=(const Z& i) { return *this = *this - i; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] i
@@ -250,7 +250,7 @@ namespace fun {
          */
         constexpr _Self operator*=(const Z& i) { return *this = *this * i; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] i
@@ -258,7 +258,7 @@ namespace fun {
          */
         constexpr _Self operator/=(const Z& i) { return *this = *this / i; }
 
-        /*!
+        /**
          * @brief Three way comparison
          *
          * @param[in] frac
@@ -271,7 +271,7 @@ namespace fun {
             return _numerator * frac._denominator - _denominator * frac._numerator;
         }
 
-        /*!
+        /**
          * @brief
          *
          * @tparam U
@@ -286,7 +286,7 @@ namespace fun {
             return this->cmp(frac) == 0;
         }
 
-        /*!
+        /**
          * @brief
          *
          * @tparam U
@@ -298,7 +298,7 @@ namespace fun {
             return !(*this == frac);
         }
 
-        /*!
+        /**
          * @brief
          *
          * @tparam U
@@ -313,7 +313,7 @@ namespace fun {
             return this->cmp(frac) < 0;
         }
 
-        /*!
+        /**
          * @brief
          *
          * @tparam U
@@ -325,7 +325,7 @@ namespace fun {
             return frac < *this;
         }
 
-        /*!
+        /**
          * @brief
          *
          * @tparam U
@@ -337,7 +337,7 @@ namespace fun {
             return !(frac < *this);
         }
 
-        /*!
+        /**
          * @brief
          *
          * @tparam U
@@ -349,7 +349,7 @@ namespace fun {
             return !(*this < frac);
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] c
@@ -357,7 +357,7 @@ namespace fun {
          */
         constexpr auto cmp(const Z& c) const { return _numerator - _denominator * c; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] c
@@ -366,7 +366,7 @@ namespace fun {
          */
         constexpr bool operator==(const Z& c) const { return this->cmp(c) == 0; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] c
@@ -375,7 +375,7 @@ namespace fun {
          */
         constexpr bool operator!=(const Z& c) const { return this->cmp(c) != 0; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] c
@@ -384,7 +384,7 @@ namespace fun {
          */
         constexpr bool operator<(const Z& c) const { return this->cmp(c) < 0; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] c
@@ -393,7 +393,7 @@ namespace fun {
          */
         constexpr bool operator>(const Z& c) const { return this->cmp(c) > 0; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] c
@@ -402,7 +402,7 @@ namespace fun {
          */
         constexpr bool operator<=(const Z& c) const { return this->cmp(c) <= 0; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] c
@@ -411,14 +411,14 @@ namespace fun {
          */
         constexpr bool operator>=(const Z& c) const { return this->cmp(c) >= 0; }
 
-        /*!
+        /**
          * @brief
          *
          * @return double
          */
         constexpr explicit operator double() { return double(_numerator) / _denominator; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] c
@@ -427,7 +427,7 @@ namespace fun {
          */
         friend constexpr _Self operator+(const Z& c, const _Self& frac) { return frac + c; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] c
@@ -436,7 +436,7 @@ namespace fun {
          */
         friend constexpr _Self operator-(const Z& c, const _Self& frac) { return (-frac) + c; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] c
@@ -445,7 +445,7 @@ namespace fun {
          */
         friend constexpr _Self operator*(const Z& c, const _Self& frac) { return frac * c; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] c
@@ -454,7 +454,7 @@ namespace fun {
          */
         friend constexpr _Self operator+(int&& c, const _Self& frac) { return frac + c; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] c
@@ -463,7 +463,7 @@ namespace fun {
          */
         friend constexpr _Self operator-(int&& c, const _Self& frac) { return (-frac) + c; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] c
@@ -472,7 +472,7 @@ namespace fun {
          */
         friend constexpr _Self operator*(int&& c, const _Self& frac) { return frac * c; }
 
-        /*!
+        /**
          * @brief
          *
          * @tparam _Stream

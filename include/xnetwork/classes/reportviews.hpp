@@ -10,7 +10,7 @@
 // Authors: Wai-Shing Luk (luk036@gmail.com),
 //          Pieter Swart (swart@lanl.gov),
 //          Dan Schult(dschult@colgate.edu);
-/*!
+/**
 View Classes provide node, edge and degree "views" of a graph.
 
 Views for nodes, edges and degree are provided for all base graph classes.
@@ -124,7 +124,7 @@ namespace xn {
     //                              "OutMultiDegreeView"};
 
     // NodeViews
-    /*! A NodeView class to act as G.nodes for a XNetwork Graph
+    /** A NodeView class to act as G.nodes for a XNetwork Graph
     Set operations act on the nodes without considering data.
     Iteration is over nodes. Node data can be looked up like a dict.
     Use NodeDataView to iterate over node data or to specify a data
@@ -232,7 +232,7 @@ namespace xn {
     };
 
     // class NodeDataView: public Set {
-    //     /*! A DataView class for nodes of a XNetwork Graph
+    //     /** A DataView class for nodes of a XNetwork Graph
 
     //     The main use for this class is to iterate through node-data pairs.
     //     The data can be the entire data-dictionary for each node, or it
@@ -343,7 +343,7 @@ namespace xn {
     // };
 
     // // DegreeViews
-    // /*! A View class for degree of nodes : a XNetwork Graph
+    // /** A View class for degree of nodes : a XNetwork Graph
 
     //     The functionality is like dict.items() with (node, degree) pairs.
     //     Additional functionality includes read-only lookup of node degree,
@@ -455,7 +455,7 @@ namespace xn {
     // };
 
     // class DegreeView: public DiDegreeView {
-    //     /*! A DegreeView class to act as G.degree for a XNetwork Graph
+    //     /** A DegreeView class to act as G.degree for a XNetwork Graph
 
     //     Typical usage focuses on iteration over `(node, degree)` pairs.
     //     The degree is by default the number of edges incident to the node.
@@ -527,7 +527,7 @@ namespace xn {
     // };
 
     // class OutDegreeView: public DiDegreeView {
-    //     /*! A DegreeView class to report out_degree for a DiGraph; See DegreeView
+    //     /** A DegreeView class to report out_degree for a DiGraph; See DegreeView
     //     */
 
     //     auto operator[]( n) {
@@ -557,7 +557,7 @@ namespace xn {
     // };
 
     // class InDegreeView: public DiDegreeView {
-    //     /*! A DegreeView class to report in_degree for a DiGraph; See DegreeView
+    //     /** A DegreeView class to report in_degree for a DiGraph; See DegreeView
     //     */
 
     //     auto operator[]( n) {
@@ -587,7 +587,7 @@ namespace xn {
     // };
 
     // class MultiDegreeView: public DiDegreeView {
-    //     /*! A DegreeView class for undirected multigraphs; See DegreeView */
+    //     /** A DegreeView class for undirected multigraphs; See DegreeView */
 
     //     auto operator[]( n) {
     //         weight = this->_weight;
@@ -629,7 +629,7 @@ namespace xn {
     // };
 
     // class DiMultiDegreeView: public DiDegreeView {
-    //     /*! A DegreeView class for MultiDiGraph; See DegreeView */
+    //     /** A DegreeView class for MultiDiGraph; See DegreeView */
 
     //     auto operator[]( n) {
     //         weight = this->_weight;
@@ -672,7 +672,7 @@ namespace xn {
     // };
 
     // class InMultiDegreeView: public DiDegreeView {
-    //     /*! A DegreeView class for inward degree of MultiDiGraph; See DegreeView
+    //     /** A DegreeView class for inward degree of MultiDiGraph; See DegreeView
     //     */
 
     //     auto operator[]( n) {
@@ -706,7 +706,7 @@ namespace xn {
     // };
 
     // class OutMultiDegreeView: public DiDegreeView {
-    //     /*! A DegreeView class for outward degree of MultiDiGraph; See DegreeView
+    //     /** A DegreeView class for outward degree of MultiDiGraph; See DegreeView
     //     */
 
     //     auto operator[]( n) {
@@ -741,7 +741,7 @@ namespace xn {
 
     // // EdgeDataViews
     // class OutEdgeDataView: public object {
-    //     /*! EdgeDataView for outward edges of DiGraph; See EdgeDataView */
+    //     /** EdgeDataView for outward edges of DiGraph; See EdgeDataView */
     //     static const auto __slots__ = ("_viewer", "_nbunch", "_data", "_default",
     //                  "_adjdict", "_nodes_nbrs", "_report");
 
@@ -809,7 +809,7 @@ namespace xn {
     // };
 
     // class EdgeDataView(OutEdgeDataView) {
-    //     /*! A EdgeDataView class for edges of Graph
+    //     /** A EdgeDataView class for edges of Graph
 
     //     This view is primarily used to iterate over the edges reporting
     //     edges as node-tuples with edge data optionally reported. The
@@ -871,7 +871,7 @@ namespace xn {
     // };
 
     // class InEdgeDataView(OutEdgeDataView) {
-    //     /*! An EdgeDataView class for outward edges of DiGraph; See EdgeDataView
+    //     /** An EdgeDataView class for outward edges of DiGraph; See EdgeDataView
     //     */ static const auto __slots__ = ();
 
     //     auto __iter__( ) {
@@ -891,7 +891,7 @@ namespace xn {
     // };
 
     // class OutMultiEdgeDataView(OutEdgeDataView) {
-    //     /*! An EdgeDataView for outward edges of MultiDiGraph; See EdgeDataView
+    //     /** An EdgeDataView for outward edges of MultiDiGraph; See EdgeDataView
     //     */ static const auto __slots__ = ("keys",);
 
     //     auto __getstate__( ) {
@@ -981,7 +981,7 @@ namespace xn {
     // };
 
     // class MultiEdgeDataView(OutMultiEdgeDataView) {
-    //     /*! An EdgeDataView class for edges of MultiGraph; See EdgeDataView */
+    //     /** An EdgeDataView class for edges of MultiGraph; See EdgeDataView */
     //     static const auto __slots__ = ();
 
     //     auto __iter__( ) {
@@ -1029,7 +1029,7 @@ namespace xn {
     // };
 
     // class InMultiEdgeDataView(OutMultiEdgeDataView) {
-    //     /*! An EdgeDataView for inward edges of MultiDiGraph; See EdgeDataView */
+    //     /** An EdgeDataView for inward edges of MultiDiGraph; See EdgeDataView */
     //     static const auto __slots__ = ();
 
     //     auto __iter__( ) {
@@ -1061,7 +1061,7 @@ namespace xn {
 
     // EdgeViews    have set operations and no data reported
     // Interface: Set, Mapping
-    /*! A EdgeView class for outward edges of a DiGraph */
+    /** A EdgeView class for outward edges of a DiGraph */
     // template <typename graph_t>
     // class OutEdgeView {
     //     // static const auto __slots__ = ("_adjdict", "_graph", "_nodes_nbrs");
@@ -1152,7 +1152,7 @@ namespace xn {
     // };
 
     // class EdgeView(OutEdgeView) {
-    //     /*! A EdgeView class for edges of a Graph
+    //     /** A EdgeView class for edges of a Graph
 
     //     This densely packed View allows iteration over edges, data lookup
     //     like a dict and set operations on edges represented by node-tuples.
@@ -1249,7 +1249,7 @@ namespace xn {
     // };
 
     // class InEdgeView(OutEdgeView) {
-    //     /*! A EdgeView class for inward edges of a DiGraph */
+    //     /** A EdgeView class for inward edges of a DiGraph */
     //     static const auto __slots__ = ();
 
     //     auto __setstate__( state) {
@@ -1290,7 +1290,7 @@ namespace xn {
     // };
 
     // class OutMultiEdgeView(OutEdgeView) {
-    //     /*! A EdgeView class for outward edges of a MultiDiGraph */
+    //     /** A EdgeView class for outward edges of a MultiDiGraph */
     //     static const auto __slots__ = ();
 
     //     dataview = OutMultiEdgeDataView;
@@ -1348,7 +1348,7 @@ namespace xn {
     // };
 
     // class MultiEdgeView(OutMultiEdgeView) {
-    //     /*! A EdgeView class for edges of a MultiGraph */
+    //     /** A EdgeView class for edges of a MultiGraph */
     //     static const auto __slots__ = ();
 
     //     dataview = MultiEdgeDataView;
@@ -1374,7 +1374,7 @@ namespace xn {
     // };
 
     // class InMultiEdgeView(OutMultiEdgeView) {
-    //     /*! A EdgeView class for inward edges of a MultiDiGraph */
+    //     /** A EdgeView class for inward edges of a MultiDiGraph */
     //     static const auto __slots__ = ();
 
     //     auto __setstate__( state) {

@@ -12,7 +12,7 @@ template <typename T> using Value_type = typename T::value_type;
 
 namespace py {
 
-    /*!
+    /**
      * @brief
      *
      * @tparam T
@@ -118,7 +118,7 @@ namespace py {
 
     template <typename T> inline auto range(T stop) { return range(T(0), stop); }
 
-    /*!
+    /**
      * @brief
      *
      * @tparam Key
@@ -127,27 +127,27 @@ namespace py {
         using Self = set<Key>;
 
       public:
-        /*!
+        /**
          * @brief Construct a new set object
          *
          */
         set() : std::unordered_set<Key>{} {}
 
-        /*!
+        /**
          * @brief Construct a new set object
          *
          */
         template <typename FwdIter> set(const FwdIter& start, const FwdIter& stop)
             : std::unordered_set<Key>(start, stop) {}
 
-        /*!
+        /**
          * @brief Construct a new set object
          *
          * @param[in] init
          */
         set(std::initializer_list<Key> init) : std::unordered_set<Key>{init} {}
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] key
@@ -156,35 +156,35 @@ namespace py {
          */
         auto contains(const Key& key) const -> bool { return this->find(key) != this->end(); }
 
-        /*!
+        /**
          * @brief
          *
          * @return _Self
          */
         auto copy() const -> set { return *this; }
 
-        /*!
+        /**
          * @brief
          *
          * @return _Self&
          */
         auto operator=(const set&) -> set& = delete;
 
-        /*!
+        /**
          * @brief
          *
          * @return _Self&
          */
         auto operator=(set&&) noexcept -> set& = default;
 
-        /*!
+        /**
          * @brief Move Constructor (default)
          *
          */
         set(set<Key>&&) noexcept = default;
 
         // private:
-        /*!
+        /**
          * @brief Copy Constructor (deleted)
          *
          * Copy through explicitly the public copy() function!!!
@@ -192,7 +192,7 @@ namespace py {
         set(const set<Key>&) = default;
     };
 
-    /*!
+    /**
      * @brief
      *
      * @tparam Key
@@ -205,7 +205,7 @@ namespace py {
         return m.contains(key);
     }
 
-    /*!
+    /**
      * @brief
      *
      * @tparam Key
@@ -214,7 +214,7 @@ namespace py {
      */
     template <typename Key> inline auto len(const set<Key>& m) -> size_t { return m.size(); }
 
-    /*!
+    /**
      * @brief Template Deduction Guide
      *
      * @tparam Key
@@ -234,7 +234,7 @@ namespace py {
         }
     };
 
-    /*!
+    /**
      * @brief
      *
      * @tparam Key
@@ -247,20 +247,20 @@ namespace py {
       public:
         using value_type = std::pair<const Key, T>;
 
-        /*!
+        /**
          * @brief Construct a new dict object
          *
          */
         dict() : std::unordered_map<Key, T>{} {}
 
-        /*!
+        /**
          * @brief Construct a new dict object
          *
          * @param[in] init
          */
         dict(std::initializer_list<value_type> init) : std::unordered_map<Key, T>{init} {}
 
-        /*!
+        /**
          * @brief Construct a new dict object
          *
          * @tparam Sequence
@@ -274,7 +274,7 @@ namespace py {
         //     }
         // }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] key
@@ -283,7 +283,7 @@ namespace py {
          */
         auto contains(const Key& key) const -> bool { return this->find(key) != this->end(); }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] key
@@ -297,7 +297,7 @@ namespace py {
             return (*this)[key];
         }
 
-        /*!
+        /**
          * @brief
          *
          * @return auto
@@ -307,7 +307,7 @@ namespace py {
             return key_iterator<Iter>{std::unordered_map<Key, T>::begin()};
         }
 
-        /*!
+        /**
          * @brief
          *
          * @return auto
@@ -317,28 +317,28 @@ namespace py {
             return key_iterator<Iter>{std::unordered_map<Key, T>::end()};
         }
 
-        /*!
+        /**
          * @brief
          *
          * @return std::unordered_map<Key, T>&
          */
         auto items() -> std::unordered_map<Key, T>& { return *this; }
 
-        /*!
+        /**
          * @brief
          *
          * @return const std::unordered_map<Key, T>&
          */
         auto items() const -> const std::unordered_map<Key, T>& { return *this; }
 
-        /*!
+        /**
          * @brief
          *
          * @return _Self
          */
         auto copy() const -> Self { return *this; }
 
-        /*!
+        /**
          * @brief
          *
          * @return _Self&
@@ -347,28 +347,28 @@ namespace py {
             return this->at(k);  // luk: a bug in std::unordered_map?
         }
 
-        /*!
+        /**
          * @brief
          *
          * @return _Self&
          */
         auto operator[](const Key& k) -> T& { return Base::operator[](k); }
 
-        /*!
+        /**
          * @brief
          *
          * @return _Self&
          */
         auto operator=(const Self&) -> Self& = delete;
 
-        /*!
+        /**
          * @brief
          *
          * @return _Self&
          */
         auto operator=(Self&&) noexcept -> dict& = default;
 
-        /*!
+        /**
          * @brief Move Constructor (default)
          *
          */
@@ -377,7 +377,7 @@ namespace py {
         ~dict() = default;
 
         // private:
-        /*!
+        /**
          * @brief Construct a new dict object
          *
          * Copy through explicitly the public copy() function!!!
@@ -385,7 +385,7 @@ namespace py {
         dict(const dict<Key, T>&) = default;
     };
 
-    /*!
+    /**
      * @brief
      *
      * @tparam Key
@@ -400,7 +400,7 @@ namespace py {
         return m.contains(key);
     }
 
-    /*!
+    /**
      * @brief
      *
      * @tparam Key
@@ -412,7 +412,7 @@ namespace py {
         return m.size();
     }
 
-    /*!
+    /**
      * @brief Template Deduction Guide
      *
      * @tparam Key

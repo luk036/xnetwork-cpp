@@ -14,7 +14,7 @@
 
 namespace xn {
 
-    /*! Base class for undirected graphs.
+    /*fix Base class for undirected graphs.
 
         A Graph stores nodes and edges with optional data, or attributes.
 
@@ -240,7 +240,7 @@ namespace xn {
         //     return attr;
         // }
 
-        /*! Initialize a graph with edges, name, or graph attributes.
+        /*fix Initialize a graph with edges, name, or graph attributes.
 
             Parameters
             ----------
@@ -268,7 +268,7 @@ namespace xn {
         // Graph& operator=(const Graph&) = delete; // don't copy
         // Graph(Graph&&) noexcept = default;
 
-        /*!
+        /*fix
          * @brief For compatible with BGL adaptor
          *
          * @param[in] e
@@ -276,7 +276,7 @@ namespace xn {
          */
         static auto end_points(edge_t& e) -> edge_t& { return e; }
 
-        /*!
+        /*fix
          * @brief For compatible with BGL adaptor
          *
          * @param[in] e
@@ -284,8 +284,7 @@ namespace xn {
          */
         static auto end_points(const edge_t& e) -> const edge_t& { return e; }
 
-        /// @property
-        /*! Graph adjacency object holding the neighbors of each node.
+        /*fix Graph adjacency object holding the neighbors of each node.
 
             This object is a read-only dict-like structure with node keys
             and neighbor-dict values.  The neighbor-dict is keyed by neighbor
@@ -325,9 +324,8 @@ namespace xn {
         //     return *(this->_node.end());
         // }
 
-        /// @property
         auto get_name() {
-            /*! String identifier of the graph.
+            /*fix String identifier of the graph.
 
             This graph attribute appears : the attribute dict G.graph
             keyed by the string `"name"`. as well as an attribute (technically
@@ -342,7 +340,7 @@ namespace xn {
         // @name.setter
         auto set_name(std::string_view s) { this->graph["name"] = std::any(s); }
 
-        /*! Iterate over the nodes. Use: "for (const auto& n : G)".
+        /*fix Iterate over the nodes. Use: "for (const auto& n : G)".
          *
         Returns
         -------
@@ -361,7 +359,7 @@ namespace xn {
 
         auto end() const { return std::end(this->_node); }
 
-        /*! Return true if (n is a node, false otherwise. Use: "n : G".
+        /*fix Return true if (n is a node, false otherwise. Use: "n : G".
 
         Examples
         --------
@@ -371,7 +369,7 @@ namespace xn {
          */
         auto contains(const Node& n) -> bool { return this->_node.contains(n); }
 
-        /*! Return a dict of neighbors of node n.  Use: "G[n]".
+        /*fix Return a dict of neighbors of node n.  Use: "G[n]".
 
         Parameters
         ----------
@@ -398,9 +396,8 @@ namespace xn {
 
         auto operator[](const Node& n) -> auto& { return this->adj()[n]; }
 
-        /// @property
         auto nodes() {
-            /*! A NodeView of the Graph as G.nodes().
+            /*fix A NodeView of the Graph as G.nodes().
 
             Returns
             -------
@@ -477,7 +474,7 @@ namespace xn {
             return nodes;
         }
 
-        /*! Return the number of nodes : the graph.
+        /*fix Return the number of nodes : the graph.
 
         Returns
         -------
@@ -501,7 +498,7 @@ namespace xn {
         //     return this->_num_of_edges;
         // }
 
-        /*! Return the number of nodes : the graph.
+        /*fix Return the number of nodes : the graph.
 
         Returns
         -------
@@ -514,7 +511,7 @@ namespace xn {
          */
         auto order() { return this->_node.size(); }
 
-        /*! Return the number of nodes : the graph.
+        /*fix Return the number of nodes : the graph.
 
         Returns
         -------
@@ -527,7 +524,7 @@ namespace xn {
          */
         auto size() { return this->_node.size(); }
 
-        /*! Return true if (the graph contains the node n.
+        /*fix Return true if (the graph contains the node n.
 
             Identical to `n : G`
 
@@ -543,7 +540,7 @@ namespace xn {
          */
         auto has_node(const Node& n) { return this->_node.contains(n); }
 
-        /*! Add an edge between u and v.
+        /*fix Add an edge between u and v.
 
             The nodes u and v will be automatically added if (they are
             not already : the graph.
@@ -643,7 +640,7 @@ namespace xn {
         }
 
         auto has_edge(const Node& u, const Node& v) -> bool {
-            /*! Return true if (the edge (u, v) is : the graph.
+            /*fix Return true if (the edge (u, v) is : the graph.
 
             This is the same as `v : G[u]` without KeyError exceptions.
 
@@ -683,8 +680,7 @@ namespace xn {
 
         auto degree(const Node& n) const { return this->_adj[n].size(); }
 
-        /// @property
-        /*! An EdgeView of the Graph as G.edges().
+        /*fix An EdgeView of the Graph as G.edges().
 
             edges( nbunch=None, data=false, default=None);
 
@@ -742,8 +738,8 @@ namespace xn {
         //     this->operator[]("edges") = std::any(edges);
         //     return edges;
         // }
-        /// @property
-        /*! An OutEdgeView of the DiGraph as G.edges().
+
+        /*fix An OutEdgeView of the DiGraph as G.edges().
 
             edges(self, nbunch=None, data=False, default=None)
 
@@ -844,9 +840,9 @@ namespace xn {
             }
         }
 
-        // /// @property
+        //
         // auto degree() {
-        //     /*! A DegreeView for the Graph as G.degree or G.degree().
+        //     /*fix A DegreeView for the Graph as G.degree or G.degree().
 
         //     The node degree is the number of edges adjacent to the node.
         //     The weighted node degree is the sum of the edge weights for
@@ -890,7 +886,7 @@ namespace xn {
         // }
 
         auto clear() {
-            /*! Remove all nodes and edges from the graph.
+            /*fix Remove all nodes and edges from the graph.
 
             This also removes the name, and all graph, node, and edge attributes.
 
@@ -909,10 +905,10 @@ namespace xn {
             this->graph.clear();
         }
 
-        /*! Return true if (graph is a multigraph, false otherwise. */
+        /*fix Return true if (graph is a multigraph, false otherwise. */
         auto is_multigraph() { return false; }
 
-        /*! Return true if (graph is directed, false otherwise. */
+        /*fix Return true if (graph is directed, false otherwise. */
         auto is_directed() { return false; }
     };
 
