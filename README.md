@@ -1,15 +1,15 @@
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/MacOS/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Windows/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Ubuntu/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Style/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Install/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![codecov](https://codecov.io/gh/TheLartians/ModernCppStarter/branch/master/graph/badge.svg)](https://codecov.io/gh/TheLartians/ModernCppStarter)
+[![Actions Status](https://github.com/luk036/xn-cpp/workflows/MacOS/badge.svg)](https://github.com/luk036/xn-cpp/actions)
+[![Actions Status](https://github.com/luk036/xn-cpp/workflows/Windows/badge.svg)](https://github.com/luk036/xn-cpp/actions)
+[![Actions Status](https://github.com/luk036/xn-cpp/workflows/Ubuntu/badge.svg)](https://github.com/luk036/xn-cpp/actions)
+[![Actions Status](https://github.com/luk036/xn-cpp/workflows/Style/badge.svg)](https://github.com/luk036/xn-cpp/actions)
+[![Actions Status](https://github.com/luk036/xn-cpp/workflows/Install/badge.svg)](https://github.com/luk036/xn-cpp/actions)
+[![codecov](https://codecov.io/gh/luk036/xn-cpp/branch/master/graph/badge.svg)](https://codecov.io/gh/luk036/xn-cpp)
 
 <p align="center">
   <img src="https://repository-images.githubusercontent.com/254842585/4dfa7580-7ffb-11ea-99d0-46b8fe2f4170" height="175" width="auto" />
 </p>
 
-# ModernCppStarter
+# XNetwork
 
 Setting up a new C++ project usually requires a significant amount of preparation and boilerplate code, even more so for modern C++ projects with tests, executables and continuous integration.
 This template is the result of learnings from many previous projects and should help reduce the work required to setup up a modern C++ project.
@@ -22,10 +22,10 @@ This template is the result of learnings from many previous projects and should 
 - Integrated test suite
 - Continuous integration via [GitHub Actions](https://help.github.com/en/actions/)
 - Code coverage via [codecov](https://codecov.io)
-- Code formatting enforced by [clang-format](https://clang.llvm.org/docs/ClangFormat.html) and [cmake-format](https://github.com/cheshirekow/cmake_format) via [Format.cmake](https://github.com/TheLartians/Format.cmake)
-- Reproducible dependency management via [CPM.cmake](https://github.com/TheLartians/CPM.cmake)
-- Installable target with automatic versioning information and header generation via [PackageProject.cmake](https://github.com/TheLartians/PackageProject.cmake)
-- Automatic [documentation](https://thelartians.github.io/ModernCppStarter) and deployment with [Doxygen](https://www.doxygen.nl) and [GitHub Pages](https://pages.github.com)
+- Code formatting enforced by [clang-format](https://clang.llvm.org/docs/ClangFormat.html) and [cmake-format](https://github.com/cheshirekow/cmake_format) via [Format.cmake](https://github.com/luk036/Format.cmake)
+- Reproducible dependency management via [CPM.cmake](https://github.com/luk036/CPM.cmake)
+- Installable target with automatic versioning information and header generation via [PackageProject.cmake](https://github.com/luk036/PackageProject.cmake)
+- Automatic [documentation](https://luk036.github.io/xn-cpp) and deployment with [Doxygen](https://www.doxygen.nl) and [GitHub Pages](https://pages.github.com)
 - Support for [sanitizer tools, and more](#additional-tools)
 
 ## Usage
@@ -87,11 +87,11 @@ cmake --build build/test --target format
 cmake --build build/test --target fix-format
 ```
 
-See [Format.cmake](https://github.com/TheLartians/Format.cmake) for details.
+See [Format.cmake](https://github.com/luk036/Format.cmake) for details.
 
 ### Build the documentation
 
-The documentation is automatically built and [published](https://thelartians.github.io/ModernCppStarter) whenever a [GitHub Release](https://help.github.com/en/github/administering-a-repository/managing-releases-in-a-repository) is created.
+The documentation is automatically built and [published](https://luk036.github.io/xn-cpp) whenever a [GitHub Release](https://help.github.com/en/github/administering-a-repository/managing-releases-in-a-repository) is created.
 To manually build documentation, call the following command.
 
 ```bash
@@ -146,7 +146,7 @@ Ccache can be enabled by configuring with `-DUSE_CCACHE=<ON | OFF>`.
 > Can I use this for header-only libraries?
 
 Yes, however you will need to change the library type to an `INTERFACE` library as documented in the [CMakeLists.txt](CMakeLists.txt).
-See [here](https://github.com/TheLartians/StaticTypeInfo) for an example header-only library based on the template.
+See [here](https://github.com/luk036/StaticTypeInfo) for an example header-only library based on the template.
 
 > I don't need a standalone target / documentation. How can I get rid of it?
 
@@ -173,7 +173,7 @@ This has the advantage that individual libraries and components can be improved 
 
 > You recommend to add external dependencies using CPM.cmake. Will this force users of my library to use CPM.cmake as well?
 
-[CPM.cmake](https://github.com/TheLartians/CPM.cmake) should be invisible to library users as it's a self-contained CMake Script.
+[CPM.cmake](https://github.com/luk036/CPM.cmake) should be invisible to library users as it's a self-contained CMake Script.
 If problems do arise, users can always opt-out by defining the CMake or env variable [`CPM_USE_LOCAL_PACKAGES`](https://github.com/cpm-cmake/CPM.cmake#options), which will override all calls to `CPMAddPackage` with the according `find_package` call.
 This should also enable users to use the project with their favorite external C++ dependency manager, such as vcpkg or Conan.
 
@@ -189,7 +189,7 @@ As there are a lot of possible options and configurations, this is not (yet) in 
 
 > This is too much, I just want to play with C++ code and test some libraries.
 
-Perhaps the [MiniCppStarter](https://github.com/TheLartians/MiniCppStarter) is something for you!
+Perhaps the [MiniCppStarter](https://github.com/luk036/MiniCppStarter) is something for you!
 
 ## Related projects and alternatives
 
