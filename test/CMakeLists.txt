@@ -18,6 +18,15 @@ include(../cmake/CPM.cmake)
 CPMAddPackage("gh:onqtam/doctest#2.4.5")
 CPMAddPackage("gh:TheLartians/Format.cmake@1.7.0")
 
+find_package(Boost REQUIRED)
+if(Boost_FOUND)
+  message(STATUS "Found boost: ${Boost_INCLUDE_DIRS}")
+  # add_library(Boost::boost INTERFACE IMPORTED GLOBAL)
+  target_include_directories(Boost::boost SYSTEM INTERFACE ${Boost_INCLUDE_DIRS})
+  # Disable autolink
+  target_compile_definitions(Boost::boost INTERFACE BOOST_ALL_NO_LIB=1)
+endif()
+
 include(../cmake/specific.cmake)
 
 if(TEST_INSTALLED_VERSION)
