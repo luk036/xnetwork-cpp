@@ -18,46 +18,10 @@ include(../cmake/CPM.cmake)
 CPMAddPackage("gh:onqtam/doctest#2.4.5")
 CPMAddPackage("gh:TheLartians/Format.cmake@1.7.0")
 
+include(../cmake/specific.cmake)
+
 if(TEST_INSTALLED_VERSION)
   find_package(XNetwork REQUIRED)
-
-  find_package(Boost REQUIRED)
-  if(Boost_FOUND)
-    message(STATUS "Found boost: ${Boost_INCLUDE_DIRS}")
-    include_directories(${Boost_INCLUDE_DIRS})
-  endif(Boost_FOUND)
-
-  CPMAddPackage(
-    NAME cppcoro
-    GIT_TAG 1.0
-    GITHUB_REPOSITORY luk036/cppcoro
-  )
-  # print_target_properties(cppcoro)
-  if(cppcoro_ADDED)
-    message(STATUS "Found cppcoro: ${cppcoro_SOURCE_DIR}")
-    add_library(cppcoro::cppcoro INTERFACE IMPORTED GLOBAL)
-    target_include_directories(cppcoro::cppcoro SYSTEM INTERFACE ${cppcoro_SOURCE_DIR}/include)
-  endif(cppcoro_ADDED)
-
-  if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    # using GCC
-    add_compile_options(-fcoroutines -Wall -Wnon-virtual-dtor -Wunused -pedantic)
-  elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    # using clang
-    add_compile_options(
-      -fcoroutines-ts
-      -stdlib=libc++
-      -fno-exceptions
-      -Wall
-      -Wnon-virtual-dtor
-      -Wunused
-      -pedantic
-    )
-  elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    # using Visual Studio C++
-    add_compile_options(/std:c++latest /await /W3 /WX)
-  endif()
-
 else()
   CPMAddPackage(NAME XNetwork SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 endif()
@@ -67,7 +31,7 @@ endif()
 file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
 add_executable(XNetworkTests ${sources})
 target_link_libraries(
-  XNetworkTests doctest::doctest XNetwork::XNetwork ${Boost_LIBRARIES} cppcoro::cppcoro
+  XNetworkTests doctest::doctest XNetwork::XNetwork Boost::boost cppcoro::cppcoro
 )
 set_target_properties(XNetworkTests PROPERTIES CXX_STANDARD 20)
 

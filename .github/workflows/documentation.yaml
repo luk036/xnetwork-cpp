@@ -22,8 +22,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          brew install doxygen boost
+          brew install doxygen
           pip3 install jinja2 Pygments
+
+      - name: Install project dependencies
+        run: |
+          brew install boost
 
       - name: Build
         run: |

@@ -18,7 +18,7 @@ template <typename Container> inline auto create_test_case4(const Container& wei
     return G;
 }
 
-/*!
+/**
  * @brief
  *
  * @tparam Graph
@@ -37,19 +37,16 @@ template <typename Graph> static void do_case(const Graph& G) {
     // {
     //     ++count2;
     // }
-
     // CHECK(G.number_of_edges() == count2);
 
     // auto deg = 0U;
-    // for ([[maybe_unused]] auto _ : G["B"])
-    // {
+    // for ([[maybe_unused]] auto _ : G["B"]) {
     //     ++deg;
     // }
-
     // CHECK(G.degree("B") == deg);
 }
 
-/*!
+/**
  * @brief
  *
  */

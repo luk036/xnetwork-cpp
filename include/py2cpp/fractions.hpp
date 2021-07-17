@@ -1,7 +1,7 @@
 // -*- coding: utf-16 -*-
 #pragma once
 
-/*! @file include/fractions.hpp
+/** @file include/fractions.hpp
  *  This is a C++ Library header.
  */
 
@@ -12,7 +12,7 @@
 
 namespace fun {
 
-    /*!
+    /**
      * @brief Greatest common divider
      *
      * @tparam _Mn
@@ -20,11 +20,11 @@ namespace fun {
      * @param[in] __n
      * @return _Mn
      */
-    template <typename Mn> constexpr auto gcd(Mn _m, Mn _n) -> Mn {
-        return _m == 0 ? abs(_n) : _n == 0 ? abs(_m) : gcd(_n, _m % _n);
+    template <typename _Mn> constexpr auto gcd(_Mn __m, _Mn __n) -> _Mn {
+        return __m == 0 ? abs(__n) : __n == 0 ? abs(__m) : gcd(__n, __m % __n);
     }
 
-    /*!
+    /**
      * @brief Least common multiple
      *
      * @tparam _Mn
@@ -32,8 +32,8 @@ namespace fun {
      * @param[in] __n
      * @return _Mn
      */
-    template <typename Mn> constexpr auto lcm(Mn _m, Mn _n) -> Mn {
-        return (_m != 0 && _n != 0) ? (abs(_m) / gcd(_m, _n)) * abs(_n) : 0;
+    template <typename _Mn> constexpr auto lcm(_Mn __m, _Mn __n) -> _Mn {
+        return (__m != 0 && __n != 0) ? (abs(__m) / gcd(__m, __n)) * abs(__n) : 0;
     }
 
     template <typename Z> struct Fraction
@@ -45,7 +45,7 @@ namespace fun {
         Z _numerator;
         Z _denominator;
 
-        /*!
+        /**
          * @brief Construct a new Fraction object
          *
          * @param[in] numerator
@@ -56,7 +56,7 @@ namespace fun {
             this->normalize();
         }
 
-        /*!
+        /**
          * @brief Construct a new Fraction object
          *
          * @param[in] numerator
@@ -68,11 +68,14 @@ namespace fun {
         }
 
         constexpr void normalize() {
-            auto common = gcd(this->_numerator, this->_denominator);
+            Z common = gcd(this->_numerator, this->_denominator);
             if (common == Z(1)) {
                 return;
             }
-            // if (common == Z(0)) [[unlikely]] return; // both num and den are zero
+            if (common == Z(0))  // both num and den are zero
+            {
+                return;
+            }
             if (this->_denominator < Z(0)) {
                 common = -common;
             }
@@ -80,7 +83,7 @@ namespace fun {
             this->_denominator /= common;
         }
 
-        /*!
+        /**
          * @brief Construct a new Fraction object
          *
          * @param[in] numerator
@@ -88,7 +91,7 @@ namespace fun {
         constexpr explicit Fraction(Z&& numerator) noexcept
             : _numerator{std::move(numerator)}, _denominator(Z(1)) {}
 
-        /*!
+        /**
          * @brief Construct a new Fraction object
          *
          * @param[in] numerator
@@ -96,21 +99,21 @@ namespace fun {
         constexpr explicit Fraction(const Z& numerator)
             : _numerator{numerator}, _denominator(Z(1)) {}
 
-        /*!
+        /**
          * @brief
          *
          * @return const Z&
          */
         [[nodiscard]] constexpr auto numerator() const -> const Z& { return _numerator; }
 
-        /*!
+        /**
          * @brief
          *
          * @return const Z&
          */
         [[nodiscard]] constexpr auto denominator() const -> const Z& { return _denominator; }
 
-        /*!
+        /**
          * @brief
          *
          * @return Fraction
@@ -119,13 +122,13 @@ namespace fun {
             return Fraction(std::abs(_numerator), std::abs(_denominator));
         }
 
-        /*!
+        /**
          * @brief
          *
          */
         constexpr void reciprocal() { std::swap(_numerator, _denominator); }
 
-        /*!
+        /**
          * @brief
          *
          * @return Fraction
@@ -136,7 +139,7 @@ namespace fun {
             return res;
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -151,7 +154,7 @@ namespace fun {
             return Fraction(n, d);
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -159,7 +162,7 @@ namespace fun {
          */
         constexpr auto operator-(const Fraction& frac) const -> Fraction { return *this + (-frac); }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -171,7 +174,7 @@ namespace fun {
             return Fraction(std::move(n), std::move(d));
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -182,7 +185,7 @@ namespace fun {
             return *this * frac;
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] i
@@ -193,7 +196,7 @@ namespace fun {
             return Fraction(std::move(n), _denominator);
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] i
@@ -201,7 +204,7 @@ namespace fun {
          */
         constexpr auto operator-(const Z& i) const -> Fraction { return *this + (-i); }
 
-        // /*!
+        // /**
         //  * @brief
         //  *
         //  * @param[in] i
@@ -213,7 +216,7 @@ namespace fun {
         //     return Fraction(n, _denominator);
         // }
 
-        // /*!
+        // /**
         //  * @brief
         //  *
         //  * @param[in] i
@@ -225,7 +228,7 @@ namespace fun {
         //     return Fraction(_numerator, d);
         // }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -235,7 +238,7 @@ namespace fun {
             return *this = *this + frac;
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -245,7 +248,7 @@ namespace fun {
             return *this = *this - frac;
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -255,7 +258,7 @@ namespace fun {
             return *this = *this * frac;
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] frac
@@ -265,7 +268,7 @@ namespace fun {
             return *this = *this / frac;
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] i
@@ -273,7 +276,7 @@ namespace fun {
          */
         constexpr auto operator+=(const Z& i) -> Fraction& { return *this = *this + i; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] i
@@ -281,7 +284,7 @@ namespace fun {
          */
         constexpr auto operator-=(const Z& i) -> Fraction& { return *this = *this - i; }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] i
@@ -303,7 +306,7 @@ namespace fun {
             return *this;
         }
 
-        /*!
+        /**
          * @brief
          *
          * @param[in] i
@@ -325,7 +328,7 @@ namespace fun {
             return *this;
         }
 
-        /*!
+        /**
          * @brief Three way comparison
          *
          * @param[in] frac
@@ -338,7 +341,7 @@ namespace fun {
             return _numerator * frac._denominator - _denominator * frac._numerator;
         }
 
-        constexpr auto operator==(const Fraction<Z>& rhs) const -> bool {
+        template <typename U> constexpr auto operator==(const Fraction<U>& rhs) const -> bool {
             if (this->_denominator == rhs._denominator) {
                 return this->_numerator == rhs._numerator;
             }
@@ -346,7 +349,7 @@ namespace fun {
             return (this->_numerator * rhs._denominator) == (this->_denominator * rhs._numerator);
         }
 
-        constexpr auto operator<(const Fraction<Z>& rhs) const -> bool {
+        template <typename U> constexpr auto operator<(const Fraction<U>& rhs) const -> bool {
             if (this->_denominator == rhs._denominator) {
                 return this->_numerator < rhs._numerator;
             }
@@ -378,7 +381,7 @@ namespace fun {
             return this->_numerator > (this->_denominator * rhs);
         }
 
-        // /*!
+        // /**
         //  * @brief
         //  *
         //  * @return double
@@ -398,7 +401,7 @@ namespace fun {
         // }
     };
 
-    /*!
+    /**
      * @brief
      *
      * @param[in] c
@@ -410,7 +413,7 @@ namespace fun {
         return frac + c;
     }
 
-    /*!
+    /**
      * @brief
      *
      * @param[in] c
@@ -422,7 +425,7 @@ namespace fun {
         return c + (-frac);
     }
 
-    // /*!
+    // /**
     //  * @brief
     //  *
     //  * @param[in] c
@@ -435,7 +438,7 @@ namespace fun {
     //     return frac * c;
     // }
 
-    /*!
+    /**
      * @brief
      *
      * @param[in] c
@@ -447,7 +450,7 @@ namespace fun {
         return frac + c;
     }
 
-    /*!
+    /**
      * @brief
      *
      * @param[in] c
@@ -459,7 +462,7 @@ namespace fun {
         return (-frac) + c;
     }
 
-    /*!
+    /**
      * @brief
      *
      * @param[in] c
@@ -471,7 +474,7 @@ namespace fun {
         return frac * c;
     }
 
-    /*!
+    /**
      * @brief
      *
      * @tparam _Stream
@@ -480,8 +483,8 @@ namespace fun {
      * @param[in] frac
      * @return _Stream&
      */
-    template <typename Stream, typename Z> auto operator<<(Stream& os, const Fraction<Z>& frac)
-        -> Stream& {
+    template <typename _Stream, typename Z> auto operator<<(_Stream& os, const Fraction<Z>& frac)
+        -> _Stream& {
         os << frac.numerator() << "/" << frac.denominator();
         return os;
     }

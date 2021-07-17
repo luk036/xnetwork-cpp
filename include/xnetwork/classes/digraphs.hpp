@@ -15,7 +15,7 @@
 
 namespace xn {
 
-    /*! Base class for directed graphs.
+    /** Base class for directed graphs.
 
         A DiGraphS stores nodes and edges with optional data, or attributes.
 
@@ -215,7 +215,7 @@ namespace xn {
       public:
         adjlist_outer_dict_factory& _succ;  // successor
 
-        /*! Initialize a graph with edges, name, or graph attributes.
+        /** Initialize a graph with edges, name, or graph attributes.
 
             Parameters
             ----------
@@ -234,8 +234,7 @@ namespace xn {
 
         explicit DiGraphS(uint32_t num_nodes) : _Base{num_nodes}, _succ{_Base::_adj} {}
 
-        /// @property
-        /*! DiGraphS adjacency object holding the neighbors of each node.
+        /** DiGraphS adjacency object holding the neighbors of each node.
 
             This object is a read-only dict-like structure with node keys
             and neighbor-dict values.  The neighbor-dict is keyed by neighbor
@@ -255,8 +254,7 @@ namespace xn {
             return AdjacencyView<T>(this->_succ);
         }
 
-        /// @property
-        /*! Graph adjacency object holding the successors of each node.
+        /** Graph adjacency object holding the successors of each node.
 
             This object is a read-only dict-like structure with node keys
             and neighbor-dict values.  The neighbor-dict is keyed by neighbor
@@ -278,7 +276,7 @@ namespace xn {
             return AdjacencyView<T>(this->_succ);
         }
 
-        /*! Add an edge between u and v.
+        /** Add an edge between u and v.
 
             The nodes u and v will be automatically added if (they are
             not already : the graph.
@@ -367,7 +365,7 @@ namespace xn {
             }
         }
 
-        /*! Returns True if node u has successor v.
+        /** Returns True if node u has successor v.
 
             This is true if graph has the edge u->v.
         */
@@ -375,7 +373,7 @@ namespace xn {
             return this->_node.contains(u) && this->_succ[u].contains(v);
         }
 
-        /*! Returns an iterator over successor nodes of n.
+        /** Returns an iterator over successor nodes of n.
 
             A successor of n is a node m such that there exists a directed
             edge from n to m.
@@ -402,8 +400,7 @@ namespace xn {
 
         auto successors(const Node& n) const -> const auto& { return this->_succ[n]; }
 
-        /// @property
-        /*! An OutEdgeView of the DiGraph as G.edges().
+        /** An OutEdgeView of the DiGraph as G.edges().
 
             edges(self, nbunch=None, data=False, default=None)
 
@@ -525,7 +522,7 @@ namespace xn {
 
         auto degree(const Node& n) const { return this->_succ[n].size(); }
 
-        /*! Remove all nodes and edges from the graph.
+        /** Remove all nodes and edges from the graph.
 
             This also removes the name, and all graph, node, and edge attributes.
 
@@ -546,10 +543,10 @@ namespace xn {
             this->graph.clear();
         }
 
-        /*! Return true if (graph is a multigraph, false otherwise. */
+        /** Return true if (graph is a multigraph, false otherwise. */
         auto is_multigraph() { return false; }
 
-        /*! Return true if (graph is directed, false otherwise. */
+        /** Return true if (graph is directed, false otherwise. */
         auto is_directed() { return true; }
     };
 
