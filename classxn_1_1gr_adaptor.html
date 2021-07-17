@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>xn::grAdaptor class | XNetwork</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="favicon-dark.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">XNetwork</a>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+            <li>
+              <a href="pages.html">Pages</a>
+              <ol>
+                <li><a href="about.html">About</a></li>
+              </ol>
+            </li>
+            <li><a href="namespaces.html">Namespaces</a></li>
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="3">
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <use href="#m-doc-search-icon-path" />
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="nx2bgl_8hpp.html">&lt;py2cpp/nx2bgl.hpp&gt;</a></div>
+          <div class="m-doc-template">template&lt;typename _Graph&gt;</div>
+          <span class="m-breadcrumb"><a href="namespacexn.html">xn</a>::<wbr/></span>grAdaptor <span class="m-thin">class</span>
+        </h1>
+        <table class="m-table m-fullwidth m-flat">
+          <thead>
+            <tr><th colspan="2">Template parameters</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="width: 1%">_Graph</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#base-classes">Base classes</a></li>
+                <li><a href="#pub-types">Public types</a></li>
+                <li><a href="#pub-static-methods">Public static functions</a></li>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="base-classes">
+          <h2><a href="#base-classes">Base classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <div class="m-doc-template">template&lt;typename <a href="classxn_1_1_graph.html" class="m-doc">Graph</a>&gt;</div>
+              class <a href="classxn_1_1_vertex_view.html" class="m-doc">VertexView&lt;_Graph&gt;</a>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
+        <section id="pub-types">
+          <h2><a href="#pub-types">Public types</a></h2>
+          <dl class="m-doc">
+            <dt id="ac8fb9cad9295a0302139e1bc93937ecb">
+              using <a href="#ac8fb9cad9295a0302139e1bc93937ecb" class="m-doc-self">Vertex</a> = typename boost::graph_traits&lt;_Graph&gt;::vertex_descriptor
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a395b0aa0a79509bdfc1ce66b2dc52c19">
+              using <a href="#a395b0aa0a79509bdfc1ce66b2dc52c19" class="m-doc-self">node_t</a> = <a href="classxn_1_1gr_adaptor.html#ac8fb9cad9295a0302139e1bc93937ecb" class="m-doc">Vertex</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="af348a2763edf1181e88e0d74b962e00e">
+              using <a href="#af348a2763edf1181e88e0d74b962e00e" class="m-doc-self">edge_t</a> = typename boost::graph_traits&lt;_Graph&gt;::edge_descriptor
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-static-methods">
+          <h2><a href="#pub-static-methods">Public static functions</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <span class="m-doc-wrap-bumper">static auto <a href="#acb2bf2f4d2b41c6047f996007935bc00" class="m-doc">null_vertex</a>(</span><span class="m-doc-wrap">) -&gt; Vertex -&gt; auto</span>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt id="ab18c8c59efe9fe2c8b2479525da14cec">
+              <span class="m-doc-wrap-bumper"><a href="#ab18c8c59efe9fe2c8b2479525da14cec" class="m-doc-self">grAdaptor</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd>Construct a new gr Adaptor object.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#acd00e3bda80639c27be723a5754ae1a3" class="m-doc">grAdaptor</a>(</span><span class="m-doc-wrap"><a href="classxn_1_1_graph.html" class="m-doc">Graph</a>&amp;&amp; G) <span class="m-label m-flat m-info">explicit</span>  <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd>Construct a new gr Adaptor object.</dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt id="aa109e0609af246ea678f9cac4d8fcd84">
+              <span class="m-doc-wrap-bumper">auto <a href="#aa109e0609af246ea678f9cac4d8fcd84" class="m-doc-self">number_of_nodes</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a953cf942301386c5a3e7b51a6b63ca09">
+              <span class="m-doc-wrap-bumper">auto <a href="#a953cf942301386c5a3e7b51a6b63ca09" class="m-doc-self">number_of_edges</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a36cc574e1ec0517deb3d4c86e3c0bfea" class="m-doc">edges</a>(</span><span class="m-doc-wrap">) const -&gt; EdgeView&lt; _Graph &gt; -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#acfc2a0fb12c780a83b3f605d4309f818" class="m-doc">neighbors</a>(</span><span class="m-doc-wrap"><a href="classxn_1_1gr_adaptor.html#ac8fb9cad9295a0302139e1bc93937ecb" class="m-doc">Vertex</a> v) const -&gt; AtlasView&lt; Vertex, _Graph &gt; -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a5b0060e89f7f8d11b2dc9a2d562715c2" class="m-doc">add_edge</a>(</span><span class="m-doc-wrap">int u,
+              int v) -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename Edge&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a33e2b42c1ba6e16fd93dd8b550217ff8" class="m-doc">source</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename Edge&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a686a21a70299f286dccb26929b6146f9" class="m-doc">target</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename Edge&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a282340acd628573ac785a2cfbf0b64f8" class="m-doc">end_points</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; auto</span>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="acb2bf2f4d2b41c6047f996007935bc00"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _Graph&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">static auto xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#acb2bf2f4d2b41c6047f996007935bc00" class="m-doc-self">null_vertex</a>(</span><span class="m-doc-wrap">) -&gt; Vertex</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>Vertex</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="acd00e3bda80639c27be723a5754ae1a3"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _Graph&gt;
+              </div>
+              <span class="m-doc-wrap-bumper"> xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#acd00e3bda80639c27be723a5754ae1a3" class="m-doc-self">grAdaptor</a>(</span><span class="m-doc-wrap"><a href="classxn_1_1_graph.html" class="m-doc">Graph</a>&amp;&amp; G) <span class="m-label m-info">explicit</span>  <span class="m-label m-success">noexcept</span></span></span>
+            </h3>
+            <p>Construct a new gr Adaptor object.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">G&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a36cc574e1ec0517deb3d4c86e3c0bfea"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _Graph&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a36cc574e1ec0517deb3d4c86e3c0bfea" class="m-doc-self">edges</a>(</span><span class="m-doc-wrap">) const -&gt; EdgeView&lt; _Graph &gt;</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>EdgeView&lt;_Graph&gt;</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="acfc2a0fb12c780a83b3f605d4309f818"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _Graph&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#acfc2a0fb12c780a83b3f605d4309f818" class="m-doc-self">neighbors</a>(</span><span class="m-doc-wrap"><a href="classxn_1_1gr_adaptor.html#ac8fb9cad9295a0302139e1bc93937ecb" class="m-doc">Vertex</a> v) const -&gt; AtlasView&lt; Vertex, _Graph &gt;</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">v&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>AtlasView&lt;Vertex, _Graph&gt;</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a5b0060e89f7f8d11b2dc9a2d562715c2"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _Graph&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5b0060e89f7f8d11b2dc9a2d562715c2" class="m-doc-self">add_edge</a>(</span><span class="m-doc-wrap">int u,
+              int v)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">u&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>v&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a33e2b42c1ba6e16fd93dd8b550217ff8"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _Graph&gt;
+                template&lt;typename Edge&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a33e2b42c1ba6e16fd93dd8b550217ff8" class="m-doc-self">source</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">Edge</td>
+                  <td></td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>e</td>
+                  <td></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>Vertex</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a686a21a70299f286dccb26929b6146f9"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _Graph&gt;
+                template&lt;typename Edge&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a686a21a70299f286dccb26929b6146f9" class="m-doc-self">target</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">Edge</td>
+                  <td></td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>e&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>Vertex</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a282340acd628573ac785a2cfbf0b64f8"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _Graph&gt;
+                template&lt;typename Edge&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a282340acd628573ac785a2cfbf0b64f8" class="m-doc-self">end_points</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">Edge</td>
+                  <td></td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>e&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search-v1.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>XNetwork. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>
