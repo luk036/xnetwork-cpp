@@ -52,7 +52,8 @@ namespace py {
             constexpr auto operator==(const _iterator& other) const -> bool {
                 return this->i == other.i;
             }
-            constexpr auto operator*() const -> T { return this->i; }
+            constexpr auto operator*() const -> const T& { return this->i; }
+            constexpr auto operator*() -> T& { return this->i; }
             constexpr auto operator++() -> _iterator& {
                 ++this->i;
                 return *this;
@@ -125,27 +126,28 @@ namespace py {
      */
     template <typename Key> class set : public std::unordered_set<Key> {
         using Self = set<Key>;
+        using Base = std::unordered_set<Key>;
 
       public:
         /**
          * @brief Construct a new set object
          *
          */
-        set() : std::unordered_set<Key>{} {}
+        set() : Base{} {}
 
         /**
          * @brief Construct a new set object
          *
          */
         template <typename FwdIter> set(const FwdIter& start, const FwdIter& stop)
-            : std::unordered_set<Key>(start, stop) {}
+            : Base(start, stop) {}
 
         /**
          * @brief Construct a new set object
          *
          * @param[in] init
          */
-        set(std::initializer_list<Key> init) : std::unordered_set<Key>{init} {}
+        set(std::initializer_list<Key> init) : Base{init} {}
 
         /**
          * @brief
@@ -227,7 +229,8 @@ namespace py {
 
     template <typename Iter> struct key_iterator : Iter {
         explicit key_iterator(Iter it) : Iter(it) {}
-        auto operator*() const { return Iter::operator*().first; }
+        auto operator*() const -> const auto& { return Iter::operator*().first; }
+        auto operator*() -> auto& { return Iter::operator*().first; }
         auto operator++() -> key_iterator& {
             Iter::operator++();
             return *this;
@@ -251,14 +254,14 @@ namespace py {
          * @brief Construct a new dict object
          *
          */
-        dict() : std::unordered_map<Key, T>{} {}
+        dict() : Base{} {}
 
         /**
          * @brief Construct a new dict object
          *
          * @param[in] init
          */
-        dict(std::initializer_list<value_type> init) : std::unordered_map<Key, T>{init} {}
+        dict(std::initializer_list<value_type> init) : Base{init} {}
 
         /**
          * @brief Construct a new dict object
@@ -303,8 +306,8 @@ namespace py {
          * @return auto
          */
         auto begin() const {
-            using Iter = decltype(std::unordered_map<Key, T>::begin());
-            return key_iterator<Iter>{std::unordered_map<Key, T>::begin()};
+            using Iter = decltype(Base::begin());
+            return key_iterator<Iter>{Base::begin()};
         }
 
         /**
@@ -313,8 +316,8 @@ namespace py {
          * @return auto
          */
         auto end() const {
-            using Iter = decltype(std::unordered_map<Key, T>::end());
-            return key_iterator<Iter>{std::unordered_map<Key, T>::end()};
+            using Iter = decltype(Base::end());
+            return key_iterator<Iter>{Base::end()};
         }
 
         /**
@@ -322,14 +325,14 @@ namespace py {
          *
          * @return std::unordered_map<Key, T>&
          */
-        auto items() -> std::unordered_map<Key, T>& { return *this; }
+        auto items() -> Base& { return *this; }
 
         /**
          * @brief
          *
          * @return const std::unordered_map<Key, T>&
          */
-        auto items() const -> const std::unordered_map<Key, T>& { return *this; }
+        auto items() const -> const Base& { return *this; }
 
         /**
          * @brief
