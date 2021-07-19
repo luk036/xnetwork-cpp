@@ -98,7 +98,7 @@ EdgeDataView
 // #include <initializer_list>
 #include <utility>
 
-namespace xn {
+namespace xnetwork {
 
     // static const auto __all__ = {"NodeView",
     //                              "NodeDataView",
@@ -136,38 +136,38 @@ namespace xn {
 
     Examples
     --------
-    >>> G = xn::path_graph(3);
-    >>> NV = G.nodes();
-    >>> 2 : NV
+        > G = xnetwork::path_graph(3);
+        > NV = G.nodes();
+        > 2 : NV
     true
-    >>> for n : NV: print(n);
+        > for n : NV: print(n);
     0
     1
     2
-    >>> assert(NV & {1, 2, 3} == {1, 2});
-    >>> G.add_node(2, color="blue");
-    >>> NV[2];
+        > assert(NV & {1, 2, 3} == {1, 2});
+        > G.add_node(2, color="blue");
+        > NV[2];
     {"color": "blue"}
-    >>> G.add_node(8, color="red");
-    >>> NDV = G.nodes(data=true);
-    >>> (2, NV[2]] : NDV
+        > G.add_node(8, color="red");
+        > NDV = G.nodes(data=true);
+        > (2, NV[2]] : NDV
     true
-    >>> for n, dd : NDV: print((n, dd.get("color", "aqua")));
+        > for n, dd : NDV: print((n, dd.get("color", "aqua")));
     (0, "aqua");
     (1, "aqua");
     (2, "blue");
     (8, "red");
-    >>> NDV[2] == NV[2];
+        > NDV[2] == NV[2];
     true
-    >>> NVdata = G.nodes(data="color", default="aqua");
-    >>> (2, NVdata[2]] : NVdata
+        > NVdata = G.nodes(data="color", default="aqua");
+        > (2, NVdata[2]] : NVdata
     true
-    >>> for n, dd : NVdata: print((n, dd));
+        > for n, dd : NVdata: print((n, dd));
     (0, "aqua");
     (1, "aqua");
     (2, "blue");
     (8, "red");
-    >>> NVdata[2] == NV[2];  // NVdata gets "color", NV gets datadict
+        > NVdata[2] == NV[2];  // NVdata gets "color", NV gets datadict
     false
      */
     // interface: Mapping, Set
@@ -362,22 +362,22 @@ namespace xn {
 
     //     Examples
     //     --------
-    //     >>> G = xn::path_graph(3);
-    //     >>> DV = G.degree();
-    //     >>> assert(DV[2] == 1);
-    //     >>> assert(sum(deg for n, deg : DV) == 4);
+    //         > G = xnetwork::path_graph(3);
+    //         > DV = G.degree();
+    //         > assert(DV[2] == 1);
+    //         > assert(sum(deg for n, deg : DV) == 4);
 
-    //     >>> DVweight = G.degree(weight="span");
-    //     >>> G.add_edge(1, 2, span=34);
-    //     >>> DVweight[2];
+    //         > DVweight = G.degree(weight="span");
+    //         > G.add_edge(1, 2, span=34);
+    //         > DVweight[2];
     //     34
-    //     >>> DVweight[0];  //  default edge weight is 1
+    //         > DVweight[0];  //  default edge weight is 1
     //     1
-    //     >>> sum(span for n, span : DVweight);  // sum weighted degrees
+    //         > sum(span for n, span : DVweight);  // sum weighted degrees
     //     70
 
-    //     >>> DVnbunch = G.degree(nbunch=(1, 2));
-    //     >>> assert(len(list(DVnbunch)) == 2);  // iteration over nbunch only
+    //         > DVnbunch = G.degree(nbunch=(1, 2));
+    //         > assert(len(list(DVnbunch)) == 2);  // iteration over nbunch only
     // */
     // class DiDegreeView: public object {
     //     using _Self = DiDegreeView;
@@ -479,23 +479,23 @@ namespace xn {
 
     //     Examples
     //     --------
-    //     >>> G = xn::path_graph(3);
-    //     >>> DV = G.degree();
-    //     >>> assert(DV[2] == 1);
-    //     >>> assert(G.degree[2] == 1);
-    //     >>> assert(sum(deg for n, deg : DV) == 4);
+    //         > G = xnetwork::path_graph(3);
+    //         > DV = G.degree();
+    //         > assert(DV[2] == 1);
+    //         > assert(G.degree[2] == 1);
+    //         > assert(sum(deg for n, deg : DV) == 4);
 
-    //     >>> DVweight = G.degree(weight="span");
-    //     >>> G.add_edge(1, 2, span=34);
-    //     >>> DVweight[2];
+    //         > DVweight = G.degree(weight="span");
+    //         > G.add_edge(1, 2, span=34);
+    //         > DVweight[2];
     //     34
-    //     >>> DVweight[0];  //  default edge weight is 1
+    //         > DVweight[0];  //  default edge weight is 1
     //     1
-    //     >>> sum(span for n, span : DVweight);  // sum weighted degrees
+    //         > sum(span for n, span : DVweight);  // sum weighted degrees
     //     70
 
-    //     >>> DVnbunch = G.degree(nbunch=(1, 2));
-    //     >>> assert(len(list(DVnbunch)) == 2);  // iteration over nbunch only
+    //         > DVnbunch = G.degree(nbunch=(1, 2));
+    //         > assert(len(list(DVnbunch)) == 2);  // iteration over nbunch only
     //      */
 
     //     auto operator[]( n) {
@@ -830,11 +830,11 @@ namespace xn {
 
     //     Examples
     //     --------
-    //     >>> G = xn::path_graph(3);
-    //     >>> G.add_edge(1, 2, foo="bar");
-    //     >>> list(G.edges(data="foo", default="biz"));
+    //         > G = xnetwork::path_graph(3);
+    //         > G.add_edge(1, 2, foo="bar");
+    //         > list(G.edges(data="foo", default="biz"));
     //     [(0, 1, "biz"), (1, 2, "bar")];
-    //     >>> assert((0, 1, "biz"] : G.edges(data="foo", default="biz"));
+    //         > assert((0, 1, "biz"] : G.edges(data="foo", default="biz"));
     //      */
     //     static const auto __slots__ = ();
 
@@ -1182,35 +1182,35 @@ namespace xn {
 
     //     Examples
     //     ========
-    //     >>> G = xn::path_graph(4);
-    //     >>> EV = G.edges();
-    //     >>> (2, 3] : EV
+    //         > G = xnetwork::path_graph(4);
+    //         > EV = G.edges();
+    //         > (2, 3] : EV
     //     true
-    //     >>> for u, v : EV: print((u, v));
+    //         > for u, v : EV: print((u, v));
     //     (0, 1);
     //     (1, 2);
     //     (2, 3);
-    //     >>> assert(EV & {(1, 2), (3, 4)} == {(1, 2)});
+    //         > assert(EV & {(1, 2), (3, 4)} == {(1, 2)});
 
-    //     >>> EVdata = G.edges(data="color", default="aqua");
-    //     >>> G.add_edge(2, 3, color="blue");
-    //     >>> assert((2, 3, "blue"] : EVdata);
-    //     >>> for u, v, c : EVdata: print("({}, {}) has color: {}".format(u, v,
+    //         > EVdata = G.edges(data="color", default="aqua");
+    //         > G.add_edge(2, 3, color="blue");
+    //         > assert((2, 3, "blue"] : EVdata);
+    //         > for u, v, c : EVdata: print("({}, {}) has color: {}".format(u, v,
     //     c)); (0, 1) has color: aqua (1, 2) has color: aqua (2, 3) has color: blue
 
-    //     >>> EVnbunch = G.edges(nbunch=2);
-    //     >>> assert((2, 3] : EVnbunch);
-    //     >>> assert((0, 1] : EVnbunch)   //  nbunch is ignored : __contains__
-    //     >>> for u, v : EVnbunch: assert(u == 2 or v == 2);
+    //         > EVnbunch = G.edges(nbunch=2);
+    //         > assert((2, 3] : EVnbunch);
+    //         > assert((0, 1] : EVnbunch)   //  nbunch is ignored : __contains__
+    //         > for u, v : EVnbunch: assert(u == 2 or v == 2);
 
-    //     >>> MG = xn::path_graph(4, create_using=xn::MultiGraph());
-    //     >>> EVmulti = MG.edges(keys=true);
-    //     >>> (2, 3, 0] : EVmulti
+    //         > MG = xnetwork::path_graph(4, create_using=xnetwork::MultiGraph());
+    //         > EVmulti = MG.edges(keys=true);
+    //         > (2, 3, 0] : EVmulti
     //     true
-    //     >>> (2, 3] : EVmulti   // 2-tuples work even when keys is true
+    //         > (2, 3] : EVmulti   // 2-tuples work even when keys is true
     //     true
-    //     >>> key = MG.add_edge(2, 3);
-    //     >>> for u, v, k : EVmulti: print((u, v, k));
+    //         > key = MG.add_edge(2, 3);
+    //         > for u, v, k : EVmulti: print((u, v, k));
     //     (0, 1, 0);
     //     (1, 2, 0);
     //     (2, 3, 0);
@@ -1424,4 +1424,4 @@ namespace xn {
     //     }
     // };
 
-}  // namespace xn
+}  // namespace xnetwork

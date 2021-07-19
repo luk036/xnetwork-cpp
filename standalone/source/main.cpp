@@ -7,11 +7,11 @@
 #include <xnetwork/greeter.hpp>
 
 auto main(int argc, char** argv) -> int {
-    const std::unordered_map<std::string, xn::LanguageCode> languages{
-        {"en", xn::LanguageCode::EN},
-        {"de", xn::LanguageCode::DE},
-        {"es", xn::LanguageCode::ES},
-        {"fr", xn::LanguageCode::FR},
+    const std::unordered_map<std::string, xnetwork::LanguageCode> languages{
+        {"en", xnetwork::LanguageCode::EN},
+        {"de", xnetwork::LanguageCode::DE},
+        {"es", xnetwork::LanguageCode::ES},
+        {"fr", xnetwork::LanguageCode::FR},
     };
 
     cxxopts::Options options(*argv, "A program to welcome the world!");
@@ -46,7 +46,7 @@ auto main(int argc, char** argv) -> int {
         return 1;
     }
 
-    // xn::XNetwork xn(name);
+    // xnetwork::XNetwork xn(name);
     // std::cout << xn.greet(langIt->second) << std::endl;
 
     return 0;

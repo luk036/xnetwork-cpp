@@ -321,7 +321,7 @@ template <typename Atlas> class AdjacencyView : public AtlasView<Atlas> {
 
 //     auto not_allowed( *args, **kwds) {
 //         const auto msg = "SubGraph Views are readonly. Mutations not
-//         allowed"; throw xn::XNetworkError(msg);
+//         allowed"; throw xnetwork::XNetworkError(msg);
 //     }
 
 //     add_node = not_allowed;

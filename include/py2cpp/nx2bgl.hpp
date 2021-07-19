@@ -5,7 +5,7 @@
 #include <boost/graph/graph_utility.hpp>
 #include <type_traits>
 
-namespace xn {
+namespace py {
 
     /**
      * @brief
@@ -270,4 +270,4 @@ namespace xn {
         }
     };
 
-}  // namespace xn
+}  // namespace xnetwork

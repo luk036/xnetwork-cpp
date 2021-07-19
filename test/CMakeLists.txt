@@ -65,8 +65,7 @@ enable_testing()
 # Note: doctest and similar testing frameworks can automatically configure CMake tests. For other
 # testing frameworks add the tests target instead: add_test(NAME xnTests COMMAND XNetworkTests)
 
-include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
-doctest_discover_tests(XNetworkTests)
+add_test(NAME xnetworkTests COMMAND XNetworkTests)
 
 # ---- code coverage ----
 

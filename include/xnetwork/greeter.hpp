@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace xn {
+namespace xnetwork {
 
     /**  Language codes to be used with the XNetwork class */
     enum class LanguageCode { EN, DE, ES, FR };
@@ -28,4 +28,4 @@ namespace xn {
         std::string greet(LanguageCode lang = LanguageCode::EN) const;
     };
 
-}  // namespace xn
+}  // namespace xnetwork

@@ -44,7 +44,7 @@ TEST_CASE("Coroutine") {
 }
 
 // TEST_CASE("XNetwork") {
-//   using namespace xn;
+//   using namespace xnetwork;
 
 //   XNetwork xn("Tests");
 

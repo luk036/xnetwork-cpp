@@ -155,7 +155,7 @@ from collections import Counter from itertools import chain try {
 
         auto frozen(*args) {
             /** Dummy method for raising errors when trying to modify frozen graphs */
-    throw xn::XNetworkError("Frozen graph can"t be modified");
+    throw xnetwork::XNetworkError("Frozen graph can"t be modified");
 
 
 auto freeze(G) {
@@ -171,11 +171,11 @@ auto freeze(G) {
 
                                                         Examples
                                                         --------
-                                                        >>> G = xn::path_graph(4);
-                                                        >>> G = xn::freeze(G);
-                                                        >>> ) {
+                                                            > G = xnetwork::path_graph(4);
+                                                            > G = xnetwork::freeze(G);
+                                                            > ) {
                                                         ...    G.add_edge(4, 5);
-                                                        ... } catch (xn::XNetworkError as e) {
+                                                        ... } catch (xnetwork::XNetworkError as e) {
                                                         ...    print(str(e));
                                                         Frozen graph can"t be modified
 
@@ -184,11 +184,11 @@ auto freeze(G) {
                                                         To "unfreeze" a graph you must make a copy
                                                         by creating a new graph object) {
 
-                                                        >>> graph = xn::path_graph(4);
-                                                        >>> frozen_graph = xn::freeze(graph);
-                                                        >>> unfrozen_graph =
-                                                        xn::Graph(frozen_graph);
-                                                        >>> xn::is_frozen(unfrozen_graph);
+                                                            > graph = xnetwork::path_graph(4);
+                                                            > frozen_graph = xnetwork::freeze(graph);
+                                                            > unfrozen_graph =
+                                                        xnetwork::Graph(frozen_graph);
+                                                            > xnetwork::is_frozen(unfrozen_graph);
                                                         false
 
                                                         See Also
@@ -251,10 +251,10 @@ auto freeze(G) {
 
                                                                     Examples
                                                                     --------
-                                                                    >>> G = xn::Graph();
-                                                                    >>> xn::add_star(G, [0, 1, 2,
+                                                                        > G = xnetwork::Graph();
+                                                                        > xnetwork::add_star(G, [0, 1, 2,
                                                                     3]);
-                                                                    >>> xn::add_star(G, [10, 11,
+                                                                        > xnetwork::add_star(G, [10, 11,
                                                                     12], weight=2);
                                                                      */
                                                                     nlist = iter(nodes_for_star);
@@ -281,9 +281,9 @@ auto freeze(G) {
 
         Examples
         --------
-        >>> G = xn::Graph();
-        >>> xn::add_path(G, [0, 1, 2, 3]);
-        >>> xn::add_path(G, [10, 11, 12], weight=7);
+            > G = xnetwork::Graph();
+            > xnetwork::add_path(G, [0, 1, 2, 3]);
+            > xnetwork::add_path(G, [10, 11, 12], weight=7);
          */
         nlist = iter(nodes_for_path);
         try {
@@ -312,9 +312,9 @@ auto freeze(G) {
 
                 Examples
                 --------
-                >>> G = xn::Graph()   // or DiGraph, MultiGraph, MultiDiGraph, etc
-                >>> xn::add_cycle(G, [0, 1, 2, 3]);
-                >>> xn::add_cycle(G, [10, 11, 12], weight=7);
+                    > G = xnetwork::Graph()   // or DiGraph, MultiGraph, MultiDiGraph, etc
+                    > xnetwork::add_cycle(G, [0, 1, 2, 3]);
+                    > xnetwork::add_cycle(G, [10, 11, 12], weight=7);
                  */
                 G_to_add_to.add_edges_from(pairwise(nodes_for_cycle, cyclic = true), **attr);
 
@@ -375,29 +375,29 @@ auto freeze(G) {
 
                         Examples
                         --------
-                        >>> #include <xnetwork.hpp> // as xn
-                        >>> G = xn::path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-                        >>> H = G.subgraph([0, 1, 2]);
-                        >>> list(H.edges);
+                            > #include <xnetwork.hpp> // as xn
+                            > G = xnetwork::path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+                            > H = G.subgraph([0, 1, 2]);
+                            > list(H.edges);
                         [(0, 1), (1, 2)];
                          */
-                        induced_nodes = xn::filters.show_nodes(G.nbunch_iter(nbunch));
+                        induced_nodes = xnetwork::filters.show_nodes(G.nbunch_iter(nbunch));
     if (G.is_multigraph() {
         if (G.is_directed() {
-                                                                                                return xn::graphviews
+                                                                                                return xnetwork::graphviews
                                                                                                     .SubMultiDiGraph(
                                                                                                         G,
                                                                                                         induced_nodes);
-                                                                                                return xn::graphviews
+                                                                                                return xnetwork::graphviews
                                                                                                     .SubMultiGraph(
                                                                                                         G,
                                                                                                         induced_nodes);
     if (G.is_directed() {
-                                                                                                    return xn::graphviews
+                                                                                                    return xnetwork::graphviews
                                                                                                         .SubDiGraph(
                                                                                                             G,
                                                                                                             induced_nodes);
-                                                                                                    return xn::graphviews
+                                                                                                    return xnetwork::graphviews
                                                                                                         .SubGraph(
                                                                                                             G,
                                                                                                             induced_nodes);
@@ -438,18 +438,18 @@ auto freeze(G) {
 
                                                                                                         Examples
                                                                                                         --------
-                                                                                                        >>> #include <xnetwork.hpp> // as xn
-                                                                                                        >>> G = xn::path_graph(5);
-                                                                                                        >>> H = G.edge_subgraph([(0, 1), (3, 4)]);
-                                                                                                        >>> list(H.nodes);
+                                                                                                            > #include <xnetwork.hpp> // as xn
+                                                                                                            > G = xnetwork::path_graph(5);
+                                                                                                            > H = G.edge_subgraph([(0, 1), (3, 4)]);
+                                                                                                            > list(H.nodes);
                                                                                                         [0, 1, 3, 4];
-                                                                                                        >>> list(H.edges);
+                                                                                                            > list(H.edges);
                                                                                                         [(0, 1), (3, 4)];
                                                                                                          */
-                                                                                                        nxf = xn::
+                                                                                                        nxf = xnetwork::
                                                                                                             filters
                                                                                                                 nxg
-                                                                                                            = xn::graphviews
+                                                                                                            = xnetwork::graphviews
                                                                                                                 edges
                                                                                                             = set(
                                                                                                                 edges);
@@ -540,18 +540,18 @@ auto freeze(G) {
 
                                                                                                                             Examples
                                                                                                                             --------
-                                                                                                                            >>> #include <xnetwork.hpp> // as xn
-                                                                                                                            >>> G = xn::path_graph(5);
-                                                                                                                            >>> H = xn::restricted_view(G, [0], [(1, 2), (3, 4)]);
-                                                                                                                            >>> list(H.nodes);
+                                                                                                                                > #include <xnetwork.hpp> // as xn
+                                                                                                                                > G = xnetwork::path_graph(5);
+                                                                                                                                > H = xnetwork::restricted_view(G, [0], [(1, 2), (3, 4)]);
+                                                                                                                                > list(H.nodes);
                                                                                                                             [1, 2, 3, 4];
-                                                                                                                            >>> list(H.edges);
+                                                                                                                                > list(H.edges);
                                                                                                                             [(2, 3)];
                                                                                                                              */
-                                                                                                                            nxf = xn::
+                                                                                                                            nxf = xnetwork::
                                                                                                                                 filters
                                                                                                                                     nxg
-                                                                                                                                = xn::graphviews
+                                                                                                                                = xnetwork::graphviews
                                                                                                                                     h_nodes
                                                                                                                                 = nxf.hide_nodes(
                                                                                                                                     nodes);
@@ -600,10 +600,10 @@ auto freeze(G) {
                                                                                                                                             Identical to digraph.reverse(copy=false);
                                                                                                                                              */
     if (digraph.is_multigraph() {
-                                                                                                                                                return xn::graphviews
+                                                                                                                                                return xnetwork::graphviews
                                                                                                                                                     .MultiReverseView(
                                                                                                                                                         digraph);
-                                                                                                                                                return xn::graphviews
+                                                                                                                                                return xnetwork::graphviews
                                                                                                                                                     .ReverseView(
                                                                                                                                                         digraph);
 
@@ -615,10 +615,10 @@ auto freeze(G) {
                                                                                                                                                     Identical to graph.to_directed(as_view=true);
                                                                                                                                                      */
     if (graph.is_multigraph() {
-                                                                                                                                                        return xn::graphviews
+                                                                                                                                                        return xnetwork::graphviews
                                                                                                                                                             .MultiDiGraphView(
                                                                                                                                                                 graph);
-                                                                                                                                                        return xn::graphviews
+                                                                                                                                                        return xnetwork::graphviews
                                                                                                                                                             .DiGraphView(
                                                                                                                                                                 graph);
 
@@ -630,10 +630,10 @@ auto freeze(G) {
                                                                                                                                                             Identical to graph.to_undirected(as_view=true);
                                                                                                                                                              */
     if (graph.is_multigraph() {
-                                                                                                                                                                return xn::graphviews
+                                                                                                                                                                return xnetwork::graphviews
                                                                                                                                                                     .MultiGraphView(
                                                                                                                                                                         graph);
-                                                                                                                                                                return xn::graphviews
+                                                                                                                                                                return xnetwork::graphviews
                                                                                                                                                                     .GraphView(
                                                                                                                                                                         graph);
 
@@ -725,7 +725,7 @@ auto freeze(G) {
 
     } else {
                                                                                                                                                                                         if (n not : G) {
-                                                                                                                                                                                            throw xn::XNetworkError(
+                                                                                                                                                                                            throw xnetwork::XNetworkError(
                                                                                                                                                                                                 "node %s not : graph"
                                                                                                                                                                                                 % (n, ));
                                                                                                                                                                                             info
@@ -769,41 +769,41 @@ auto freeze(G) {
             to assign a node attribute to store the value of that property for
             each node:) {
 
-                >>> G = xn::path_graph(3);
-                >>> bb = xn::betweenness_centrality(G);
-                >>> isinstance(bb, dict);
+                    > G = xnetwork::path_graph(3);
+                    > bb = xnetwork::betweenness_centrality(G);
+                    > isinstance(bb, dict);
                 true
-                >>> xn::set_node_attributes(G, bb, "betweenness");
-                >>> G.nodes[1]["betweenness"];
+                    > xnetwork::set_node_attributes(G, bb, "betweenness");
+                    > G.nodes[1]["betweenness"];
                 1.0
 
             If you provide a list as the second argument, updates to the list
             will be reflected : the node attribute for each node:) {
 
-                >>> G = xn::path_graph(3);
-                >>> labels = [];
-                >>> xn::set_node_attributes(G, labels, "labels");
-                >>> labels.append("foo");
-                >>> G.nodes[0]["labels"];
+                    > G = xnetwork::path_graph(3);
+                    > labels = [];
+                    > xnetwork::set_node_attributes(G, labels, "labels");
+                    > labels.append("foo");
+                    > G.nodes[0]["labels"];
                 ["foo"];
-                >>> G.nodes[1]["labels"];
+                    > G.nodes[1]["labels"];
                 ["foo"];
-                >>> G.nodes[2]["labels"];
+                    > G.nodes[2]["labels"];
                 ["foo"];
 
             If you provide a dictionary of dictionaries as the second argument,
             the entire dictionary will be used to update node attributes:) {
 
-                >>> G = xn::path_graph(3);
-                >>> attrs = {0: {"attr1": 20, "attr2": "nothing"}, 1: {"attr2": 3}}
-                >>> xn::set_node_attributes(G, attrs);
-                >>> G.nodes[0]["attr1"];
+                    > G = xnetwork::path_graph(3);
+                    > attrs = {0: {"attr1": 20, "attr2": "nothing"}, 1: {"attr2": 3}}
+                    > xnetwork::set_node_attributes(G, attrs);
+                    > G.nodes[0]["attr1"];
                 20
-                >>> G.nodes[0]["attr2"];
+                    > G.nodes[0]["attr2"];
                 "nothing";
-                >>> G.nodes[1]["attr2"];
+                    > G.nodes[1]["attr2"];
                 3
-                >>> G.nodes[2];
+                    > G.nodes[2];
                 {}
 
              */
@@ -860,10 +860,10 @@ auto freeze(G) {
 
                                                                                                                                                                                                                                 Examples
                                                                                                                                                                                                                                 --------
-                                                                                                                                                                                                                                >>> G = xn::Graph();
-                                                                                                                                                                                                                                >>> G.add_nodes_from([1, 2, 3], color="red");
-                                                                                                                                                                                                                                >>> color = xn::get_node_attributes(G, "color");
-                                                                                                                                                                                                                                >>> color[1];
+                                                                                                                                                                                                                                    > G = xnetwork::Graph();
+                                                                                                                                                                                                                                    > G.add_nodes_from([1, 2, 3], color="red");
+                                                                                                                                                                                                                                    > color = xnetwork::get_node_attributes(G, "color");
+                                                                                                                                                                                                                                    > color[1];
                                                                                                                                                                                                                                 "red";
                                                                                                                                                                                                                                  */
                                                                                                                                                                                                                                 return {
@@ -908,35 +908,35 @@ auto freeze(G) {
                                                                                                                                                                                                                                     to assign a edge attribute to store the value of that property for
                                                                                                                                                                                                                                     each edge:) {
 
-                                                                                                                                                                                                                                        >>> G = xn::path_graph(3);
-                                                                                                                                                                                                                                        >>> bb = xn::edge_betweenness_centrality(G, normalized=false);
-                                                                                                                                                                                                                                        >>> xn::set_edge_attributes(G, bb, "betweenness");
-                                                                                                                                                                                                                                        >>> G.edges[1, 2]["betweenness"];
+                                                                                                                                                                                                                                            > G = xnetwork::path_graph(3);
+                                                                                                                                                                                                                                            > bb = xnetwork::edge_betweenness_centrality(G, normalized=false);
+                                                                                                                                                                                                                                            > xnetwork::set_edge_attributes(G, bb, "betweenness");
+                                                                                                                                                                                                                                            > G.edges[1, 2]["betweenness"];
                                                                                                                                                                                                                                         2.0
 
                                                                                                                                                                                                                                     If you provide a list as the second argument, updates to the list
                                                                                                                                                                                                                                     will be reflected : the edge attribute for each edge:) {
 
-                                                                                                                                                                                                                                        >>> labels = [];
-                                                                                                                                                                                                                                        >>> xn::set_edge_attributes(G, labels, "labels");
-                                                                                                                                                                                                                                        >>> labels.append("foo");
-                                                                                                                                                                                                                                        >>> G.edges[0, 1]["labels"];
+                                                                                                                                                                                                                                            > labels = [];
+                                                                                                                                                                                                                                            > xnetwork::set_edge_attributes(G, labels, "labels");
+                                                                                                                                                                                                                                            > labels.append("foo");
+                                                                                                                                                                                                                                            > G.edges[0, 1]["labels"];
                                                                                                                                                                                                                                         ["foo"];
-                                                                                                                                                                                                                                        >>> G.edges[1, 2]["labels"];
+                                                                                                                                                                                                                                            > G.edges[1, 2]["labels"];
                                                                                                                                                                                                                                         ["foo"];
 
                                                                                                                                                                                                                                     If you provide a dictionary of dictionaries as the second argument,
                                                                                                                                                                                                                                     the entire dictionary will be used to update edge attributes:) {
 
-                                                                                                                                                                                                                                        >>> G = xn::path_graph(3);
-                                                                                                                                                                                                                                        >>> attrs = {(0, 1) { {"attr1": 20, "attr2": "nothing"},
+                                                                                                                                                                                                                                            > G = xnetwork::path_graph(3);
+                                                                                                                                                                                                                                            > attrs = {(0, 1) { {"attr1": 20, "attr2": "nothing"},
                                                                                                                                                                                                                                         ...          (1, 2) { {"attr2": 3}}
-                                                                                                                                                                                                                                        >>> xn::set_edge_attributes(G, attrs);
-                                                                                                                                                                                                                                        >>> G[0][1]["attr1"];
+                                                                                                                                                                                                                                            > xnetwork::set_edge_attributes(G, attrs);
+                                                                                                                                                                                                                                            > G[0][1]["attr1"];
                                                                                                                                                                                                                                         20
-                                                                                                                                                                                                                                        >>> G[0][1]["attr2"];
+                                                                                                                                                                                                                                            > G[0][1]["attr2"];
                                                                                                                                                                                                                                         "nothing";
-                                                                                                                                                                                                                                        >>> G[1][2]["attr2"];
+                                                                                                                                                                                                                                            > G[1][2]["attr2"];
                                                                                                                                                                                                                                         3
 
                                                                                                                                                                                                                                      */
@@ -999,10 +999,10 @@ auto freeze(G) {
 
                             Examples
                             --------
-                            >>> G = xn::Graph();
-                            >>> xn::add_path(G, [1, 2, 3], color="red");
-                            >>> color = xn::get_edge_attributes(G, "color");
-                            >>> color[(1, 2)];
+                                > G = xnetwork::Graph();
+                                > xnetwork::add_path(G, [1, 2, 3], color="red");
+                                > color = xnetwork::get_edge_attributes(G, "color");
+                                > color[(1, 2)];
                             "red";
                              */
     if (G.is_multigraph() {
@@ -1145,15 +1145,15 @@ auto non_edges(graph) {
 
                                                                                                                                                                                                                                                                                                                                                         Examples
                                                                                                                                                                                                                                                                                                                                                         --------
-                                                                                                                                                                                                                                                                                                                                                        >>> G = xn::complete_graph(5);
-                                                                                                                                                                                                                                                                                                                                                        >>> sorted(xn::common_neighbors(G, 0, 1));
+                                                                                                                                                                                                                                                                                                                                                            > G = xnetwork::complete_graph(5);
+                                                                                                                                                                                                                                                                                                                                                            > sorted(xnetwork::common_neighbors(G, 0, 1));
                                                                                                                                                                                                                                                                                                                                                         [2, 3, 4];
                                                                                                                                                                                                                                                                                                                                                          */
                                                                                                                                                                                                                                                                                                                                                         if (u not : G) {
-                                                                                                                                                                                                                                                                                                                                                            throw xn::XNetworkError(
+                                                                                                                                                                                                                                                                                                                                                            throw xnetwork::XNetworkError(
                                                                                                                                                                                                                                                                                                                                                                 "u is not : the graph.");
                                                                                                                                                                                                                                                                                                                                                             if (v not : G) {
-                                                                                                                                                                                                                                                                                                                                                                throw xn::XNetworkError(
+                                                                                                                                                                                                                                                                                                                                                                throw xnetwork::XNetworkError(
                                                                                                                                                                                                                                                                                                                                                                     "v is not : the graph.");
 
                                                                                                                                                                                                                                                                                                                                                                 // Return a generator explicitly instead of yielding so that the above
@@ -1188,15 +1188,15 @@ auto is_weighted(G, edge=None, weight="weight") {
 
                                                                                                                                                                                                                                                                                                                                                                     Examples
                                                                                                                                                                                                                                                                                                                                                                     --------
-                                                                                                                                                                                                                                                                                                                                                                    >>> G = xn::path_graph(4);
-                                                                                                                                                                                                                                                                                                                                                                    >>> xn::is_weighted(G);
+                                                                                                                                                                                                                                                                                                                                                                        > G = xnetwork::path_graph(4);
+                                                                                                                                                                                                                                                                                                                                                                        > xnetwork::is_weighted(G);
                                                                                                                                                                                                                                                                                                                                                                     false
-                                                                                                                                                                                                                                                                                                                                                                    >>> xn::is_weighted(G, (2, 3));
+                                                                                                                                                                                                                                                                                                                                                                        > xnetwork::is_weighted(G, (2, 3));
                                                                                                                                                                                                                                                                                                                                                                     false
 
-                                                                                                                                                                                                                                                                                                                                                                    >>> G = xn::DiGraph();
-                                                                                                                                                                                                                                                                                                                                                                    >>> G.add_edge(1, 2, weight=1);
-                                                                                                                                                                                                                                                                                                                                                                    >>> xn::is_weighted(G);
+                                                                                                                                                                                                                                                                                                                                                                        > G = xnetwork::DiGraph();
+                                                                                                                                                                                                                                                                                                                                                                        > G.add_edge(1, 2, weight=1);
+                                                                                                                                                                                                                                                                                                                                                                        > xnetwork::is_weighted(G);
                                                                                                                                                                                                                                                                                                                                                                     true
 
                                                                                                                                                                                                                                                                                                                                                                      */
@@ -1210,7 +1210,7 @@ auto is_weighted(G, edge=None, weight="weight") {
                                                                                                                                                                                                                                                                                                                                                                                 = "Edge {!r} does not exist."
                                                                                                                                                                                                                                                                                                                                                                                       .format(
                                                                                                                                                                                                                                                                                                                                                                                           edge);
-                                                                                                                                                                                                                                                                                                                                                                            throw xn::XNetworkError(
+                                                                                                                                                                                                                                                                                                                                                                            throw xnetwork::XNetworkError(
                                                                                                                                                                                                                                                                                                                                                                                 msg);
         return weight : data
 
@@ -1248,18 +1248,18 @@ auto is_weighted(G, edge=None, weight="weight") {
 
         Examples
         --------
-        >>> G = xn::Graph();
-        >>> G.add_edges_from([(1, 3), (2, 4), (2, 6)]);
-        >>> G.add_edge(1, 2, weight=4);
-        >>> xn::is_negatively_weighted(G, (1, 2));
+            > G = xnetwork::Graph();
+            > G.add_edges_from([(1, 3), (2, 4), (2, 6)]);
+            > G.add_edge(1, 2, weight=4);
+            > xnetwork::is_negatively_weighted(G, (1, 2));
         false
-        >>> G[2][4]["weight"] = -2
-        >>> xn::is_negatively_weighted(G);
+            > G[2][4]["weight"] = -2
+            > xnetwork::is_negatively_weighted(G);
         true
-        >>> G = xn::DiGraph();
-        >>> edges = [("0", "3", 3), ("0", "1", -5), ("1", "0", -2)];
-        >>> G.add_weighted_edges_from(edges);
-        >>> xn::is_negatively_weighted(G);
+            > G = xnetwork::DiGraph();
+            > edges = [("0", "3", 3), ("0", "1", -5), ("1", "0", -2)];
+            > G.add_weighted_edges_from(edges);
+            > xnetwork::is_negatively_weighted(G);
         true
 
          */
@@ -1267,7 +1267,7 @@ auto is_weighted(G, edge=None, weight="weight") {
             data = G.get_edge_data(*edge);
             if (data.empty()) {
                 const auto msg = "Edge {!r} does not exist.".format(edge);
-                throw xn::XNetworkError(msg);
+                throw xnetwork::XNetworkError(msg);
         return weight : data && data[weight] < 0
 
     return any(weight : data && data[weight] < 0
@@ -1317,10 +1317,10 @@ auto is_empty(G) {
 
                                                                                                                                                                                                                                                                                                                                                                                                     Examples
                                                                                                                                                                                                                                                                                                                                                                                                     --------
-                                                                                                                                                                                                                                                                                                                                                                                                    >>> G = xn::Graph()   // or DiGraph, MultiGraph, MultiDiGraph, etc
-                                                                                                                                                                                                                                                                                                                                                                                                    >>> G.add_edge(1, 1);
-                                                                                                                                                                                                                                                                                                                                                                                                    >>> G.add_edge(1, 2);
-                                                                                                                                                                                                                                                                                                                                                                                                    >>> list(xn::nodes_with_selfloops(G));
+                                                                                                                                                                                                                                                                                                                                                                                                        > G = xnetwork::Graph()   // or DiGraph, MultiGraph, MultiDiGraph, etc
+                                                                                                                                                                                                                                                                                                                                                                                                        > G.add_edge(1, 1);
+                                                                                                                                                                                                                                                                                                                                                                                                        > G.add_edge(1, 2);
+                                                                                                                                                                                                                                                                                                                                                                                                        > list(xnetwork::nodes_with_selfloops(G));
                                                                                                                                                                                                                                                                                                                                                                                                     [1];
 
                                                                                                                                                                                                                                                                                                                                                                                                      */
@@ -1355,16 +1355,16 @@ auto selfloop_edges(G, data=false, keys=false, default=None) {
 
                                                                                                                                                                                                                                                                                                                                                                                                         Examples
                                                                                                                                                                                                                                                                                                                                                                                                         --------
-                                                                                                                                                                                                                                                                                                                                                                                                        >>> G = xn::MultiGraph()   // or Graph, DiGraph, MultiDiGraph, etc
-                                                                                                                                                                                                                                                                                                                                                                                                        >>> ekey = G.add_edge(1, 1);
-                                                                                                                                                                                                                                                                                                                                                                                                        >>> ekey = G.add_edge(1, 2);
-                                                                                                                                                                                                                                                                                                                                                                                                        >>> list(xn::selfloop_edges(G));
+                                                                                                                                                                                                                                                                                                                                                                                                            > G = xnetwork::MultiGraph()   // or Graph, DiGraph, MultiDiGraph, etc
+                                                                                                                                                                                                                                                                                                                                                                                                            > ekey = G.add_edge(1, 1);
+                                                                                                                                                                                                                                                                                                                                                                                                            > ekey = G.add_edge(1, 2);
+                                                                                                                                                                                                                                                                                                                                                                                                            > list(xnetwork::selfloop_edges(G));
                                                                                                                                                                                                                                                                                                                                                                                                         [(1, 1)];
-                                                                                                                                                                                                                                                                                                                                                                                                        >>> list(xn::selfloop_edges(G, data=true));
+                                                                                                                                                                                                                                                                                                                                                                                                            > list(xnetwork::selfloop_edges(G, data=true));
                                                                                                                                                                                                                                                                                                                                                                                                         [(1, 1, {})];
-                                                                                                                                                                                                                                                                                                                                                                                                        >>> list(xn::selfloop_edges(G, keys=true));
+                                                                                                                                                                                                                                                                                                                                                                                                            > list(xnetwork::selfloop_edges(G, keys=true));
                                                                                                                                                                                                                                                                                                                                                                                                         [(1, 1, 0)];
-                                                                                                                                                                                                                                                                                                                                                                                                        >>> list(xn::selfloop_edges(G, keys=true, data=true));
+                                                                                                                                                                                                                                                                                                                                                                                                            > list(xnetwork::selfloop_edges(G, keys=true, data=true));
                                                                                                                                                                                                                                                                                                                                                                                                         [(1, 1, 0, {})];
                                                                                                                                                                                                                                                                                                                                                                                                          */
                                                                                                                                                                                                                                                                                                                                                                                                         if (data
@@ -1433,10 +1433,10 @@ auto number_of_selfloops(G) {
 
                                                                                                                                                                                                                                                                                                                                                                                                                                         Examples
                                                                                                                                                                                                                                                                                                                                                                                                                                         --------
-                                                                                                                                                                                                                                                                                                                                                                                                                                        >>> G = xn::Graph()   // or DiGraph, MultiGraph, MultiDiGraph, etc
-                                                                                                                                                                                                                                                                                                                                                                                                                                        >>> G.add_edge(1, 1);
-                                                                                                                                                                                                                                                                                                                                                                                                                                        >>> G.add_edge(1, 2);
-                                                                                                                                                                                                                                                                                                                                                                                                                                        >>> xn::number_of_selfloops(G);
+                                                                                                                                                                                                                                                                                                                                                                                                                                            > G = xnetwork::Graph()   // or DiGraph, MultiGraph, MultiDiGraph, etc
+                                                                                                                                                                                                                                                                                                                                                                                                                                            > G.add_edge(1, 1);
+                                                                                                                                                                                                                                                                                                                                                                                                                                            > G.add_edge(1, 2);
+                                                                                                                                                                                                                                                                                                                                                                                                                                            > xnetwork::number_of_selfloops(G);
                                                                                                                                                                                                                                                                                                                                                                                                                                         1
                                                                                                                                                                                                                                                                                                                                                                                                                                          */
-    return sum(1 for _ : xn::selfloop_edges(G));
+    return sum(1 for _ : xnetwork::selfloop_edges(G));

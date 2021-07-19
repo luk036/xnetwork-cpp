@@ -12,7 +12,7 @@
 #include <xnetwork/classes/coreviews.hpp>    // import AtlasView, AdjacencyView
 #include <xnetwork/classes/reportviews.hpp>  // import NodeView, EdgeView, DegreeView
 
-namespace xn {
+namespace xnetwork {
 
     /** Base class for undirected graphs.
 
@@ -48,14 +48,14 @@ namespace xn {
         Create an empty graph structure (a "null graph") with 5 nodes and
         no edges.
 
-        >>> auto v = std::vector{3, 4, 2, 8};
-        >>> auto G = nx.Graph(v);
+            > auto v = std::vector{3, 4, 2, 8};
+            > auto G = nx.Graph(v);
 
-        >>> auto va = py::dict{{3, 0.1}, {4, 0.5}, {2, 0.2}};
-        >>> auto G = nx.Graph(va);
+            > auto va = py::dict{{3, 0.1}, {4, 0.5}, {2, 0.2}};
+            > auto G = nx.Graph(va);
 
-        >>> auto r = py::range(100);
-        >>> auto G = nx.Graph(r);
+            > auto r = py::range(100);
+            > auto G = nx.Graph(r);
 
         G can be grown in several ways.
 
@@ -63,21 +63,21 @@ namespace xn {
 
         Add one node at a time:
 
-        >>> G.add_node(1)
+            > G.add_node(1)
 
         Add the nodes from any container (a list, dict, set or
         even the lines from a file or the nodes from another graph).
 
-        >>> G.add_nodes_from([2, 3])
-        >>> G.add_nodes_from(range(100, 110))
-        >>> H = nx.path_graph(10)
-        >>> G.add_nodes_from(H)
+            > G.add_nodes_from([2, 3])
+            > G.add_nodes_from(range(100, 110))
+            > H = nx.path_graph(10)
+            > G.add_nodes_from(H)
 
         In addition to strings and integers any hashable C++ object
         (except None) can represent a node, e.g. a customized node object,
         or even another Graph.
 
-        >>> G.add_node(H)
+            > G.add_node(H)
 
         **Edges:**
 
@@ -85,15 +85,15 @@ namespace xn {
 
         Add one edge,
 
-        >>> G.add_edge(1, 2);
+            > G.add_edge(1, 2);
 
         a list of edges,
 
-        >>> G.add_edges_from([(1, 2), (1, 3)]);
+            > G.add_edges_from([(1, 2), (1, 3)]);
 
         or a collection of edges,
 
-        >>> G.add_edges_from(H.edges());
+            > G.add_edges_from(H.edges());
 
         If some edges connect nodes not yet in the graph, the nodes
         are added automatically.  There are no errors when adding
@@ -107,7 +107,7 @@ namespace xn {
         direct manipulation of the attribute
         dictionaries named graph, node and edge respectively.
 
-        >>> G.graph["day"] = std::any("Friday");
+            > G.graph["day"] = std::any("Friday");
         {'day': 'Friday'}
 
         **Subclasses (Advanced):**
@@ -178,17 +178,17 @@ namespace xn {
         attributes by using a single attribute dict for all edges.
         This reduces the memory used, but you lose edge attributes.
 
-        >>> class ThinGraph(nx.Graph):
+            > class ThinGraph(nx.Graph):
         ...     all_edge_dict = {'weight': 1}
         ...     def single_edge_dict(self):
         ...         return self.all_edge_dict
         ...     edge_attr_dict_factory = single_edge_dict
-        >>> G = ThinGraph()
-        >>> G.add_edge(2, 1)
-        >>> G[2][1]
+            > G = ThinGraph()
+            > G.add_edge(2, 1)
+            > G[2][1]
         {'weight': 1}
-        >>> G.add_edge(2, 2)
-        >>> G[2][1] is G[2][2]
+            > G.add_edge(2, 2)
+            > G[2][1] is G[2][2]
         True
 
         Please see :mod:`~networkx.classes.ordered` for more examples of
@@ -248,11 +248,11 @@ namespace xn {
 
             Examples
             --------
-            >>> v = std::vector{5, 3, 2};
-            >>> G = nx.Graph(v);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+                > v = std::vector{5, 3, 2};
+                > G = nx.Graph(v);  // or DiGraph, MultiGraph, MultiDiGraph, etc
 
-            >>> r = py::range(100);
-            >>> G = nx.Graph(r);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+                > r = py::range(100);
+                > G = nx.Graph(r);  // or DiGraph, MultiGraph, MultiDiGraph, etc
         */
         explicit Graph(const nodeview_t& Nodes)
             : _node{Nodes},
@@ -348,10 +348,10 @@ namespace xn {
 
         Examples
         --------
-        >>> G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-        >>> [n for n : G];
+            > G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+            > [n for n : G];
         [0, 1, 2, 3];
-        >>> list(G);
+            > list(G);
         [0, 1, 2, 3];
          */
         auto begin() const { return std::begin(this->_node); }
@@ -362,8 +362,8 @@ namespace xn {
 
         Examples
         --------
-        >>> G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-        >>> 1 : G
+            > G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+            > 1 : G
         true
          */
         auto contains(const Node& n) -> bool { return this->_node.contains(n); }
@@ -387,8 +387,8 @@ namespace xn {
 
         Examples
         --------
-        >>> G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-        >>> G[0];
+            > G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+            > G[0];
         AtlasView({1: {}});
          */
         auto operator[](const Node& n) const -> const auto& { return this->adj()[n]; }
@@ -420,34 +420,34 @@ namespace xn {
         --------
         There are two simple ways of getting a list of all nodes : the graph) {
 
-        >>> G = nx.path_graph(3);
-        >>> list(G.nodes);
+            > G = nx.path_graph(3);
+            > list(G.nodes);
         [0, 1, 2];
-        >>> list(G);
+            > list(G);
         [0, 1, 2];
 
         To get the node data along with the nodes) {
 
-        >>> G.add_node(1, time="5pm");
-        >>> G.nodes[0]["foo"] = "bar";
-        >>> list(G.nodes(data=true));
+            > G.add_node(1, time="5pm");
+            > G.nodes[0]["foo"] = "bar";
+            > list(G.nodes(data=true));
         [(0, {"foo": "bar"}), (1, {"time": "5pm"}), (2, {})];
-        >>> list(G.nodes.data());
+            > list(G.nodes.data());
         [(0, {"foo": "bar"}), (1, {"time": "5pm"}), (2, {})];
 
-        >>> list(G.nodes(data="foo"));
+            > list(G.nodes(data="foo"));
         [(0, "bar"), (1, None), (2, None)];
-        >>> list(G.nodes.data("foo"));
+            > list(G.nodes.data("foo"));
         [(0, "bar"), (1, None), (2, None)];
 
-        >>> list(G.nodes(data="time"));
+            > list(G.nodes(data="time"));
         [(0, None), (1, "5pm"), (2, None)];
-        >>> list(G.nodes.data("time"));
+            > list(G.nodes.data("time"));
         [(0, None), (1, "5pm"), (2, None)];
 
-        >>> list(G.nodes(data="time", default="Not Available"));
+            > list(G.nodes(data="time", default="Not Available"));
         [(0, "Not Available"), (1, "5pm"), (2, "Not Available")];
-        >>> list(G.nodes.data("time", default="Not Available"));
+            > list(G.nodes.data("time", default="Not Available"));
         [(0, "Not Available"), (1, "5pm"), (2, "Not Available")];
 
         If some of your nodes have an attribute and the rest are assumed
@@ -455,11 +455,11 @@ namespace xn {
         from node/attribute pairs using the `default` keyword argument
         to guarantee the value is never None:) {
 
-            >>> G = nx.Graph();
-            >>> G.add_node(0);
-            >>> G.add_node(1, weight=2);
-            >>> G.add_node(2, weight=3);
-            >>> dict(G.nodes(data="weight", default=1));
+                > G = nx.Graph();
+                > G.add_node(0);
+                > G.add_node(1, weight=2);
+                > G.add_node(2, weight=3);
+                > dict(G.nodes(data="weight", default=1));
             {0: 1, 1: 2, 2: 3}
 
          */
@@ -486,8 +486,8 @@ namespace xn {
 
         Examples
         --------
-        >>> G = nx.path_graph(3);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-        >>> len(G);
+            > G = nx.path_graph(3);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+            > len(G);
         3
          */
         auto number_of_nodes() const { return this->_node.size(); }
@@ -533,8 +533,8 @@ namespace xn {
 
             Examples
             --------
-            >>> G = nx.path_graph(3);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-            >>> G.has_node(0);
+                > G = nx.path_graph(3);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+                > G.has_node(0);
             true
          */
         auto has_node(const Node& n) { return this->_node.contains(n); }
@@ -568,20 +568,20 @@ namespace xn {
             --------
             The following all add the edge e=(1, 2) to graph G) {
 
-            >>> G = nx.Graph()   // or DiGraph, MultiGraph, MultiDiGraph, etc
-            >>> e = (1, 2);
-            >>> G.add_edge(1, 2)           // explicit two-node form
-            >>> G.add_edges_from([(1, 2)]);  // add edges from iterable container
+                > G = nx.Graph()   // or DiGraph, MultiGraph, MultiDiGraph, etc
+                > e = (1, 2);
+                > G.add_edge(1, 2)           // explicit two-node form
+                > G.add_edges_from([(1, 2)]);  // add edges from iterable container
 
             Associate data to edges using keywords) {
 
-            >>> G.add_edge(1, 2);
+                > G.add_edge(1, 2);
 
             For non-string attribute keys, use subscript notation.
 
-            >>> G.add_edge(1, 2);
-            >>> G[1][2].update({0: 5});
-            >>> G.edges()[1, 2].update({0: 5});
+                > G.add_edge(1, 2);
+                > G[1][2].update({0: 5});
+                > G.edges()[1, 2].update({0: 5});
          */
         template <typename U = key_type> auto add_edge(const Node& u, const Node& v) ->
             typename std::enable_if<std::is_same<U, value_type>::value>::type {
@@ -655,21 +655,21 @@ namespace xn {
 
         Examples
         --------
-        >>> G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-        >>> G.has_edge(0, 1);  // using two nodes
+            > G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+            > G.has_edge(0, 1);  // using two nodes
         true
-        >>> e = (0, 1);
-        >>> G.has_edge(*e);  //  e is a 2-tuple (u, v);
+            > e = (0, 1);
+            > G.has_edge(*e);  //  e is a 2-tuple (u, v);
         true
-        >>> e = (0, 1, {"weight":7});
-        >>> G.has_edge(*e[:2]);  // e is a 3-tuple (u, v, data_dictionary);
+            > e = (0, 1, {"weight":7});
+            > G.has_edge(*e[:2]);  // e is a 3-tuple (u, v, data_dictionary);
         true
 
         The following syntax are equivalent) {
 
-        >>> G.has_edge(0, 1);
+            > G.has_edge(0, 1);
         true
-        >>> 1 : G[0];  // though this gives KeyError if (0 not : G
+            > 1 : G[0];  // though this gives KeyError if (0 not : G
         true
 
          */
@@ -717,17 +717,17 @@ namespace xn {
 
             Examples
             --------
-            >>> G = nx.path_graph(3)   // or MultiGraph, etc
-            >>> G.add_edge(2, 3, weight=5);
-            >>> [e for e : G.edges];
+                > G = nx.path_graph(3)   // or MultiGraph, etc
+                > G.add_edge(2, 3, weight=5);
+                > [e for e : G.edges];
             [(0, 1), (1, 2), (2, 3)];
-            >>> G.edges.data();  // default data is {} (empty dict);
+                > G.edges.data();  // default data is {} (empty dict);
             EdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {"weight": 5})]);
-            >>> G.edges.data("weight", default=1);
+                > G.edges.data("weight", default=1);
             EdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)]);
-            >>> G.edges([0, 3]);  // only edges incident to these nodes
+                > G.edges([0, 3]);  // only edges incident to these nodes
             EdgeDataView([(0, 1), (3, 2)]);
-            >>> G.edges(0);  // only edges incident to a single node (use
+                > G.edges(0);  // only edges incident to a single node (use
             G.adj[0]?); EdgeDataView([(0, 1)]);
         */
         // auto edges() {
@@ -780,18 +780,18 @@ namespace xn {
 
             Examples
             --------
-            >>> G = nx.DiGraph()   # or MultiDiGraph, etc
-            >>> nx.add_path(G, [0, 1, 2])
-            >>> G.add_edge(2, 3, weight=5)
-            >>> [e for e in G.edges()]
+                > G = nx.DiGraph()   # or MultiDiGraph, etc
+                > nx.add_path(G, [0, 1, 2])
+                > G.add_edge(2, 3, weight=5)
+                > [e for e in G.edges()]
             [(0, 1), (1, 2), (2, 3)]
-            >>> G.edges().data()  # default data is {} (empty dict)
+                > G.edges().data()  # default data is {} (empty dict)
             OutEdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {'weight': 5})])
-            >>> G.edges().data('weight', default=1)
+                > G.edges().data('weight', default=1)
             OutEdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)])
-            >>> G.edges()([0, 2])  # only edges incident to these nodes
+                > G.edges()([0, 2])  # only edges incident to these nodes
             OutEdgeDataView([(0, 1), (2, 3)])
-            >>> G.edges()(0)  # only edges incident to a single node (use G.adj[0]?)
+                > G.edges()(0)  # only edges incident to a single node (use G.adj[0]?)
             OutEdgeDataView([(0, 1)])
 
         */
@@ -870,11 +870,11 @@ namespace xn {
 
         //     Examples
         //     --------
-        //     >>> G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph,
+        //         > G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph,
         //     etc
-        //     >>> G.degree[0];  // node 0 has degree 1
+        //         > G.degree[0];  // node 0 has degree 1
         //     1
-        //     >>> list(G.degree([0, 1, 2]));
+        //         > list(G.degree([0, 1, 2]));
         //     [(0, 1), (1, 2), (2, 2)];
         //      */
         //     auto degree = DegreeView(*this);
@@ -888,11 +888,11 @@ namespace xn {
 
         Examples
         --------
-        >>> G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-        >>> G.clear();
-        >>> list(G.nodes);
+            > G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+            > G.clear();
+            > list(G.nodes);
         [];
-        >>> list(G.edges());
+            > list(G.edges());
         [];
 
          */
@@ -916,4 +916,4 @@ namespace xn {
     //           typename adjlist_t> Graph(int )
     // -> Graph<decltype(py::range(1)), py::set<int>>;
 
-}  // namespace xn
+}  // namespace xnetwork

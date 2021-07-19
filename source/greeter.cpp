@@ -2,7 +2,7 @@
 
 #include <xnetwork/greeter.hpp>
 
-using namespace xn;
+using namespace xnetwork;
 
 XNetwork::XNetwork(std::string _name) : name(std::move(_name)) {}
 

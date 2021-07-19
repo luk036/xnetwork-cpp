@@ -1,9 +1,9 @@
-[![Actions Status](https://github.com/luk036/xn-cpp/workflows/MacOS/badge.svg)](https://github.com/luk036/xn-cpp/actions)
-[![Actions Status](https://github.com/luk036/xn-cpp/workflows/Windows/badge.svg)](https://github.com/luk036/xn-cpp/actions)
-[![Actions Status](https://github.com/luk036/xn-cpp/workflows/Ubuntu/badge.svg)](https://github.com/luk036/xn-cpp/actions)
-[![Actions Status](https://github.com/luk036/xn-cpp/workflows/Style/badge.svg)](https://github.com/luk036/xn-cpp/actions)
-[![Actions Status](https://github.com/luk036/xn-cpp/workflows/Install/badge.svg)](https://github.com/luk036/xn-cpp/actions)
-[![codecov](https://codecov.io/gh/luk036/xn-cpp/branch/master/graph/badge.svg)](https://codecov.io/gh/luk036/xn-cpp)
+[![Actions Status](https://github.com/luk036/xnetwork-cpp/workflows/MacOS/badge.svg)](https://github.com/luk036/xnetwork-cpp/actions)
+[![Actions Status](https://github.com/luk036/xnetwork-cpp/workflows/Windows/badge.svg)](https://github.com/luk036/xnetwork-cpp/actions)
+[![Actions Status](https://github.com/luk036/xnetwork-cpp/workflows/Ubuntu/badge.svg)](https://github.com/luk036/xnetwork-cpp/actions)
+[![Actions Status](https://github.com/luk036/xnetwork-cpp/workflows/Style/badge.svg)](https://github.com/luk036/xnetwork-cpp/actions)
+[![Actions Status](https://github.com/luk036/xnetwork-cpp/workflows/Install/badge.svg)](https://github.com/luk036/xnetwork-cpp/actions)
+[![codecov](https://codecov.io/gh/luk036/xnetwork-cpp/branch/master/graph/badge.svg)](https://codecov.io/gh/luk036/xnetwork-cpp)
 
 <p align="center">
   <img src="https://repository-images.githubusercontent.com/254842585/4dfa7580-7ffb-11ea-99d0-46b8fe2f4170" height="175" width="auto" />
@@ -25,7 +25,7 @@ This template is the result of learnings from many previous projects and should 
 - Code formatting enforced by [clang-format](https://clang.llvm.org/docs/ClangFormat.html) and [cmake-format](https://github.com/cheshirekow/cmake_format) via [Format.cmake](https://github.com/luk036/Format.cmake)
 - Reproducible dependency management via [CPM.cmake](https://github.com/luk036/CPM.cmake)
 - Installable target with automatic versioning information and header generation via [PackageProject.cmake](https://github.com/luk036/PackageProject.cmake)
-- Automatic [documentation](https://luk036.github.io/xn-cpp) and deployment with [Doxygen](https://www.doxygen.nl) and [GitHub Pages](https://pages.github.com)
+- Automatic [documentation](https://luk036.github.io/xnetwork-cpp) and deployment with [Doxygen](https://www.doxygen.nl) and [GitHub Pages](https://pages.github.com)
 - Support for [sanitizer tools, and more](#additional-tools)
 
 ## Usage
@@ -91,7 +91,7 @@ See [Format.cmake](https://github.com/luk036/Format.cmake) for details.
 
 ### Build the documentation
 
-The documentation is automatically built and [published](https://luk036.github.io/xn-cpp) whenever a [GitHub Release](https://help.github.com/en/github/administering-a-repository/managing-releases-in-a-repository) is created.
+The documentation is automatically built and [published](https://luk036.github.io/xnetwork-cpp) whenever a [GitHub Release](https://help.github.com/en/github/administering-a-repository/managing-releases-in-a-repository) is created.
 To manually build documentation, call the following command.
 
 ```bash

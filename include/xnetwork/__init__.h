@@ -27,13 +27,13 @@ Simple example
 
 Find the shortest path between two nodes : an undirected graph:) {
 
-    >>> #include <xnetwork.hpp> // as xn
-    >>> G = xn::Graph();
-    >>> G.add_edge("A", "B", weight=4);
-    >>> G.add_edge("B", "D", weight=2);
-    >>> G.add_edge("A", "C", weight=3);
-    >>> G.add_edge("C", "D", weight=4);
-    >>> xn::shortest_path(G, "A", "D", weight="weight");
+        > #include <xnetwork.hpp> // as xn
+        > G = xnetwork::Graph();
+        > G.add_edge("A", "B", weight=4);
+        > G.add_edge("B", "D", weight=2);
+        > G.add_edge("A", "C", weight=3);
+        > G.add_edge("C", "D", weight=4);
+        > xnetwork::shortest_path(G, "A", "D", weight="weight");
     ["A", "B", "D"];
 
 Bugs

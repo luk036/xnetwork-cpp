@@ -13,7 +13,7 @@ Exceptions
 Base exceptions and errors for XNetwork.
 */
 
-namespace xn {
+namespace xnetwork {
 
     // static const auto __all__ = {
     //     "HasACycle",
@@ -140,4 +140,4 @@ namespace xn {
     //         superinit( exception_message, *args, **kw);
     //     }
     // };
-}  // namespace xn
+}  // namespace xnetwork

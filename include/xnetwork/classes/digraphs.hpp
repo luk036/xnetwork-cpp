@@ -13,7 +13,7 @@
 #include <xnetwork/classes/graph.hpp>
 #include <xnetwork/classes/reportviews.hpp>  // import NodeView, EdgeView, DegreeView
 
-namespace xn {
+namespace xnetwork {
 
     /** Base class for directed graphs.
 
@@ -50,14 +50,14 @@ namespace xn {
         Create an empty graph structure (a "null graph") with 5 nodes and
         no edges.
 
-        >>> auto v = std::vector{3, 4, 2, 8};
-        >>> auto G = xn::DiGraphS(v);
+            > auto v = std::vector{3, 4, 2, 8};
+            > auto G = xnetwork::DiGraphS(v);
 
-        >>> auto va = py::dict{{3, 0.1}, {4, 0.5}, {2, 0.2}};
-        >>> auto G = xn::DiGraphS(va);
+            > auto va = py::dict{{3, 0.1}, {4, 0.5}, {2, 0.2}};
+            > auto G = xnetwork::DiGraphS(va);
 
-        >>> auto r = py::range(100);
-        >>> auto G = xn::DiGraphS(r);
+            > auto r = py::range(100);
+            > auto G = xnetwork::DiGraphS(r);
 
         G can be grown in several ways.
 
@@ -65,21 +65,21 @@ namespace xn {
 
         Add one node at a time:
 
-        >>> G.add_node(1)
+            > G.add_node(1)
 
         Add the nodes from any container (a list, dict, set or
         even the lines from a file or the nodes from another graph).
 
-        >>> G.add_nodes_from([2, 3])
-        >>> G.add_nodes_from(range(100, 110))
-        >>> H = xn::path_graph(10)
-        >>> G.add_nodes_from(H)
+            > G.add_nodes_from([2, 3])
+            > G.add_nodes_from(range(100, 110))
+            > H = xnetwork::path_graph(10)
+            > G.add_nodes_from(H)
 
         In addition to strings and integers any hashable C++ object
         (except None) can represent a node, e.g. a customized node object,
         or even another DiGraphS.
 
-        >>> G.add_node(H)
+            > G.add_node(H)
 
         **Edges:**
 
@@ -87,15 +87,15 @@ namespace xn {
 
         Add one edge,
 
-        >>> G.add_edge(1, 2);
+            > G.add_edge(1, 2);
 
         a list of edges,
 
-        >>> G.add_edges_from([(1, 2), (1, 3)]);
+            > G.add_edges_from([(1, 2), (1, 3)]);
 
         or a collection of edges,
 
-        >>> G.add_edges_from(H.edges());
+            > G.add_edges_from(H.edges());
 
         If some edges connect nodes not yet in the graph, the nodes
         are added automatically.  There are no errors when adding
@@ -109,7 +109,7 @@ namespace xn {
         direct manipulation of the attribute
         dictionaries named graph, node and edge respectively.
 
-        >>> G.graph["day"] = std::any("Friday");
+            > G.graph["day"] = std::any("Friday");
         {'day': 'Friday'}
 
         **Subclasses (Advanced):**
@@ -181,17 +181,17 @@ namespace xn {
         attributes by using a single attribute dict for all edges.
         This reduces the memory used, but you lose edge attributes.
 
-        >>> class ThinGraph(xn::DiGraphS):
+            > class ThinGraph(xnetwork::DiGraphS):
         ...     all_edge_dict = {'weight': 1}
         ...     def single_edge_dict(self):
         ...         return self.all_edge_dict
         ...     edge_attr_dict_factory = single_edge_dict
-        >>> G = ThinGraph()
-        >>> G.add_edge(2, 1)
-        >>> G[2][1]
+            > G = ThinGraph()
+            > G.add_edge(2, 1)
+            > G[2][1]
         {'weight': 1}
-        >>> G.add_edge(2, 2)
-        >>> G[2][1] is G[2][2]
+            > G.add_edge(2, 2)
+            > G[2][1] is G[2][2]
         True
 
         Please see :mod:`~networkx.classes.ordered` for more examples of
@@ -223,11 +223,11 @@ namespace xn {
 
             Examples
             --------
-            >>> v = std::vector{5, 3, 2};
-            >>> G = xn::DiGraphS(v);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+                > v = std::vector{5, 3, 2};
+                > G = xnetwork::DiGraphS(v);  // or DiGraph, MultiGraph, MultiDiGraph, etc
 
-            >>> r = py::range(100);
-            >>> G = xn::DiGraphS(r, r);  // or DiGraph, MultiGraph, MultiDiGraph,
+                > r = py::range(100);
+                > G = xnetwork::DiGraphS(r, r);  // or DiGraph, MultiGraph, MultiDiGraph,
            etc
         */
         explicit DiGraphS(const nodeview_t& Nodes) : _Base{Nodes}, _succ{_Base::_adj} {}
@@ -305,20 +305,20 @@ namespace xn {
             --------
             The following all add the edge e=(1, 2) to graph G) {
 
-            >>> G = xn::DiGraphS()   // or DiGraph, MultiGraph, MultiDiGraph, etc
-            >>> e = (1, 2);
-            >>> G.add_edge(1, 2)           // explicit two-node form
-            >>> G.add_edges_from([(1, 2)]);  // add edges from iterable container
+                > G = xnetwork::DiGraphS()   // or DiGraph, MultiGraph, MultiDiGraph, etc
+                > e = (1, 2);
+                > G.add_edge(1, 2)           // explicit two-node form
+                > G.add_edges_from([(1, 2)]);  // add edges from iterable container
 
             Associate data to edges using keywords) {
 
-            >>> G.add_edge(1, 2);
+                > G.add_edge(1, 2);
 
             For non-string attribute keys, use subscript notation.
 
-            >>> G.add_edge(1, 2);
-            >>> G[1][2].update({0: 5});
-            >>> G.edges()[1, 2].update({0: 5});
+                > G.add_edge(1, 2);
+                > G[1][2].update({0: 5});
+                > G.edges()[1, 2].update({0: 5});
          */
         template <typename U = key_type> auto add_edge(const Node& u, const Node& v) ->
             typename std::enable_if<std::is_same<U, value_type>::value>::type {
@@ -444,18 +444,18 @@ namespace xn {
 
             Examples
             --------
-            >>> G = nx.DiGraph()   # or MultiDiGraph, etc
-            >>> nx.add_path(G, [0, 1, 2])
-            >>> G.add_edge(2, 3, weight=5)
-            >>> [e for e in G.edges()]
+                > G = nx.DiGraph()   # or MultiDiGraph, etc
+                > nx.add_path(G, [0, 1, 2])
+                > G.add_edge(2, 3, weight=5)
+                > [e for e in G.edges()]
             [(0, 1), (1, 2), (2, 3)]
-            >>> G.edges().data()  # default data is {} (empty dict)
+                > G.edges().data()  # default data is {} (empty dict)
             OutEdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {'weight': 5})])
-            >>> G.edges().data('weight', default=1)
+                > G.edges().data('weight', default=1)
             OutEdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)])
-            >>> G.edges()([0, 2])  # only edges incident to these nodes
+                > G.edges()([0, 2])  # only edges incident to these nodes
             OutEdgeDataView([(0, 1), (2, 3)])
-            >>> G.edges()(0)  # only edges incident to a single node (use G.adj[0]?)
+                > G.edges()(0)  # only edges incident to a single node (use G.adj[0]?)
             OutEdgeDataView([(0, 1)])
 
         */
@@ -528,11 +528,11 @@ namespace xn {
 
             Examples
             --------
-            >>> G = xn::path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-            >>> G.clear();
-            >>> list(G.nodes);
+                > G = xnetwork::path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+                > G.clear();
+                > list(G.nodes);
             [];
-            >>> list(G.edges());
+                > list(G.edges());
             [];
 
         */
@@ -557,4 +557,4 @@ namespace xn {
     //           typename adjlist_t> DiGraphS(int )
     // -> DiGraphS<decltype(py::range<int>(1)), py::set<int>>;
 
-}  // namespace xn
+}  // namespace xnetwork

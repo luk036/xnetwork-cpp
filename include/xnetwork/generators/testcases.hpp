@@ -9,7 +9,7 @@ template <typename Container> inline auto create_test_case1(const Container& wei
     const auto edges
         = std::array<Edge, 5>{Edge{A, B}, Edge{B, C}, Edge{C, D}, Edge{D, E}, Edge{E, A}};
     // constexpr auto weights = std::array<int, 5> {-5, 1, 1, 1, 1};
-    auto G = xn::SimpleDiGraphS{num_nodes};
+    auto G = xnetwork::SimpleDiGraphS{num_nodes};
     G.add_edges_from(edges, weights);
     return G;
 }
@@ -20,7 +20,7 @@ template <typename Container> inline auto create_test_case2(const Container& wei
     enum nodes { A, B, C };
     const auto edges = std::array<Edge, 6>{Edge{A, B}, Edge{B, A}, Edge{B, C},
                                            Edge{C, B}, Edge{C, A}, Edge{A, C}};
-    auto G = xn::SimpleDiGraphS{num_nodes};
+    auto G = xnetwork::SimpleDiGraphS{num_nodes};
     G.add_edges_from(edges, weights);
     return G;
 }
@@ -31,7 +31,7 @@ template <typename Container> inline auto create_test_case_timing(const Containe
     enum nodes { A, B, C };
     const auto edges = std::array<Edge, 6>{Edge{A, B}, Edge{B, A}, Edge{B, C}, Edge{C, B},
                                            Edge{C, A}, Edge{A, C}};  // no multiple edges
-    auto G = xn::SimpleDiGraphS{num_nodes};
+    auto G = xnetwork::SimpleDiGraphS{num_nodes};
     G.add_edges_from(edges, weights);
     return G;
 }
