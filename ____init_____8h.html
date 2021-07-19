@@ -92,13 +92,13 @@
 </pre><p>Mailing list:) {</p><pre>https://groups.google.com/forum/#!forum/xnetwork-discuss
 </pre><p>Source:) {</p><pre>https://github.com/xnetwork/xnetwork
 </pre><p>Bug reports:) {</p><pre>https://github.com/xnetwork/xnetwork/issues
-</pre><h5 id="autotoc_md16">Simple example</h5><p>Find the shortest path between two nodes : an undirected graph:) {</p><pre>&gt;&gt;&gt; #include &lt;xnetwork.hpp&gt; // as xn
-&gt;&gt;&gt; G = xn::Graph();
-&gt;&gt;&gt; G.add_edge(&quot;A&quot;, &quot;B&quot;, weight=4);
-&gt;&gt;&gt; G.add_edge(&quot;B&quot;, &quot;D&quot;, weight=2);
-&gt;&gt;&gt; G.add_edge(&quot;A&quot;, &quot;C&quot;, weight=3);
-&gt;&gt;&gt; G.add_edge(&quot;C&quot;, &quot;D&quot;, weight=4);
-&gt;&gt;&gt; xn::shortest_path(G, &quot;A&quot;, &quot;D&quot;, weight=&quot;weight&quot;);
+</pre><h5 id="autotoc_md16">Simple example</h5><p>Find the shortest path between two nodes : an undirected graph:) {</p><pre>    &gt; #include &lt;xnetwork.hpp&gt; // as xn
+    &gt; G = xnetwork::Graph();
+    &gt; G.add_edge(&quot;A&quot;, &quot;B&quot;, weight=4);
+    &gt; G.add_edge(&quot;B&quot;, &quot;D&quot;, weight=2);
+    &gt; G.add_edge(&quot;A&quot;, &quot;C&quot;, weight=3);
+    &gt; G.add_edge(&quot;C&quot;, &quot;D&quot;, weight=4);
+    &gt; xnetwork::shortest_path(G, &quot;A&quot;, &quot;D&quot;, weight=&quot;weight&quot;);
 [&quot;A&quot;, &quot;B&quot;, &quot;D&quot;];
 </pre><h5 id="autotoc_md17">Bugs</h5><p>Please report any bugs that you find <code>here &lt;<a href="https://github.com/xnetwork/xnetwork/issues">https:/<wbr />/<wbr />github.com/<wbr />xnetwork/<wbr />xnetwork/<wbr />issues</a>&gt;</code>_. Or, even better, fork the repository on GitHub &amp;&amp; create a pull request (PR).</p><h5 id="autotoc_md18">License</h5><p>Released under the 3-Clause BSD license:) {</p><p>Copyright (C) 2004-2018 XNetwork Developers Wai-Shing Luk <a href="mailto:luk036@gmail.com">luk036@gmail.com</a> Dan Schult <a href="mailto:dschult@colgate.edu">dschult@colgate.edu</a> Pieter Swart <a href="mailto:swart@lanl.gov">swart@lanl.gov</a></p>
           </div></section>

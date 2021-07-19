@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>xn::grAdaptor class | XNetwork</title>
+  <title>py::grAdaptor class | XNetwork</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -51,7 +51,7 @@
         <h1>
           <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="nx2bgl_8hpp.html">&lt;py2cpp/nx2bgl.hpp&gt;</a></div>
           <div class="m-doc-template">template&lt;typename _Graph&gt;</div>
-          <span class="m-breadcrumb"><a href="namespacexn.html">xn</a>::<wbr/></span>grAdaptor <span class="m-thin">class</span>
+          <span class="m-breadcrumb"><a href="namespacepy.html">py</a>::<wbr/></span>grAdaptor <span class="m-thin">class</span>
         </h1>
         <table class="m-table m-fullwidth m-flat">
           <thead>
@@ -83,8 +83,8 @@
           <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
             <dt>
-              <div class="m-doc-template">template&lt;typename <a href="classxn_1_1_graph.html" class="m-doc">Graph</a>&gt;</div>
-              class <a href="classxn_1_1_vertex_view.html" class="m-doc">VertexView&lt;_Graph&gt;</a>
+              <div class="m-doc-template">template&lt;typename Graph&gt;</div>
+              class <a href="classpy_1_1_vertex_view.html" class="m-doc">VertexView&lt;_Graph&gt;</a>
             </dt>
             <dd></dd>
           </dl>
@@ -92,16 +92,16 @@
         <section id="pub-types">
           <h2><a href="#pub-types">Public types</a></h2>
           <dl class="m-doc">
-            <dt id="ac8fb9cad9295a0302139e1bc93937ecb">
-              using <a href="#ac8fb9cad9295a0302139e1bc93937ecb" class="m-doc-self">Vertex</a> = typename boost::graph_traits&lt;_Graph&gt;::vertex_descriptor
+            <dt id="a7a5efbc76a01528429f487414b78f95d">
+              using <a href="#a7a5efbc76a01528429f487414b78f95d" class="m-doc-self">Vertex</a> = typename boost::graph_traits&lt;_Graph&gt;::vertex_descriptor
             </dt>
             <dd><span></span></dd>
-            <dt id="a395b0aa0a79509bdfc1ce66b2dc52c19">
-              using <a href="#a395b0aa0a79509bdfc1ce66b2dc52c19" class="m-doc-self">node_t</a> = <a href="classxn_1_1gr_adaptor.html#ac8fb9cad9295a0302139e1bc93937ecb" class="m-doc">Vertex</a>
+            <dt id="a6ac886a06fd87cb5e637f91fa05b5e42">
+              using <a href="#a6ac886a06fd87cb5e637f91fa05b5e42" class="m-doc-self">node_t</a> = <a href="classpy_1_1gr_adaptor.html#a7a5efbc76a01528429f487414b78f95d" class="m-doc">Vertex</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="af348a2763edf1181e88e0d74b962e00e">
-              using <a href="#af348a2763edf1181e88e0d74b962e00e" class="m-doc-self">edge_t</a> = typename boost::graph_traits&lt;_Graph&gt;::edge_descriptor
+            <dt id="a38d4d596b4014ef12a384fb2d037e010">
+              using <a href="#a38d4d596b4014ef12a384fb2d037e010" class="m-doc-self">edge_t</a> = typename boost::graph_traits&lt;_Graph&gt;::edge_descriptor
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -110,7 +110,7 @@
           <h2><a href="#pub-static-methods">Public static functions</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper">static auto <a href="#acb2bf2f4d2b41c6047f996007935bc00" class="m-doc">null_vertex</a>(</span><span class="m-doc-wrap">) -&gt; Vertex -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">static auto <a href="#aa81f43ac5e176fe3ff346f7989608c0a" class="m-doc">null_vertex</a>(</span><span class="m-doc-wrap">) -&gt; Vertex -&gt; auto</span>
             </dt>
             <dd></dd>
           </dl>
@@ -118,12 +118,12 @@
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="ab18c8c59efe9fe2c8b2479525da14cec">
-              <span class="m-doc-wrap-bumper"><a href="#ab18c8c59efe9fe2c8b2479525da14cec" class="m-doc-self">grAdaptor</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-danger">deleted</span></span>
+            <dt id="a6b2e26500b81cc57ffbc813e680fdab0">
+              <span class="m-doc-wrap-bumper"><a href="#a6b2e26500b81cc57ffbc813e680fdab0" class="m-doc-self">grAdaptor</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-danger">deleted</span></span>
             </dt>
             <dd>Construct a new gr Adaptor object.</dd>
             <dt>
-              <span class="m-doc-wrap-bumper"><a href="#acd00e3bda80639c27be723a5754ae1a3" class="m-doc">grAdaptor</a>(</span><span class="m-doc-wrap"><a href="classxn_1_1_graph.html" class="m-doc">Graph</a>&amp;&amp; G) <span class="m-label m-flat m-info">explicit</span>  <span class="m-label m-flat m-success">noexcept</span></span>
+              <span class="m-doc-wrap-bumper"><a href="#a53c1e044882ce01814c384bae5db984e" class="m-doc">grAdaptor</a>(</span><span class="m-doc-wrap">Graph&amp;&amp; G) <span class="m-label m-flat m-info">explicit</span>  <span class="m-label m-flat m-success">noexcept</span></span>
             </dt>
             <dd>Construct a new gr Adaptor object.</dd>
           </dl>
@@ -131,52 +131,52 @@
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="aa109e0609af246ea678f9cac4d8fcd84">
-              <span class="m-doc-wrap-bumper">auto <a href="#aa109e0609af246ea678f9cac4d8fcd84" class="m-doc-self">number_of_nodes</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+            <dt id="a8dcf562551095a5132766e756a2d36b0">
+              <span class="m-doc-wrap-bumper">auto <a href="#a8dcf562551095a5132766e756a2d36b0" class="m-doc-self">number_of_nodes</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a953cf942301386c5a3e7b51a6b63ca09">
-              <span class="m-doc-wrap-bumper">auto <a href="#a953cf942301386c5a3e7b51a6b63ca09" class="m-doc-self">number_of_edges</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+            <dt id="aed65adc2b1de23c1d2df32821512775d">
+              <span class="m-doc-wrap-bumper">auto <a href="#aed65adc2b1de23c1d2df32821512775d" class="m-doc-self">number_of_edges</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
             </dt>
             <dd><span></span></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a36cc574e1ec0517deb3d4c86e3c0bfea" class="m-doc">edges</a>(</span><span class="m-doc-wrap">) const -&gt; EdgeView&lt; _Graph &gt; -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3a7754fa5fb440c23e968e633a075f33" class="m-doc">edges</a>(</span><span class="m-doc-wrap">) const -&gt; EdgeView&lt; _Graph &gt; -&gt; auto</span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#acfc2a0fb12c780a83b3f605d4309f818" class="m-doc">neighbors</a>(</span><span class="m-doc-wrap"><a href="classxn_1_1gr_adaptor.html#ac8fb9cad9295a0302139e1bc93937ecb" class="m-doc">Vertex</a> v) const -&gt; AtlasView&lt; Vertex, _Graph &gt; -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#ac63034ccc03ea1849da1d44412baad5b" class="m-doc">neighbors</a>(</span><span class="m-doc-wrap"><a href="classpy_1_1gr_adaptor.html#a7a5efbc76a01528429f487414b78f95d" class="m-doc">Vertex</a> v) const -&gt; AtlasView&lt; Vertex, _Graph &gt; -&gt; auto</span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a5b0060e89f7f8d11b2dc9a2d562715c2" class="m-doc">add_edge</a>(</span><span class="m-doc-wrap">int u,
+              <span class="m-doc-wrap-bumper">auto <a href="#a54d57208222d488e4ff6678567294937" class="m-doc">add_edge</a>(</span><span class="m-doc-wrap">int u,
               int v) -&gt; auto</span>
             </dt>
             <dd></dd>
             <dt>
               <div class="m-doc-template">template&lt;typename Edge&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#a33e2b42c1ba6e16fd93dd8b550217ff8" class="m-doc">source</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#ae33044cdde19c7ff68ddd8b092cb3392" class="m-doc">source</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex -&gt; auto</span>
             </dt>
             <dd></dd>
             <dt>
               <div class="m-doc-template">template&lt;typename Edge&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#a686a21a70299f286dccb26929b6146f9" class="m-doc">target</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#aaad35bf2fffe1c5f9453b2858a9672de" class="m-doc">target</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex -&gt; auto</span>
             </dt>
             <dd></dd>
             <dt>
               <div class="m-doc-template">template&lt;typename Edge&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#a282340acd628573ac785a2cfbf0b64f8" class="m-doc">end_points</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#abd5a65047f962b8243a6f2c96bc1f4f6" class="m-doc">end_points</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; auto</span>
             </dt>
             <dd></dd>
           </dl>
         </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="acb2bf2f4d2b41c6047f996007935bc00"><div>
+          <section class="m-doc-details" id="aa81f43ac5e176fe3ff346f7989608c0a"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;typename _Graph&gt;
               </div>
-              <span class="m-doc-wrap-bumper">static auto xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#acb2bf2f4d2b41c6047f996007935bc00" class="m-doc-self">null_vertex</a>(</span><span class="m-doc-wrap">) -&gt; Vertex</span></span>
+              <span class="m-doc-wrap-bumper">static auto py::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa81f43ac5e176fe3ff346f7989608c0a" class="m-doc-self">null_vertex</a>(</span><span class="m-doc-wrap">) -&gt; Vertex</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
@@ -187,12 +187,12 @@
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="acd00e3bda80639c27be723a5754ae1a3"><div>
+          <section class="m-doc-details" id="a53c1e044882ce01814c384bae5db984e"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;typename _Graph&gt;
               </div>
-              <span class="m-doc-wrap-bumper"> xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#acd00e3bda80639c27be723a5754ae1a3" class="m-doc-self">grAdaptor</a>(</span><span class="m-doc-wrap"><a href="classxn_1_1_graph.html" class="m-doc">Graph</a>&amp;&amp; G) <span class="m-label m-info">explicit</span>  <span class="m-label m-success">noexcept</span></span></span>
+              <span class="m-doc-wrap-bumper"> py::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a53c1e044882ce01814c384bae5db984e" class="m-doc-self">grAdaptor</a>(</span><span class="m-doc-wrap">Graph&amp;&amp; G) <span class="m-label m-info">explicit</span>  <span class="m-label m-success">noexcept</span></span></span>
             </h3>
             <p>Construct a new gr Adaptor object.</p>
             <table class="m-table m-fullwidth m-flat">
@@ -207,12 +207,12 @@
               </tbody>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a36cc574e1ec0517deb3d4c86e3c0bfea"><div>
+          <section class="m-doc-details" id="a3a7754fa5fb440c23e968e633a075f33"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;typename _Graph&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a36cc574e1ec0517deb3d4c86e3c0bfea" class="m-doc-self">edges</a>(</span><span class="m-doc-wrap">) const -&gt; EdgeView&lt; _Graph &gt;</span></span>
+              <span class="m-doc-wrap-bumper">auto py::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3a7754fa5fb440c23e968e633a075f33" class="m-doc-self">edges</a>(</span><span class="m-doc-wrap">) const -&gt; EdgeView&lt; _Graph &gt;</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
@@ -223,12 +223,12 @@
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="acfc2a0fb12c780a83b3f605d4309f818"><div>
+          <section class="m-doc-details" id="ac63034ccc03ea1849da1d44412baad5b"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;typename _Graph&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#acfc2a0fb12c780a83b3f605d4309f818" class="m-doc-self">neighbors</a>(</span><span class="m-doc-wrap"><a href="classxn_1_1gr_adaptor.html#ac8fb9cad9295a0302139e1bc93937ecb" class="m-doc">Vertex</a> v) const -&gt; AtlasView&lt; Vertex, _Graph &gt;</span></span>
+              <span class="m-doc-wrap-bumper">auto py::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac63034ccc03ea1849da1d44412baad5b" class="m-doc-self">neighbors</a>(</span><span class="m-doc-wrap"><a href="classpy_1_1gr_adaptor.html#a7a5efbc76a01528429f487414b78f95d" class="m-doc">Vertex</a> v) const -&gt; AtlasView&lt; Vertex, _Graph &gt;</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -248,12 +248,12 @@
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a5b0060e89f7f8d11b2dc9a2d562715c2"><div>
+          <section class="m-doc-details" id="a54d57208222d488e4ff6678567294937"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;typename _Graph&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5b0060e89f7f8d11b2dc9a2d562715c2" class="m-doc-self">add_edge</a>(</span><span class="m-doc-wrap">int u,
+              <span class="m-doc-wrap-bumper">auto py::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a54d57208222d488e4ff6678567294937" class="m-doc-self">add_edge</a>(</span><span class="m-doc-wrap">int u,
               int v)</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
@@ -272,13 +272,13 @@
               </tbody>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a33e2b42c1ba6e16fd93dd8b550217ff8"><div>
+          <section class="m-doc-details" id="ae33044cdde19c7ff68ddd8b092cb3392"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;typename _Graph&gt;
                 template&lt;typename Edge&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a33e2b42c1ba6e16fd93dd8b550217ff8" class="m-doc-self">source</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex</span></span>
+              <span class="m-doc-wrap-bumper">auto py::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae33044cdde19c7ff68ddd8b092cb3392" class="m-doc-self">source</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -307,13 +307,13 @@
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a686a21a70299f286dccb26929b6146f9"><div>
+          <section class="m-doc-details" id="aaad35bf2fffe1c5f9453b2858a9672de"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;typename _Graph&gt;
                 template&lt;typename Edge&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a686a21a70299f286dccb26929b6146f9" class="m-doc-self">target</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex</span></span>
+              <span class="m-doc-wrap-bumper">auto py::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aaad35bf2fffe1c5f9453b2858a9672de" class="m-doc-self">target</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -342,13 +342,13 @@
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a282340acd628573ac785a2cfbf0b64f8"><div>
+          <section class="m-doc-details" id="abd5a65047f962b8243a6f2c96bc1f4f6"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;typename _Graph&gt;
                 template&lt;typename Edge&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto xn::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a282340acd628573ac785a2cfbf0b64f8" class="m-doc-self">end_points</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const</span></span>
+              <span class="m-doc-wrap-bumper">auto py::<wbr />grAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abd5a65047f962b8243a6f2c96bc1f4f6" class="m-doc-self">end_points</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>

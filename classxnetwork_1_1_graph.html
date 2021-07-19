@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>xnetwork::Graph class | XNetwork</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="favicon-dark.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">XNetwork</a>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+            <li>
+              <a href="pages.html">Pages</a>
+              <ol>
+                <li><a href="about.html">About</a></li>
+              </ol>
+            </li>
+            <li><a href="namespaces.html">Namespaces</a></li>
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="3">
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <use href="#m-doc-search-icon-path" />
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="graph_8hpp.html">&lt;xnetwork/classes/graph.hpp&gt;</a></div>
+          <div class="m-doc-template">template&lt;typename _nodeview_t, typename adjlist_t = <a href="classpy_1_1set.html" class="m-doc">py::<wbr />set</a>&lt;<a href="py2cpp_8hpp.html#aa9102c191b3e4d99b904a4860739563c" class="m-doc">Value_<wbr />type</a>&lt;_nodeview_t&gt;&gt;, typename adjlist_outer_dict_factory = <a href="classpy_1_1dict.html" class="m-doc">py::<wbr />dict</a>&lt;<a href="py2cpp_8hpp.html#aa9102c191b3e4d99b904a4860739563c" class="m-doc">Value_<wbr />type</a>&lt;_nodeview_t&gt;, adjlist_t&gt;&gt;</div>
+          <span class="m-breadcrumb"><a href="namespacexnetwork.html">xnetwork</a>::<wbr/></span>Graph <span class="m-thin">class</span>
+        </h1>
+        <p><span></span></p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#base-classes">Base classes</a></li>
+                <li><a href="#pub-types">Public types</a></li>
+                <li><a href="#pub-static-methods">Public static functions</a></li>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
+                <li><a href="#pub-attribs">Public variables</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="base-classes">
+          <h2><a href="#base-classes">Base classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              struct <a href="structxnetwork_1_1object.html" class="m-doc">object</a>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
+        <section id="pub-types">
+          <h2><a href="#pub-types">Public types</a></h2>
+          <dl class="m-doc">
+            <dt id="a58c462cdc08b49a497345155a65bc627">
+              using <a href="#a58c462cdc08b49a497345155a65bc627" class="m-doc-self">nodeview_t</a> = _nodeview_t
+            </dt>
+            <dd><span></span></dd>
+            <dt id="acc6e64d3d29a7d7f973f2898c9611474">
+              using <a href="#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc-self">Node</a> = typename nodeview_t::value_type
+            </dt>
+            <dd><span></span></dd>
+            <dt id="add8fe6afe285ef8e5d919e9c4af0535c">
+              using <a href="#add8fe6afe285ef8e5d919e9c4af0535c" class="m-doc-self">dict</a> = <a href="classpy_1_1dict.html" class="m-doc">py::<wbr />dict</a>&lt;const char*, std::any&gt;
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a6e68e6c5ff179a0fbef16c3458f3a24a">
+              using <a href="#a6e68e6c5ff179a0fbef16c3458f3a24a" class="m-doc-self">graph_attr_dict_factory</a> = <a href="classxnetwork_1_1_graph.html#add8fe6afe285ef8e5d919e9c4af0535c" class="m-doc">dict</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ad085d5c1a0d8f61f433567871f435578">
+              using <a href="#ad085d5c1a0d8f61f433567871f435578" class="m-doc-self">adjlist_inner_dict_factory</a> = adjlist_t
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a9ae92abe0c7c523eca8ac18f8fb69133">
+              using <a href="#a9ae92abe0c7c523eca8ac18f8fb69133" class="m-doc-self">key_type</a> = typename adjlist_t::key_type
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a0e50e14429e0f3c83cc5bb27295592c8">
+              using <a href="#a0e50e14429e0f3c83cc5bb27295592c8" class="m-doc-self">value_type</a> = typename adjlist_t::value_type
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aba65e7a9158d2ee6945eba1d8f0994e3">
+              using <a href="#aba65e7a9158d2ee6945eba1d8f0994e3" class="m-doc-self">edge_t</a> = std::pair&lt;<a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>, <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&gt;
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab6e9ed68a58e5c958ba35c71a6cb69f0">
+              using <a href="#ab6e9ed68a58e5c958ba35c71a6cb69f0" class="m-doc-self">node_t</a> = <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-static-methods">
+          <h2><a href="#pub-static-methods">Public static functions</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <span class="m-doc-wrap-bumper">static auto <a href="#a5d226e75b499908c82137028d5d11128" class="m-doc">end_points</a>(</span><span class="m-doc-wrap"><a href="classxnetwork_1_1_graph.html#aba65e7a9158d2ee6945eba1d8f0994e3" class="m-doc">edge_<wbr />t</a>&amp; e) -&gt; edge_t &amp; -&gt; auto</span>
+            </dt>
+            <dd>For compatible with BGL adaptor.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">static auto <a href="#a196a3f93b56742a144a571e7828c04b8" class="m-doc">end_points</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#aba65e7a9158d2ee6945eba1d8f0994e3" class="m-doc">edge_<wbr />t</a>&amp; e) -&gt; const edge_t &amp; -&gt; auto</span>
+            </dt>
+            <dd>For compatible with BGL adaptor.</dd>
+          </dl>
+        </section>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a58c19e22fd688eabca03615758227160" class="m-doc">Graph</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a>&amp; Nodes) <span class="m-label m-flat m-info">explicit</span> </span>
+            </dt>
+            <dd></dd>
+            <dt id="a397ae1b2c09555a5d69e5308fe8298d8">
+              <span class="m-doc-wrap-bumper"><a href="#a397ae1b2c09555a5d69e5308fe8298d8" class="m-doc-self">Graph</a>(</span><span class="m-doc-wrap">uint32_t num_nodes) <span class="m-label m-flat m-info">explicit</span> </span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aeb3118a7d011361ec54c6d70f74d7de4" class="m-doc">adj</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt id="aa484d314a511c8cce0a797db9e7f54ca">
+              <span class="m-doc-wrap-bumper">auto <a href="#aa484d314a511c8cce0a797db9e7f54ca" class="m-doc-self">adj</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="adb085e4933c5cd10716ab74aa6a5651e">
+              <span class="m-doc-wrap-bumper">auto <a href="#adb085e4933c5cd10716ab74aa6a5651e" class="m-doc-self">_nodes_nbrs</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a4a6e245e86879304e1eb76e914cbba01" class="m-doc">get_name</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt id="ac226ffb7bb22447da1e9272ce7a9afd3">
+              <span class="m-doc-wrap-bumper">auto <a href="#ac226ffb7bb22447da1e9272ce7a9afd3" class="m-doc-self">set_name</a>(</span><span class="m-doc-wrap">std::string_view s) -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#abe769b316fa2a8ab96a8f47cec971983" class="m-doc">begin</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt id="a6d646a8c3f29553d8482ff09a5c808f0">
+              <span class="m-doc-wrap-bumper">auto <a href="#a6d646a8c3f29553d8482ff09a5c808f0" class="m-doc-self">end</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ab85172964d00d84539840a3e6cc60121" class="m-doc">contains</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n) -&gt; bool -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a5e55641582468bfb1582f5e1fc98d77d" class="m-doc">operator[]</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n) const -&gt; const auto &amp; -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt id="a8c0c86bb73bb46e1bab2a2ecedca4e50">
+              <span class="m-doc-wrap-bumper">auto <a href="#a8c0c86bb73bb46e1bab2a2ecedca4e50" class="m-doc-self">operator[]</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n) -&gt; auto &amp; -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a935f71af0d13fa93a70cb022996ac19d" class="m-doc">nodes</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ab009d430fb97f1d7fe15ec1ff483d995" class="m-doc">number_of_nodes</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a7eb21541fcfa8a0d883e53cfb77adfba" class="m-doc">order</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a186d34d813fe7b1858d3459b87838ffa" class="m-doc">size</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a6410af44cab24473ee78641e48bb98b6" class="m-doc">has_node</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n) -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename U = <a href="classxnetwork_1_1_graph.html#a9ae92abe0c7c523eca8ac18f8fb69133" class="m-doc">key_<wbr />type</a>&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#add1dc56a2871faa4da10e26802882be1" class="m-doc">add_edge</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; u,
+              const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; v) -&gt; typename std::enable_if&lt; std::is_same&lt; U, value_type &gt;::value &gt;::type -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt id="abd1490f127c56bb5829478643789628a">
+              <div class="m-doc-template">template&lt;typename U = <a href="classxnetwork_1_1_graph.html#a9ae92abe0c7c523eca8ac18f8fb69133" class="m-doc">key_<wbr />type</a>&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#abd1490f127c56bb5829478643789628a" class="m-doc-self">add_edge</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; u,
+              const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; v) -&gt; typename std::enable_if&lt;!std::is_same&lt; U, value_type &gt;::value &gt;::type -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a3b436bd59b45129abc8a6b402cb643fb">
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3b436bd59b45129abc8a6b402cb643fb" class="m-doc-self">add_edge</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; u,
+              const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; v,
+              const T&amp; data) -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a7debd3fbba6d34fd9374e018f4de5eae">
+              <div class="m-doc-template">template&lt;typename C1&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a7debd3fbba6d34fd9374e018f4de5eae" class="m-doc-self">add_edges_from</a>(</span><span class="m-doc-wrap">const C1&amp; edges) -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ae54b4cd97a923a2b6295340cb4bc9e9d">
+              <div class="m-doc-template">template&lt;typename C1, typename C2&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#ae54b4cd97a923a2b6295340cb4bc9e9d" class="m-doc-self">add_edges_from</a>(</span><span class="m-doc-wrap">const C1&amp; edges,
+              const C2&amp; data) -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#abfa8679134cd0771c99eb8e0cb1b8d6a" class="m-doc">has_edge</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; u,
+              const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; v) -&gt; bool -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt id="a7f3e485f72733141dac6666483bc9680">
+              <span class="m-doc-wrap-bumper">auto <a href="#a7f3e485f72733141dac6666483bc9680" class="m-doc-self">degree</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n) const -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aaaf43951f803b971a803f99ff8923060" class="m-doc">edges</a>(</span><span class="m-doc-wrap">) const -&gt; cppcoro::generator&lt; edge_t &gt; -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ad32e50b56451656de040254a65637d81" class="m-doc">clear</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a4a8b7353fb4fab18dae7c4cd28e5d4a7" class="m-doc">is_multigraph</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a6276909da8785f02bf3590a4ad40d611" class="m-doc">is_directed</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
+        <section id="pub-attribs">
+          <h2><a href="#pub-attribs">Public variables</a></h2>
+          <dl class="m-doc">
+            <dt id="a84b33b6d9d2e3cb49c9f3bfcca63563e">
+              size_t <a href="#a84b33b6d9d2e3cb49c9f3bfcca63563e" class="m-doc-self">_num_of_edges</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aabe57d4e7e9015ae73d69319c3185c77">
+              <a href="classxnetwork_1_1_graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a> <a href="#aabe57d4e7e9015ae73d69319c3185c77" class="m-doc-self">_node</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a629654701721198f7980acb4fff2e18d">
+              <a href="classxnetwork_1_1_graph.html#a6e68e6c5ff179a0fbef16c3458f3a24a" class="m-doc">graph_<wbr />attr_<wbr />dict_<wbr />factory</a> <a href="#a629654701721198f7980acb4fff2e18d" class="m-doc-self">graph</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="adfca7585d97a24b49048fa898bebe371">
+              adjlist_outer_dict_factory <a href="#adfca7585d97a24b49048fa898bebe371" class="m-doc-self">_adj</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a5d226e75b499908c82137028d5d11128"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">static auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5d226e75b499908c82137028d5d11128" class="m-doc-self">end_points</a>(</span><span class="m-doc-wrap"><a href="classxnetwork_1_1_graph.html#aba65e7a9158d2ee6945eba1d8f0994e3" class="m-doc">edge_<wbr />t</a>&amp; e) -&gt; edge_t &amp;</span></span>
+            </h3>
+            <p>For compatible with BGL adaptor.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">e&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>edge_t&amp;</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a196a3f93b56742a144a571e7828c04b8"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">static auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a196a3f93b56742a144a571e7828c04b8" class="m-doc-self">end_points</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#aba65e7a9158d2ee6945eba1d8f0994e3" class="m-doc">edge_<wbr />t</a>&amp; e) -&gt; const edge_t &amp;</span></span>
+            </h3>
+            <p>For compatible with BGL adaptor.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">e&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>edge_t&amp;</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a58c19e22fd688eabca03615758227160"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper"> xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a58c19e22fd688eabca03615758227160" class="m-doc-self">Graph</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a>&amp; Nodes) <span class="m-label m-info">explicit</span> </span></span>
+            </h3>
+<p>Initialize a graph with edges, name, or graph attributes.</p><h5 id="autotoc_md45">Parameters</h5><p>node_container : input nodes</p><h5 id="autotoc_md46">Examples</h5><p>&gt; v = std::vector{5, 3, 2}; &gt; G = nx.Graph(v); // or DiGraph, MultiGraph, MultiDiGraph, etc</p><p>&gt; r = py::range(100); &gt; G = nx.Graph(r); // or DiGraph, MultiGraph, MultiDiGraph, etc</p>
+          </div></section>
+          <section class="m-doc-details" id="aeb3118a7d011361ec54c6d70f74d7de4"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aeb3118a7d011361ec54c6d70f74d7de4" class="m-doc-self">adj</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+<p><a href="classxnetwork_1_1_graph.html" class="m-doc">Graph</a> adjacency object holding the neighbors of each node.</p><p>This object is a read-only dict-like structure with node keys and neighbor-dict values. The neighbor-dict is keyed by neighbor to the edge-data-dict. So &lsquo;G.adj[3][2][&#x27;color&rsquo;] = &#x27;blue&#x27;<code>sets the color of the edge</code>(3, 2)<code>to</code>&quot;blue&quot;`.</p><p>Iterating over G.adj behaves like a dict. Useful idioms include <code>for nbr, datadict in G.adj[n].<a href="classpy_1_1dict.html#ae55a8f37b624ed62fe015fa63f9d37e5" class="m-doc">items()</a>:</code>.</p><p>The neighbor information is also provided by subscripting the graph. So &lsquo;for nbr, foovalue in G[node].data(&#x27;foo&rsquo;, default=1):` works.</p><p>For directed graphs, <code>G.adj</code> holds outgoing (successor) info.</p>
+          </div></section>
+          <section class="m-doc-details" id="a4a6e245e86879304e1eb76e914cbba01"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4a6e245e86879304e1eb76e914cbba01" class="m-doc-self">get_name</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+<p>String identifier of the graph.</p><p>This graph attribute appears : the attribute dict G.graph keyed by the string <code>&quot;name&quot;</code>. as well as an attribute (technically a property) <code>G.name</code>. This is entirely user controlled.</p>
+          </div></section>
+          <section class="m-doc-details" id="abe769b316fa2a8ab96a8f47cec971983"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abe769b316fa2a8ab96a8f47cec971983" class="m-doc-self">begin</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+<p>Iterate over the nodes. Use: &quot;for (const auto&amp; n : G)&quot;.</p><h5 id="autotoc_md47">Returns</h5><p>niter : iterator An iterator over all nodes : the graph.</p><h5 id="autotoc_md48">Examples</h5><p>&gt; G = nx.path_graph(4); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; [n for n : G]; [0, 1, 2, 3]; &gt; list(G); [0, 1, 2, 3];</p>
+          </div></section>
+          <section class="m-doc-details" id="ab85172964d00d84539840a3e6cc60121"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab85172964d00d84539840a3e6cc60121" class="m-doc-self">contains</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n) -&gt; bool</span></span>
+            </h3>
+<p>Return true if (n is a node, false otherwise. Use: &quot;n : G&quot;.</p><h5 id="autotoc_md49">Examples</h5><p>&gt; G = nx.path_graph(4); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; 1 : G true</p>
+          </div></section>
+          <section class="m-doc-details" id="a5e55641582468bfb1582f5e1fc98d77d"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5e55641582468bfb1582f5e1fc98d77d" class="m-doc-self">operator[]</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n) const -&gt; const auto &amp;</span></span>
+            </h3>
+<p>Return a dict of neighbors of node n. Use: &quot;G[n]&quot;.</p><h5 id="autotoc_md50">Parameters</h5><p>n : node A node in the graph.</p><h5 id="autotoc_md51">Returns</h5><p>adj_dict : dictionary The adjacency dictionary for nodes connected to n.</p><h5 id="autotoc_md52">Notes</h5><p>G[n] is the same as G.adj[n] and similar to G.neighbors(n); (which is an iterator over G.adj[n]);</p><h5 id="autotoc_md53">Examples</h5><p>&gt; G = nx.path_graph(4); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; G[0]; <a href="class_atlas_view.html" class="m-doc">AtlasView</a>({1: {}});</p>
+          </div></section>
+          <section class="m-doc-details" id="a935f71af0d13fa93a70cb022996ac19d"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a935f71af0d13fa93a70cb022996ac19d" class="m-doc-self">nodes</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+<p>A <a href="classxnetwork_1_1_node_view.html" class="m-doc">NodeView</a> of the <a href="classxnetwork_1_1_graph.html" class="m-doc">Graph</a> as G.nodes().</p><h5 id="autotoc_md54">Returns</h5><p><a href="classxnetwork_1_1_node_view.html" class="m-doc">NodeView</a> Allows set-like operations over the nodes as well as node attribute dict lookup and calling to get a NodeDataView. A NodeDataView iterates over <code>(n, data)</code> and has no set operations. A <a href="classxnetwork_1_1_node_view.html" class="m-doc">NodeView</a> iterates over <code>n</code> and includes set operations.</p><p>When called, if (data == false, an iterator over nodes. Otherwise an iterator of 2-tuples (node, attribute value); where the attribute is specified : <code>data</code>. If data is true then the attribute becomes the entire data dictionary.</p><h5 id="autotoc_md55">Notes</h5><p>If your node data is not needed, it is simpler and equivalent to use the expression <code>for n : G</code>, or <code>list(G)</code>.</p><h5 id="autotoc_md56">Examples</h5><p>There are two simple ways of getting a list of all nodes : the graph) {</p><pre>&gt; G = nx.path_graph(3);
+&gt; list(G.nodes);
+</pre><p>[0, 1, 2]; &gt; list(G); [0, 1, 2];</p><p>To get the node data along with the nodes) {</p><pre>&gt; G.add_node(1, time=&quot;5pm&quot;);
+&gt; G.nodes[0][&quot;foo&quot;] = &quot;bar&quot;;
+&gt; list(G.nodes(data=true));
+</pre><p>[(0, {&quot;foo&quot;: &quot;bar&quot;}), (1, {&quot;time&quot;: &quot;5pm&quot;}), (2, {})]; &gt; list(G.nodes.data()); [(0, {&quot;foo&quot;: &quot;bar&quot;}), (1, {&quot;time&quot;: &quot;5pm&quot;}), (2, {})];</p><pre>&gt; list(G.nodes(data=&quot;foo&quot;));
+</pre><p>[(0, &quot;bar&quot;), (1, None), (2, None)]; &gt; list(G.nodes.data(&quot;foo&quot;)); [(0, &quot;bar&quot;), (1, None), (2, None)];</p><pre>&gt; list(G.nodes(data=&quot;time&quot;));
+</pre><p>[(0, None), (1, &quot;5pm&quot;), (2, None)]; &gt; list(G.nodes.data(&quot;time&quot;)); [(0, None), (1, &quot;5pm&quot;), (2, None)];</p><pre>&gt; list(G.nodes(data=&quot;time&quot;, default=&quot;Not Available&quot;));
+</pre><p>[(0, &quot;Not Available&quot;), (1, &quot;5pm&quot;), (2, &quot;Not Available&quot;)]; &gt; list(G.nodes.data(&quot;time&quot;, default=&quot;Not Available&quot;)); [(0, &quot;Not Available&quot;), (1, &quot;5pm&quot;), (2, &quot;Not Available&quot;)];</p><p>If some of your nodes have an attribute and the rest are assumed to have a default attribute value you can create a dictionary from node/attribute pairs using the <code>default</code> keyword argument to guarantee the value is never None:) {</p><pre>    &gt; G = nx.Graph();
+    &gt; G.add_node(0);
+    &gt; G.add_node(1, weight=2);
+    &gt; G.add_node(2, weight=3);
+    &gt; dict(G.nodes(data=&quot;weight&quot;, default=1));
+{0: 1, 1: 2, 2: 3}
+</pre>
+          </div></section>
+          <section class="m-doc-details" id="ab009d430fb97f1d7fe15ec1ff483d995"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab009d430fb97f1d7fe15ec1ff483d995" class="m-doc-self">number_of_nodes</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+<p>Return the number of nodes : the graph.</p><h5 id="autotoc_md57">Returns</h5><p>nnodes : int The number of nodes : the graph.</p><h5 id="autotoc_md58">See Also</h5><p>order, size which are identical</p><h5 id="autotoc_md59">Examples</h5><p>&gt; G = nx.path_graph(3); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; len(G); 3</p>
+          </div></section>
+          <section class="m-doc-details" id="a7eb21541fcfa8a0d883e53cfb77adfba"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7eb21541fcfa8a0d883e53cfb77adfba" class="m-doc-self">order</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+<p>Return the number of nodes : the graph.</p><h5 id="autotoc_md60">Returns</h5><p>nnodes : int The number of nodes : the graph.</p><h5 id="autotoc_md61">See Also</h5><p>number_of_nodes, size which are identical</p>
+          </div></section>
+          <section class="m-doc-details" id="a186d34d813fe7b1858d3459b87838ffa"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a186d34d813fe7b1858d3459b87838ffa" class="m-doc-self">size</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+<p>Return the number of nodes : the graph.</p><h5 id="autotoc_md62">Returns</h5><p>nnodes : int The number of nodes : the graph.</p><h5 id="autotoc_md63">See Also</h5><p>number_of_nodes, order which are identical</p>
+          </div></section>
+          <section class="m-doc-details" id="a6410af44cab24473ee78641e48bb98b6"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6410af44cab24473ee78641e48bb98b6" class="m-doc-self">has_node</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n)</span></span>
+            </h3>
+<p>Return true if (the graph contains the node n.</p><p>Identical to <code>n : G</code></p><h5 id="autotoc_md64">Parameters</h5><p>n : node</p><h5 id="autotoc_md65">Examples</h5><p>&gt; G = nx.path_graph(3); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; G.has_node(0); true</p>
+          </div></section>
+          <section class="m-doc-details" id="add1dc56a2871faa4da10e26802882be1"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+                template&lt;typename U = <a href="classxnetwork_1_1_graph.html#a9ae92abe0c7c523eca8ac18f8fb69133" class="m-doc">key_<wbr />type</a>&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#add1dc56a2871faa4da10e26802882be1" class="m-doc-self">add_edge</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; u,
+              const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; v) -&gt; typename std::enable_if&lt; std::is_same&lt; U, value_type &gt;::value &gt;::type</span></span>
+            </h3>
+<p>Add an edge between u and v.</p><p>The nodes u and v will be automatically added if (they are not already : the graph.</p><p>Edge attributes can be specified with keywords or by directly accessing the edge&quot;s attribute dictionary. See examples below.</p><h5 id="autotoc_md66">Parameters</h5><p>u, v : nodes Nodes can be, for example, strings or numbers. Nodes must be hashable (and not None) C++ objects.</p><h5 id="autotoc_md67">See Also</h5><p>add_edges_from : add a collection of edges</p><h5 id="autotoc_md68">Notes</h5><p>Adding an edge that already exists updates the edge data.</p><p>Many <a href="classxnetwork_1_1_x_network.html" class="m-doc">XNetwork</a> algorithms designed for weighted graphs use an edge attribute (by default <code>weight</code>) to hold a numerical value.</p><h5 id="autotoc_md69">Examples</h5><p>The following all add the edge e=(1, 2) to graph G) {</p><pre>&gt; G = nx.Graph()   // or DiGraph, MultiGraph, MultiDiGraph, etc
+&gt; e = (1, 2);
+&gt; G.add_edge(1, 2)           // explicit two-node form
+&gt; G.add_edges_from([(1, 2)]);  // add edges from iterable container
+</pre><p>Associate data to edges using keywords) {</p><pre>&gt; G.add_edge(1, 2);
+</pre><p>For non-string attribute keys, use subscript notation.</p><pre>&gt; G.add_edge(1, 2);
+&gt; G[1][2].update({0: 5});
+&gt; G.edges()[1, 2].update({0: 5});
+</pre>
+          </div></section>
+          <section class="m-doc-details" id="abfa8679134cd0771c99eb8e0cb1b8d6a"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abfa8679134cd0771c99eb8e0cb1b8d6a" class="m-doc-self">has_edge</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; u,
+              const <a href="classxnetwork_1_1_graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; v) -&gt; bool</span></span>
+            </h3>
+<p>Return true if (the edge (u, v) is : the graph.</p><p>This is the same as <code>v : G[u]</code> without KeyError exceptions.</p><h5 id="autotoc_md70">Parameters</h5><p>u, v : nodes Nodes can be, for example, strings or numbers. Nodes must be hashable (and not None) C++ objects.</p><h5 id="autotoc_md71">Returns</h5><p>edge_ind : bool true if (edge is : the graph, false otherwise.</p><h5 id="autotoc_md72">Examples</h5><p>&gt; G = nx.path_graph(4); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; G.has_edge(0, 1); // using two nodes true &gt; e = (0, 1); &gt; G.has_edge(*e); // e is a 2-tuple (u, v); true &gt; e = (0, 1, {&quot;weight&quot;:7}); &gt; G.has_edge(*e[:2]); // e is a 3-tuple (u, v, data_dictionary); true</p><p>The following syntax are equivalent) {</p><pre>&gt; G.has_edge(0, 1);
+</pre><p>true &gt; 1 : G[0]; // though this gives KeyError if (0 not : G true</p>
+          </div></section>
+          <section class="m-doc-details" id="aaaf43951f803b971a803f99ff8923060"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aaaf43951f803b971a803f99ff8923060" class="m-doc-self">edges</a>(</span><span class="m-doc-wrap">) const -&gt; cppcoro::generator&lt; edge_t &gt;</span></span>
+            </h3>
+<p>An EdgeView of the <a href="classxnetwork_1_1_graph.html" class="m-doc">Graph</a> as G.edges().</p><p>edges( nbunch=None, data=false, default=None);</p><p>The EdgeView provides set-like operations on the edge-tuples as well as edge attribute lookup. When called, it also provides an EdgeDataView object which allows control of access to edge attributes (but does not provide set-like operations). Hence, <code>G.edges[u, v][&quot;color&quot;]</code> provides the value of the color attribute for edge <code>(u, v)</code> while <code>for (auto [u, v, c] : G.edges.data(&quot;color&quot;, default=&quot;red&quot;) {</code> iterates through all the edges yielding the color attribute with default <code>&quot;red&quot;</code> if (no color attribute exists.</p><h5 id="autotoc_md73">Parameters</h5><p>nbunch : single node, container, or all nodes (default= all nodes); The view will only report edges incident to these nodes. data : string or bool, optional (default=false); The edge attribute returned : 3-tuple (u, v, ddict[data]). If true, return edge attribute dict : 3-tuple (u, v, ddict). If false, return 2-tuple (u, v). default : value, optional (default=None); Value used for edges that don&quot;t have the requested attribute. Only relevant if (data is not true or false.</p><h5 id="autotoc_md74">Returns</h5><p>edges : EdgeView A view of edge attributes, usually it iterates over (u, v); or (u, v, d) tuples of edges, but can also be used for attribute lookup as <code>edges[u, v][&quot;foo&quot;]</code>.</p><h5 id="autotoc_md75">Notes</h5><p>Nodes : nbunch that are not : the graph will be (quietly) ignored. For directed graphs this returns the out-edges.</p><h5 id="autotoc_md76">Examples</h5><p>&gt; G = nx.path_graph(3) // or MultiGraph, etc &gt; G.add_edge(2, 3, weight=5); &gt; [e for e : G.edges]; [(0, 1), (1, 2), (2, 3)]; &gt; G.edges.data(); // default data is {} (empty dict); EdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {&quot;weight&quot;: 5})]); &gt; G.edges.data(&quot;weight&quot;, default=1); EdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)]); &gt; G.edges([0, 3]); // only edges incident to these nodes EdgeDataView([(0, 1), (3, 2)]); &gt; G.edges(0); // only edges incident to a single node (use G.adj[0]?); EdgeDataView([(0, 1)]); An OutEdgeView of the DiGraph as G.edges().</p><p>edges(self, nbunch=None, data=False, default=None)</p><p>The OutEdgeView provides set-like operations on the edge-tuples as well as edge attribute lookup. When called, it also provides an EdgeDataView object which allows control of access to edge attributes (but does not provide set-like operations). Hence, &lsquo;G.edges()[u, v][&#x27;color&rsquo;]<code>provides the value of the color attribute for edge</code>(u, v)<code>while</code>for (u, v, c) in G.edges().data(&#x27;color&#x27;, default=&#x27;red&#x27;):` iterates through all the edges yielding the color attribute with default &lsquo;&#x27;red&rsquo;` if no color attribute exists.</p><h5 id="autotoc_md77">Parameters</h5><p>nbunch : single node, container, or all nodes (default= all nodes) The view will only report edges incident to these nodes. data : string or bool, optional (default=False) The edge attribute returned in 3-tuple (u, v, ddict[data]). If True, return edge attribute dict in 3-tuple (u, v, ddict). If False, return 2-tuple (u, v). default : value, optional (default=None) Value used for edges that don&#x27;t have the requested attribute. Only relevant if data is not True or False.</p><h5 id="autotoc_md78">Returns</h5><p>edges : OutEdgeView A view of edge attributes, usually it iterates over (u, v) or (u, v, d) tuples of edges, but can also be used for attribute lookup as &lsquo;edges[u, v][&#x27;foo&rsquo;]`.</p><h5 id="autotoc_md79">See Also</h5><p>in_edges, out_edges</p><h5 id="autotoc_md80">Notes</h5><p>Nodes in nbunch that are not in the graph will be (quietly) ignored. For directed graphs this returns the out-edges.</p><h5 id="autotoc_md81">Examples</h5><p>&gt; G = nx.DiGraph() # or MultiDiGraph, etc &gt; nx.add_path(G, [0, 1, 2]) &gt; G.add_edge(2, 3, weight=5) &gt; [e for e in G.edges()] [(0, 1), (1, 2), (2, 3)] &gt; G.edges().data() # default data is {} (empty dict) OutEdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {&#x27;weight&#x27;: 5})]) &gt; G.edges().data(&#x27;weight&#x27;, default=1) OutEdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)]) &gt; G.edges()([0, 2]) # only edges incident to these nodes OutEdgeDataView([(0, 1), (2, 3)]) &gt; G.edges()(0) # only edges incident to a single node (use G.adj[0]?) OutEdgeDataView([(0, 1)])</p>
+          </div></section>
+          <section class="m-doc-details" id="ad32e50b56451656de040254a65637d81"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad32e50b56451656de040254a65637d81" class="m-doc-self">clear</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+<p>Remove all nodes and edges from the graph.</p><p>This also removes the name, and all graph, node, and edge attributes.</p><h5 id="autotoc_md82">Examples</h5><p>&gt; G = nx.path_graph(4); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; G.clear(); &gt; list(G.nodes); []; &gt; list(G.edges()); [];</p>
+          </div></section>
+          <section class="m-doc-details" id="a4a8b7353fb4fab18dae7c4cd28e5d4a7"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4a8b7353fb4fab18dae7c4cd28e5d4a7" class="m-doc-self">is_multigraph</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+<p>Return true if (graph is a multigraph, false otherwise.</p>
+          </div></section>
+          <section class="m-doc-details" id="a6276909da8785f02bf3590a4ad40d611"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6276909da8785f02bf3590a4ad40d611" class="m-doc-self">is_directed</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+<p>Return true if (graph is directed, false otherwise.</p>
+          </div></section>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search-v1.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>XNetwork. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>

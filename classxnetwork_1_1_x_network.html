@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>xn::EdgeView class | XNetwork</title>
+  <title>xnetwork::XNetwork class | XNetwork</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,10 +49,10 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="nx2bgl_8hpp.html">&lt;py2cpp/nx2bgl.hpp&gt;</a></div>
-          <div class="m-doc-template">template&lt;typename <a href="classxn_1_1_graph.html" class="m-doc">Graph</a>&gt;</div>
-          <span class="m-breadcrumb"><a href="namespacexn.html">xn</a>::<wbr/></span>EdgeView <span class="m-thin">class</span>
+          <span class="m-breadcrumb"><a href="namespacexnetwork.html">xnetwork</a>::<wbr/></span>XNetwork <span class="m-thin">class</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="greeter_8hpp.html">&lt;xnetwork/greeter.hpp&gt;</a></div>
         </h1>
+        <p>A class for saying hello in multiple languages.</p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -69,98 +69,58 @@
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper"><a href="#a04a7d4c016edfee1e82555dcc152e073" class="m-doc">EdgeView</a>(</span><span class="m-doc-wrap">const <a href="classxn_1_1_graph.html" class="m-doc">Graph</a>&amp; G) <span class="m-label m-flat m-info">explicit</span> </span>
+              <span class="m-doc-wrap-bumper"><a href="#a03ac7ce3ab066db96721fb21ab8aac76" class="m-doc">XNetwork</a>(</span><span class="m-doc-wrap">std::string name)</span>
             </dt>
-            <dd>Construct a new Edge View object.</dd>
+            <dd>Creates a new xn.</dd>
           </dl>
         </section>
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="aa46721563eab454ce32ce31ff91d14b3">
-              <span class="m-doc-wrap-bumper">auto <a href="#aa46721563eab454ce32ce31ff91d14b3" class="m-doc-self">begin</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
-            </dt>
-            <dd><span></span></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a0ad10610453d6cd304abdc022fc11820" class="m-doc">end</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a88fe2eb5731472c4c655a87cba2e5502" class="m-doc">greet</a>(</span><span class="m-doc-wrap"><a href="namespacexnetwork.html#a6f7dc0186dc3c5390bca427b40b19fdd" class="m-doc">LanguageCode</a> lang = <a href="namespacexnetwork.html#a6f7dc0186dc3c5390bca427b40b19fddaaa85f1840e282d8a8304dbc2c0d7c9b2" class="m-doc">LanguageCode::<wbr />EN</a>) const -&gt; std::string</span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#abadbceadce06eb0db72242bb98fae19a" class="m-doc">cbegin</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
-            </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a7b34dc71480b63d5d0e4c7b7a29bf9cc" class="m-doc">cend</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
-            </dt>
-            <dd></dd>
+            <dd>Creates a localized string containing the greeting.</dd>
           </dl>
         </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a04a7d4c016edfee1e82555dcc152e073"><div>
+          <section class="m-doc-details" id="a03ac7ce3ab066db96721fb21ab8aac76"><div>
             <h3>
-              <div class="m-doc-template">
-                template&lt;typename <a href="classxn_1_1_graph.html" class="m-doc">Graph</a> _1&gt;
-              </div>
-              <span class="m-doc-wrap-bumper"> xn::<wbr />EdgeView&lt;_1&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a04a7d4c016edfee1e82555dcc152e073" class="m-doc-self">EdgeView</a>(</span><span class="m-doc-wrap">const <a href="classxn_1_1_graph.html" class="m-doc">Graph</a>&amp; G) <span class="m-label m-info">explicit</span> </span></span>
+              <span class="m-doc-wrap-bumper"> xnetwork::<wbr />XNetwork::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a03ac7ce3ab066db96721fb21ab8aac76" class="m-doc-self">XNetwork</a>(</span><span class="m-doc-wrap">std::string name)</span></span>
             </h3>
-            <p>Construct a new Edge View object.</p>
+            <p>Creates a new xn.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
               </thead>
               <tbody>
                 <tr>
-                  <td style="width: 1%">G&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td style="width: 1%">name</td>
+                  <td>the name to greet</td>
                 </tr>
               </tbody>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a0ad10610453d6cd304abdc022fc11820"><div>
+          <section class="m-doc-details" id="a88fe2eb5731472c4c655a87cba2e5502"><div>
             <h3>
-              <div class="m-doc-template">
-                template&lt;typename <a href="classxn_1_1_graph.html" class="m-doc">Graph</a> _1&gt;
-              </div>
-              <span class="m-doc-wrap-bumper">auto xn::<wbr />EdgeView&lt;_1&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0ad10610453d6cd304abdc022fc11820" class="m-doc-self">end</a>(</span><span class="m-doc-wrap">) const</span></span>
+              <span class="m-doc-wrap-bumper">std::string xnetwork::<wbr />XNetwork::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a88fe2eb5731472c4c655a87cba2e5502" class="m-doc-self">greet</a>(</span><span class="m-doc-wrap"><a href="namespacexnetwork.html#a6f7dc0186dc3c5390bca427b40b19fdd" class="m-doc">LanguageCode</a> lang = <a href="namespacexnetwork.html#a6f7dc0186dc3c5390bca427b40b19fddaaa85f1840e282d8a8304dbc2c0d7c9b2" class="m-doc">LanguageCode::<wbr />EN</a>) const</span></span>
             </h3>
+            <p>Creates a localized string containing the greeting.</p>
             <table class="m-table m-fullwidth m-flat">
-              <tfoot>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
                 <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td>auto</td>
+                  <td style="width: 1%">lang</td>
+                  <td>the language to greet in</td>
                 </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="abadbceadce06eb0db72242bb98fae19a"><div>
-            <h3>
-              <div class="m-doc-template">
-                template&lt;typename <a href="classxn_1_1_graph.html" class="m-doc">Graph</a> _1&gt;
-              </div>
-              <span class="m-doc-wrap-bumper">auto xn::<wbr />EdgeView&lt;_1&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abadbceadce06eb0db72242bb98fae19a" class="m-doc-self">cbegin</a>(</span><span class="m-doc-wrap">) const</span></span>
-            </h3>
-            <table class="m-table m-fullwidth m-flat">
+              </tbody>
               <tfoot>
                 <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td>auto</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a7b34dc71480b63d5d0e4c7b7a29bf9cc"><div>
-            <h3>
-              <div class="m-doc-template">
-                template&lt;typename <a href="classxn_1_1_graph.html" class="m-doc">Graph</a> _1&gt;
-              </div>
-              <span class="m-doc-wrap-bumper">auto xn::<wbr />EdgeView&lt;_1&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7b34dc71480b63d5d0e4c7b7a29bf9cc" class="m-doc-self">cend</a>(</span><span class="m-doc-wrap">) const</span></span>
-            </h3>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td>auto</td>
+                  <th>Returns</th>
+                  <td>a string containing the greeting</td>
                 </tr>
               </tfoot>
             </table>

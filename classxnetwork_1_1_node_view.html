@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>xnetwork/classes/graphviews.h file | XNetwork</title>
+  <title>xnetwork::NodeView class | XNetwork</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,94 +49,62 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <span class="m-breadcrumb"><a href="dir_38c00001a54616823030dadf662c376a.html">xnetwork</a>/</span><span class="m-breadcrumb"><a href="dir_a816b66f854c935cd1b5f829f213b409.html">classes</a>/</span>graphviews.h <span class="m-thin">file</span>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="reportviews_8hpp.html">&lt;xnetwork/classes/reportviews.hpp&gt;</a></div>
+          <div class="m-doc-template">template&lt;typename nodeview_t&gt;</div>
+          <span class="m-breadcrumb"><a href="namespacexnetwork.html">xnetwork</a>::<wbr/></span>NodeView <span class="m-thin">class</span>
         </h1>
-        <p><span></span></p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
+            <li><a href="#autotoc_md88">Parameters</a></li>
+            <li><a href="#autotoc_md89">Examples</a></li>
             <li>
               Reference
               <ul>
-                <li><a href="#func-members">Functions</a></li>
-                <li><a href="#var-members">Variables</a></li>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
               </ul>
             </li>
           </ul>
         </div>
-        <section id="func-members">
-          <h2><a href="#func-members">Functions</a></h2>
+<p>A <a href="classxnetwork_1_1_node_view.html" class="m-doc">NodeView</a> class to act as G.nodes for a <a href="classxnetwork_1_1_x_network.html" class="m-doc">XNetwork</a> <a href="classxnetwork_1_1_graph.html" class="m-doc">Graph</a> Set operations act on the nodes without considering data. Iteration is over nodes. Node data can be looked up like a dict. Use NodeDataView to iterate over node data or to specify a data attribute for lookup. NodeDataView is created by calling the <a href="classxnetwork_1_1_node_view.html" class="m-doc">NodeView</a>.</p><section id="autotoc_md88"><h3><a href="#autotoc_md88">Parameters</a></h3><p>graph : <a href="classxnetwork_1_1_x_network.html" class="m-doc">XNetwork</a> graph-like class</p></section><section id="autotoc_md89"><h3><a href="#autotoc_md89">Examples</a></h3><p>&gt; G = xnetwork::path_graph(3); &gt; NV = G.nodes(); &gt; 2 : NV true &gt; for n : NV: print(n); 0 1 2 &gt; assert(NV &amp; {1, 2, 3} == {1, 2}); &gt; G.add_node(2, color=&quot;blue&quot;); &gt; NV[2]; {&quot;color&quot;: &quot;blue&quot;} &gt; G.add_node(8, color=&quot;red&quot;); &gt; NDV = G.nodes(data=true); &gt; (2, NV[2]] : NDV true &gt; for n, dd : NDV: print((n, dd.get(&quot;color&quot;, &quot;aqua&quot;))); (0, &quot;aqua&quot;); (1, &quot;aqua&quot;); (2, &quot;blue&quot;); (8, &quot;red&quot;); &gt; NDV[2] == NV[2]; true &gt; NVdata = G.nodes(data=&quot;color&quot;, default=&quot;aqua&quot;); &gt; (2, NVdata[2]] : NVdata true &gt; for n, dd : NVdata: print((n, dd)); (0, &quot;aqua&quot;); (1, &quot;aqua&quot;); (2, &quot;blue&quot;); (8, &quot;red&quot;); &gt; NVdata[2] == NV[2]; // NVdata gets &quot;color&quot;, NV gets datadict false</p></section>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="a52ac4098efd49f9c86f085c885341622">
-              <span class="m-doc-wrap-bumper">auto <a href="#a52ac4098efd49f9c86f085c885341622" class="m-doc-self">SubGraph</a>(</span><span class="m-doc-wrap">ReadOnlyGraph,
-              <a href="graphviews_8h.html#aa7eb6a07b9afd33bca5064c1284a9c1b" class="m-doc">Graph</a>) -&gt; class</span>
+            <dt id="afd2836a86649b211db7351ad9343f9ee">
+              <span class="m-doc-wrap-bumper"><a href="#afd2836a86649b211db7351ad9343f9ee" class="m-doc-self">NodeView</a>(</span><span class="m-doc-wrap">nodeview_t&amp; nodes) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
             <dd><span></span></dd>
           </dl>
         </section>
-        <section id="var-members">
-          <h2><a href="#var-members">Variables</a></h2>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt>
-              from xnetwork classes import <a href="#aa7eb6a07b9afd33bca5064c1284a9c1b" class="m-doc">Graph</a>
-            </dt>
-            <dd></dd>
-            <dt id="a3c4a3e4b34ef9644fae4b0038fa331db">
-              from xnetwork classes import <a href="#a3c4a3e4b34ef9644fae4b0038fa331db" class="m-doc-self">DiGraph</a>
+            <dt id="a0552b819452e53861e13ac3932835782">
+              <span class="m-doc-wrap-bumper">auto <a href="#a0552b819452e53861e13ac3932835782" class="m-doc-self">size</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a0e6991b9be194675571fbdaee96c4f88">
-              from xnetwork classes import <a href="#a0e6991b9be194675571fbdaee96c4f88" class="m-doc-self">MultiGraph</a>
+            <dt id="a37d3f6b2bcfb2ec71a9eb5356e60c8f4">
+              <span class="m-doc-wrap-bumper">auto <a href="#a37d3f6b2bcfb2ec71a9eb5356e60c8f4" class="m-doc-self">begin</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a57a1d0ef26499d69d5035a2e4cb97030">
-              from xnetwork classes import MultiDiGraph <a href="#a57a1d0ef26499d69d5035a2e4cb97030" class="m-doc-self">FilterAtlas</a>
+            <dt id="ad79f27609494adbcedcedf511e02d9d2">
+              <span class="m-doc-wrap-bumper">auto <a href="#ad79f27609494adbcedcedf511e02d9d2" class="m-doc-self">end</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a22e0369dfc7ddf1046ec9842d113d790">
-              from xnetwork classes import MultiDiGraph <a href="#a22e0369dfc7ddf1046ec9842d113d790" class="m-doc-self">FilterAdjacency</a>
+            <dt id="a562e2434f004200b44ba3833bef9f9bc">
+              <span class="m-doc-wrap-bumper">auto <a href="#a562e2434f004200b44ba3833bef9f9bc" class="m-doc-self">operator[]</a>(</span><span class="m-doc-wrap">const Node&amp; n) const -&gt; const auto &amp; -&gt; auto</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a4a7cf93bfda0577880940bd6db404e49">
-              from xnetwork classes import MultiDiGraph <a href="#a4a7cf93bfda0577880940bd6db404e49" class="m-doc-self">FilterMultiAdjacency</a>
+            <dt id="a979c8d7bb82697e9ef6645e5a119a967">
+              <span class="m-doc-wrap-bumper">auto <a href="#a979c8d7bb82697e9ef6645e5a119a967" class="m-doc-self">operator[]</a>(</span><span class="m-doc-wrap">const Node&amp; n) -&gt; auto &amp; -&gt; auto</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="ab1447fcc39762172c302a0d9fb0e5427">
-              from xnetwork classes import MultiDiGraph <a href="#ab1447fcc39762172c302a0d9fb0e5427" class="m-doc-self">UnionAdjacency</a>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a553b1f0210f4b18fcca6d67cc1d47851">
-              from xnetwork classes import MultiDiGraph UnionMultiAdjacency from xnetwork classes filters import <a href="#a553b1f0210f4b18fcca6d67cc1d47851" class="m-doc-self">no_filter</a>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a5190ca9210ba3fbb561e227109327c31">
-              from xnetwork classes import MultiDiGraph UnionMultiAdjacency from xnetwork classes filters import <a href="#a5190ca9210ba3fbb561e227109327c31" class="m-doc-self">show_nodes</a>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="af1bf7e414780fa667c6b9317cb5603b7">
-              static from xnetwork classes import MultiDiGraph UnionMultiAdjacency from xnetwork classes filters import static show_edges const auto <a href="#af1bf7e414780fa667c6b9317cb5603b7" class="m-doc-self">__all__</a>
+            <dt id="a0b426c05e48dabc364973838b9fd7456">
+              <span class="m-doc-wrap-bumper">auto <a href="#a0b426c05e48dabc364973838b9fd7456" class="m-doc-self">contains</a>(</span><span class="m-doc-wrap">const Node&amp; n) -&gt; bool -&gt; auto</span>
             </dt>
             <dd><span></span></dd>
           </dl>
-        </section>
-        <section>
-          <h2>Variable documentation</h2>
-          <section class="m-doc-details" id="aa7eb6a07b9afd33bca5064c1284a9c1b"><div>
-            <h3>
-              from xnetwork classes import <a href="#aa7eb6a07b9afd33bca5064c1284a9c1b" class="m-doc-self">Graph</a>
-            </h3>
-<p>View of Graphs as SubGraph, Reverse, Directed, Undirected.</p><p>In some algorithms it is convenient to temporarily morph a graph to exclude some nodes || edges. It should be better to do that via a view than to remove &amp;&amp; then re-add.</p><p>In other algorithms it is convenient to temporarily morph a graph to reverse directed edges, || treat a directed graph as undirected, etc. This module provides those graph views.</p><p>The resulting views are essentially read-only graphs that report data from the orignal graph object. We provide three attributes related to the underlying graph object.</p><pre>G._graph : the parent graph used for looking up graph data.
-G.root_graph : the root graph of the potential chain of views.
-    For example, if (you have a subgraph of a reversed view of
-    an edge_subgraph of a graph, this points to original graph.
-G.fresh_copy(] : a method to return a null copy of the graph
-    represented by the view. This is useful if (you want to
-    create a graph with the same data structure (directed/multi);
-    as the current view. This is similar to G.root_graph.__class__();
-    but reflects the fact that (Un)DirectedView could make the
-    type of data structure different from the root_graph.
-</pre><p>Note: Since graphviews look like graphs, one can end up with view-of-view-of-view chains. Be careful with chains because they become very slow with about 15 nested views. For the common simple case of node induced subgraphs created from the graph class, we short-cut the chain by returning a subgraph of the original graph directly rather than a subgraph of a subgraph. We are careful not to disrupt any edge filter in the middle subgraph. In general, determining how to short-cut the chain is tricky &amp;&amp; much harder with restricted_views than with induced subgraphs. Often it is easiest to use <code>.copy()</code> to avoid chains.</p>
-          </div></section>
         </section>
       </div>
     </div>
