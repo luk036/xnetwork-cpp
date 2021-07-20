@@ -27,7 +27,7 @@ if(Boost_FOUND)
   target_compile_definitions(Boost::boost INTERFACE BOOST_ALL_NO_LIB=1)
 endif()
 
-include(../cmake/specific.cmake)
+include(../specific.cmake)
 
 # ---- Create standalone executable ----
 
