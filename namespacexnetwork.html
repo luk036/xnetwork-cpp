@@ -54,11 +54,11 @@
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
-            <li><a href="#autotoc_md83">NodeView</a></li>
-            <li><a href="#autotoc_md84">NodeDataView</a></li>
-            <li><a href="#autotoc_md85">DegreeView</a></li>
-            <li><a href="#autotoc_md86">EdgeView</a></li>
-            <li><a href="#autotoc_md87">EdgeDataView</a></li>
+            <li><a href="#autotoc_md81">NodeView</a></li>
+            <li><a href="#autotoc_md82">NodeDataView</a></li>
+            <li><a href="#autotoc_md83">DegreeView</a></li>
+            <li><a href="#autotoc_md84">EdgeView</a></li>
+            <li><a href="#autotoc_md85">EdgeDataView</a></li>
             <li>
               Reference
               <ul>
@@ -69,17 +69,17 @@
             </li>
           </ul>
         </div>
-<p>View Classes provide node, edge and degree &quot;views&quot; of a graph.</p><p>Views for nodes, edges and degree are provided for all base graph classes. A view means a read-only object that is quick to create, automatically updated when the graph changes, and provides basic access like <code>n : V</code>, <code>for n : V</code>, <code>V[n]</code> and sometimes set operations.</p><p>The views are read-only iterable containers that are updated as the graph is updated. As with dicts, the graph should not be updated while (iterating through the view. Views can be iterated multiple times.</p><p>Edge and Node views also allow data attribute lookup. The resulting attribute dict is writable as <code>G.edges[3, 4][&quot;color&quot;]=&quot;red&quot;</code> Degree views allow lookup of degree values for single nodes. Weighted degree is supported with the <code>weight</code> argument.</p><section id="autotoc_md83"><h2><a href="#autotoc_md83">NodeView</a></h2><pre>`V = G.nodes` (or `V = G.nodes()`) allows `len(V)`, `n : V`, set
+<p>View Classes provide node, edge and degree &quot;views&quot; of a graph.</p><p>Views for nodes, edges and degree are provided for all base graph classes. A view means a read-only object that is quick to create, automatically updated when the graph changes, and provides basic access like <code>n : V</code>, <code>for n : V</code>, <code>V[n]</code> and sometimes set operations.</p><p>The views are read-only iterable containers that are updated as the graph is updated. As with dicts, the graph should not be updated while (iterating through the view. Views can be iterated multiple times.</p><p>Edge and Node views also allow data attribute lookup. The resulting attribute dict is writable as <code>G.edges[3, 4][&quot;color&quot;]=&quot;red&quot;</code> Degree views allow lookup of degree values for single nodes. Weighted degree is supported with the <code>weight</code> argument.</p><section id="autotoc_md81"><h2><a href="#autotoc_md81">NodeView</a></h2><pre>`V = G.nodes` (or `V = G.nodes()`) allows `len(V)`, `n : V`, set
 operations e.g. &quot;G.nodes &amp; H.nodes&quot;, and `dd = G.nodes[n]`, where
 `dd` is the node data dict. Iteration is over the nodes by default.
-</pre></section><section id="autotoc_md84"><h2><a href="#autotoc_md84">NodeDataView</a></h2><pre>To iterate over (node, data) pairs, use arguments to `G.nodes()`
+</pre></section><section id="autotoc_md82"><h2><a href="#autotoc_md82">NodeDataView</a></h2><pre>To iterate over (node, data) pairs, use arguments to `G.nodes()`
 to create a DataView e.g. `DV = G.nodes(data=&quot;color&quot;, default=&quot;red&quot;)`.
 The DataView iterates as `for n, color : DV` and allows
 `(n, &quot;red&quot;] : DV`. Using `DV = G.nodes(data=true)`, the DataViews
 use the full datadict : writeable form also allowing contain testing as
 `(n, {&quot;color&quot;: &quot;red&quot;}] : VD`. DataViews allow set operations when
 data attributes are hashable.
-</pre></section><section id="autotoc_md85"><h2><a href="#autotoc_md85">DegreeView</a></h2><pre>`V = G.degree` allows iteration over (node, degree) pairs as well
+</pre></section><section id="autotoc_md83"><h2><a href="#autotoc_md83">DegreeView</a></h2><pre>`V = G.degree` allows iteration over (node, degree) pairs as well
 as lookup: `deg=V[n]`. There are many flavors of DegreeView
 for In/Out/Directed/Multi. For Directed Graphs, `G.degree`
 counts both : and out going edges. `G.out_degree` &amp;&amp;
@@ -91,7 +91,7 @@ No set operations are implemented for degrees, use NodeView.
 
 The argument `nbunch` restricts iteration to nodes : nbunch.
 The DegreeView can still lookup any node even if (nbunch is specified.
-</pre></section><section id="autotoc_md86"><h2><a href="#autotoc_md86">EdgeView</a></h2><pre>`V = G.edges` or `V = G.edges()` allows iteration over edges as well as
+</pre></section><section id="autotoc_md84"><h2><a href="#autotoc_md84">EdgeView</a></h2><pre>`V = G.edges` or `V = G.edges()` allows iteration over edges as well as
 `e : V`, set operations and edge data lookup `dd = G.edges[2, 3]`.
 Iteration is over 2-tuples `(u, v)` for Graph/DiGraph. For multigraphs
 edges 3-tuples `(u, v, key)` are the default but 2-tuples can be obtained
@@ -103,7 +103,7 @@ So long as the set being compared to contains unique representations
 of its edges, the set operations will act as expected. If the other
 set contains both `(0, 1)` and `(1, 0)` however, the result of set
 operations may contain both representations of the same edge.
-</pre></section><section id="autotoc_md87"><h2><a href="#autotoc_md87">EdgeDataView</a></h2><pre>Edge data can be reported using an EdgeDataView typically created
+</pre></section><section id="autotoc_md85"><h2><a href="#autotoc_md85">EdgeDataView</a></h2><pre>Edge data can be reported using an EdgeDataView typically created
 by calling an EdgeView: `DV = G.edges(data=&quot;weight&quot;, default=1)`.
 The EdgeDataView allows iteration over edge tuples, membership checking
 but no set operations.
@@ -227,7 +227,7 @@ The argument `nbunch` restricts edges to those incident to nodes : nbunch.
           <section class="m-doc-details" id="a6f7dc0186dc3c5390bca427b40b19fdd"><div>
             <h3>
               enum class xnetwork::<wbr /><a href="#a6f7dc0186dc3c5390bca427b40b19fdd" class="m-doc-self">LanguageCode</a>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="greeter_8hpp.html">&lt;xnetwork/greeter.hpp&gt;</a></div>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="greeter_8h.html">&lt;xnetwork/greeter.h&gt;</a></div>
             </h3>
 <p>Language codes to be used with the <a href="classxnetwork_1_1_x_network.html" class="m-doc">XNetwork</a> class</p>
           </div></section>
