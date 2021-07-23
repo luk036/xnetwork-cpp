@@ -1,9 +1,9 @@
 #include <doctest/doctest.h>
+#include <xnetwork/greeter.h>
 #include <xnetwork/version.h>
 
 #include <cppcoro/generator.hpp>
 #include <string>
-#include <xnetwork/greeter.hpp>
 
 using namespace cppcoro;
 using ret_t = std::tuple<int, int>;

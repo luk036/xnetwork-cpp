@@ -1,10 +1,10 @@
+#include <xnetwork/greeter.h>
 #include <xnetwork/version.h>
 
 #include <cxxopts.hpp>
 #include <iostream>
 #include <string>
 #include <unordered_map>
-#include <xnetwork/greeter.hpp>
 
 auto main(int argc, char** argv) -> int {
     const std::unordered_map<std::string, xnetwork::LanguageCode> languages{
@@ -46,8 +46,8 @@ auto main(int argc, char** argv) -> int {
         return 1;
     }
 
-    // xnetwork::XNetwork xn(name);
-    // std::cout << xn.greet(langIt->second) << std::endl;
+    // xnetwork::XNetwork xnetwork(name);
+    // std::cout << xnetwork.greet(langIt->second) << std::endl;
 
     return 0;
 }

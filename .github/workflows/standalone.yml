@@ -34,10 +34,10 @@ jobs:
         run: sudo apt-get install libboost-dev
 
       - name: configure
-        run: cmake -Sstandalone -Bbuild -DCMAKE_BUILD_TYPE=Debug -DCMAKE_BUILD_TYPE=Debug
+        run: cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Debug
 
       - name: build
         run: cmake --build build -j4
 
       - name: run
-        run: ./build/XNetwork
+        run: ./build/standalone/XNetwork

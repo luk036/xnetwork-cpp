@@ -30,12 +30,12 @@ jobs:
           brew install clang-format
           pip3 install cmake_format==0.6.11 pyyaml
 
-      - name: Install dependencies
+      - name: Install project dependencies
         run: |
           brew install boost
 
       - name: configure
-        run: cmake -Stest -Bbuild
+        run: cmake -S. -Bbuild
 
       - name: check style
         run: cmake --build build --target check-format
