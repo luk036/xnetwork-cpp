@@ -264,20 +264,6 @@ namespace py {
         dict(std::initializer_list<value_type> init) : Base{init} {}
 
         /**
-         * @brief Construct a new dict object
-         *
-         * @tparam Sequence
-         * @param[in] S
-         */
-        // template <class Sequence>
-        // explicit dict(const Sequence &S) {
-        //     this->reserve(S.size());
-        //     for (const auto& [i_v, v] : py::enumerate(S)) {
-        //         (*this)[v] = i_v;
-        //     }
-        // }
-
-        /**
          * @brief
          *
          * @param[in] key

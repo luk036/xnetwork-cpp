@@ -1,10 +1,6 @@
 // -*- coding: utf-16 -*-
 #pragma once
 
-/** @file include/fractions.hpp
- *  This is a C++ Library header.
- */
-
 // #include <boost/operators.hpp>
 // #include <cmath>
 #include <numeric>
@@ -243,14 +239,6 @@ namespace fun {
         friend constexpr auto operator==(const Z& lhs, const Fraction& rhs) -> bool {
             return rhs == lhs;
         }
-
-        /**
-         * @brief Equal to
-         *
-         * @param[in] rhs
-         * @return true
-         * @return false
-         */
 
         /**
          * @brief Equal to
