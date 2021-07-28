@@ -71,6 +71,8 @@ RUN /opt/conda/bin/conda install -y -c conda-forge \
     pandoc-crossref \
     pandoc
 
+RUN pip install jinja2 Pygments
+
 RUN chown -R gitpod:gitpod /opt/conda \
     && chmod -R 777 /opt/conda \
     && chown -R gitpod:gitpod /home/gitpod/.conda \
