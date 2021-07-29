@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
 # set(USE_STATIC_ANALYZER "clang-tidy")
 
-# option(CPM_USE_LOCAL_PACKAGES "Use Local package" TRUE)
+option(CPM_USE_LOCAL_PACKAGES "Use Local package" TRUE)
 option(INSTALL_ONLY "Enable for installation only" OFF)
 
 # ---- Project ----
@@ -108,7 +108,7 @@ packageProject(
 
 if(NOT INSTALL_ONLY)
   include(specific.cmake)
-  
+
   add_subdirectory(test)
   add_subdirectory(standalone)
   add_subdirectory(documentation)
