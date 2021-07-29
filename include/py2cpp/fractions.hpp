@@ -3,6 +3,7 @@
 
 // #include <boost/operators.hpp>
 // #include <cmath>
+#include <compare>
 #include <numeric>
 #include <type_traits>
 #include <utility>
@@ -195,40 +196,6 @@ namespace fun {
         }
 
         /**
-         * @brief Less than
-         *
-         * @param[in] lhs
-         * @param[in] rhs
-         * @return true
-         * @return false
-         */
-        friend constexpr auto operator<(Fraction lhs, Z rhs) -> bool {
-            if (lhs._den == Z(1) || rhs == Z(0)) {
-                return lhs._num == rhs;
-            }
-            std::swap(lhs._den, rhs._num);
-            lhs.normalize2();
-            return lhs._num < lhs._den * rhs;
-        }
-
-        /**
-         * @brief Less than
-         *
-         * @param[in] lhs
-         * @param[in] rhs
-         * @return true
-         * @return false
-         */
-        friend constexpr auto operator<(Z lhs, Fraction rhs) -> bool {
-            if (rhs._den == Z(1) || lhs == Z(0)) {
-                return lhs < rhs._num;
-            }
-            std::swap(rhs._den, lhs);
-            rhs.normalize2();
-            return rhs._den * lhs < rhs._num;
-        }
-
-        /**
          * @brief Equal to
          *
          * @param[in] lhs
@@ -261,119 +228,153 @@ namespace fun {
         /**
          * @brief Less than
          *
+         * @param[in] lhs
+         * @param[in] rhs
+         * @return true
+         * @return false
+         */
+        friend constexpr auto operator<=>(Fraction lhs, Z rhs) {
+            if (lhs._den == Z(1) || rhs == Z(0)) {
+                return lhs._num <=> rhs;
+            }
+            std::swap(lhs._den, rhs._num);
+            lhs.normalize2();
+            return lhs._num <=> lhs._den * rhs;
+        }
+
+        /**
+         * @brief Less than
+         *
+         * @param[in] lhs
+         * @param[in] rhs
+         * @return true
+         * @return false
+         */
+        friend constexpr auto operator<=>(Z lhs, Fraction rhs) {
+            if (rhs._den == Z(1) || lhs == Z(0)) {
+                return lhs <=> rhs._num;
+            }
+            std::swap(rhs._den, lhs);
+            rhs.normalize2();
+            return rhs._den * lhs <=> rhs._num;
+        }
+
+        /**
+         * @brief Less than
+         *
          * @param lhs
          * @param rhs
          * @return true
          * @return false
          */
-        constexpr friend auto operator<(Fraction lhs, Fraction rhs) -> bool {
+        friend constexpr auto operator<=>(Fraction lhs, Fraction rhs) {
             if (lhs._den == rhs._den) {
-                return lhs._num < rhs._num;
+                return lhs._num <=> rhs._num;
             }
             std::swap(lhs._den, rhs._num);
             lhs.normalize2();
             rhs.normalize2();
-            return lhs._num * rhs._den < lhs._den * rhs._num;
+            return lhs._num * rhs._den <=> lhs._den * rhs._num;
         }
 
-        /**
-         * @brief
-         *
-         * @param[in] rhs
-         * @return true
-         * @return false
-         */
-        constexpr auto operator!=(const Fraction& rhs) const -> bool { return !(*this == rhs); }
+        // /**
+        //  * @brief
+        //  *
+        //  * @param[in] rhs
+        //  * @return true
+        //  * @return false
+        //  */
+        // constexpr auto operator!=(const Fraction& rhs) const -> bool { return !(*this == rhs); }
 
-        /**
-         * @brief Greater than
-         *
-         * @param[in] rhs
-         * @return true
-         * @return false
-         */
-        constexpr auto operator>(const Fraction& rhs) const -> bool { return rhs < *this; }
+        // /**
+        //  * @brief Greater than
+        //  *
+        //  * @param[in] rhs
+        //  * @return true
+        //  * @return false
+        //  */
+        // constexpr auto operator>(const Fraction& rhs) const -> bool { return rhs < *this; }
 
-        /**
-         * @brief Greater than or euqal to
-         *
-         * @param[in] rhs
-         * @return true
-         * @return false
-         */
-        constexpr auto operator>=(const Fraction& rhs) const -> bool { return !(*this < rhs); }
+        // /**
+        //  * @brief Greater than or euqal to
+        //  *
+        //  * @param[in] rhs
+        //  * @return true
+        //  * @return false
+        //  */
+        // constexpr auto operator>=(const Fraction& rhs) const -> bool { return !(*this < rhs); }
 
-        /**
-         * @brief Less than or equal to
-         *
-         * @param[in] rhs
-         * @return true
-         * @return false
-         */
-        constexpr auto operator<=(const Fraction& rhs) const -> bool { return !(rhs < *this); }
+        // /**
+        //  * @brief Less than or equal to
+        //  *
+        //  * @param[in] rhs
+        //  * @return true
+        //  * @return false
+        //  */
+        // constexpr auto operator<=(const Fraction& rhs) const -> bool { return !(rhs < *this); }
 
-        /**
-         * @brief Greater than
-         *
-         * @param[in] rhs
-         * @return true
-         * @return false
-         */
-        constexpr auto operator>(const Z& rhs) const -> bool { return rhs < *this; }
+        // /**
+        //  * @brief Greater than
+        //  *
+        //  * @param[in] rhs
+        //  * @return true
+        //  * @return false
+        //  */
+        // constexpr auto operator>(const Z& rhs) const -> bool { return rhs < *this; }
 
-        /**
-         * @brief Less than or equal to
-         *
-         * @param[in] rhs
-         * @return true
-         * @return false
-         */
-        constexpr auto operator<=(const Z& rhs) const -> bool { return !(rhs < *this); }
+        // /**
+        //  * @brief Less than or equal to
+        //  *
+        //  * @param[in] rhs
+        //  * @return true
+        //  * @return false
+        //  */
+        // constexpr auto operator<=(const Z& rhs) const -> bool { return !(rhs < *this); }
 
-        /**
-         * @brief Greater than or equal to
-         *
-         * @param[in] rhs
-         * @return true
-         * @return false
-         */
-        constexpr auto operator>=(const Z& rhs) const -> bool { return !(*this < rhs); }
+        // /**
+        //  * @brief Greater than or equal to
+        //  *
+        //  * @param[in] rhs
+        //  * @return true
+        //  * @return false
+        //  */
+        // constexpr auto operator>=(const Z& rhs) const -> bool { return !(*this < rhs); }
 
-        /**
-         * @brief Greater than
-         *
-         * @param[in] lhs
-         * @param[in] rhs
-         * @return true
-         * @return false
-         */
-        friend constexpr auto operator>(const Z& lhs, const Fraction& rhs) -> bool {
-            return rhs < lhs;
-        }
+        // /**
+        //  * @brief Greater than
+        //  *
+        //  * @param[in] lhs
+        //  * @param[in] rhs
+        //  * @return true
+        //  * @return false
+        //  */
+        // friend constexpr auto operator>(const Z& lhs, const Fraction& rhs) -> bool {
+        //     return rhs < lhs;
+        // }
 
-        /**
-         * @brief Less than or equal to
-         *
-         * @param[in] lhs
-         * @param[in] rhs
-         * @return true
-         * @return false
-         */
-        friend constexpr auto operator<=(const Z& lhs, const Fraction& rhs) -> bool {
-            return !(rhs < lhs);
-        }
+        // /**
+        //  * @brief Less than or equal to
+        //  *
+        //  * @param[in] lhs
+        //  * @param[in] rhs
+        //  * @return true
+        //  * @return false
+        //  */
+        // friend constexpr auto operator<=(const Z& lhs, const Fraction& rhs) -> bool {
+        //     return !(rhs < lhs);
+        // }
 
-        /**
-         * @brief Greater than or euqal to
-         *
-         * @param[in] lhs
-         * @param[in] rhs
-         * @return true
-         * @return false
-         */
-        friend constexpr auto operator>=(const Z& lhs, const Fraction& rhs) -> bool {
-            return !(lhs < rhs);
-        }
+        // /**
+        //  * @brief Greater than or euqal to
+        //  *
+        //  * @param[in] lhs
+        //  * @param[in] rhs
+        //  * @return true
+        //  * @return false
+        //  */
+        // friend constexpr auto operator>=(const Z& lhs, const Fraction& rhs) -> bool {
+        //     return !(lhs < rhs);
+        // }
 
         ///@}
 

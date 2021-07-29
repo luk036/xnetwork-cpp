@@ -8,18 +8,19 @@
 #include <py2cpp/fractions.hpp>
 
 using namespace fun;
+using boost::multiprecision::cpp_int;
+
+auto operator<=>(const cpp_int& a, const cpp_int& b) -> std::strong_ordering {
+    if (operator<(a, b)) return std::strong_ordering::less;
+    if (operator>(a, b)) return std::strong_ordering::greater;
+    return std::strong_ordering::equivalent;
+}
 
 TEST_CASE("Fraction") {
-    using boost::multiprecision::cpp_int;
-
     const auto a = cpp_int{3};
     const auto b = cpp_int{4};
     const auto c = cpp_int{5};
     const auto d = cpp_int{6};
-    const auto f = cpp_int{-30};
-    const auto g = cpp_int{40};
-    const auto z = cpp_int{0};
-    const auto h = cpp_int{-g};
 
     const auto p = Fraction{a, b};
     const auto q = Fraction{c, d};
