@@ -31,7 +31,7 @@ struct exercise_vertex
         // std::cout << "out-edges: ";
         // typename GraphTraits::out_edge_iterator out_i, out_end;
         // typename GraphTraits::edge_descriptor e;
-        for ([[maybe_unused]] const auto& e : g.neighbors(v))
+        for ([[maybe_unused]] auto&& e : g.neighbors(v))
         {
             // auto [src, targ] = g.end_points(e);
             // std::cout << "(" << index[src] << "," << index[targ] << ") ";
@@ -61,7 +61,7 @@ TEST_CASE("Test Boost")
     // const char *name = "ABCDE";
 
     // writing out the edges in the graph
-    using Edge = std::pair<size_t, size_t>;
+    using Edge = std::pair<int, int>;
     Edge edge_array[] = {Edge(A, B), Edge(A, D), Edge(C, A), Edge(D, C),
         Edge(C, E), Edge(B, D), Edge(D, E)};
     const auto num_edges = sizeof(edge_array) / sizeof(edge_array[0]);
