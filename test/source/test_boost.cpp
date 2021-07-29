@@ -1,29 +1,23 @@
 #include <doctest/doctest.h>
-#include <py2cpp/nx2bgl.hpp>
 
-#include <algorithm> // for std::for_each
+#include <algorithm>  // for std::for_each
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/dijkstra_shortest_paths.hpp>
 #include <boost/graph/graph_traits.hpp>
+#include <py2cpp/nx2bgl.hpp>
 // #include <iostream> // for std::cout
-#include <utility> // for std::pair
+#include <utility>  // for std::pair
 
 // using namespace boost;
-template <class grAdaptor>
-struct exercise_vertex
-{
+template <class grAdaptor> struct exercise_vertex {
     //...
     using Vertex = typename boost::graph_traits<grAdaptor>::vertex_descriptor;
 
-    explicit exercise_vertex(grAdaptor& g_)
-        : g(g_)
-    {
-    }
+    explicit exercise_vertex(grAdaptor& g_) : g(g_) {}
     //...
     grAdaptor& g;
 
-    auto operator()(const Vertex& v) const -> void
-    {
+    auto operator()(const Vertex& v) const -> void {
         // typedef boost::graph_traits<Graph> GraphTraits;
         // typename boost::property_map<Graph, boost::vertex_index_t>::type
         // auto index = boost::get(boost::vertex_index, g);
@@ -31,8 +25,7 @@ struct exercise_vertex
         // std::cout << "out-edges: ";
         // typename GraphTraits::out_edge_iterator out_i, out_end;
         // typename GraphTraits::edge_descriptor e;
-        for ([[maybe_unused]] auto&& e : g.neighbors(v))
-        {
+        for ([[maybe_unused]] auto&& e : g.neighbors(v)) {
             // auto [src, targ] = g.end_points(e);
             // std::cout << "(" << index[src] << "," << index[targ] << ") ";
         }
@@ -41,29 +34,19 @@ struct exercise_vertex
     //...
 };
 
-TEST_CASE("Test Boost")
-{
+TEST_CASE("Test Boost") {
     // create a typedef for the Graph type
-    using Graph =
-        boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS>;
+    using Graph = boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS>;
 
     // Make convenient labels for the vertices
-    enum
-    {
-        A,
-        B,
-        C,
-        D,
-        E,
-        N
-    };
+    enum { A, B, C, D, E, N };
     const auto num_vertices = N;
     // const char *name = "ABCDE";
 
     // writing out the edges in the graph
     using Edge = std::pair<int, int>;
-    Edge edge_array[] = {Edge(A, B), Edge(A, D), Edge(C, A), Edge(D, C),
-        Edge(C, E), Edge(B, D), Edge(D, E)};
+    Edge edge_array[]
+        = {Edge(A, B), Edge(A, D), Edge(C, A), Edge(D, C), Edge(C, E), Edge(B, D), Edge(D, E)};
     const auto num_edges = sizeof(edge_array) / sizeof(edge_array[0]);
 
     // declare a graph object
@@ -73,8 +56,7 @@ TEST_CASE("Test Boost")
     // using edge_t = typename boost::graph_traits<Graph>::edge_descriptor;
 
     // add the edges to the graph object
-    for (auto i = 0U; i != num_edges; ++i)
-    {
+    for (auto i = 0U; i != num_edges; ++i) {
         G.add_edge(edge_array[i].first, edge_array[i].second);
     }
 
@@ -87,8 +69,7 @@ TEST_CASE("Test Boost")
     // std::cout << "vertices(g) = ";
     // typedef graph_traits<Graph>::vertex_iterator vertex_iter;
     // std::pair<vertex_iter, vertex_iter> vp;
-    for ([[maybe_unused]] Vertex&& v : G)
-    {
+    for ([[maybe_unused]] Vertex&& v : G) {
         // std::cout << index[v] << " ";
     }
     // std::cout << std::endl;
@@ -101,5 +82,5 @@ TEST_CASE("Test Boost")
     // std::cout << std::endl;
 
     std::for_each(boost::vertices(G).first, boost::vertices(G).second,
-        exercise_vertex<py::grAdaptor<Graph>>(G));
+                  exercise_vertex<py::grAdaptor<Graph>>(G));
 }
