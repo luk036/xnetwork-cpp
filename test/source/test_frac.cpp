@@ -2,9 +2,10 @@
  *  Distributed under the MIT License (See accompanying file /LICENSE )
  */
 #include <doctest/doctest.h>
+
 #include <boost/multiprecision/cpp_int.hpp>
-#include <py2cpp/fractions.hpp>
 #include <ostream>
+#include <py2cpp/fractions.hpp>
 
 using namespace fun;
 

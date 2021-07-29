@@ -193,7 +193,7 @@ namespace py {
          *
          * @param[in] G
          */
-        explicit grAdaptor(Graph&& G) noexcept : VertexView<Graph>{std::forward<Graph>(G)} {}
+        explicit grAdaptor(_Graph&& G) noexcept : VertexView<_Graph>{std::forward<_Graph>(G)} {}
 
         // grAdaptor(const grAdaptor&) = delete;            // don't copy
         // grAdaptor& operator=(const grAdaptor&) = delete; // don't assign
