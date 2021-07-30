@@ -10,11 +10,11 @@
 using namespace fun;
 using boost::multiprecision::cpp_int;
 
-auto operator<=>(const cpp_int& a, const cpp_int& b) -> std::strong_ordering {
-    if (operator<(a, b)) return std::strong_ordering::less;
-    if (operator>(a, b)) return std::strong_ordering::greater;
-    return std::strong_ordering::equivalent;
-}
+// auto operator<=>(const cpp_int& a, const cpp_int& b) -> std::strong_ordering {
+//     if (operator<(a, b)) return std::strong_ordering::less;
+//     if (operator>(a, b)) return std::strong_ordering::greater;
+//     return std::strong_ordering::equivalent;
+// }
 
 TEST_CASE("Fraction") {
     const auto a = cpp_int{3};
