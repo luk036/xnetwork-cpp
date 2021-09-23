@@ -17,5 +17,5 @@ set_target_properties(
 )
 
 target_link_libraries(
-  ${PROJECT_NAME}Standalone ${PROJECT_NAME}::${PROJECT_NAME} ${SPECIFIC_LIBS}
+  ${PROJECT_NAME}Standalone ${PROJECT_NAME}::${PROJECT_NAME} cxxopts ${SPECIFIC_LIBS}
 )
