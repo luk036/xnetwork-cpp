@@ -28,7 +28,7 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     ${PROJECT_NAME} INTERFACE -fcoroutines-ts -stdlib=libc++ -Wall -Wpedantic -Wextra -Werror
   )
 elseif(MSVC)
-  target_compile_options(${PROJECT_NAME} INTERFACE /std:c++latest /await /W4 /WX)
+  target_compile_options(${PROJECT_NAME} INTERFACE /std:c++latest /await /W4 /WX /wd4819)
   target_compile_definitions(${PROJECT_NAME}Tests PUBLIC DOCTEST_CONFIG_USE_STD_HEADERS)
 endif()
 
