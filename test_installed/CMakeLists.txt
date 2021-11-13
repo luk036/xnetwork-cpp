@@ -20,16 +20,13 @@ include(../cmake/tools.cmake)
 include(../cmake/CPM.cmake)
 include(../specific.cmake)
 
-CPMAddPackage(
-  NAME cppcoro
-  GIT_TAG 1.0
-  GITHUB_REPOSITORY luk036/cppcoro
-)
+cpmaddpackage(NAME cppcoro GIT_TAG 1.0 GITHUB_REPOSITORY luk036/cppcoro)
 # print_target_properties(cppcoro)
 if(cppcoro_ADDED)
   message(STATUS "Found cppcoro: ${cppcoro_SOURCE_DIR}")
   add_library(cppcoro::cppcoro INTERFACE IMPORTED GLOBAL)
-  target_include_directories(cppcoro::cppcoro SYSTEM INTERFACE ${cppcoro_SOURCE_DIR}/include)
+  target_include_directories(cppcoro::cppcoro SYSTEM
+                             INTERFACE ${cppcoro_SOURCE_DIR}/include)
 endif(cppcoro_ADDED)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
@@ -45,4 +42,5 @@ endif()
 
 find_package(${PROJECT_NAME} REQUIRED)
 
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../standalone ${CMAKE_BINARY_DIR}/test_installed)
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../standalone
+                 ${CMAKE_BINARY_DIR}/test_installed)
