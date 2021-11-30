@@ -36,26 +36,6 @@ include(cmake/CPM.cmake)
 # PackageProject.cmake will be used to make our target installable
 cpmaddpackage("gh:TheLartians/PackageProject.cmake@1.6.0")
 
-cpmaddpackage(NAME cppcoro GIT_TAG 1.0 GITHUB_REPOSITORY luk036/cppcoro)
-# print_target_properties(cppcoro)
-if(cppcoro_ADDED)
-  message(STATUS "Found cppcoro: ${cppcoro_SOURCE_DIR}")
-  add_library(cppcoro::cppcoro INTERFACE IMPORTED GLOBAL)
-  target_include_directories(cppcoro::cppcoro SYSTEM
-                             INTERFACE ${cppcoro_SOURCE_DIR}/include)
-endif(cppcoro_ADDED)
-
-if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-  # using GCC
-  add_compile_options(-fcoroutines)
-elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-  # using clang
-  add_compile_options(-fcoroutines-ts -stdlib=libc++)
-elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-  # using Visual Studio C++
-  add_compile_options(/std:c++latest /await)
-endif()
-
 # ---- Add source files ----
 
 # Note: globbing sources is considered bad practice as CMake's generators may
@@ -82,8 +62,8 @@ add_library(${PROJECT_NAME} INTERFACE)
 target_compile_options(
   ${PROJECT_NAME} INTERFACE "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
 
-# Link dependencies
-target_link_libraries(${PROJECT_NAME} INTERFACE cppcoro::cppcoro)
+# Link dependencies target_link_libraries(${PROJECT_NAME} INTERFACE
+# cppcoro::cppcoro)
 
 target_include_directories(
   ${PROJECT_NAME}
