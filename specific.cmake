@@ -9,6 +9,17 @@ cpmaddpackage(
   "FMT_INSTALL YES" # create an installable target
 )
 
+cpmaddpackage(
+  NAME
+  Py2Cpp
+  GIT_TAG
+  1.0
+  GITHUB_REPOSITORY
+  luk036/py2cpp
+  OPTIONS
+  "INSTALL_ONLY YES" # create an installable target
+)
+
 find_package(Boost REQUIRED)
 if(Boost_FOUND)
   message(STATUS "Found boost: ${Boost_INCLUDE_DIRS}")
@@ -19,4 +30,4 @@ if(Boost_FOUND)
   target_compile_definitions(Boost::boost INTERFACE BOOST_ALL_NO_LIB=1)
 endif()
 
-set(SPECIFIC_LIBS fmt::fmt Boost::boost cppcoro::cppcoro)
+set(SPECIFIC_LIBS Py2Cpp::Py2Cpp fmt::fmt Boost::boost cppcoro::cppcoro)
