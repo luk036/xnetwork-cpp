@@ -10,7 +10,7 @@ option(INSTALL_ONLY "Enable for installation only" OFF)
 # Note: update this to your new project's name and version
 project(
   XNetwork
-  VERSION 1.1
+  VERSION 1.2
   LANGUAGES CXX)
 
 # ---- Include guards ----
@@ -93,7 +93,9 @@ packageproject(
   VERSION_HEADER
   "${VERSION_HEADER_LOCATION}"
   COMPATIBILITY
-  SameMajorVersion)
+  SameMajorVersion
+  DEPENDENCIES
+  "py2cpp 1.2")
 
 if(NOT INSTALL_ONLY)
   include(specific.cmake)

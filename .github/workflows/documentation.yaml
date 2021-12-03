@@ -11,7 +11,7 @@ env:
 jobs:
   build:
     name: Build and publish documentation
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -20,14 +20,27 @@ jobs:
           path: "**/cpm_modules"
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
 
+      - name: Add conda to system path
+        run: |
+          # $CONDA is an environment variable pointing to the root of the miniconda directory
+          echo $CONDA/bin >> $GITHUB_PATH
+
+      - name: Install dependent software
+        run: |
+          conda info
+          conda env update --file doc-dev.yml --name base 
+
       - name: Install dependencies
         run: |
-          brew install doxygen
           pip3 install jinja2 Pygments
 
-      - name: Install project dependencies
+      - name: Before Install
         run: |
-          brew install boost
+          sudo apt-get install g++-10 lcov
+          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 90 
+
+      - name: Install dependencies
+        run: sudo apt-get install libboost-dev
 
       - name: Build
         run: |
