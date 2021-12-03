@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>py::key_iterator struct | XNetwork</title>
+  <title>xnetwork::XNetworkUnbounded struct | XNetwork</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,45 +49,36 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="py2cpp_8hpp.html">&lt;py2cpp/py2cpp.hpp&gt;</a></div>
-          <div class="m-doc-template">template&lt;typename Iter&gt;</div>
-          <span class="m-breadcrumb"><a href="namespacepy.html">py</a>::<wbr/></span>key_iterator <span class="m-thin">struct</span>
+          <span class="m-breadcrumb"><a href="namespacexnetwork.html">xnetwork</a>::<wbr/></span>XNetworkUnbounded <span class="m-thin">struct</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="exception_8hpp.html">&lt;xnetwork/exception.hpp&gt;</a></div>
         </h1>
-        <p>Template Deduction Guide.</p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
             <li>
               Reference
               <ul>
+                <li><a href="#base-classes">Base classes</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
-                <li><a href="#pub-methods">Public functions</a></li>
               </ul>
             </li>
           </ul>
         </div>
+<p>Exception raised by algorithms trying to solve a maximization or a minimization problem instance that is unbounded.</p>
+        <section id="base-classes">
+          <h2><a href="#base-classes">Base classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              struct <a href="structxnetwork_1_1XNetworkAlgorithmError.html" class="m-doc">XNetworkAlgorithmError</a>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="ad063ab1cd29cd3b5ca62ab65cb4d6665">
-              <span class="m-doc-wrap-bumper"><a href="#ad063ab1cd29cd3b5ca62ab65cb4d6665" class="m-doc-self">key_iterator</a>(</span><span class="m-doc-wrap">Iter it) <span class="m-label m-flat m-info">explicit</span> </span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="pub-methods">
-          <h2><a href="#pub-methods">Public functions</a></h2>
-          <dl class="m-doc">
-            <dt id="a2d33b75aac416aed06e34677081508dc">
-              <span class="m-doc-wrap-bumper">auto <a href="#a2d33b75aac416aed06e34677081508dc" class="m-doc-self">operator*</a>(</span><span class="m-doc-wrap">) const -&gt; const auto &amp; -&gt; auto</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a9a4a93267b1784b47143dbfb57b3b102">
-              <span class="m-doc-wrap-bumper">auto <a href="#a9a4a93267b1784b47143dbfb57b3b102" class="m-doc-self">operator*</a>(</span><span class="m-doc-wrap">) -&gt; auto &amp; -&gt; auto</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="af64f6abe20264aa17f929c9dab53804e">
-              <span class="m-doc-wrap-bumper">auto <a href="#af64f6abe20264aa17f929c9dab53804e" class="m-doc-self">operator++</a>(</span><span class="m-doc-wrap">) -&gt; key_iterator &amp; -&gt; auto</span>
+            <dt id="a63bd3cb05c716643806148ea56dbd95d">
+              <span class="m-doc-wrap-bumper"><a href="#a63bd3cb05c716643806148ea56dbd95d" class="m-doc-self">XNetworkUnbounded</a>(</span><span class="m-doc-wrap">std::string_view msg) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
             <dd><span></span></dd>
           </dl>

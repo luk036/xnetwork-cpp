@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>xnetwork::XNetworkAlgorithmError struct | XNetwork</title>
+  <title>xnetwork::NodeNotFound struct | XNetwork</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,7 +49,7 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <span class="m-breadcrumb"><a href="namespacexnetwork.html">xnetwork</a>::<wbr/></span>XNetworkAlgorithmError <span class="m-thin">struct</span>
+          <span class="m-breadcrumb"><a href="namespacexnetwork.html">xnetwork</a>::<wbr/></span>NodeNotFound <span class="m-thin">struct</span>
           <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="exception_8hpp.html">&lt;xnetwork/exception.hpp&gt;</a></div>
         </h1>
         <div class="m-block m-default">
@@ -59,31 +59,17 @@
               Reference
               <ul>
                 <li><a href="#base-classes">Base classes</a></li>
-                <li><a href="#derived-classes">Derived classes</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
               </ul>
             </li>
           </ul>
         </div>
-<p>Exception for unexpected termination of algorithms.</p>
+<p>Exception raised if (requested node is not present : the graph</p>
         <section id="base-classes">
           <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
             <dt>
-              struct <a href="structxnetwork_1_1_x_network_exception.html" class="m-doc">XNetworkException</a>
-            </dt>
-            <dd></dd>
-          </dl>
-        </section>
-        <section id="derived-classes">
-          <h2><a href="#derived-classes">Derived classes</a></h2>
-          <dl class="m-doc">
-            <dt>
-              struct <a href="structxnetwork_1_1_x_network_unbounded.html" class="m-doc">XNetworkUnbounded</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              struct <a href="structxnetwork_1_1_x_network_unfeasible.html" class="m-doc">XNetworkUnfeasible</a>
+              struct <a href="structxnetwork_1_1XNetworkException.html" class="m-doc">XNetworkException</a>
             </dt>
             <dd></dd>
           </dl>
@@ -91,8 +77,8 @@
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="ab33c708897369a221e7f515b12b7f867">
-              <span class="m-doc-wrap-bumper"><a href="#ab33c708897369a221e7f515b12b7f867" class="m-doc-self">XNetworkAlgorithmError</a>(</span><span class="m-doc-wrap">std::string_view msg) <span class="m-label m-flat m-info">explicit</span> </span>
+            <dt id="a75c75d6c9114d2b79702d6e7eb1e5a8d">
+              <span class="m-doc-wrap-bumper"><a href="#a75c75d6c9114d2b79702d6e7eb1e5a8d" class="m-doc-self">NodeNotFound</a>(</span><span class="m-doc-wrap">std::string_view msg) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
             <dd><span></span></dd>
           </dl>
