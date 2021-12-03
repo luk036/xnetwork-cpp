@@ -34,8 +34,11 @@ jobs:
         run: |
           pip3 install jinja2 Pygments
 
-      - name: Install dependencies
-        run: sudo apt-get install libboost-dev
+      - name: Before Install
+        run: |
+          sudo apt-get install libboost-dev
+          sudo apt-get install g++-10
+          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 90 
 
       - name: Build
         run: |
