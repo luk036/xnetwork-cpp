@@ -95,7 +95,7 @@ packageproject(
   COMPATIBILITY
   SameMajorVersion
   DEPENDENCIES
-  "py2cpp 1.2")
+  "Py2Cpp 1.2")
 
 if(NOT INSTALL_ONLY)
   include(specific.cmake)
