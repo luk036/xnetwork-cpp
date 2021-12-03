@@ -1,0 +1,62 @@
+name: Documentation
+
+on:
+  push:
+    tags:
+      - "*"
+
+env:
+  CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
+
+jobs:
+  build:
+    name: Build and publish documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          path: "**/cpm_modules"
+          key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
+
+      - name: Add conda to system path
+        run: |
+          # $CONDA is an environment variable pointing to the root of the miniconda directory
+          echo $CONDA/bin >> $GITHUB_PATH
+
+      - name: Install dependent software
+        run: |
+          conda info
+          conda env update --file doc-dev.yml --name base 
+
+      - name: Install dependencies
+        run: |
+<<<<<<< HEAD
+=======
+          sudo apt install doxygen
+>>>>>>> b325ab1933fcf689b3cbec8e0b23821b5922f6a9
+          pip3 install jinja2 Pygments
+
+      - name: Before Install
+        run: |
+<<<<<<< HEAD
+          sudo apt-get install g++-10 lcov
+          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 90 
+
+      - name: Install dependencies
+        run: sudo apt-get install libboost-dev
+=======
+          sudo apt install libboost-dev
+>>>>>>> b325ab1933fcf689b3cbec8e0b23821b5922f6a9
+
+      - name: Build
+        run: |
+          cmake -S. -Bbuild
+          cmake --build build --target GenerateDocs
+
+      - name: Publish
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/documentation/doxygen/html
