@@ -30,7 +30,16 @@ if(Boost_FOUND)
   target_compile_definitions(Boost::boost INTERFACE BOOST_ALL_NO_LIB=1)
 endif()
 
-cpmaddpackage(NAME cppcoro GITHUB_REPOSITORY luk036/cppcoro)
+find_package(Boost REQUIRED)
+
+cpmaddpackage(
+  NAME
+  cppcoro
+  GIT_TAG
+  1.0
+  GITHUB_REPOSITORY
+  luk036/cppcoro
+)
 # print_target_properties(cppcoro)
 if(cppcoro_ADDED)
   message(STATUS "Found cppcoro: ${cppcoro_SOURCE_DIR}")
