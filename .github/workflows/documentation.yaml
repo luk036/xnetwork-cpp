@@ -28,7 +28,7 @@ jobs:
       - name: Install dependent software
         run: |
           conda info
-          conda env update --file doc-dev.yml --name base 
+          conda env update --file doc-dev.yml --name base
 
       - name: Install dependencies
         run: |
@@ -38,7 +38,7 @@ jobs:
         run: |
           sudo apt-get install libboost-dev
           sudo apt-get install g++-10
-          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 90 
+          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 90
 
       - name: Build
         run: |
