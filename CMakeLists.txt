@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
-# set(USE_STATIC_ANALYZER "clang-tidy")
+# set(USE_STATIC_ANALYZER "iwyu")
 
 option(CPM_USE_LOCAL_PACKAGES "Use Local package" TRUE)
 option(INSTALL_ONLY "Enable for installation only" OFF)
