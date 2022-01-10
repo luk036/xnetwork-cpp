@@ -1,8 +1,7 @@
 // -*- coding: utf-8 -*-
 #include <doctest/doctest.h>  // for ResultBuilder, TestCase, CHECK
 
-#include <__hash_table>                // for operator!=
-#include <__tuple>                     // for tuple_element<>::type
+#include <tuple>                       // for tuple_element<>::type
 #include <cppcoro/generator.hpp>       // for operator!=, generator
 #include <cstdint>                     // for uint8_t
 #include <py2cpp/dict.hpp>             // for dict<>::Base
