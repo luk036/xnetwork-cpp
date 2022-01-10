@@ -1,12 +1,17 @@
-#include <doctest/doctest.h>
+#include <doctest/doctest.h>  // for TestCase, TEST_CASE
 
-#include <algorithm>  // for std::for_each
-#include <boost/graph/adjacency_list.hpp>
-#include <boost/graph/dijkstra_shortest_paths.hpp>
-#include <boost/graph/graph_traits.hpp>
-#include <py2cpp/nx2bgl.hpp>
+#include <algorithm>                              // for for_each
+#include <boost/graph/adjacency_list.hpp>         // for vecS (ptr only)
+#include <boost/graph/detail/adjacency_list.hpp>  // for adj_list_gen<>::config
+#include <boost/graph/graph_selectors.hpp>        // for bidirectionalS
+#include <boost/graph/graph_traits.hpp>           // for graph_traits, graph...
+#include <boost/iterator/iterator_facade.hpp>     // for operator!=, iterato...
+#include <boost/pending/property.hpp>             // for no_property
+#include <boost/range/irange.hpp>                 // for integer_iterator
+#include <py2cpp/nx2bgl.hpp>                      // for grAdaptor, AtlasView
 // #include <iostream> // for std::cout
-#include <utility>  // for std::pair
+#include <type_traits>  // for move
+#include <utility>      // for pair
 
 // using namespace boost;
 template <class grAdaptor> struct exercise_vertex {

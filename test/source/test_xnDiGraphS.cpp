@@ -1,10 +1,12 @@
 // -*- coding: utf-8 -*-
-#include <doctest/doctest.h>
+#include <doctest/doctest.h>  // for ResultBuilder, TestCase, CHECK
 
-#include <array>
-#include <string>
-#include <vector>
-#include <xnetwork/classes/digraphs.hpp>
+#include <array>                          // for array
+#include <iosfwd>                         // for string
+#include <string>                         // for basic_string, operator==
+#include <utility>                        // for pair
+#include <vector>                         // for vector
+#include <xnetwork/classes/digraphs.hpp>  // for DiGraphS
 
 template <typename Container> inline auto create_test_case4(const Container& weights) {
     using Edge = std::pair<std::string, std::string>;

@@ -1,10 +1,9 @@
 // -*- coding: utf-8 -*-
-#include <doctest/doctest.h>
+#include <doctest/doctest.h>  // for TestCase, ResultBuilder
 
-#include <array>
-#include <py2cpp/fractions.hpp>  // import Fraction
-#include <xnetwork/classes/digraphs.hpp>
-#include <xnetwork/generators/testcases.hpp>
+#include <array>                              // for array
+#include <xnetwork/classes/digraphs.hpp>      // for DiGraphS
+#include <xnetwork/generators/testcases.hpp>  // for create_test_case1, crea...
 
 /**
  * @brief

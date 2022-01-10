@@ -32,14 +32,7 @@ endif()
 
 find_package(Boost REQUIRED)
 
-cpmaddpackage(
-  NAME
-  cppcoro
-  GIT_TAG
-  1.0
-  GITHUB_REPOSITORY
-  luk036/cppcoro
-)
+cpmaddpackage(NAME cppcoro GIT_TAG 1.0 GITHUB_REPOSITORY luk036/cppcoro)
 # print_target_properties(cppcoro)
 if(cppcoro_ADDED)
   message(STATUS "Found cppcoro: ${cppcoro_SOURCE_DIR}")

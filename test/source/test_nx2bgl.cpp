@@ -1,12 +1,18 @@
 // -*- coding: utf-8 -*-
-#include <doctest/doctest.h>
+#include <doctest/doctest.h>  // for ResultBuilder, TestCase
 
-#include <boost/graph/adjacency_list.hpp>
-#include <boost/graph/graph_traits.hpp>
+#include <boost/graph/adjacency_list.hpp>  // for adjacency_list, listS ...
+#include <boost/graph/graph_traits.hpp>    // for graph_traits, graph_tr...
 // #include <netoptim/min_cycle_ratio.hpp>
 // #include <netoptim/neg_cycle.hpp> // import negCycleFinder
-#include <py2cpp/nx2bgl.hpp>
-#include <utility>  // for std::pair
+#include <boost/graph/graph_selectors.hpp>     // for directedS
+#include <boost/graph/properties.hpp>          // for edge_index_t, edge_wei...
+#include <boost/iterator/iterator_facade.hpp>  // for operator!=, operator==
+#include <boost/move/utility_core.hpp>         // for move
+#include <boost/pending/property.hpp>          // for property, no_property
+#include <py2cpp/nx2bgl.hpp>                   // for grAdaptor
+#include <type_traits>                         // for move
+#include <utility>                             // for pair
 
 using graph_t = boost::adjacency_list<
     boost::listS, boost::vecS, boost::directedS, boost::no_property,
