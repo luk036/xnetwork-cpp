@@ -1,12 +1,12 @@
 // -*- coding: utf-8 -*-
 #include <doctest/doctest.h>  // for ResultBuilder, TestCase, CHECK
 
-#include <tuple>                       // for tuple_element<>::type
 #include <cppcoro/generator.hpp>       // for operator!=, generator
 #include <cstdint>                     // for uint8_t
 #include <py2cpp/dict.hpp>             // for dict<>::Base
 #include <py2cpp/enumerate.hpp>        // for iterable_wrapper
 #include <py2cpp/set.hpp>              // for set
+#include <tuple>                       // for tuple_element<>::type
 #include <unordered_map>               // for operator!=
 #include <vector>                      // for vector
 #include <xnetwork/classes/graph.hpp>  // for Graph, SimpleGraph
