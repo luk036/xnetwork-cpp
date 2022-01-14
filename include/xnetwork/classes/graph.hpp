@@ -1,9 +1,8 @@
 #pragma once
 
-#include <any>
+// #include <any>
 // #include <boost/coroutine2/all.hpp>
 #include <cassert>
-#include <cppcoro/generator.hpp>
 #include <py2cpp/py2cpp.hpp>
 // #include <range/v3/view/enumerate.hpp>
 #include <string_view>
@@ -11,6 +10,10 @@
 #include <vector>
 #include <xnetwork/classes/coreviews.hpp>    // import AtlasView, AdjacencyView
 #include <xnetwork/classes/reportviews.hpp>  // import NodeView, EdgeView, DegreeView
+
+#if __cplusplus > 201703L
+#    include <cppcoro/generator.hpp>
+#endif
 
 namespace xnetwork {
 
@@ -196,16 +199,16 @@ namespace xnetwork {
         a dictionary-like object.
     */
 
-    struct object : py::dict<const char*, std::any> {};
+    // struct object : py::dict<const char*, std::any> {};
 
     template <typename _nodeview_t, typename adjlist_t = py::set<Value_type<_nodeview_t>>,
               typename adjlist_outer_dict_factory = py::dict<Value_type<_nodeview_t>, adjlist_t>>
-    class Graph : public object {
+    class Graph {
       public:
         using nodeview_t = _nodeview_t;
         using Node = typename nodeview_t::value_type;  // luk
-        using dict = py::dict<const char*, std::any>;
-        using graph_attr_dict_factory = dict;
+        // using dict = py::dict<const char*, std::any>;
+        // using graph_attr_dict_factory = dict;
         // using edge_attr_dict_factory = dict;
         // using node_attr_dict_factory = dict;
         // using node_dict_factory = py::dict<Node, node_attr_dict_factory>;
@@ -221,7 +224,7 @@ namespace xnetwork {
 
         // std::vector<Node > _Nodes{};
         nodeview_t _node;
-        graph_attr_dict_factory graph{};  // dictionary for graph attributes
+        // graph_attr_dict_factory graph{};  // dictionary for graph attributes
         // node_dict_factory _node{};  // empty node attribute dict
         adjlist_outer_dict_factory _adj;  // empty adjacency dict
 
@@ -330,15 +333,15 @@ namespace xnetwork {
         keyed by the string `"name"`. as well as an attribute (technically
         a property) `G.name`. This is entirely user controlled.
          */
-        auto get_name() {
-            if (!this->graph.contains("name")) {
-                return "";
-            }
-            return std::any_cast<const char*>(this->graph["name"]);
-        }
+        // auto get_name() {
+        //     if (!this->graph.contains("name")) {
+        //         return "";
+        //     }
+        //     return std::any_cast<const char*>(this->graph["name"]);
+        // }
 
-        // @name.setter
-        auto set_name(std::string_view s) { this->graph["name"] = std::any(s); }
+        // // @name.setter
+        // auto set_name(std::string_view s) { this->graph["name"] = std::any(s); }
 
         /** Iterate over the nodes. Use: "for (const auto& n : G)".
         Returns
@@ -469,7 +472,7 @@ namespace xnetwork {
             // Lazy View creation: overload the (class) property on the instance
             // Then future G.nodes use the existing View
             // setattr doesn"t work because attribute already exists
-            this->operator[]("nodes") = std::any(nodes);
+            // this->operator[]("nodes") = std::any(nodes);
             return nodes;
         }
 
@@ -820,6 +823,7 @@ namespace xnetwork {
         //     return pull_t(func);
         // }
 
+#if __cplusplus > 201703L
         auto edges() const -> cppcoro::generator<edge_t> {
             if constexpr (std::is_same_v<nodeview_t, decltype(py::range<uint32_t>(
                                                          uint32_t{}))>) {  // this->_succ???
@@ -836,6 +840,7 @@ namespace xnetwork {
                 }
             }
         }
+#endif
 
         //
         // auto degree() {

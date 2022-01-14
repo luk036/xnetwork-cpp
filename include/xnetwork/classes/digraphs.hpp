@@ -1,9 +1,8 @@
 #pragma once
 
-#include <any>
+// #include <any>
 // #include <boost/coroutine2/all.hpp>
 #include <cassert>
-#include <cppcoro/generator.hpp>
 #include <py2cpp/py2cpp.hpp>
 // #include <range/v3/view/enumerate.hpp>
 #include <type_traits>
@@ -12,6 +11,10 @@
 #include <xnetwork/classes/coreviews.hpp>  // import AtlasView, AdjacencyView
 #include <xnetwork/classes/graph.hpp>
 #include <xnetwork/classes/reportviews.hpp>  // import NodeView, EdgeView, DegreeView
+
+#if __cplusplus > 201703L
+#    include <cppcoro/generator.hpp>
+#endif
 
 namespace xnetwork {
 
@@ -206,7 +209,7 @@ namespace xnetwork {
       public:
         using Node = typename _Base::Node;  // luk
         using edge_t = std::pair<Node, Node>;
-        using graph_attr_dict_factory = typename _Base::graph_attr_dict_factory;
+        // using graph_attr_dict_factory = typename _Base::graph_attr_dict_factory;
         // using adjlist_outer_dict_factory =
         //     typename _Base::adjlist_outer_dict_factory;
         using key_type = typename _Base::key_type;
@@ -484,6 +487,7 @@ namespace xnetwork {
         //     return pull_t(func);
         // }
 
+#if __cplusplus > 201703L
         auto edges() const -> cppcoro::generator<edge_t> {
             if constexpr (std::is_same_v<nodeview_t, decltype(py::range<uint32_t>(
                                                          uint32_t{}))>) {  // this->_succ???
@@ -500,6 +504,7 @@ namespace xnetwork {
                 }
             }
         }
+#endif
 
         // cppcoro::generator<edge_t> edges() const
         // {

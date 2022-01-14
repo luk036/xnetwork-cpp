@@ -15,7 +15,7 @@ template <typename Container> inline auto create_test_case4(const Container& wei
                                            Edge{"D", "E"}, Edge{"E", "A"}};
     // constexpr auto weights = std::array<int, 5> {-5, 1, 1, 1, 1};
 
-    auto G = xnetwork::DiGraphS{nodes};
+    auto G = xnetwork::DiGraphS<std::vector<std::string>>{nodes};
     G.add_edges_from(edges, weights);
     return G;
 }

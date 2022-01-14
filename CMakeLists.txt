@@ -10,7 +10,7 @@ option(INSTALL_ONLY "Enable for installation only" OFF)
 # Note: update this to your new project's name and version
 project(
   XNetwork
-  VERSION 1.2
+  VERSION 1.3
   LANGUAGES CXX)
 
 # ---- Include guards ----
@@ -56,7 +56,7 @@ file(GLOB_RECURSE sources CONFIGURE_DEPENDS
 # create an interface target: add_library(${PROJECT_NAME} INTERFACE)
 add_library(${PROJECT_NAME} INTERFACE)
 
-# set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 20)
+# set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
 
 # being a cross-platform target, we enforce standards conformance on MSVC
 target_compile_options(
