@@ -99,7 +99,7 @@
               <div class="m-doc-template">template&lt;typename _nodeview_t, typename adjlist_t = py::set&lt;Value_type&lt;_nodeview_t&gt;&gt;, typename adjlist_outer_dict_factory = py::dict&lt;Value_type&lt;_nodeview_t&gt;, adjlist_t&gt;&gt;</div>
               class <a href="classxnetwork_1_1Graph.html" class="m-doc">Graph&lt;nodeview_t, py::dict&lt;Value_type&lt;nodeview_t&gt;, int&gt;, py::dict&lt;Value_type&lt;nodeview_t&gt;, py::dict&lt;Value_type&lt;nodeview_t&gt;, int&gt;&gt;&gt;</a>
             </dt>
-            <dd><span></span></dd>
+            <dd></dd>
           </dl>
         </section>
         <section id="pub-types">
@@ -111,10 +111,6 @@
             <dd><span></span></dd>
             <dt id="abe4224add52c8bbdc001094d00e9ce0c">
               using <a href="#abe4224add52c8bbdc001094d00e9ce0c" class="m-doc-self">edge_t</a> = std::pair&lt;<a href="classxnetwork_1_1DiGraphS.html#ab98dbe4e47ef8cb15623041ea0a2947e" class="m-doc">Node</a>, <a href="classxnetwork_1_1DiGraphS.html#ab98dbe4e47ef8cb15623041ea0a2947e" class="m-doc">Node</a>&gt;
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a74fef98eafc0460834b7db3e64b60cda">
-              using <a href="#a74fef98eafc0460834b7db3e64b60cda" class="m-doc-self">graph_attr_dict_factory</a> = typename <a href="classxnetwork_1_1Graph.html#a6e68e6c5ff179a0fbef16c3458f3a24a" class="m-doc">_Base::<wbr />graph_attr_dict_factory</a>
             </dt>
             <dd><span></span></dd>
             <dt id="a12eb1139cea042605d9326ed62358d1a">
@@ -190,13 +186,9 @@
             </dt>
             <dd><span></span></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a49d0c8919c156e0473de2a57e7d98594" class="m-doc">edges</a>(</span><span class="m-doc-wrap">) const -&gt; cppcoro::generator&lt; edge_t &gt; -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a1443f6c9ebfb799a8a09481b9076f7a9" class="m-doc">degree</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1DiGraphS.html#ab98dbe4e47ef8cb15623041ea0a2947e" class="m-doc">Node</a>&amp; n) const -&gt; auto</span>
             </dt>
             <dd></dd>
-            <dt id="a1443f6c9ebfb799a8a09481b9076f7a9">
-              <span class="m-doc-wrap-bumper">auto <a href="#a1443f6c9ebfb799a8a09481b9076f7a9" class="m-doc-self">degree</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1DiGraphS.html#ab98dbe4e47ef8cb15623041ea0a2947e" class="m-doc">Node</a>&amp; n) const -&gt; auto</span>
-            </dt>
-            <dd><span></span></dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ae77b243ec7bfbbefbd77faf115e079e9" class="m-doc">clear</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
             </dt>
@@ -287,12 +279,12 @@
             </h3>
 <p>Returns an iterator over successor nodes of n.</p><p>A successor of n is a node m such that there exists a directed edge from n to m.</p><h5 id="autotoc_md25">Parameters</h5><p>n : node A node in the graph</p><h5 id="autotoc_md26">Raises</h5><p>NetworkXError If n is not in the graph.</p><h5 id="autotoc_md27">See Also</h5><p>predecessors</p><h5 id="autotoc_md28">Notes</h5><p>neighbors() and <a href="classxnetwork_1_1DiGraphS.html#a43a02e56ad3e1a5987ad2ebeab348e25" class="m-doc">successors()</a> are the same.</p>
           </div></section>
-          <section class="m-doc-details" id="a49d0c8919c156e0473de2a57e7d98594"><div>
+          <section class="m-doc-details" id="a1443f6c9ebfb799a8a09481b9076f7a9"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;typename <a href="classxnetwork_1_1Graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a> _1, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />DiGraphS&lt;_1, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a49d0c8919c156e0473de2a57e7d98594" class="m-doc-self">edges</a>(</span><span class="m-doc-wrap">) const -&gt; cppcoro::generator&lt; edge_t &gt;</span></span>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />DiGraphS&lt;_1, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1443f6c9ebfb799a8a09481b9076f7a9" class="m-doc-self">degree</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1DiGraphS.html#ab98dbe4e47ef8cb15623041ea0a2947e" class="m-doc">Node</a>&amp; n) const</span></span>
             </h3>
 <p>An OutEdgeView of the DiGraph as G.edges().</p><p>edges(self, nbunch=None, data=False, default=None)</p><p>The OutEdgeView provides set-like operations on the edge-tuples as well as edge attribute lookup. When called, it also provides an EdgeDataView object which allows control of access to edge attributes (but does not provide set-like operations). Hence, &lsquo;G.edges()[u, v][&#x27;color&rsquo;]<code>provides the value of the color attribute for edge</code>(u, v)<code>while</code>for (u, v, c) in G.edges().data(&#x27;color&#x27;, default=&#x27;red&#x27;):` iterates through all the edges yielding the color attribute with default &lsquo;&#x27;red&rsquo;` if no color attribute exists.</p><h5 id="autotoc_md29">Parameters</h5><p>nbunch : single node, container, or all nodes (default= all nodes) The view will only report edges incident to these nodes. data : string or bool, optional (default=False) The edge attribute returned in 3-tuple (u, v, ddict[data]). If True, return edge attribute dict in 3-tuple (u, v, ddict). If False, return 2-tuple (u, v). default : value, optional (default=None) Value used for edges that don&#x27;t have the requested attribute. Only relevant if data is not True or False.</p><h5 id="autotoc_md30">Returns</h5><p>edges : OutEdgeView A view of edge attributes, usually it iterates over (u, v) or (u, v, d) tuples of edges, but can also be used for attribute lookup as &lsquo;edges[u, v][&#x27;foo&rsquo;]`.</p><h5 id="autotoc_md31">See Also</h5><p>in_edges, out_edges</p><h5 id="autotoc_md32">Notes</h5><p>Nodes in nbunch that are not in the graph will be (quietly) ignored. For directed graphs this returns the out-edges.</p><h5 id="autotoc_md33">Examples</h5><p>&gt; G = nx.DiGraph() # or MultiDiGraph, etc &gt; nx.add_path(G, [0, 1, 2]) &gt; G.add_edge(2, 3, weight=5) &gt; [e for e in G.edges()] [(0, 1), (1, 2), (2, 3)] &gt; G.edges().data() # default data is {} (empty dict) OutEdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {&#x27;weight&#x27;: 5})]) &gt; G.edges().data(&#x27;weight&#x27;, default=1) OutEdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)]) &gt; G.edges()([0, 2]) # only edges incident to these nodes OutEdgeDataView([(0, 1), (2, 3)]) &gt; G.edges()(0) # only edges incident to a single node (use G.adj[0]?) OutEdgeDataView([(0, 1)])</p>
           </div></section>
