@@ -22,7 +22,8 @@
  */
 template <typename Graph> static void do_case(const Graph& G) {
     auto count = 0U;
-    for ([[maybe_unused]] auto _ : G) {
+    for (auto _ : G) {
+        static_assert(sizeof _ >= 0, "unused");
         ++count;
     }
     CHECK(G.number_of_nodes() == count);
@@ -36,7 +37,8 @@ template <typename Graph> static void do_case(const Graph& G) {
 #endif
 
     auto deg = 0U;
-    for ([[maybe_unused]] auto _ : G[1U]) {
+    for (auto _ : G[1U]) {
+        static_assert(sizeof _ >= 0, "unused");
         ++deg;
     }
     CHECK(G.degree(1U) == deg);

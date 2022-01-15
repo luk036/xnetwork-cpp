@@ -28,7 +28,8 @@ template <typename Container> inline auto create_test_case4(const Container& wei
  */
 template <typename Graph> static void do_case(const Graph& G) {
     auto count = 0U;
-    for ([[maybe_unused]] auto _ : G) {
+    for (auto _ : G) {
+        static_assert(sizeof _ >= 0, "unused");
         ++count;
     }
 

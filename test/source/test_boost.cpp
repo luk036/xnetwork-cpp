@@ -30,7 +30,8 @@ template <class grAdaptor> struct exercise_vertex {
         // std::cout << "out-edges: ";
         // typename GraphTraits::out_edge_iterator out_i, out_end;
         // typename GraphTraits::edge_descriptor e;
-        for ([[maybe_unused]] auto&& e : g.neighbors(v)) {
+        for (auto&& e : g.neighbors(v)) {
+            static_assert(sizeof e >= 0, "unused");
             // auto [src, targ] = g.end_points(e);
             // std::cout << "(" << index[src] << "," << index[targ] << ") ";
         }
@@ -74,7 +75,8 @@ TEST_CASE("Test Boost") {
     // std::cout << "vertices(g) = ";
     // typedef graph_traits<Graph>::vertex_iterator vertex_iter;
     // std::pair<vertex_iter, vertex_iter> vp;
-    for ([[maybe_unused]] Vertex&& v : G) {
+    for (Vertex&& v : G) {
+        static_assert(sizeof v >= 0, "unused");
         // std::cout << index[v] << " ";
     }
     // std::cout << std::endl;
