@@ -12,9 +12,9 @@
 #include <xnetwork/classes/graph.hpp>
 #include <xnetwork/classes/reportviews.hpp>  // import NodeView, EdgeView, DegreeView
 
-#if __cplusplus > 201703L
+// #if __cplusplus > 201703L
 #    include <cppcoro/generator.hpp>
-#endif
+// #endif
 
 namespace xnetwork {
 
@@ -487,7 +487,7 @@ namespace xnetwork {
         //     return pull_t(func);
         // }
 
-#if __cplusplus > 201703L
+// #if __cplusplus > 201703L
         auto edges() const -> cppcoro::generator<edge_t> {
             if constexpr (std::is_same_v<nodeview_t, decltype(py::range<uint32_t>(
                                                          uint32_t{}))>) {  // this->_succ???
@@ -504,7 +504,7 @@ namespace xnetwork {
                 }
             }
         }
-#endif
+// #endif
 
         // cppcoro::generator<edge_t> edges() const
         // {
