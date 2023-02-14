@@ -13,7 +13,7 @@ cpmaddpackage(
   NAME
   Py2Cpp
   GIT_TAG
-  1.2
+  1.3
   GITHUB_REPOSITORY
   luk036/py2cpp
   OPTIONS
