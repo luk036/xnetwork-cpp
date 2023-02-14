@@ -5,7 +5,7 @@ option(ENABLE_TEST_COVERAGE "Enable test coverage" OFF)
 
 # ---- Dependencies ----
 
-cpmaddpackage("gh:onqtam/doctest#2.4.5")
+cpmaddpackage("gh:doctest/doctest#v2.4.9")
 cpmaddpackage("gh:TheLartians/Format.cmake@1.7.0")
 
 # if(TEST_INSTALLED_VERSION) find_package(${PROJECT_NAME} REQUIRED) else()
