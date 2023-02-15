@@ -29,11 +29,11 @@ template <typename Graph> static void do_case(const Graph& G) {
     CHECK(G.number_of_nodes() == count);
 
 #if __cplusplus > 201703L
-    auto count2 = 0U;
+    auto count2 = 0;
     for ([[maybe_unused]] auto _ : G.edges()) {
         ++count2;
     }
-    // CHECK(G.number_of_edges() == count2);
+    CHECK(count2 > 0);
 #endif
 
     auto deg = 0U;

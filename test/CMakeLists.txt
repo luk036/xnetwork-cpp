@@ -25,7 +25,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
   target_compile_options(${PROJECT_NAME} INTERFACE -fcoroutines -Wall -Wpedantic -Wextra -Werror)
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   target_compile_options(
-    ${PROJECT_NAME} INTERFACE -fcoroutines-ts -stdlib=libc++ -Wall -Wpedantic -Wextra -Werror
+    ${PROJECT_NAME} INTERFACE -fcoroutines-ts -stdlib=libc++ -Wall -Wpedantic -Wextra -Werror -Wno-deprecated-experimental-coroutine
   )
 elseif(MSVC)
   target_compile_options(${PROJECT_NAME} INTERFACE /std:c++latest /await /W4 /WX /wd4819)
