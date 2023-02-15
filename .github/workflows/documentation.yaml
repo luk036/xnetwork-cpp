@@ -13,22 +13,12 @@ jobs:
     name: Build and publish documentation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: "**/cpm_modules"
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
-
-      - name: Add conda to system path
-        run: |
-          # $CONDA is an environment variable pointing to the root of the miniconda directory
-          echo $CONDA/bin >> $GITHUB_PATH
-
-      - name: Install dependent software
-        run: |
-          conda info
-          conda env update --file doc-dev.yml --name base
 
       - name: Install dependencies
         run: |
@@ -36,6 +26,7 @@ jobs:
 
       - name: Before Install
         run: |
+          sudo apt-get install doxygen
           sudo apt-get install libboost-dev
           sudo apt-get install g++-10
           sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 90
