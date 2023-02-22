@@ -1,6 +1,7 @@
 # ---- Dependencies ----
 
-CPMAddPackage("gh:mosra/m.css#42d4a9a48f31f5df6e246c948403b54b50574a2a")
+# CPMAddPackage("gh:mosra/m.css#42d4a9a48f31f5df6e246c948403b54b50574a2a")
+CPMAddPackage("gh:mosra/m.css#c7ee89e74cf96323b7bf14d4c7535b6867d57868")
 
 # ---- Doxygen variables ----
 
