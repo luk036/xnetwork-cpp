@@ -47,34 +47,36 @@ static const auto __all__ = {
     Interface: Mapping
 */
 template <typename Atlas> class AtlasView {
-  public:
-    Atlas& _atlas;
+public:
+  Atlas &_atlas;
 
-    explicit AtlasView(Atlas& d) : _atlas{d} {}
+  explicit AtlasView(Atlas &d) : _atlas{d} {}
 
-    [[nodiscard]] auto size() const -> size_t { return this->_atlas.size(); }
+  [[nodiscard]] auto size() const -> size_t { return this->_atlas.size(); }
 
-    [[nodiscard]] auto begin() const { return std::begin(this->_atlas); }
+  [[nodiscard]] auto begin() const { return std::begin(this->_atlas); }
 
-    [[nodiscard]] auto end() const { return std::end(this->_atlas); }
+  [[nodiscard]] auto end() const { return std::end(this->_atlas); }
 
-    template <typename T> auto operator[](const T& key) const -> const auto& {
-        return this->_atlas.at(key);
-    }
+  template <typename T> auto operator[](const T &key) const -> const auto & {
+    return this->_atlas.at(key);
+  }
 
-    template <typename T> auto operator[](const T& key) -> auto& { return this->_atlas.at(key); }
+  template <typename T> auto operator[](const T &key) -> auto & {
+    return this->_atlas.at(key);
+  }
 
-    // auto copy( ) {
-    //     return std::tuple{n: self[n].copy() for n : this->_atlas};
-    // }
+  // auto copy( ) {
+  //     return std::tuple{n: self[n].copy() for n : this->_atlas};
+  // }
 
-    // auto __str__( ) {
-    //     return str(this->_atlas);  // {nbr: self[nbr] for nbr : self});
-    // }
+  // auto __str__( ) {
+  //     return str(this->_atlas);  // {nbr: self[nbr] for nbr : self});
+  // }
 
-    // auto __repr__( ) {
-    //     return "%s(%r)" % (this->__class__.__name__, this->_atlas);
-    // }
+  // auto __repr__( ) {
+  //     return "%s(%r)" % (this->__class__.__name__, this->_atlas);
+  // }
 };
 
 /** An AdjacencyView is a Read-only Map of Maps of Maps.
@@ -89,18 +91,18 @@ template <typename Atlas> class AtlasView {
     MultiAdjacencyView - View into dict-of-dict-of-dict-of-dict
 */
 template <typename Atlas> class AdjacencyView : public AtlasView<Atlas> {
-  public:
-    explicit AdjacencyView(Atlas& d) : AtlasView<Atlas>{d} {}
+public:
+  explicit AdjacencyView(Atlas &d) : AtlasView<Atlas>{d} {}
 
-    // template <typename T>
-    // auto operator[](const T& name) const
-    // {
-    //     return AtlasView(this->_atlas[name]);
-    // }
+  // template <typename T>
+  // auto operator[](const T& name) const
+  // {
+  //     return AtlasView(this->_atlas[name]);
+  // }
 
-    // auto copy( ) {
-    //     return std::tuple{n: self[n].copy() for n : this->_atlas};
-    // }
+  // auto copy( ) {
+  //     return std::tuple{n: self[n].copy() for n : this->_atlas};
+  // }
 };
 
 // class MultiAdjacencyView(AdjacencyView) {

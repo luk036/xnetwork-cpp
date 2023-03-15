@@ -1,9 +1,9 @@
-set_languages("c++20")
+set_languages("c++17")
 
 add_rules("mode.debug", "mode.release", "mode.coverage")
 -- add_requires("fmt", {alias = "fmt"})
 add_requires("doctest", {alias = "doctest"})
-add_requires("conan::andreasbuhr-cppcoro/cci.20210113", {alias = "cppcoro"})
+-- add_requires("conan::andreasbuhr-cppcoro/cci.20210113", {alias = "cppcoro"})
 -- add_requires("cppcoro", { configs = { shared = true }, alias = "cppcoro"})
 
 if is_mode("coverage") then
@@ -21,7 +21,7 @@ target("test_xnetwork")
     set_kind("binary")
     add_includedirs("include", {public = true})
     add_files("test/source/*.cpp")
-    add_packages("doctest", "cppcoro")
+    add_packages("doctest")
     -- require py2cpp installed
 
 --

@@ -15,26 +15,27 @@
 #define XNETWORK_VERSION_PATCH 1
 
 #ifndef __has_feature
-#    define __has_feature(x) 0
+#define __has_feature(x) 0
 #endif
 
 // Attempt to discover whether we're being compiled with exception support
-#if (defined(__cpp_exceptions) || defined(__EXCEPTIONS) || defined(_CPPUNWIND)) \
-    && !defined(XNETWORK_NO_EXCEPTIONS)
+#if (defined(__cpp_exceptions) || defined(__EXCEPTIONS) ||                     \
+     defined(_CPPUNWIND)) &&                                                   \
+    !defined(XNETWORK_NO_EXCEPTIONS)
 // Exceptions are enabled.
 #else
 // Exceptions are disabled.
-#    define XNETWORK_NO_EXCEPTIONS
+#define XNETWORK_NO_EXCEPTIONS
 #endif
 
 #if defined(XNETWORK_NO_EXCEPTIONS)
-#    define XNETWORK_THROW(_, msg)         \
-        {                                  \
-            std::cerr << msg << std::endl; \
-            std::abort();                  \
-        }
+#define XNETWORK_THROW(_, msg)                                                 \
+  {                                                                            \
+    std::cerr << msg << std::endl;                                             \
+    std::abort();                                                              \
+  }
 #else
-#    define XNETWORK_THROW(exception, msg) throw exception(msg)
+#define XNETWORK_THROW(exception, msg) throw exception(msg)
 #endif
 
 #endif

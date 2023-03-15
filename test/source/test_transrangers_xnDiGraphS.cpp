@@ -1,9 +1,10 @@
 // -*- coding: utf-8 -*-
 #include <doctest/doctest.h> // for ResultBuilder, TestCase, CHECK
 
-#include <array>                         // for array
-#include <iosfwd>                        // for string
-#include <string>                        // for basic_string, operator==
+#include <array>  // for array
+#include <iosfwd> // for string
+#include <string> // for basic_string, operator==
+#include <transrangers_ext.hpp>
 #include <utility>                       // for pair
 #include <vector>                        // for vector
 #include <xnetwork/classes/digraphs.hpp> // for DiGraphS
@@ -29,26 +30,25 @@ inline auto create_test_case4(const Container &weights) {
  * @param G
  */
 template <typename Graph> static void do_case(const Graph &G) {
+  using namespace transrangers;
+
   auto count = 0U;
-  for (auto _ : G) {
-    static_assert(sizeof _ >= 0, "unused");
+  auto rng = all(G);
+  rng([&count](const auto & /* node */) {
     ++count;
-  }
+    return true;
+  });
 
   CHECK(G.number_of_nodes() == count);
 
-  // auto count2 = 0U;
-  // for ([[maybe_unused]] auto _ : G.edges())
-  // {
-  //     ++count2;
-  // }
-  // CHECK(G.number_of_edges() == count2);
-
   // auto deg = 0U;
-  // for ([[maybe_unused]] auto _ : G["B"]) {
-  //     ++deg;
-  // }
-  // CHECK(G.degree("B") == deg);
+  // typename Graph::Node node{1U};
+  // auto rng2 = all(G[node]);
+  // rng2([&deg](const auto & /* x */) {
+  //   ++deg;
+  //   return true;
+  // });
+  // CHECK(G.degree(node) == deg);
 }
 
 /**
