@@ -41,14 +41,14 @@ template <typename Graph> static void do_case(const Graph &G) {
 
   CHECK(G.number_of_nodes() == count);
 
-  // auto deg = 0U;
-  // typename Graph::Node node{1U};
-  // auto rng2 = all(G[node]);
-  // rng2([&deg](const auto & /* x */) {
-  //   ++deg;
-  //   return true;
-  // });
-  // CHECK(G.degree(node) == deg);
+  auto deg = 0U;
+  typename Graph::Node node{"B"};
+  auto rng2 = all(G[node]);
+  rng2([&deg](const auto & /* x */) {
+    ++deg;
+    return true;
+  });
+  CHECK(G.degree(node) == deg);
 }
 
 /**
