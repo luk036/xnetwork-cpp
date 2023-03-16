@@ -219,7 +219,7 @@ public:
   using value_type = typename _Base::value_type;
 
 public:
-  adjlist_outer_dict_factory &_succ; // successor
+  // adjlist_outer_dict_factory &_adj; // successor
 
   /** Initialize a graph with edges, name, or graph attributes.
 
@@ -238,10 +238,10 @@ public:
      MultiDiGraph, etc
   */
   explicit DiGraphS(const nodeview_t &Nodes)
-      : _Base{Nodes}, _succ{_Base::_adj} {}
+      : _Base{Nodes} {}
 
   explicit DiGraphS(uint32_t num_nodes)
-      : _Base{num_nodes}, _succ{_Base::_adj} {}
+      : _Base{num_nodes} {}
 
   /** DiGraphS adjacency object holding the neighbors of each node.
 
@@ -259,8 +259,8 @@ public:
       For directed graphs, `G.adj` holds outgoing (successor) info.
   */
   auto adj() const {
-    using T = decltype(this->_succ);
-    return AdjacencyView<T>(this->_succ);
+    using T = decltype(this->_adj);
+    return AdjacencyView<T>(this->_adj);
   }
 
   /** Graph adjacency object holding the successors of each node.
@@ -281,8 +281,8 @@ public:
       For directed graphs, `G.adj` is identical to `G.succ`.
   */
   auto succ() const {
-    using T = decltype(this->_succ);
-    return AdjacencyView<T>(this->_succ);
+    using T = decltype(this->_adj);
+    return AdjacencyView<T>(this->_adj);
   }
 
   /** Add an edge between u and v.
@@ -338,7 +338,7 @@ public:
     // add the edge
     // datadict = this->_adj[u].get(v, this->edge_attr_dict_factory());
     // datadict.update(attr);
-    this->_succ[u].insert(v);
+    this->_adj[u].insert(v);
     // this->_prev[v].insert(u);
     // this->_num_of_edges += 1;
   }
@@ -355,7 +355,7 @@ public:
     // datadict.update(attr);
     using T = typename adjlist_t::mapped_type;
     auto data = this->_adj[u].get(v, T{});
-    this->_succ[u][v] = data;
+    this->_adj[u][v] = data;
     // this->_prev[v][u] = data;
     // this->_num_of_edges += 1;
   }
@@ -364,7 +364,7 @@ public:
   auto add_edge(const Node &u, const Node &v, const T &data) {
     // assert(this->s->_node.contains(u));
     // assert(this->s->_node.contains(v));
-    this->_succ[u][v] = data;
+    this->_adj[u][v] = data;
     // this->_num_of_edges += 1;
   }
 
@@ -382,7 +382,7 @@ public:
       This is true if graph has the edge u->v.
   */
   auto has_successor(const Node &u, const Node &v) -> bool {
-    return this->_node.contains(u) && this->_succ[u].contains(v);
+    return this->_node.contains(u) && this->_adj[u].contains(v);
   }
 
   /** Returns an iterator over successor nodes of n.
@@ -408,10 +408,10 @@ public:
       -----
       neighbors() and successors() are the same.
   */
-  auto successors(const Node &n) -> auto & { return this->_succ[n]; }
+  auto successors(const Node &n) -> auto & { return this->_adj[n]; }
 
   auto successors(const Node &n) const -> const auto & {
-    return this->_succ[n];
+    return this->_adj[n];
   }
 
   /** An OutEdgeView of the DiGraph as G.edges().
@@ -482,7 +482,7 @@ public:
   //         if constexpr (std::is_same_v<nodeview_t,
   //         decltype(py::range<uint32_t>(
   //                                                      uint32_t{}))>) {  //
-  //                                                      this->_succ???
+  //                                                      this->_adj???
   //             for (auto&& [n, nbrs] : py::enumerate(this->_adj)) {
   //                 for (auto&& nbr : nbrs) {
   //                     yield(edge_t{Node(n), Node(nbr)});
@@ -504,7 +504,7 @@ public:
   // auto edges() const -> cppcoro::generator<edge_t> {
   //     if constexpr (std::is_same_v<nodeview_t, decltype(py::range<uint32_t>(
   //                                                  uint32_t{}))>) {  //
-  //                                                  this->_succ???
+  //                                                  this->_adj???
   //         for (auto&& [n, nbrs] : py::enumerate(this->_adj)) {
   //             for (auto&& nbr : nbrs) {
   //                 co_yield edge_t{Node(n), Node(nbr)};
@@ -539,7 +539,7 @@ public:
   //     return InEdgeView(*this);
   // }
 
-  auto degree(const Node &n) const { return this->_succ[n].size(); }
+  auto degree(const Node &n) const { return this->_adj[n].size(); }
 
   /** Remove all nodes and edges from the graph.
 
@@ -555,7 +555,7 @@ public:
 
   */
   auto clear() {
-    this->_succ.clear();
+    this->_adj.clear();
     // this->_pred.clear()
     // this->_node.clear();
     this->graph.clear();

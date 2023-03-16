@@ -43,7 +43,7 @@ template <typename Graph> static void do_case(const Graph& G) {
         ++deg;
         return true;
     });
-    CHECK(G.degree(1U) == deg);
+    CHECK_EQ(G.degree(1U), deg);
 }
 
 TEST_CASE("Test Cycle Ratio") {
