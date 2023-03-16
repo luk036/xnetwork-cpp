@@ -32,6 +32,7 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
               -Wpedantic
               -Wextra
               -Werror
+              -Wno-unknown-warning-option
               -Wno-deprecated-experimental-coroutine
   )
 elseif(MSVC)
