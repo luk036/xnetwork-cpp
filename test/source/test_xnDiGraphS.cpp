@@ -46,7 +46,7 @@ template <typename Graph> static void do_case(const Graph &G) {
 
   auto deg = 0U;
   for ([[maybe_unused]] auto _ : G["B"]) {
-      ++deg;
+    ++deg;
   }
   CHECK_EQ(G.degree("B"), deg);
 }

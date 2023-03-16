@@ -237,11 +237,9 @@ public:
           > G = xnetwork::DiGraphS(r, r);  // or DiGraph, MultiGraph,
      MultiDiGraph, etc
   */
-  explicit DiGraphS(const nodeview_t &Nodes)
-      : _Base{Nodes} {}
+  explicit DiGraphS(const nodeview_t &Nodes) : _Base{Nodes} {}
 
-  explicit DiGraphS(uint32_t num_nodes)
-      : _Base{num_nodes} {}
+  explicit DiGraphS(uint32_t num_nodes) : _Base{num_nodes} {}
 
   /** DiGraphS adjacency object holding the neighbors of each node.
 
@@ -410,9 +408,7 @@ public:
   */
   auto successors(const Node &n) -> auto & { return this->_adj[n]; }
 
-  auto successors(const Node &n) const -> const auto & {
-    return this->_adj[n];
-  }
+  auto successors(const Node &n) const -> const auto & { return this->_adj[n]; }
 
   /** An OutEdgeView of the DiGraph as G.edges().
 
