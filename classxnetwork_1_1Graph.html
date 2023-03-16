@@ -50,10 +50,10 @@
       <div class="m-col-l-10 m-push-l-1">
         <h1>
           <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="graph_8hpp.html">&lt;xnetwork/classes/graph.hpp&gt;</a></div>
-          <div class="m-doc-template">template&lt;typename _nodeview_t, typename adjlist_t = py::set&lt;Value_type&lt;_nodeview_t&gt;&gt;, typename adjlist_outer_dict_factory = py::dict&lt;Value_type&lt;_nodeview_t&gt;, adjlist_t&gt;&gt;</div>
+          <div class="m-doc-template">template&lt;typename _nodeview_t, typename adjlist_t = py::set&lt;<a href="graph_8hpp.html#aa9102c191b3e4d99b904a4860739563c" class="m-doc">Value_<wbr />type</a>&lt;_nodeview_t&gt;&gt;, typename adjlist_outer_dict_factory = py::dict&lt;<a href="graph_8hpp.html#aa9102c191b3e4d99b904a4860739563c" class="m-doc">Value_<wbr />type</a>&lt;_nodeview_t&gt;, adjlist_t&gt;&gt;</div>
           <span class="m-breadcrumb"><a href="namespacexnetwork.html">xnetwork</a>::<wbr/></span>Graph <span class="m-thin">class</span>
         </h1>
-        <div class="m-block m-default">
+        <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
             <li><a href="#autotoc_md35">Parameters</a></li>
@@ -71,7 +71,7 @@
               </ul>
             </li>
           </ul>
-        </div>
+        </nav>
 <p>Base class for undirected graphs.</p><p>A <a href="classxnetwork_1_1Graph.html" class="m-doc">Graph</a> stores nodes and edges with optional data, or attributes.</p><p>Graphs hold undirected edges. Self loops are allowed but multiple (parallel) edges are not.</p><p>Nodes can be arbitrary (hashable) C++ objects with optional key/value attributes. By convention <code>None</code> is not used as a node.</p><p>Edges are represented as links between nodes with optional key/value attributes.</p><section id="autotoc_md35"><h3><a href="#autotoc_md35">Parameters</a></h3><p>node_container : input graph (optional, default: None) Data to initialize graph. If None (default) an empty graph is created. The data can be any format that is supported by the to_networkx_graph() function, currently including edge list, dict of dicts, dict of lists, NetworkX graph, NumPy matrix or 2d ndarray, SciPy sparse matrix, or PyGraphviz graph.</p></section><section id="autotoc_md36"><h3><a href="#autotoc_md36">See Also</a></h3><p>DiGraph MultiGraph MultiDiGraph OrderedGraph</p></section><section id="autotoc_md37"><h3><a href="#autotoc_md37">Examples</a></h3><p>Create an empty graph structure (a &quot;null graph&quot;) with 5 nodes and no edges.</p><pre>&gt; auto v = std::vector{3, 4, 2, 8};
 &gt; auto G = nx.Graph(v);
 
@@ -530,8 +530,8 @@
     </div>
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
+<script src="search-v2.js"></script>
+<script src="searchdata-v2.js" async="async"></script>
 <footer><nav>
   <div class="m-container">
     <div class="m-row">

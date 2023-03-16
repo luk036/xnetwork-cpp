@@ -53,7 +53,7 @@
           <div class="m-doc-template">template&lt;typename nodeview_t&gt;</div>
           <span class="m-breadcrumb"><a href="namespacexnetwork.html">xnetwork</a>::<wbr/></span>NodeView <span class="m-thin">class</span>
         </h1>
-        <div class="m-block m-default">
+        <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
             <li><a href="#autotoc_md82">Parameters</a></li>
@@ -66,7 +66,7 @@
               </ul>
             </li>
           </ul>
-        </div>
+        </nav>
 <p>A <a href="classxnetwork_1_1NodeView.html" class="m-doc">NodeView</a> class to act as G.nodes for a <a href="classxnetwork_1_1XNetwork.html" class="m-doc">XNetwork</a> <a href="classxnetwork_1_1Graph.html" class="m-doc">Graph</a> Set operations act on the nodes without considering data. Iteration is over nodes. Node data can be looked up like a dict. Use NodeDataView to iterate over node data or to specify a data attribute for lookup. NodeDataView is created by calling the <a href="classxnetwork_1_1NodeView.html" class="m-doc">NodeView</a>.</p><section id="autotoc_md82"><h3><a href="#autotoc_md82">Parameters</a></h3><p>graph : <a href="classxnetwork_1_1XNetwork.html" class="m-doc">XNetwork</a> graph-like class</p></section><section id="autotoc_md83"><h3><a href="#autotoc_md83">Examples</a></h3><p>&gt; G = xnetwork::path_graph(3); &gt; NV = G.nodes(); &gt; 2 : NV true &gt; for n : NV: print(n); 0 1 2 &gt; assert(NV &amp; {1, 2, 3} == {1, 2}); &gt; G.add_node(2, color=&quot;blue&quot;); &gt; NV[2]; {&quot;color&quot;: &quot;blue&quot;} &gt; G.add_node(8, color=&quot;red&quot;); &gt; NDV = G.nodes(data=true); &gt; (2, NV[2]] : NDV true &gt; for n, dd : NDV: print((n, dd.get(&quot;color&quot;, &quot;aqua&quot;))); (0, &quot;aqua&quot;); (1, &quot;aqua&quot;); (2, &quot;blue&quot;); (8, &quot;red&quot;); &gt; NDV[2] == NV[2]; true &gt; NVdata = G.nodes(data=&quot;color&quot;, default=&quot;aqua&quot;); &gt; (2, NVdata[2]] : NVdata true &gt; for n, dd : NVdata: print((n, dd)); (0, &quot;aqua&quot;); (1, &quot;aqua&quot;); (2, &quot;blue&quot;); (8, &quot;red&quot;); &gt; NVdata[2] == NV[2]; // NVdata gets &quot;color&quot;, NV gets datadict false</p></section>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
@@ -144,8 +144,8 @@
     </div>
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
+<script src="search-v2.js"></script>
+<script src="searchdata-v2.js" async="async"></script>
 <footer><nav>
   <div class="m-container">
     <div class="m-row">

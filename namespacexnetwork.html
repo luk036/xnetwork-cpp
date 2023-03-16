@@ -51,7 +51,7 @@
         <h1>
           xnetwork <span class="m-thin">namespace</span>
         </h1>
-        <div class="m-block m-default">
+        <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
             <li><a href="#autotoc_md77">NodeView</a></li>
@@ -68,7 +68,7 @@
               </ul>
             </li>
           </ul>
-        </div>
+        </nav>
 <p>View Classes provide node, edge and degree &quot;views&quot; of a graph.</p><p>Views for nodes, edges and degree are provided for all base graph classes. A view means a read-only object that is quick to create, automatically updated when the graph changes, and provides basic access like <code>n : V</code>, <code>for n : V</code>, <code>V[n]</code> and sometimes set operations.</p><p>The views are read-only iterable containers that are updated as the graph is updated. As with dicts, the graph should not be updated while (iterating through the view. Views can be iterated multiple times.</p><p>Edge and Node views also allow data attribute lookup. The resulting attribute dict is writable as <code>G.edges[3, 4][&quot;color&quot;]=&quot;red&quot;</code> Degree views allow lookup of degree values for single nodes. Weighted degree is supported with the <code>weight</code> argument.</p><section id="autotoc_md77"><h2><a href="#autotoc_md77">NodeView</a></h2><pre>`V = G.nodes` (or `V = G.nodes()`) allows `len(V)`, `n : V`, set
 operations e.g. &quot;G.nodes &amp; H.nodes&quot;, and `dd = G.nodes[n]`, where
 `dd` is the node data dict. Iteration is over the nodes by default.
@@ -121,12 +121,12 @@ The argument `nbunch` restricts edges to those incident to nodes : nbunch.
           <h2><a href="#nested-classes">Classes</a></h2>
           <dl class="m-doc">
             <dt>
-              <div class="m-doc-template">template&lt;typename <a href="classxnetwork_1_1Graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a>, typename adjlist_t = py::dict&lt;Value_type&lt;<a href="classxnetwork_1_1Graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a>&gt;, int&gt;, typename adjlist_outer_dict_factory = py::dict&lt;Value_type&lt;<a href="classxnetwork_1_1Graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a>&gt;, adjlist_t&gt;&gt;</div>
+              <div class="m-doc-template">template&lt;typename <a href="classxnetwork_1_1Graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a>, typename adjlist_t = py::dict&lt;<a href="graph_8hpp.html#aa9102c191b3e4d99b904a4860739563c" class="m-doc">Value_<wbr />type</a>&lt;<a href="classxnetwork_1_1Graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a>&gt;, int&gt;, typename adjlist_outer_dict_factory = py::dict&lt;<a href="graph_8hpp.html#aa9102c191b3e4d99b904a4860739563c" class="m-doc">Value_<wbr />type</a>&lt;<a href="classxnetwork_1_1Graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a>&gt;, adjlist_t&gt;&gt;</div>
               class <a href="classxnetwork_1_1DiGraphS.html" class="m-doc">DiGraphS</a>
             </dt>
             <dd></dd>
             <dt>
-              <div class="m-doc-template">template&lt;typename _nodeview_t, typename adjlist_t = py::set&lt;Value_type&lt;_nodeview_t&gt;&gt;, typename adjlist_outer_dict_factory = py::dict&lt;Value_type&lt;_nodeview_t&gt;, adjlist_t&gt;&gt;</div>
+              <div class="m-doc-template">template&lt;typename _nodeview_t, typename adjlist_t = py::set&lt;<a href="graph_8hpp.html#aa9102c191b3e4d99b904a4860739563c" class="m-doc">Value_<wbr />type</a>&lt;_nodeview_t&gt;&gt;, typename adjlist_outer_dict_factory = py::dict&lt;<a href="graph_8hpp.html#aa9102c191b3e4d99b904a4860739563c" class="m-doc">Value_<wbr />type</a>&lt;_nodeview_t&gt;, adjlist_t&gt;&gt;</div>
               class <a href="classxnetwork_1_1Graph.html" class="m-doc">Graph</a>
             </dt>
             <dd></dd>
@@ -283,8 +283,8 @@ The argument `nbunch` restricts edges to those incident to nodes : nbunch.
     </div>
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
+<script src="search-v2.js"></script>
+<script src="searchdata-v2.js" async="async"></script>
 <footer><nav>
   <div class="m-container">
     <div class="m-row">
