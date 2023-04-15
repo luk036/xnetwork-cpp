@@ -17,9 +17,9 @@ public:
   /**
    * @brief Construct a new Vertex View object
    *
-   * @param[in] G
+   * @param[in] gra
    */
-  explicit VertexView(Graph &&G) noexcept : Graph{std::forward<Graph>(G)} {}
+  explicit VertexView(Graph &&gra) noexcept : Graph{std::forward<Graph>(gra)} {}
 
   [[nodiscard]] auto begin() const {
     // auto [v_iter, v_end] = boost::vertices(*this);
@@ -53,20 +53,20 @@ public:
  */
 template <typename Graph> class EdgeView {
 private:
-  const Graph &G;
+  const Graph &gra;
 
 public:
   /**
    * @brief Construct a new Edge View object
    *
-   * @param[in] G
+   * @param[in] gra
    */
-  explicit EdgeView(const Graph &G) : G{G} {}
+  explicit EdgeView(const Graph &gra) : gra{gra} {}
 
   [[nodiscard]] auto begin() const {
-    // auto [e_iter, e_end] = boost::edges(_G);
+    // auto [e_iter, e_end] = boost::edges(_gra);
     // return e_iter;
-    return boost::edges(this->G).first;
+    return boost::edges(this->gra).first;
   }
 
   /**
@@ -75,9 +75,9 @@ public:
    * @return auto
    */
   [[nodiscard]] auto end() const {
-    // auto [e_iter, e_end] = boost::edges(_G);
+    // auto [e_iter, e_end] = boost::edges(_gra);
     // return e_end;
-    return boost::edges(this->G).second;
+    return boost::edges(this->gra).second;
   }
 
   /**
@@ -86,9 +86,9 @@ public:
    * @return auto
    */
   [[nodiscard]] auto cbegin() const {
-    // auto [e_iter, e_end] = boost::edges(_G);
+    // auto [e_iter, e_end] = boost::edges(_gra);
     // return e_iter;
-    return boost::edges(this->G).first;
+    return boost::edges(this->gra).first;
   }
 
   /**
@@ -97,9 +97,9 @@ public:
    * @return auto
    */
   [[nodiscard]] auto cend() const {
-    // auto [e_iter, e_end] = boost::edges(_G);
+    // auto [e_iter, e_end] = boost::edges(_gra);
     // return e_end;
-    return boost::edges(this->G).second;
+    return boost::edges(this->gra).second;
   }
 };
 
@@ -112,16 +112,16 @@ public:
 template <typename Vertex, typename Graph> class AtlasView {
 private:
   Vertex _v;
-  const Graph &G;
+  const Graph &gra;
 
 public:
   /**
    * @brief Construct a new Atlas View object
    *
    * @param[in] v
-   * @param[in] G
+   * @param[in] gra
    */
-  AtlasView(Vertex v, const Graph &G) : _v{v}, G{G} {}
+  AtlasView(Vertex v, const Graph &gra) : _v{v}, gra{gra} {}
 
   /**
    * @brief
@@ -129,9 +129,9 @@ public:
    * @return auto
    */
   auto begin() const {
-    // auto [e_iter, e_end] = boost::out_edges(_v, _G);
+    // auto [e_iter, e_end] = boost::out_edges(_v, _gra);
     // return e_iter;
-    return boost::out_edges(this->_v, this->G).first;
+    return boost::out_edges(this->_v, this->gra).first;
   }
 
   /**
@@ -140,9 +140,9 @@ public:
    * @return auto
    */
   auto end() const {
-    // auto [e_iter, e_end] = boost::out_edges(_v, _G);
+    // auto [e_iter, e_end] = boost::out_edges(_v, _gra);
     // return e_end;
-    return boost::out_edges(this->_v, this->G).second;
+    return boost::out_edges(this->_v, this->gra).second;
   }
 
   /**
@@ -151,9 +151,9 @@ public:
    * @return auto
    */
   auto cbegin() const {
-    // auto [e_iter, e_end] = boost::out_edges(_v, _G);
+    // auto [e_iter, e_end] = boost::out_edges(_v, _gra);
     // return e_iter;
-    return boost::out_edges(this->_v, this->G).first;
+    return boost::out_edges(this->_v, this->gra).first;
   }
 
   /**
@@ -162,9 +162,9 @@ public:
    * @return auto
    */
   auto cend() const {
-    // auto [e_iter, e_end] = boost::out_edges(_v, _G);
+    // auto [e_iter, e_end] = boost::out_edges(_v, _gra);
     // return e_end;
-    return boost::out_edges(this->_v, this->G).second;
+    return boost::out_edges(this->_v, this->gra).second;
   }
 };
 
@@ -191,10 +191,10 @@ public:
   /**
    * @brief Construct a new gr Adaptor object
    *
-   * @param[in] G
+   * @param[in] gra
    */
-  explicit grAdaptor(_Graph &&G) noexcept
-      : VertexView<_Graph>{std::forward<_Graph>(G)} {}
+  explicit grAdaptor(_Graph &&gra) noexcept
+      : VertexView<_Graph>{std::forward<_Graph>(gra)} {}
 
   // grAdaptor(const grAdaptor&) = delete;            // don't copy
   // grAdaptor& operator=(const grAdaptor&) = delete; // don't assign

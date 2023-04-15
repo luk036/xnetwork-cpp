@@ -1,11 +1,7 @@
 #pragma once
 
-// #include <any>
-// #include <boost/coroutine2/all.hpp>
 #include <cassert>
 #include <py2cpp/py2cpp.hpp>
-// #include <range/v3/view/enumerate.hpp>
-// #include <string_view>
 #include <type_traits>
 #include <vector>
 #include <xnetwork/classes/coreviews.hpp> // import AtlasView, AdjacencyView
@@ -54,51 +50,51 @@ namespace xnetwork {
     no edges.
 
         > auto v = std::vector{3, 4, 2, 8};
-        > auto G = nx.Graph(v);
+        > auto gra = nx.Graph(v);
 
         > auto va = py::dict{{3, 0.1}, {4, 0.5}, {2, 0.2}};
-        > auto G = nx.Graph(va);
+        > auto gra = nx.Graph(va);
 
         > auto r = py::range(100);
-        > auto G = nx.Graph(r);
+        > auto gra = nx.Graph(r);
 
-    G can be grown in several ways.
+    gra can be grown in several ways.
 
     **Nodes:**
 
     Add one node at a time:
 
-        > G.add_node(1)
+        > gra.add_node(1)
 
     Add the nodes from any container (a list, dict, set or
     even the lines from a file or the nodes from another graph).
 
-        > G.add_nodes_from([2, 3])
-        > G.add_nodes_from(range(100, 110))
+        > gra.add_nodes_from([2, 3])
+        > gra.add_nodes_from(range(100, 110))
         > H = nx.path_graph(10)
-        > G.add_nodes_from(H)
+        > gra.add_nodes_from(H)
 
     In addition to strings and integers any hashable C++ object
     (except None) can represent a node, e.g. a customized node object,
     or even another Graph.
 
-        > G.add_node(H)
+        > gra.add_node(H)
 
     **Edges:**
 
-    G can also be grown by adding edges.
+    gra can also be grown by adding edges.
 
     Add one edge,
 
-        > G.add_edge(1, 2);
+        > gra.add_edge(1, 2);
 
     a list of edges,
 
-        > G.add_edges_from([(1, 2), (1, 3)]);
+        > gra.add_edges_from([(1, 2), (1, 3)]);
 
     or a collection of edges,
 
-        > G.add_edges_from(H.edges());
+        > gra.add_edges_from(H.edges());
 
     If some edges connect nodes not yet in the graph, the nodes
     are added automatically.  There are no errors when adding
@@ -112,7 +108,7 @@ namespace xnetwork {
     direct manipulation of the attribute
     dictionaries named graph, node and edge respectively.
 
-        > G.graph["day"] = std::any("Friday");
+        > gra.graph["day"] = std::any("Friday");
     {'day': 'Friday'}
 
     **Subclasses (Advanced):**
@@ -188,12 +184,12 @@ namespace xnetwork {
     ...     def single_edge_dict(self):
     ...         return self.all_edge_dict
     ...     edge_attr_dict_factory = single_edge_dict
-        > G = ThinGraph()
-        > G.add_edge(2, 1)
-        > G[2][1]
+        > gra = ThinGraph()
+        > gra.add_edge(2, 1)
+        > gra[2][1]
     {'weight': 1}
-        > G.add_edge(2, 2)
-        > G[2][1] is G[2][2]
+        > gra.add_edge(2, 2)
+        > gra[2][1] is gra[2][2]
     True
 
     Please see :mod:`~networkx.classes.ordered` for more examples of
@@ -256,10 +252,10 @@ public:
       Examples
       --------
           > v = std::vector{5, 3, 2};
-          > G = nx.Graph(v);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+          > gra = nx.Graph(v);  // or DiGraph, MultiGraph, MultiDiGraph, etc
 
           > r = py::range(100);
-          > G = nx.Graph(r);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+          > gra = nx.Graph(r);  // or DiGraph, MultiGraph, MultiDiGraph, etc
   */
   explicit Graph(const nodeview_t &Nodes)
       : _node{Nodes}, _adj{} // py::dict???
@@ -293,16 +289,16 @@ public:
 
       This object is a read-only dict-like structure with node keys
       and neighbor-dict values.  The neighbor-dict is keyed by neighbor
-      to the edge-data-dict.  So `G.adj[3][2]['color'] = 'blue'` sets
+      to the edge-data-dict.  So `gra.adj[3][2]['color'] = 'blue'` sets
       the color of the edge `(3, 2)` to `"blue"`.
 
-      Iterating over G.adj behaves like a dict. Useful idioms include
-      `for nbr, datadict in G.adj[n].items():`.
+      Iterating over gra.adj behaves like a dict. Useful idioms include
+      `for nbr, datadict in gra.adj[n].items():`.
 
       The neighbor information is also provided by subscripting the graph.
-      So `for nbr, foovalue in G[node].data('foo', default=1):` works.
+      So `for nbr, foovalue in gra[node].data('foo', default=1):` works.
 
-      For directed graphs, `G.adj` holds outgoing (successor) info.
+      For directed graphs, `gra.adj` holds outgoing (successor) info.
   */
   auto adj() const {
     using T = std::remove_reference_t<decltype(this->_adj)>;
@@ -331,9 +327,9 @@ public:
 
   /** String identifier of the graph.
 
-  This graph attribute appears : the attribute dict G.graph
+  This graph attribute appears : the attribute dict gra.graph
   keyed by the string `"name"`. as well as an attribute (technically
-  a property) `G.name`. This is entirely user controlled.
+  a property) `gra.name`. This is entirely user controlled.
    */
   // auto get_name() {
   //     if (!this->graph.contains("name")) {
@@ -345,7 +341,7 @@ public:
   // // @name.setter
   // auto set_name(std::string_view s) { this->graph["name"] = std::any(s); }
 
-  /** Iterate over the nodes. Use: "for (const auto& n : G)".
+  /** Iterate over the nodes. Use: "for (const auto& n : gra)".
   Returns
   -------
   niter : iterator
@@ -353,27 +349,27 @@ public:
 
   Examples
   --------
-      > G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-      > [n for n : G];
+      > gra = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+      > [n for n : gra];
   [0, 1, 2, 3];
-      > list(G);
+      > list(gra);
   [0, 1, 2, 3];
    */
   auto begin() const { return std::begin(this->_node); }
 
   auto end() const { return std::end(this->_node); }
 
-  /** Return true if (n is a node, false otherwise. Use: "n : G".
+  /** Return true if (n is a node, false otherwise. Use: "n : gra".
 
   Examples
   --------
-      > G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-      > 1 : G
+      > gra = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+      > 1 : gra
   true
    */
   auto contains(const Node &n) -> bool { return this->_node.contains(n); }
 
-  /** Return a dict of neighbors of node n.  Use: "G[n]".
+  /** Return a dict of neighbors of node n.  Use: "gra[n]".
 
   Parameters
   ----------
@@ -387,13 +383,13 @@ public:
 
   Notes
   -----
-  G[n] is the same as G.adj[n] and similar to G.neighbors(n);
-  (which is an iterator over G.adj[n]);
+  gra[n] is the same as gra.adj[n] and similar to gra.neighbors(n);
+  (which is an iterator over gra.adj[n]);
 
   Examples
   --------
-      > G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-      > G[0];
+      > gra = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+      > gra[0];
   AtlasView({1: {}});
    */
   auto operator[](const Node &n) const -> const auto & {
@@ -402,7 +398,7 @@ public:
 
   auto operator[](const Node &n) -> auto & { return this->adj()[n]; }
 
-  /** A NodeView of the Graph as G.nodes().
+  /** A NodeView of the Graph as gra.nodes().
 
   Returns
   -------
@@ -421,40 +417,40 @@ public:
   Notes
   -----
   If your node data is not needed, it is simpler and equivalent
-  to use the expression ``for n : G``, or ``list(G)``.
+  to use the expression ``for n : gra``, or ``list(gra)``.
 
   Examples
   --------
   There are two simple ways of getting a list of all nodes : the graph) {
 
-      > G = nx.path_graph(3);
-      > list(G.nodes);
+      > gra = nx.path_graph(3);
+      > list(gra.nodes);
   [0, 1, 2];
-      > list(G);
+      > list(gra);
   [0, 1, 2];
 
   To get the node data along with the nodes) {
 
-      > G.add_node(1, time="5pm");
-      > G.nodes[0]["foo"] = "bar";
-      > list(G.nodes(data=true));
+      > gra.add_node(1, time="5pm");
+      > gra.nodes[0]["foo"] = "bar";
+      > list(gra.nodes(data=true));
   [(0, {"foo": "bar"}), (1, {"time": "5pm"}), (2, {})];
-      > list(G.nodes.data());
+      > list(gra.nodes.data());
   [(0, {"foo": "bar"}), (1, {"time": "5pm"}), (2, {})];
 
-      > list(G.nodes(data="foo"));
+      > list(gra.nodes(data="foo"));
   [(0, "bar"), (1, None), (2, None)];
-      > list(G.nodes.data("foo"));
+      > list(gra.nodes.data("foo"));
   [(0, "bar"), (1, None), (2, None)];
 
-      > list(G.nodes(data="time"));
+      > list(gra.nodes(data="time"));
   [(0, None), (1, "5pm"), (2, None)];
-      > list(G.nodes.data("time"));
+      > list(gra.nodes.data("time"));
   [(0, None), (1, "5pm"), (2, None)];
 
-      > list(G.nodes(data="time", default="Not Available"));
+      > list(gra.nodes(data="time", default="Not Available"));
   [(0, "Not Available"), (1, "5pm"), (2, "Not Available")];
-      > list(G.nodes.data("time", default="Not Available"));
+      > list(gra.nodes.data("time", default="Not Available"));
   [(0, "Not Available"), (1, "5pm"), (2, "Not Available")];
 
   If some of your nodes have an attribute and the rest are assumed
@@ -462,11 +458,11 @@ public:
   from node/attribute pairs using the `default` keyword argument
   to guarantee the value is never None:) {
 
-          > G = nx.Graph();
-          > G.add_node(0);
-          > G.add_node(1, weight=2);
-          > G.add_node(2, weight=3);
-          > dict(G.nodes(data="weight", default=1));
+          > gra = nx.Graph();
+          > gra.add_node(0);
+          > gra.add_node(1, weight=2);
+          > gra.add_node(2, weight=3);
+          > dict(gra.nodes(data="weight", default=1));
       {0: 1, 1: 2, 2: 3}
 
    */
@@ -474,7 +470,7 @@ public:
     using T = decltype(*this);
     auto nodes = NodeView<T>(*this);
     // Lazy View creation: overload the (class) property on the instance
-    // Then future G.nodes use the existing View
+    // Then future gra.nodes use the existing View
     // setattr doesn"t work because attribute already exists
     // this->operator[]("nodes") = std::any(nodes);
     return nodes;
@@ -493,8 +489,8 @@ public:
 
   Examples
   --------
-      > G = nx.path_graph(3);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-      > len(G);
+      > gra = nx.path_graph(3);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+      > len(gra);
   3
    */
   auto number_of_nodes() const { return this->_node.size(); }
@@ -532,7 +528,7 @@ public:
 
   /** Return true if (the graph contains the node n.
 
-      Identical to `n : G`
+      Identical to `n : gra`
 
       Parameters
       ----------
@@ -540,9 +536,8 @@ public:
 
       Examples
       --------
-          > G = nx.path_graph(3);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-          > G.has_node(0);
-      true
+          > gra = nx.path_graph(3);  // or DiGraph, MultiGraph, MultiDiGraph,
+     etc > gra.has_node(0); true
    */
   auto has_node(const Node &n) { return this->_node.contains(n); }
 
@@ -573,22 +568,22 @@ public:
 
       Examples
       --------
-      The following all add the edge e=(1, 2) to graph G) {
+      The following all add the edge e=(1, 2) to graph gra) {
 
-          > G = nx.Graph()   // or DiGraph, MultiGraph, MultiDiGraph, etc
+          > gra = nx.Graph()   // or DiGraph, MultiGraph, MultiDiGraph, etc
           > e = (1, 2);
-          > G.add_edge(1, 2)           // explicit two-node form
-          > G.add_edges_from([(1, 2)]);  // add edges from iterable container
+          > gra.add_edge(1, 2)           // explicit two-node form
+          > gra.add_edges_from([(1, 2)]);  // add edges from iterable container
 
       Associate data to edges using keywords) {
 
-          > G.add_edge(1, 2);
+          > gra.add_edge(1, 2);
 
       For non-string attribute keys, use subscript notation.
 
-          > G.add_edge(1, 2);
-          > G[1][2].update({0: 5});
-          > G.edges()[1, 2].update({0: 5});
+          > gra.add_edge(1, 2);
+          > gra[1][2].update({0: 5});
+          > gra.edges()[1, 2].update({0: 5});
    */
   template <typename U = key_type>
   auto add_edge(const Node &u, const Node &v) ->
@@ -651,7 +646,7 @@ public:
 
   /** Return true if (the edge (u, v) is : the graph.
 
-  This is the same as `v : G[u]` without KeyError exceptions.
+  This is the same as `v : gra[u]` without KeyError exceptions.
 
   Parameters
   ----------
@@ -666,21 +661,21 @@ public:
 
   Examples
   --------
-      > G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-      > G.has_edge(0, 1);  // using two nodes
+      > gra = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+      > gra.has_edge(0, 1);  // using two nodes
   true
       > e = (0, 1);
-      > G.has_edge(*e);  //  e is a 2-tuple (u, v);
+      > gra.has_edge(*e);  //  e is a 2-tuple (u, v);
   true
       > e = (0, 1, {"weight":7});
-      > G.has_edge(*e[:2]);  // e is a 3-tuple (u, v, data_dictionary);
+      > gra.has_edge(*e[:2]);  // e is a 3-tuple (u, v, data_dictionary);
   true
 
   The following syntax are equivalent) {
 
-      > G.has_edge(0, 1);
+      > gra.has_edge(0, 1);
   true
-      > 1 : G[0];  // though this gives KeyError if (0 not : G
+      > 1 : gra[0];  // though this gives KeyError if (0 not : gra
   true
 
    */
@@ -690,7 +685,7 @@ public:
 
   auto degree(const Node &n) const { return this->_adj[n].size(); }
 
-  /** An EdgeView of the Graph as G.edges().
+  /** An EdgeView of the Graph as gra.edges().
 
       edges( nbunch=None, data=false, default=None);
 
@@ -698,9 +693,9 @@ public:
       as well as edge attribute lookup. When called, it also provides
       an EdgeDataView object which allows control of access to edge
       attributes (but does not provide set-like operations).
-      Hence, `G.edges[u, v]["color"]` provides the value of the color
+      Hence, `gra.edges[u, v]["color"]` provides the value of the color
       attribute for edge `(u, v)` while
-      `for (auto [u, v, c] : G.edges.data("color", default="red") {`
+      `for (auto [u, v, c] : gra.edges.data("color", default="red") {`
       iterates through all the edges yielding the color attribute
       with default `"red"` if (no color attribute exists.
 
@@ -730,18 +725,18 @@ public:
 
       Examples
       --------
-          > G = nx.path_graph(3)   // or MultiGraph, etc
-          > G.add_edge(2, 3, weight=5);
-          > [e for e : G.edges];
+          > gra = nx.path_graph(3)   // or MultiGraph, etc
+          > gra.add_edge(2, 3, weight=5);
+          > [e for e : gra.edges];
       [(0, 1), (1, 2), (2, 3)];
-          > G.edges.data();  // default data is {} (empty dict);
+          > gra.edges.data();  // default data is {} (empty dict);
       EdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {"weight": 5})]);
-          > G.edges.data("weight", default=1);
+          > gra.edges.data("weight", default=1);
       EdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)]);
-          > G.edges([0, 3]);  // only edges incident to these nodes
+          > gra.edges([0, 3]);  // only edges incident to these nodes
       EdgeDataView([(0, 1), (3, 2)]);
-          > G.edges(0);  // only edges incident to a single node (use
-      G.adj[0]?); EdgeDataView([(0, 1)]);
+          > gra.edges(0);  // only edges incident to a single node (use
+      gra.adj[0]?); EdgeDataView([(0, 1)]);
   */
   // auto edges() {
   //     auto edges = EdgeView(*this);
@@ -749,7 +744,7 @@ public:
   //     return edges;
   // }
 
-  /** An OutEdgeView of the DiGraph as G.edges().
+  /** An OutEdgeView of the DiGraph as gra.edges().
 
       edges(self, nbunch=None, data=False, default=None)
 
@@ -757,9 +752,9 @@ public:
       as well as edge attribute lookup. When called, it also provides
       an EdgeDataView object which allows control of access to edge
       attributes (but does not provide set-like operations).
-      Hence, `G.edges()[u, v]['color']` provides the value of the color
+      Hence, `gra.edges()[u, v]['color']` provides the value of the color
       attribute for edge `(u, v)` while
-      `for (u, v, c) in G.edges().data('color', default='red'):`
+      `for (u, v, c) in gra.edges().data('color', default='red'):`
       iterates through all the edges yielding the color attribute
       with default `'red'` if no color attribute exists.
 
@@ -793,19 +788,19 @@ public:
 
       Examples
       --------
-          > G = nx.DiGraph()   # or MultiDiGraph, etc
-          > nx.add_path(G, [0, 1, 2])
-          > G.add_edge(2, 3, weight=5)
-          > [e for e in G.edges()]
+          > gra = nx.DiGraph()   # or MultiDiGraph, etc
+          > nx.add_path(gra, [0, 1, 2])
+          > gra.add_edge(2, 3, weight=5)
+          > [e for e in gra.edges()]
       [(0, 1), (1, 2), (2, 3)]
-          > G.edges().data()  # default data is {} (empty dict)
+          > gra.edges().data()  # default data is {} (empty dict)
       OutEdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {'weight': 5})])
-          > G.edges().data('weight', default=1)
+          > gra.edges().data('weight', default=1)
       OutEdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)])
-          > G.edges()([0, 2])  # only edges incident to these nodes
+          > gra.edges()([0, 2])  # only edges incident to these nodes
       OutEdgeDataView([(0, 1), (2, 3)])
-          > G.edges()(0)  # only edges incident to a single node (use G.adj[0]?)
-      OutEdgeDataView([(0, 1)])
+          > gra.edges()(0)  # only edges incident to a single node (use
+     gra.adj[0]?) OutEdgeDataView([(0, 1)])
 
   */
   // using coro_t = boost::coroutines2::coroutine<edge_t>;
@@ -858,7 +853,7 @@ public:
   //
   //
   // auto degree() {
-  //     /** A DegreeView for the Graph as G.degree or G.degree().
+  //     /** A DegreeView for the Graph as gra.degree or gra.degree().
 
   //     The node degree is the number of edges adjacent to the node.
   //     The weighted node degree is the sum of the edge weights for
@@ -889,11 +884,11 @@ public:
 
   //     Examples
   //     --------
-  //         > G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph,
+  //         > gra = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph,
   //     etc
-  //         > G.degree[0];  // node 0 has degree 1
+  //         > gra.degree[0];  // node 0 has degree 1
   //     1
-  //         > list(G.degree([0, 1, 2]));
+  //         > list(gra.degree([0, 1, 2]));
   //     [(0, 1), (1, 2), (2, 2)];
   //      */
   //     auto degree = DegreeView(*this);
@@ -907,11 +902,11 @@ public:
 
   Examples
   --------
-      > G = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-      > G.clear();
-      > list(G.nodes);
+      > gra = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
+      > gra.clear();
+      > list(gra.nodes);
   [];
-      > list(G.edges());
+      > list(gra.edges());
   [];
 
    */

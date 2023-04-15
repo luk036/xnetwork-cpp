@@ -57,25 +57,25 @@ TEST_CASE("Test Boost") {
 
     // declare a graph object
     Graph g(num_vertices);
-    py::grAdaptor<Graph> G(std::move(g));
+    py::grAdaptor<Graph> gra(std::move(g));
     using Vertex = typename boost::graph_traits<Graph>::vertex_descriptor;
     // using edge_t = typename boost::graph_traits<Graph>::edge_descriptor;
 
     // add the edges to the graph object
     for (auto i = 0U; i != num_edges; ++i) {
-        G.add_edge(edge_array[i].first, edge_array[i].second);
+        gra.add_edge(edge_array[i].first, edge_array[i].second);
     }
 
     // typedef graph_traits<Graph>::vertex_descriptor Vertex;
 
     // get the property map for vertex indices
     // typedef property_map<Graph, vertex_index_t>::type IndexMap;
-    // auto index = boost::get(boost::vertex_index, G);
+    // auto index = boost::get(boost::vertex_index, gra);
 
     // std::cout << "vertices(g) = ";
     // typedef graph_traits<Graph>::vertex_iterator vertex_iter;
     // std::pair<vertex_iter, vertex_iter> vp;
-    for (Vertex&& v : G) {
+    for (Vertex&& v : gra) {
         static_assert(sizeof v >= 0, "unused");
         // std::cout << index[v] << " ";
     }
@@ -83,11 +83,11 @@ TEST_CASE("Test Boost") {
 
     // std::cout << "edges(g) = ";
     // graph_traits<Graph>::edge_iterator ei, ei_end;
-    // for (auto&& e : G.edges())
-    //     std::cout << "(" << index[boost::source(e, G)] << ","
-    //               << index[boost::target(e, G)] << ") ";
+    // for (auto&& e : gra.edges())
+    //     std::cout << "(" << index[boost::source(e, gra)] << ","
+    //               << index[boost::target(e, gra)] << ") ";
     // std::cout << std::endl;
 
-    std::for_each(boost::vertices(G).first, boost::vertices(G).second,
-                  exercise_vertex<py::grAdaptor<Graph>>(G));
+    std::for_each(boost::vertices(gra).first, boost::vertices(gra).second,
+                  exercise_vertex<py::grAdaptor<Graph>>(gra));
 }

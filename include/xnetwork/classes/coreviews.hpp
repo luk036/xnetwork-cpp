@@ -134,7 +134,7 @@ public:
 //     /** A read-only union of two atlases (dict-of-dict).
 
 //     The two dict-of-dicts represent the inner dict of
-//     an Adjacency:  `G.succ[node]` and `G.pred[node]`.
+//     an Adjacency:  `gra.succ[node]` and `gra.pred[node]`.
 //     The inner level of dict of both hold attribute key:value
 //     pairs and is read-write. But the outer level is read-only.
 
@@ -203,7 +203,7 @@ public:
 //     /** A read-only union of dict Adjacencies as a Map of Maps of Maps.
 
 //     The two input dict-of-dict-of-dicts represent the union of
-//     `G.succ` and `G.pred`. Return values are UnionAtlas
+//     `gra.succ` and `gra.pred`. Return values are UnionAtlas
 //     The inner level of dict is read-write. But the
 //     middle and outer levels are read-only.
 
@@ -267,7 +267,7 @@ public:
 //     /** A read-only union of two inner dicts of MultiAdjacencies.
 
 //     The two input dict-of-dict-of-dicts represent the union of
-//     `G.succ[node]` and `G.pred[node]` for MultiDiGraphs.
+//     `gra.succ[node]` and `gra.pred[node]` for MultiDiGraphs.
 //     Return values are UnionAtlas.
 //     The inner level of dict is read-write. But the outer levels are
 //     read-only.
@@ -302,7 +302,7 @@ public:
 //     /** A read-only union of two dict MultiAdjacencies.
 
 //     The two input dict-of-dict-of-dict-of-dicts represent the union of
-//     `G.succ` and `G.pred` for MultiDiGraphs. Return values are
+//     `gra.succ` and `gra.pred` for MultiDiGraphs. Return values are
 //     UnionAdjacency. The inner level of dict is read-write. But the outer
 //     levels are read-only.
 

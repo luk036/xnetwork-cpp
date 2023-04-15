@@ -69,37 +69,37 @@ auto do_case(const py::grAdaptor<graph_t>&) -> bool { return true; }
 auto do_case_float(const py::grAdaptor<graph_t>&) -> bool { return true; }
 
 TEST_CASE("Test Negative Cycle (boost)") {
-    const auto G = create_test_case1();
-    const auto hasNeg = do_case(G);
+    const auto gra = create_test_case1();
+    const auto hasNeg = do_case(gra);
     CHECK(hasNeg);
 }
 
 TEST_CASE("Test No Negative Cycle (boost)") {
-    const auto G = create_test_case2();
-    const auto hasNeg = do_case(G);
+    const auto gra = create_test_case2();
+    const auto hasNeg = do_case(gra);
     CHECK(hasNeg);
 }
 
 TEST_CASE("Test Timing Graph (boost)") {
-    const auto G = create_test_case_timing();
-    const auto hasNeg = do_case(G);
+    const auto gra = create_test_case_timing();
+    const auto hasNeg = do_case(gra);
     CHECK(hasNeg);
 }
 
 TEST_CASE("Test Timing Graph 2 (boost)") {
-    const auto G = create_test_case_timing2();
-    const auto hasNeg = do_case(G);
+    const auto gra = create_test_case_timing2();
+    const auto hasNeg = do_case(gra);
     CHECK(hasNeg);
 }
 
 TEST_CASE("Test Timing Graph float (boost)") {
-    const auto G = create_test_case_timing();
-    const auto hasNeg = do_case_float(G);
+    const auto gra = create_test_case_timing();
+    const auto hasNeg = do_case_float(gra);
     CHECK(hasNeg);
 }
 
 TEST_CASE("Test Timing Graph 2 (boost)") {
-    const auto G = create_test_case_timing2();
-    const auto hasNeg = do_case_float(G);
+    const auto gra = create_test_case_timing2();
+    const auto hasNeg = do_case_float(gra);
     CHECK(hasNeg);
 }

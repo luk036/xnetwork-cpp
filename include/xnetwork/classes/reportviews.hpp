@@ -23,24 +23,24 @@ graph is updated. As with dicts, the graph should not be updated
 while (iterating through the view. Views can be iterated multiple times.
 
 Edge and Node views also allow data attribute lookup.
-The resulting attribute dict is writable as `G.edges[3, 4]["color"]="red"`
+The resulting attribute dict is writable as `gra.edges[3, 4]["color"]="red"`
 Degree views allow lookup of degree values for single nodes.
 Weighted degree is supported with the `weight` argument.
 
 NodeView
 ========
 
-    `V = G.nodes` (or `V = G.nodes()`) allows `len(V)`, `n : V`, set
-    operations e.g. "G.nodes & H.nodes", and `dd = G.nodes[n]`, where
+    `V = gra.nodes` (or `V = gra.nodes()`) allows `len(V)`, `n : V`, set
+    operations e.g. "gra.nodes & H.nodes", and `dd = gra.nodes[n]`, where
     `dd` is the node data dict. Iteration is over the nodes by default.
 
 NodeDataView
 ============
 
-    To iterate over (node, data) pairs, use arguments to `G.nodes()`
-    to create a DataView e.g. `DV = G.nodes(data="color", default="red")`.
+    To iterate over (node, data) pairs, use arguments to `gra.nodes()`
+    to create a DataView e.g. `DV = gra.nodes(data="color", default="red")`.
     The DataView iterates as `for n, color : DV` and allows
-    `(n, "red"] : DV`. Using `DV = G.nodes(data=true)`, the DataViews
+    `(n, "red"] : DV`. Using `DV = gra.nodes(data=true)`, the DataViews
     use the full datadict : writeable form also allowing contain testing as
     `(n, {"color": "red"}] : VD`. DataViews allow set operations when
     data attributes are hashable.
@@ -48,13 +48,13 @@ NodeDataView
 DegreeView
 ==========
 
-    `V = G.degree` allows iteration over (node, degree) pairs as well
+    `V = gra.degree` allows iteration over (node, degree) pairs as well
     as lookup: `deg=V[n]`. There are many flavors of DegreeView
-    for In/Out/Directed/Multi. For Directed Graphs, `G.degree`
-    counts both : and out going edges. `G.out_degree` &&
-    `G.in_degree` count only specific directions.
+    for In/Out/Directed/Multi. For Directed Graphs, `gra.degree`
+    counts both : and out going edges. `gra.out_degree` &&
+    `gra.in_degree` count only specific directions.
     Weighted degree using edge data attributes is provide via
-    `V = G.degree(weight="attr_name")` where any string with the
+    `V = gra.degree(weight="attr_name")` where any string with the
     attribute name can be used. `weight=None` is the default.
     No set operations are implemented for degrees, use NodeView.
 
@@ -64,11 +64,11 @@ DegreeView
 EdgeView
 ========
 
-    `V = G.edges` or `V = G.edges()` allows iteration over edges as well as
-    `e : V`, set operations and edge data lookup `dd = G.edges[2, 3]`.
+    `V = gra.edges` or `V = gra.edges()` allows iteration over edges as well as
+    `e : V`, set operations and edge data lookup `dd = gra.edges[2, 3]`.
     Iteration is over 2-tuples `(u, v)` for Graph/DiGraph. For multigraphs
     edges 3-tuples `(u, v, key)` are the default but 2-tuples can be obtained
-    via `V = G.edges(keys=false)`.
+    via `V = gra.edges(keys=false)`.
 
     Set operations for directed graphs treat the edges as a set of 2-tuples.
     For undirected graphs, 2-tuples are not a unique representation of edges.
@@ -81,7 +81,7 @@ EdgeDataView
 ============
 
     Edge data can be reported using an EdgeDataView typically created
-    by calling an EdgeView: `DV = G.edges(data="weight", default=1)`.
+    by calling an EdgeView: `DV = gra.edges(data="weight", default=1)`.
     The EdgeDataView allows iteration over edge tuples, membership checking
     but no set operations.
 
@@ -124,7 +124,7 @@ namespace xnetwork {
 //                              "OutMultiDegreeView"};
 
 // NodeViews
-/** A NodeView class to act as G.nodes for a XNetwork Graph
+/** A NodeView class to act as gra.nodes for a XNetwork Graph
 Set operations act on the nodes without considering data.
 Iteration is over nodes. Node data can be looked up like a dict.
 Use NodeDataView to iterate over node data or to specify a data
@@ -136,8 +136,8 @@ graph : XNetwork graph-like class
 
 Examples
 --------
-    > G = xnetwork::path_graph(3);
-    > NV = G.nodes();
+    > gra = xnetwork::path_graph(3);
+    > NV = gra.nodes();
     > 2 : NV
 true
     > for n : NV: print(n);
@@ -145,11 +145,11 @@ true
 1
 2
     > assert(NV & {1, 2, 3} == {1, 2});
-    > G.add_node(2, color="blue");
+    > gra.add_node(2, color="blue");
     > NV[2];
 {"color": "blue"}
-    > G.add_node(8, color="red");
-    > NDV = G.nodes(data=true);
+    > gra.add_node(8, color="red");
+    > NDV = gra.nodes(data=true);
     > (2, NV[2]] : NDV
 true
     > for n, dd : NDV: print((n, dd.get("color", "aqua")));
@@ -159,7 +159,7 @@ true
 (8, "red");
     > NDV[2] == NV[2];
 true
-    > NVdata = G.nodes(data="color", default="aqua");
+    > NVdata = gra.nodes(data="color", default="aqua");
     > (2, NVdata[2]] : NVdata
 true
     > for n, dd : NVdata: print((n, dd));
@@ -242,7 +242,7 @@ public:
 //     Set operations are enabled with NodeDataView, but don't work in
 //     cases where the data is not hashable. Use with caution.
 //     Typically, set operations on nodes use NodeView, not NodeDataView.
-//     That is, they use `G.nodes` instead of `G.nodes(data="foo")`.
+//     That is, they use `gra.nodes` instead of `gra.nodes(data="foo")`.
 
 //     Parameters
 //     ==========
@@ -364,13 +364,13 @@ public:
 
 //     Examples
 //     --------
-//         > G = xnetwork::path_graph(3);
-//         > DV = G.degree();
+//         > gra = xnetwork::path_graph(3);
+//         > DV = gra.degree();
 //         > assert(DV[2] == 1);
 //         > assert(sum(deg for n, deg : DV) == 4);
 
-//         > DVweight = G.degree(weight="span");
-//         > G.add_edge(1, 2, span=34);
+//         > DVweight = gra.degree(weight="span");
+//         > gra.add_edge(1, 2, span=34);
 //         > DVweight[2];
 //     34
 //         > DVweight[0];  //  default edge weight is 1
@@ -378,18 +378,18 @@ public:
 //         > sum(span for n, span : DVweight);  // sum weighted degrees
 //     70
 
-//         > DVnbunch = G.degree(nbunch=(1, 2));
+//         > DVnbunch = gra.degree(nbunch=(1, 2));
 //         > assert(len(list(DVnbunch)) == 2);  // iteration over nbunch only
 // */
 // class DiDegreeView: public object {
 //     using _Self = DiDegreeView;
 
-//     explicit _Self( G, nbunch=None, weight=None) {
-//         this->_graph = G;
-//         this->_succ = G._adj;
-//         this->_pred = G._adj;
+//     explicit _Self( gra, nbunch=None, weight=None) {
+//         this->_graph = gra;
+//         this->_succ = gra._adj;
+//         this->_pred = gra._adj;
 //         this->_nodes = this->_succ if (nbunch.empty()
-//             else list(G.nbunch_iter(nbunch));
+//             else list(gra.nbunch_iter(nbunch));
 //         this->_weight = weight;
 //     }
 
@@ -457,7 +457,7 @@ public:
 // };
 
 // class DegreeView: public DiDegreeView {
-//     /** A DegreeView class to act as G.degree for a XNetwork Graph
+//     /** A DegreeView class to act as gra.degree for a XNetwork Graph
 
 //     Typical usage focuses on iteration over `(node, degree)` pairs.
 //     The degree is by default the number of edges incident to the node.
@@ -465,7 +465,7 @@ public:
 //     attribute named : the `weight` argument.  Reporting and iteration
 //     can also be restricted to a subset of nodes using `nbunch`.
 
-//     Additional functionality include node lookup so that `G.degree[n]`
+//     Additional functionality include node lookup so that `gra.degree[n]`
 //     reported the (possibly weighted) degree of node `n`. Calling the
 //     view creates a view with different arguments `nbunch` or `weight`.
 
@@ -481,14 +481,14 @@ public:
 
 //     Examples
 //     --------
-//         > G = xnetwork::path_graph(3);
-//         > DV = G.degree();
+//         > gra = xnetwork::path_graph(3);
+//         > DV = gra.degree();
 //         > assert(DV[2] == 1);
-//         > assert(G.degree[2] == 1);
+//         > assert(gra.degree[2] == 1);
 //         > assert(sum(deg for n, deg : DV) == 4);
 
-//         > DVweight = G.degree(weight="span");
-//         > G.add_edge(1, 2, span=34);
+//         > DVweight = gra.degree(weight="span");
+//         > gra.add_edge(1, 2, span=34);
 //         > DVweight[2];
 //     34
 //         > DVweight[0];  //  default edge weight is 1
@@ -496,7 +496,7 @@ public:
 //         > sum(span for n, span : DVweight);  // sum weighted degrees
 //     70
 
-//         > DVnbunch = G.degree(nbunch=(1, 2));
+//         > DVnbunch = gra.degree(nbunch=(1, 2));
 //         > assert(len(list(DVnbunch)) == 2);  // iteration over nbunch only
 //      */
 
@@ -832,11 +832,11 @@ public:
 
 //     Examples
 //     --------
-//         > G = xnetwork::path_graph(3);
-//         > G.add_edge(1, 2, foo="bar");
-//         > list(G.edges(data="foo", default="biz"));
+//         > gra = xnetwork::path_graph(3);
+//         > gra.add_edge(1, 2, foo="bar");
+//         > list(gra.edges(data="foo", default="biz"));
 //     [(0, 1, "biz"), (1, 2, "bar")];
-//         > assert((0, 1, "biz"] : G.edges(data="foo", default="biz"));
+//         > assert((0, 1, "biz"] : gra.edges(data="foo", default="biz"));
 //      */
 //     static const auto __slots__ = ();
 
@@ -1073,8 +1073,8 @@ public:
 //     // }
 
 //     // auto __setstate__( state) {
-//     //     this->_graph = G = state["_graph"];
-//     //     this->_adjdict = G._succ if (hasattr(G, "succ") else G._adj;
+//     //     this->_graph = gra = state["_graph"];
+//     //     this->_adjdict = gra._succ if (hasattr(gra, "succ") else gra._adj;
 //     //     this->_nodes_nbrs = this->_adjdict.items;
 //     // }
 
@@ -1097,11 +1097,11 @@ public:
 //     // using adjiterator = decltype(_graph.adj().begin());
 //     // adjiterator curitem; /* ??? */
 
-//     explicit OutEdgeView(graph_t& G) :
-//         _graph{G},
-//         // _adjdict = G._succ if (hasattr(G, "succ") else G._adj;
+//     explicit OutEdgeView(graph_t& gra) :
+//         _graph{gra},
+//         // _adjdict = gra._succ if (hasattr(gra, "succ") else gra._adj;
 //         // _nodes_nbrs{this->_adjdict.items()},
-//         _adjdict{G._adj}
+//         _adjdict{gra._adj}
 //     {}
 
 //     // Set methods
@@ -1184,8 +1184,8 @@ public:
 
 //     Examples
 //     ========
-//         > G = xnetwork::path_graph(4);
-//         > EV = G.edges();
+//         > gra = xnetwork::path_graph(4);
+//         > EV = gra.edges();
 //         > (2, 3] : EV
 //     true
 //         > for u, v : EV: print((u, v));
@@ -1194,13 +1194,13 @@ public:
 //     (2, 3);
 //         > assert(EV & {(1, 2), (3, 4)} == {(1, 2)});
 
-//         > EVdata = G.edges(data="color", default="aqua");
-//         > G.add_edge(2, 3, color="blue");
+//         > EVdata = gra.edges(data="color", default="aqua");
+//         > gra.add_edge(2, 3, color="blue");
 //         > assert((2, 3, "blue"] : EVdata);
 //         > for u, v, c : EVdata: print("({}, {}) has color: {}".format(u, v,
 //     c)); (0, 1) has color: aqua (1, 2) has color: aqua (2, 3) has color: blue
 
-//         > EVnbunch = G.edges(nbunch=2);
+//         > EVnbunch = gra.edges(nbunch=2);
 //         > assert((2, 3] : EVnbunch);
 //         > assert((0, 1] : EVnbunch)   //  nbunch is ignored : __contains__
 //         > for u, v : EVnbunch: assert(u == 2 or v == 2);
@@ -1255,16 +1255,16 @@ public:
 //     static const auto __slots__ = ();
 
 //     auto __setstate__( state) {
-//         this->_graph = G = state["_graph"];
-//         this->_adjdict = G._pred if (hasattr(G, "pred") else G._adj;
+//         this->_graph = gra = state["_graph"];
+//         this->_adjdict = gra._pred if (hasattr(gra, "pred") else gra._adj;
 //         this->_nodes_nbrs = this->_adjdict.items;
 //     }
 
 //     dataview = InEdgeDataView;
 
-//     explicit _Self( G) {
-//         this->_graph = G;
-//         this->_adjdict = G._pred if (hasattr(G, "pred") else G._adj;
+//     explicit _Self( gra) {
+//         this->_graph = gra;
+//         this->_adjdict = gra._pred if (hasattr(gra, "pred") else gra._adj;
 //         this->_nodes_nbrs = this->_adjdict.items;
 //     }
 
@@ -1380,16 +1380,16 @@ public:
 //     static const auto __slots__ = ();
 
 //     auto __setstate__( state) {
-//         this->_graph = G = state["_graph"];
-//         this->_adjdict = G._pred if (hasattr(G, "pred") else G._adj;
+//         this->_graph = gra = state["_graph"];
+//         this->_adjdict = gra._pred if (hasattr(gra, "pred") else gra._adj;
 //         this->_nodes_nbrs = this->_adjdict.items;
 //     }
 
 //     dataview = InMultiEdgeDataView;
 
-//     explicit _Self( G) {
-//         this->_graph = G;
-//         this->_adjdict = G._pred if (hasattr(G, "pred") else G._adj;
+//     explicit _Self( gra) {
+//         this->_graph = gra;
+//         this->_adjdict = gra._pred if (hasattr(gra, "pred") else gra._adj;
 //         this->_nodes_nbrs = this->_adjdict.items;
 //     }
 

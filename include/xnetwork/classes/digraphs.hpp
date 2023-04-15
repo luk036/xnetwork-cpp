@@ -54,51 +54,51 @@ namespace xnetwork {
     no edges.
 
         > auto v = std::vector{3, 4, 2, 8};
-        > auto G = xnetwork::DiGraphS(v);
+        > auto gra = xnetwork::DiGraphS(v);
 
         > auto va = py::dict{{3, 0.1}, {4, 0.5}, {2, 0.2}};
-        > auto G = xnetwork::DiGraphS(va);
+        > auto gra = xnetwork::DiGraphS(va);
 
         > auto r = py::range(100);
-        > auto G = xnetwork::DiGraphS(r);
+        > auto gra = xnetwork::DiGraphS(r);
 
-    G can be grown in several ways.
+    gra can be grown in several ways.
 
     **Nodes:**
 
     Add one node at a time:
 
-        > G.add_node(1)
+        > gra.add_node(1)
 
     Add the nodes from any container (a list, dict, set or
     even the lines from a file or the nodes from another graph).
 
-        > G.add_nodes_from([2, 3])
-        > G.add_nodes_from(range(100, 110))
+        > gra.add_nodes_from([2, 3])
+        > gra.add_nodes_from(range(100, 110))
         > H = xnetwork::path_graph(10)
-        > G.add_nodes_from(H)
+        > gra.add_nodes_from(H)
 
     In addition to strings and integers any hashable C++ object
     (except None) can represent a node, e.g. a customized node object,
     or even another DiGraphS.
 
-        > G.add_node(H)
+        > gra.add_node(H)
 
     **Edges:**
 
-    G can also be grown by adding edges.
+    gra can also be grown by adding edges.
 
     Add one edge,
 
-        > G.add_edge(1, 2);
+        > gra.add_edge(1, 2);
 
     a list of edges,
 
-        > G.add_edges_from([(1, 2), (1, 3)]);
+        > gra.add_edges_from([(1, 2), (1, 3)]);
 
     or a collection of edges,
 
-        > G.add_edges_from(H.edges());
+        > gra.add_edges_from(H.edges());
 
     If some edges connect nodes not yet in the graph, the nodes
     are added automatically.  There are no errors when adding
@@ -112,7 +112,7 @@ namespace xnetwork {
     direct manipulation of the attribute
     dictionaries named graph, node and edge respectively.
 
-        > G.graph["day"] = std::any("Friday");
+        > gra.graph["day"] = std::any("Friday");
     {'day': 'Friday'}
 
     **Subclasses (Advanced):**
@@ -189,12 +189,12 @@ namespace xnetwork {
     ...     def single_edge_dict(self):
     ...         return self.all_edge_dict
     ...     edge_attr_dict_factory = single_edge_dict
-        > G = ThinGraph()
-        > G.add_edge(2, 1)
-        > G[2][1]
+        > gra = ThinGraph()
+        > gra.add_edge(2, 1)
+        > gra[2][1]
     {'weight': 1}
-        > G.add_edge(2, 2)
-        > G[2][1] is G[2][2]
+        > gra.add_edge(2, 2)
+        > gra[2][1] is gra[2][2]
     True
 
     Please see :mod:`~networkx.classes.ordered` for more examples of
@@ -230,11 +230,11 @@ public:
       Examples
       --------
           > v = std::vector{5, 3, 2};
-          > G = xnetwork::DiGraphS(v);  // or DiGraph, MultiGraph, MultiDiGraph,
-     etc
+          > gra = xnetwork::DiGraphS(v);  // or DiGraph, MultiGraph,
+     MultiDiGraph, etc
 
           > r = py::range(100);
-          > G = xnetwork::DiGraphS(r, r);  // or DiGraph, MultiGraph,
+          > gra = xnetwork::DiGraphS(r, r);  // or DiGraph, MultiGraph,
      MultiDiGraph, etc
   */
   explicit DiGraphS(const nodeview_t &Nodes) : _Base{Nodes} {}
@@ -245,16 +245,16 @@ public:
 
       This object is a read-only dict-like structure with node keys
       and neighbor-dict values.  The neighbor-dict is keyed by neighbor
-      to the edge-data-dict.  So `G.adj[3][2]['color'] = 'blue'` sets
+      to the edge-data-dict.  So `gra.adj[3][2]['color'] = 'blue'` sets
       the color of the edge `(3, 2)` to `"blue"`.
 
-      Iterating over G.adj behaves like a dict. Useful idioms include
-      `for nbr, datadict in G.adj[n].items():`.
+      Iterating over gra.adj behaves like a dict. Useful idioms include
+      `for nbr, datadict in gra.adj[n].items():`.
 
       The neighbor information is also provided by subscripting the graph.
-      So `for nbr, foovalue in G[node].data('foo', default=1):` works.
+      So `for nbr, foovalue in gra[node].data('foo', default=1):` works.
 
-      For directed graphs, `G.adj` holds outgoing (successor) info.
+      For directed graphs, `gra.adj` holds outgoing (successor) info.
   */
   auto adj() const {
     using T = decltype(this->_adj);
@@ -265,18 +265,18 @@ public:
 
       This object is a read-only dict-like structure with node keys
       and neighbor-dict values.  The neighbor-dict is keyed by neighbor
-      to the edge-data-dict.  So `G.succ[3][2]['color'] = 'blue'` sets
+      to the edge-data-dict.  So `gra.succ[3][2]['color'] = 'blue'` sets
       the color of the edge `(3, 2)` to `"blue"`.
 
-      Iterating over G.succ behaves like a dict. Useful idioms include
-      `for nbr, datadict in G.succ[n].items():`.  A data-view not provided
-      by dicts also exists: `for nbr, foovalue in G.succ[node].data('foo'):`
+      Iterating over gra.succ behaves like a dict. Useful idioms include
+      `for nbr, datadict in gra.succ[n].items():`.  A data-view not provided
+      by dicts also exists: `for nbr, foovalue in gra.succ[node].data('foo'):`
       and a default can be set via a `default` argument to the `data` method.
 
       The neighbor information is also provided by subscripting the graph.
-      So `for nbr, foovalue in G[node].data('foo', default=1):` works.
+      So `for nbr, foovalue in gra[node].data('foo', default=1):` works.
 
-      For directed graphs, `G.adj` is identical to `G.succ`.
+      For directed graphs, `gra.adj` is identical to `gra.succ`.
   */
   auto succ() const {
     using T = decltype(this->_adj);
@@ -310,21 +310,22 @@ public:
 
       Examples
       --------
-      The following all add the edge e=(1, 2) to graph G) {
+      The following all add the edge e=(1, 2) to graph gra) {
 
-          > G = xnetwork::DiGraphS()   // or DiGraph, MultiGraph, MultiDiGraph,
-     etc > e = (1, 2); > G.add_edge(1, 2)           // explicit two-node form >
-     G.add_edges_from([(1, 2)]);  // add edges from iterable container
+          > gra = xnetwork::DiGraphS()   // or DiGraph, MultiGraph,
+     MultiDiGraph, etc > e = (1, 2); > gra.add_edge(1, 2)           // explicit
+     two-node form > gra.add_edges_from([(1, 2)]);  // add edges from iterable
+     container
 
       Associate data to edges using keywords) {
 
-          > G.add_edge(1, 2);
+          > gra.add_edge(1, 2);
 
       For non-string attribute keys, use subscript notation.
 
-          > G.add_edge(1, 2);
-          > G[1][2].update({0: 5});
-          > G.edges()[1, 2].update({0: 5});
+          > gra.add_edge(1, 2);
+          > gra[1][2].update({0: 5});
+          > gra.edges()[1, 2].update({0: 5});
    */
   template <typename U = key_type>
   auto add_edge(const Node &u, const Node &v) ->
@@ -410,7 +411,7 @@ public:
 
   auto successors(const Node &n) const -> const auto & { return this->_adj[n]; }
 
-  /** An OutEdgeView of the DiGraph as G.edges().
+  /** An OutEdgeView of the DiGraph as gra.edges().
 
       edges(self, nbunch=None, data=False, default=None)
 
@@ -418,9 +419,9 @@ public:
       as well as edge attribute lookup. When called, it also provides
       an EdgeDataView object which allows control of access to edge
       attributes (but does not provide set-like operations).
-      Hence, `G.edges()[u, v]['color']` provides the value of the color
+      Hence, `gra.edges()[u, v]['color']` provides the value of the color
       attribute for edge `(u, v)` while
-      `for (u, v, c) in G.edges().data('color', default='red'):`
+      `for (u, v, c) in gra.edges().data('color', default='red'):`
       iterates through all the edges yielding the color attribute
       with default `'red'` if no color attribute exists.
 
@@ -454,19 +455,19 @@ public:
 
       Examples
       --------
-          > G = nx.DiGraph()   # or MultiDiGraph, etc
-          > nx.add_path(G, [0, 1, 2])
-          > G.add_edge(2, 3, weight=5)
-          > [e for e in G.edges()]
+          > gra = nx.DiGraph()   # or MultiDiGraph, etc
+          > nx.add_path(gra, [0, 1, 2])
+          > gra.add_edge(2, 3, weight=5)
+          > [e for e in gra.edges()]
       [(0, 1), (1, 2), (2, 3)]
-          > G.edges().data()  # default data is {} (empty dict)
+          > gra.edges().data()  # default data is {} (empty dict)
       OutEdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {'weight': 5})])
-          > G.edges().data('weight', default=1)
+          > gra.edges().data('weight', default=1)
       OutEdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)])
-          > G.edges()([0, 2])  # only edges incident to these nodes
+          > gra.edges()([0, 2])  # only edges incident to these nodes
       OutEdgeDataView([(0, 1), (2, 3)])
-          > G.edges()(0)  # only edges incident to a single node (use G.adj[0]?)
-      OutEdgeDataView([(0, 1)])
+          > gra.edges()(0)  # only edges incident to a single node (use
+     gra.adj[0]?) OutEdgeDataView([(0, 1)])
 
   */
   // using coro_t = boost::coroutines2::coroutine<edge_t>;
@@ -543,10 +544,10 @@ public:
 
       Examples
       --------
-          > G = xnetwork::path_graph(4);  // or DiGraph, MultiGraph,
-     MultiDiGraph, etc > G.clear(); > list(G.nodes);
+          > gra = xnetwork::path_graph(4);  // or DiGraph, MultiGraph,
+     MultiDiGraph, etc > gra.clear(); > list(gra.nodes);
       [];
-          > list(G.edges());
+          > list(gra.edges());
       [];
 
   */
