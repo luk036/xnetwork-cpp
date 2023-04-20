@@ -8,19 +8,19 @@
 #include <boost/iterator/iterator_facade.hpp>     // for operator!=, iterato...
 #include <boost/pending/property.hpp>             // for no_property
 #include <boost/range/irange.hpp>                 // for integer_iterator
-#include <py2cpp/nx2bgl.hpp>                      // for grAdaptor, AtlasView
+#include <py2cpp/nx2bgl.hpp>                      // for GrAdaptor, AtlasView
 // #include <iostream> // for std::cout
 #include <type_traits>  // for move
 #include <utility>      // for pair
 
 // using namespace boost;
-template <class grAdaptor> struct exercise_vertex {
+template <class GrAdaptor> struct exercise_vertex {
     //...
-    using Vertex = typename boost::graph_traits<grAdaptor>::vertex_descriptor;
+    using Vertex = typename boost::graph_traits<GrAdaptor>::vertex_descriptor;
 
-    explicit exercise_vertex(grAdaptor& g_) : g(g_) {}
+    explicit exercise_vertex(GrAdaptor& g_) : g(g_) {}
     //...
-    grAdaptor& g;
+    GrAdaptor& g;
 
     auto operator()(const Vertex& v) const -> void {
         // typedef boost::graph_traits<Graph> GraphTraits;
@@ -57,7 +57,7 @@ TEST_CASE("Test Boost") {
 
     // declare a graph object
     Graph g(num_vertices);
-    py::grAdaptor<Graph> gra(std::move(g));
+    py::GrAdaptor<Graph> gra(std::move(g));
     using Vertex = typename boost::graph_traits<Graph>::vertex_descriptor;
     // using edge_t = typename boost::graph_traits<Graph>::edge_descriptor;
 
@@ -89,5 +89,5 @@ TEST_CASE("Test Boost") {
     // std::cout << std::endl;
 
     std::for_each(boost::vertices(gra).first, boost::vertices(gra).second,
-                  exercise_vertex<py::grAdaptor<Graph>>(gra));
+                  exercise_vertex<py::GrAdaptor<Graph>>(gra));
 }

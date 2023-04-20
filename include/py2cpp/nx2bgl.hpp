@@ -173,7 +173,7 @@ public:
  *
  * @tparam _Graph
  */
-template <typename _Graph> class grAdaptor : public VertexView<_Graph> {
+template <typename _Graph> class GrAdaptor : public VertexView<_Graph> {
 public:
   using Vertex = typename boost::graph_traits<_Graph>::vertex_descriptor;
   using node_t = Vertex;
@@ -186,19 +186,19 @@ public:
    * @brief Construct a new gr Adaptor object
    *
    */
-  grAdaptor() = delete;
+  GrAdaptor() = delete;
 
   /**
    * @brief Construct a new gr Adaptor object
    *
    * @param[in] gra
    */
-  explicit grAdaptor(_Graph &&gra) noexcept
+  explicit GrAdaptor(_Graph &&gra) noexcept
       : VertexView<_Graph>{std::forward<_Graph>(gra)} {}
 
-  // grAdaptor(const grAdaptor&) = delete;            // don't copy
-  // grAdaptor& operator=(const grAdaptor&) = delete; // don't assign
-  // grAdaptor(grAdaptor&&) noexcept = default;                // don't copy
+  // GrAdaptor(const GrAdaptor&) = delete;            // don't copy
+  // GrAdaptor& operator=(const GrAdaptor&) = delete; // don't assign
+  // GrAdaptor(GrAdaptor&&) noexcept = default;                // don't copy
 
   [[nodiscard]] auto number_of_nodes() const {
     return boost::num_vertices(*this);
