@@ -7,9 +7,9 @@
 #include <xnetwork/classes/coreviews.hpp> // import AtlasView, AdjacencyView
 #include <xnetwork/classes/reportviews.hpp> // import NodeView, EdgeView, DegreeView
 
-#if __cplusplus > 201703L
-#include <cppcoro/generator.hpp>
-#endif
+// #if __cplusplus > 201703L
+// #include <cppcoro/generator.hpp>
+// #endif
 
 template <typename T> using Value_type = typename T::value_type;
 

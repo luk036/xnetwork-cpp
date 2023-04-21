@@ -10,7 +10,7 @@ option(INSTALL_ONLY "Enable for installation only" OFF)
 # Note: update this to your new project's name and version
 project(
   XNetwork
-  VERSION 1.6.2
+  VERSION 1.6.3
   LANGUAGES CXX
 )
 

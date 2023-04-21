@@ -23,17 +23,17 @@ endif()
 
 find_package(Boost REQUIRED)
 
-CPMAddPackage(
-  NAME cppcoro
-  GIT_TAG 2.0
-  GITHUB_REPOSITORY luk036/cppcoro
-)
-# print_target_properties(cppcoro)
-if(cppcoro_ADDED)
-  message(STATUS "Found cppcoro: ${cppcoro_SOURCE_DIR}")
-  add_library(cppcoro::cppcoro INTERFACE IMPORTED GLOBAL)
-  target_include_directories(cppcoro::cppcoro SYSTEM INTERFACE ${cppcoro_SOURCE_DIR}/include)
-endif(cppcoro_ADDED)
+# CPMAddPackage(
+#   NAME cppcoro
+#   GIT_TAG 2.0
+#   GITHUB_REPOSITORY luk036/cppcoro
+# )
+# # print_target_properties(cppcoro)
+# if(cppcoro_ADDED)
+#   message(STATUS "Found cppcoro: ${cppcoro_SOURCE_DIR}")
+#   add_library(cppcoro::cppcoro INTERFACE IMPORTED GLOBAL)
+#   target_include_directories(cppcoro::cppcoro SYSTEM INTERFACE ${cppcoro_SOURCE_DIR}/include)
+# endif(cppcoro_ADDED)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   # using GCC
@@ -46,4 +46,4 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   add_compile_options(/std:c++latest /await)
 endif()
 
-set(SPECIFIC_LIBS Py2Cpp::Py2Cpp fmt::fmt Boost::boost cppcoro::cppcoro)
+set(SPECIFIC_LIBS Py2Cpp::Py2Cpp fmt::fmt Boost::boost)
