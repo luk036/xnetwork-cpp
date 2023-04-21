@@ -26,17 +26,17 @@ jobs:
           path: "**/cpm_modules"
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
 
-      - name: Setup Miniconda
-        # You may pin to the exact commit or the version.
-        # uses: conda-incubator/setup-miniconda@35d1405e78aa3f784fe3ce9a2eb378d5eeb62169
-        uses: conda-incubator/setup-miniconda@v2.1.1
-        with:
-          auto-update-conda: ture
-
-      - name: Install dependent software
-        run: |
-          conda info
-          conda install -c conda-forge cmake boost=1.74
+      # - name: Setup Miniconda
+      #   # You may pin to the exact commit or the version.
+      #   # uses: conda-incubator/setup-miniconda@35d1405e78aa3f784fe3ce9a2eb378d5eeb62169
+      #   uses: conda-incubator/setup-miniconda@v2.1.1
+      #   with:
+      #     auto-update-conda: ture
+      #
+      # - name: Install dependent software
+      #   run: |
+      #     conda info
+      #     conda install -c conda-forge cmake boost=1.74
 
       - name: configure
         run: cmake -S. -Bbuild

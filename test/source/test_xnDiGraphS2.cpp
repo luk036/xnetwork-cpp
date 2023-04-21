@@ -35,7 +35,7 @@ template <typename Graph> static void do_case(const Graph &gra) {
 }
 
 TEST_CASE("Test Cycle Ratio") {
-  const auto indices = std::array<int, 5>{0, 1, 2, 3, 4};
+  const auto indices = std::array<int, 5>{0, -1, 2, 3, 4};
   auto gra = create_test_case1(indices);
   do_case(gra);
 }
@@ -43,7 +43,7 @@ TEST_CASE("Test Cycle Ratio") {
 TEST_CASE("Test Cycle Ratio of Timing Graph") {
   // make sure no parallel edges!!!
 
-  const auto indices = std::array<int, 6>{0, 1, 2, 3, 4, 5};
+  const auto indices = std::array<int, 6>{0, 1, -2, 3, 4, 5};
   auto gra = create_test_case2(indices);
   do_case(gra);
 }
