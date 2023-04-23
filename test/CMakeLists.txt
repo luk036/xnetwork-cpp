@@ -22,12 +22,11 @@ set_target_properties(${PROJECT_NAME}Tests PROPERTIES CXX_STANDARD 20)
 
 # enable compiler warnings
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-  target_compile_options(${PROJECT_NAME} INTERFACE -fcoroutines -Wall -Wpedantic -Wextra -Werror)
+  target_compile_options(${PROJECT_NAME} INTERFACE -Wall -Wpedantic -Wextra -Werror)
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   target_compile_options(
     ${PROJECT_NAME}
-    INTERFACE -fcoroutines-ts
-              -stdlib=libc++
+    INTERFACE -stdlib=libc++
               -Wall
               -Wpedantic
               -Wextra
