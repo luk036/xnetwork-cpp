@@ -12,7 +12,7 @@
 # XNetwork
 
 This is a networkx inspired modern cpp project.
-
+  
 ## Features
 
 - Header-only library
