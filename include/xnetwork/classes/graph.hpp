@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cassert>
+#include <cstdint>
 #include <py2cpp/py2cpp.hpp>
 #include <type_traits>
 #include <vector>
