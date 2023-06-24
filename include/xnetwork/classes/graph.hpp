@@ -394,8 +394,10 @@ public:
   AtlasView({1: {}});
    */
   auto operator[](const Node &n) const -> const auto & {
-    return this->adj()[n];
+    return this->adj().at(n);
   }
+
+  auto at(const Node &n) const -> const auto & { return this->adj().at(n); }
 
   auto operator[](const Node &n) -> auto & { return this->adj()[n]; }
 
@@ -494,7 +496,7 @@ public:
       > len(gra);
   3
    */
-  auto number_of_nodes() const { return this->_node.size(); }
+  auto number_of_nodes() const -> size_t { return this->_node.size(); }
 
   // auto number_of_edges() const
   // {
@@ -525,7 +527,7 @@ public:
   --------
   number_of_nodes, order  which are identical
    */
-  auto size() { return this->_node.size(); }
+  auto size() const -> size_t { return this->_node.size(); }
 
   /** Return true if (the graph contains the node n.
 
@@ -540,7 +542,7 @@ public:
           > gra = nx.path_graph(3);  // or DiGraph, MultiGraph, MultiDiGraph,
      etc > gra.has_node(0); true
    */
-  auto has_node(const Node &n) { return this->_node.contains(n); }
+  auto has_node(const Node &n) const -> bool { return this->_node.contains(n); }
 
   /** Add an edge between u and v.
 

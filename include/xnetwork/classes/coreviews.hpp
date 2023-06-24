@@ -62,8 +62,12 @@ public:
     return this->_atlas.at(key);
   }
 
-  template <typename T> auto operator[](const T &key) -> auto & {
+  template <typename T> auto at(const T &key) const -> const auto & {
     return this->_atlas.at(key);
+  }
+
+  template <typename T> auto operator[](const T &key) -> auto & {
+    return this->_atlas[key];
   }
 
   // auto copy( ) {
