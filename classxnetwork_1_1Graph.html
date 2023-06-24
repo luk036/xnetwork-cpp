@@ -182,6 +182,10 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a5e55641582468bfb1582f5e1fc98d77d" class="m-doc">operator[]</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n) const -&gt; const auto &amp; -&gt; auto</span>
             </dt>
             <dd></dd>
+            <dt id="a073cafe75b3e51a6f60259132565cbf3">
+              <span class="m-doc-wrap-bumper">auto <a href="#a073cafe75b3e51a6f60259132565cbf3" class="m-doc-self">at</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n) const -&gt; const auto &amp; -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
             <dt id="a8c0c86bb73bb46e1bab2a2ecedca4e50">
               <span class="m-doc-wrap-bumper">auto <a href="#a8c0c86bb73bb46e1bab2a2ecedca4e50" class="m-doc-self">operator[]</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n) -&gt; auto &amp; -&gt; auto</span>
             </dt>
@@ -191,7 +195,7 @@
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ab009d430fb97f1d7fe15ec1ff483d995" class="m-doc">number_of_nodes</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#adc3a746f16cd02c344fc2e00d1b91135" class="m-doc">number_of_nodes</a>(</span><span class="m-doc-wrap">) const -&gt; size_t -&gt; auto</span>
             </dt>
             <dd></dd>
             <dt>
@@ -199,11 +203,11 @@
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a186d34d813fe7b1858d3459b87838ffa" class="m-doc">size</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a04f56685986c3b4a55afc23890de1da0" class="m-doc">size</a>(</span><span class="m-doc-wrap">) const -&gt; size_t -&gt; auto</span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a6410af44cab24473ee78641e48bb98b6" class="m-doc">has_node</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n) -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#af469f9bd25e5362b19a73c0377cfe32d" class="m-doc">has_node</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n) const -&gt; bool -&gt; auto</span>
             </dt>
             <dd></dd>
             <dt>
@@ -398,12 +402,12 @@
 {0: 1, 1: 2, 2: 3}
 </pre>
           </div></section>
-          <section class="m-doc-details" id="ab009d430fb97f1d7fe15ec1ff483d995"><div>
+          <section class="m-doc-details" id="adc3a746f16cd02c344fc2e00d1b91135"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab009d430fb97f1d7fe15ec1ff483d995" class="m-doc-self">number_of_nodes</a>(</span><span class="m-doc-wrap">) const</span></span>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#adc3a746f16cd02c344fc2e00d1b91135" class="m-doc-self">number_of_nodes</a>(</span><span class="m-doc-wrap">) const -&gt; size_t</span></span>
             </h3>
 <p>Return the number of nodes : the graph.</p><h5 id="autotoc_md51">Returns</h5><p>nnodes : int The number of nodes : the graph.</p><h5 id="autotoc_md52">See Also</h5><p>order, size which are identical</p><h5 id="autotoc_md53">Examples</h5><p>&gt; gra = nx.path_graph(3); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; len(gra); 3</p>
           </div></section>
@@ -416,21 +420,21 @@
             </h3>
 <p>Return the number of nodes : the graph.</p><h5 id="autotoc_md54">Returns</h5><p>nnodes : int The number of nodes : the graph.</p><h5 id="autotoc_md55">See Also</h5><p>number_of_nodes, size which are identical</p>
           </div></section>
-          <section class="m-doc-details" id="a186d34d813fe7b1858d3459b87838ffa"><div>
+          <section class="m-doc-details" id="a04f56685986c3b4a55afc23890de1da0"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a186d34d813fe7b1858d3459b87838ffa" class="m-doc-self">size</a>(</span><span class="m-doc-wrap">)</span></span>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a04f56685986c3b4a55afc23890de1da0" class="m-doc-self">size</a>(</span><span class="m-doc-wrap">) const -&gt; size_t</span></span>
             </h3>
 <p>Return the number of nodes : the graph.</p><h5 id="autotoc_md56">Returns</h5><p>nnodes : int The number of nodes : the graph.</p><h5 id="autotoc_md57">See Also</h5><p>number_of_nodes, order which are identical</p>
           </div></section>
-          <section class="m-doc-details" id="a6410af44cab24473ee78641e48bb98b6"><div>
+          <section class="m-doc-details" id="af469f9bd25e5362b19a73c0377cfe32d"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6410af44cab24473ee78641e48bb98b6" class="m-doc-self">has_node</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n)</span></span>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af469f9bd25e5362b19a73c0377cfe32d" class="m-doc-self">has_node</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; n) const -&gt; bool</span></span>
             </h3>
 <p>Return true if (the graph contains the node n.</p><p>Identical to <code>n : gra</code></p><h5 id="autotoc_md58">Parameters</h5><p>n : node</p><h5 id="autotoc_md59">Examples</h5><p>&gt; gra = nx.path_graph(3); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; gra.has_node(0); true</p>
           </div></section>
