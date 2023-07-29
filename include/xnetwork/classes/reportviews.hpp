@@ -172,65 +172,65 @@ false
  */
 // interface: Mapping, Set
 template <typename nodeview_t> class NodeView {
-private:
-  using Self = NodeView<nodeview_t>;
-  using Node = typename nodeview_t::value_type;
+  private:
+    using Self = NodeView<nodeview_t>;
+    using Node = typename nodeview_t::value_type;
 
-  nodeview_t &_nodes;
+    nodeview_t &_nodes;
 
-  // auto __getstate__( ) {
-  //     return {"_nodes": this->_nodes};
-  // }
+    // auto __getstate__( ) {
+    //     return {"_nodes": this->_nodes};
+    // }
 
-  // auto __setstate__( state) {
-  //     this->_nodes = state["_nodes"];
-  // }
-public:
-  explicit NodeView(nodeview_t &nodes) : _nodes{nodes} {}
+    // auto __setstate__( state) {
+    //     this->_nodes = state["_nodes"];
+    // }
+  public:
+    explicit NodeView(nodeview_t &nodes) : _nodes{nodes} {}
 
-  // Mapping methods
-  auto size() { return this->_nodes.size(); }
+    // Mapping methods
+    auto size() { return this->_nodes.size(); }
 
-  auto begin() { return std::begin(this->_nodes); }
+    auto begin() { return std::begin(this->_nodes); }
 
-  auto end() { return std::end(this->_nodes); }
+    auto end() { return std::end(this->_nodes); }
 
-  auto operator[](const Node &n) const -> const auto & {
-    return this->_nodes[n];
-  }
+    auto operator[](const Node &n) const -> const auto & {
+        return this->_nodes[n];
+    }
 
-  auto operator[](const Node &n) -> auto & { return this->_nodes[n]; }
+    auto operator[](const Node &n) -> auto & { return this->_nodes[n]; }
 
-  // Set methods
-  auto contains(const Node &n) -> bool { return this->_nodes.contains(n); }
+    // Set methods
+    auto contains(const Node &n) -> bool { return this->_nodes.contains(n); }
 
-  // /// @classmethod
-  // auto _from_iterable(cls, it) {
-  //     return set(it);
-  // }
+    // /// @classmethod
+    // auto _from_iterable(cls, it) {
+    //     return set(it);
+    // }
 
-  // // DataView method
-  // auto __call__( data=false, default=None) {
-  //     if (data == false) {
-  //         return (*this);
-  //     }
-  //     return NodeDataView(this->_nodes, data, default);
-  // }
+    // // DataView method
+    // auto __call__( data=false, default=None) {
+    //     if (data == false) {
+    //         return (*this);
+    //     }
+    //     return NodeDataView(this->_nodes, data, default);
+    // }
 
-  // auto data( data=true, default=None) {
-  //     if (data == false) {
-  //         return (*this);
-  //     }
-  //     return NodeDataView(this->_nodes, data, default);
-  // }
+    // auto data( data=true, default=None) {
+    //     if (data == false) {
+    //         return (*this);
+    //     }
+    //     return NodeDataView(this->_nodes, data, default);
+    // }
 
-  // auto __str__( ) {
-  //     return str(list( ));
-  // }
+    // auto __str__( ) {
+    //     return str(list( ));
+    // }
 
-  // auto __repr__( ) {
-  //     return "%s(%r)" % (this->__class__.__name__, tuple( ));
-  // }
+    // auto __repr__( ) {
+    //     return "%s(%r)" % (this->__class__.__name__, tuple( ));
+    // }
 };
 
 // class NodeDataView: public Set {
