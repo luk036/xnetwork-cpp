@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>transrangers::deref_fun&lt;Cursor, F, typename std::enable_if&lt;std::is_trivially_default_constructible&lt;F&gt;::value &amp;&amp; std::is_empty&lt;F&gt;::value&gt;::type&gt; struct | XNetwork</title>
+  <title>AtlasView class | XNetwork</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,17 +49,18 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="transrangers_8hpp.html">&lt;transrangers.hpp&gt;</a></div>
-          <div class="m-doc-template">template&lt;typename Cursor, typename F&gt;</div>
-          <span class="m-breadcrumb"><a href="namespacetransrangers.html">transrangers</a>::<wbr/></span>deref_fun&lt;Cursor, F, typename std::enable_if&lt;std::is_trivially_default_constructible&lt;F&gt;::value &amp;&amp; std::is_empty&lt;F&gt;::value&gt;::type&gt; <span class="m-thin">struct</span>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="coreviews_8hpp.html">&lt;xnetwork/classes/coreviews.hpp&gt;</a></div>
+          <div class="m-doc-template">template&lt;typename Atlas&gt;</div>
+          AtlasView <span class="m-thin">class</span>
         </h1>
-        <p><span></span></p>
         <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
+            <li><a href="#autotoc_md16">See Also</a></li>
             <li>
               Reference
               <ul>
+                <li><a href="#derived-classes">Derived classes</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
                 <li><a href="#pub-methods">Public functions</a></li>
                 <li><a href="#pub-attribs">Public variables</a></li>
@@ -67,12 +68,22 @@
             </li>
           </ul>
         </nav>
+<p>An <a href="class_atlas_view.html" class="m-doc">AtlasView</a> is a Read-only Mapping of Mappings.</p><p>It is a View into a dict-of-dict data structure. The inner level of dict is read-write. But the outer level is read-only.</p><section id="autotoc_md16"><h2><a href="#autotoc_md16">See Also</a></h2><p><a href="class_adjacency_view.html" class="m-doc">AdjacencyView</a> - View into dict-of-dict-of-dict MultiAdjacencyView - View into dict-of-dict-of-dict-of-dict</p><p>Interface: Mapping</p></section>
+        <section id="derived-classes">
+          <h2><a href="#derived-classes">Derived classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <div class="m-doc-template">template&lt;typename Atlas&gt;</div>
+              class <a href="class_adjacency_view.html" class="m-doc">AdjacencyView</a>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="a517f1b2773cf5009d25175495cbc5127">
-              <span class="m-doc-wrap-bumper"><a href="#a517f1b2773cf5009d25175495cbc5127" class="m-doc-self">deref_fun</a>(</span><span class="m-doc-wrap">Cursor p = {},
-              F* = nullptr)</span>
+            <dt id="acbb57b02c4a90a5949cc28f92e8ef0fe">
+              <span class="m-doc-wrap-bumper"><a href="#acbb57b02c4a90a5949cc28f92e8ef0fe" class="m-doc-self">AtlasView</a>(</span><span class="m-doc-wrap">Atlas&amp; d) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -80,8 +91,31 @@
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="ac071a1d550eb72d4c216f7165bc73968">
-              <span class="m-doc-wrap-bumper">auto <a href="#ac071a1d550eb72d4c216f7165bc73968" class="m-doc-self">operator*</a>(</span><span class="m-doc-wrap">) const -&gt; decltype(auto)</span>
+            <dt id="a50ec323c123eb07273eb2f5739ae477f">
+              <span class="m-doc-wrap-bumper">auto <a href="#a50ec323c123eb07273eb2f5739ae477f" class="m-doc-self">size</a>(</span><span class="m-doc-wrap">) const -&gt; size_t -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a216fadc9ce618dce7fdeb1ab468acfaf">
+              <span class="m-doc-wrap-bumper">auto <a href="#a216fadc9ce618dce7fdeb1ab468acfaf" class="m-doc-self">begin</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a5af3cb2193940a068024f65474c7463d">
+              <span class="m-doc-wrap-bumper">auto <a href="#a5af3cb2193940a068024f65474c7463d" class="m-doc-self">end</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a421395b7e084c3f00872c3cc9d03a320">
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a421395b7e084c3f00872c3cc9d03a320" class="m-doc-self">operator[]</a>(</span><span class="m-doc-wrap">const T&amp; key) const -&gt; const auto &amp; -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a11e00f90cd9ca0c78b17b1c16bdac53c">
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a11e00f90cd9ca0c78b17b1c16bdac53c" class="m-doc-self">at</a>(</span><span class="m-doc-wrap">const T&amp; key) const -&gt; const auto &amp; -&gt; auto</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="abeae47ce354d27e68e00db64b75e39ff">
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#abeae47ce354d27e68e00db64b75e39ff" class="m-doc-self">operator[]</a>(</span><span class="m-doc-wrap">const T&amp; key) -&gt; auto &amp; -&gt; auto</span>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -89,8 +123,8 @@
         <section id="pub-attribs">
           <h2><a href="#pub-attribs">Public variables</a></h2>
           <dl class="m-doc">
-            <dt id="a5facdf6bad889b207efe0d39aa07079e">
-              Cursor <a href="#a5facdf6bad889b207efe0d39aa07079e" class="m-doc-self">p</a>
+            <dt id="ad284dc1488458cf4041d461be7fec102">
+              Atlas&amp; <a href="#ad284dc1488458cf4041d461be7fec102" class="m-doc-self">_atlas</a>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -139,7 +173,7 @@
   <div class="m-container">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <p>XNetwork. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+        <p>XNetwork. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.7 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
       </div>
     </div>
   </div>

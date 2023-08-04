@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>xnetwork::NodeView class | XNetwork</title>
+  <title>xnetwork::XNetworkError struct | XNetwork</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,59 +49,36 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="reportviews_8hpp.html">&lt;xnetwork/classes/reportviews.hpp&gt;</a></div>
-          <div class="m-doc-template">template&lt;typename nodeview_t&gt;</div>
-          <span class="m-breadcrumb"><a href="namespacexnetwork.html">xnetwork</a>::<wbr/></span>NodeView <span class="m-thin">class</span>
+          <span class="m-breadcrumb"><a href="namespacexnetwork.html">xnetwork</a>::<wbr/></span>XNetworkError <span class="m-thin">struct</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="exception_8hpp.html">&lt;xnetwork/exception.hpp&gt;</a></div>
         </h1>
         <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
-            <li><a href="#autotoc_md82">Parameters</a></li>
-            <li><a href="#autotoc_md83">Examples</a></li>
             <li>
               Reference
               <ul>
+                <li><a href="#base-classes">Base classes</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
-                <li><a href="#pub-methods">Public functions</a></li>
               </ul>
             </li>
           </ul>
         </nav>
-<p>A <a href="classxnetwork_1_1NodeView.html" class="m-doc">NodeView</a> class to act as gra.nodes for a <a href="classxnetwork_1_1XNetwork.html" class="m-doc">XNetwork</a> <a href="classxnetwork_1_1Graph.html" class="m-doc">Graph</a> Set operations act on the nodes without considering data. Iteration is over nodes. Node data can be looked up like a dict. Use NodeDataView to iterate over node data or to specify a data attribute for lookup. NodeDataView is created by calling the <a href="classxnetwork_1_1NodeView.html" class="m-doc">NodeView</a>.</p><section id="autotoc_md82"><h3><a href="#autotoc_md82">Parameters</a></h3><p>graph : <a href="classxnetwork_1_1XNetwork.html" class="m-doc">XNetwork</a> graph-like class</p></section><section id="autotoc_md83"><h3><a href="#autotoc_md83">Examples</a></h3><p>&gt; gra = xnetwork::path_graph(3); &gt; NV = gra.nodes(); &gt; 2 : NV true &gt; for n : NV: print(n); 0 1 2 &gt; assert(NV &amp; {1, 2, 3} == {1, 2}); &gt; gra.add_node(2, color=&quot;blue&quot;); &gt; NV[2]; {&quot;color&quot;: &quot;blue&quot;} &gt; gra.add_node(8, color=&quot;red&quot;); &gt; NDV = gra.nodes(data=true); &gt; (2, NV[2]] : NDV true &gt; for n, dd : NDV: print((n, dd.get(&quot;color&quot;, &quot;aqua&quot;))); (0, &quot;aqua&quot;); (1, &quot;aqua&quot;); (2, &quot;blue&quot;); (8, &quot;red&quot;); &gt; NDV[2] == NV[2]; true &gt; NVdata = gra.nodes(data=&quot;color&quot;, default=&quot;aqua&quot;); &gt; (2, NVdata[2]] : NVdata true &gt; for n, dd : NVdata: print((n, dd)); (0, &quot;aqua&quot;); (1, &quot;aqua&quot;); (2, &quot;blue&quot;); (8, &quot;red&quot;); &gt; NVdata[2] == NV[2]; // NVdata gets &quot;color&quot;, NV gets datadict false</p></section>
+<p>Exception for a serious error : <a href="classxnetwork_1_1_x_network.html" class="m-doc">XNetwork</a></p>
+        <section id="base-classes">
+          <h2><a href="#base-classes">Base classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              struct <a href="structxnetwork_1_1_x_network_exception.html" class="m-doc">XNetworkException</a>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="afd2836a86649b211db7351ad9343f9ee">
-              <span class="m-doc-wrap-bumper"><a href="#afd2836a86649b211db7351ad9343f9ee" class="m-doc-self">NodeView</a>(</span><span class="m-doc-wrap">nodeview_t&amp; nodes) <span class="m-label m-flat m-info">explicit</span> </span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="pub-methods">
-          <h2><a href="#pub-methods">Public functions</a></h2>
-          <dl class="m-doc">
-            <dt id="a0552b819452e53861e13ac3932835782">
-              <span class="m-doc-wrap-bumper">auto <a href="#a0552b819452e53861e13ac3932835782" class="m-doc-self">size</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a37d3f6b2bcfb2ec71a9eb5356e60c8f4">
-              <span class="m-doc-wrap-bumper">auto <a href="#a37d3f6b2bcfb2ec71a9eb5356e60c8f4" class="m-doc-self">begin</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ad79f27609494adbcedcedf511e02d9d2">
-              <span class="m-doc-wrap-bumper">auto <a href="#ad79f27609494adbcedcedf511e02d9d2" class="m-doc-self">end</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a562e2434f004200b44ba3833bef9f9bc">
-              <span class="m-doc-wrap-bumper">auto <a href="#a562e2434f004200b44ba3833bef9f9bc" class="m-doc-self">operator[]</a>(</span><span class="m-doc-wrap">const Node&amp; n) const -&gt; const auto &amp; -&gt; auto</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a979c8d7bb82697e9ef6645e5a119a967">
-              <span class="m-doc-wrap-bumper">auto <a href="#a979c8d7bb82697e9ef6645e5a119a967" class="m-doc-self">operator[]</a>(</span><span class="m-doc-wrap">const Node&amp; n) -&gt; auto &amp; -&gt; auto</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a0b426c05e48dabc364973838b9fd7456">
-              <span class="m-doc-wrap-bumper">auto <a href="#a0b426c05e48dabc364973838b9fd7456" class="m-doc-self">contains</a>(</span><span class="m-doc-wrap">const Node&amp; n) -&gt; bool -&gt; auto</span>
+            <dt id="aff65fc8693b272107cae6cd04a971a1c">
+              <span class="m-doc-wrap-bumper"><a href="#aff65fc8693b272107cae6cd04a971a1c" class="m-doc-self">XNetworkError</a>(</span><span class="m-doc-wrap">std::string_view msg) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -150,7 +127,7 @@
   <div class="m-container">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <p>XNetwork. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+        <p>XNetwork. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.7 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
       </div>
     </div>
   </div>

@@ -54,11 +54,11 @@
         <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
-            <li><a href="#autotoc_md77">NodeView</a></li>
-            <li><a href="#autotoc_md78">NodeDataView</a></li>
-            <li><a href="#autotoc_md79">DegreeView</a></li>
-            <li><a href="#autotoc_md80">EdgeView</a></li>
-            <li><a href="#autotoc_md81">EdgeDataView</a></li>
+            <li><a href="#autotoc_md80">NodeView</a></li>
+            <li><a href="#autotoc_md81">NodeDataView</a></li>
+            <li><a href="#autotoc_md82">DegreeView</a></li>
+            <li><a href="#autotoc_md83">EdgeView</a></li>
+            <li><a href="#autotoc_md84">EdgeDataView</a></li>
             <li>
               Reference
               <ul>
@@ -69,17 +69,17 @@
             </li>
           </ul>
         </nav>
-<p>View Classes provide node, edge and degree &quot;views&quot; of a graph.</p><p>Views for nodes, edges and degree are provided for all base graph classes. A view means a read-only object that is quick to create, automatically updated when the graph changes, and provides basic access like <code>n : V</code>, <code>for n : V</code>, <code>V[n]</code> and sometimes set operations.</p><p>The views are read-only iterable containers that are updated as the graph is updated. As with dicts, the graph should not be updated while (iterating through the view. Views can be iterated multiple times.</p><p>Edge and Node views also allow data attribute lookup. The resulting attribute dict is writable as <code>gra.edges[3, 4][&quot;color&quot;]=&quot;red&quot;</code> Degree views allow lookup of degree values for single nodes. Weighted degree is supported with the <code>weight</code> argument.</p><section id="autotoc_md77"><h2><a href="#autotoc_md77">NodeView</a></h2><pre>`V = gra.nodes` (or `V = gra.nodes()`) allows `len(V)`, `n : V`, set
+<p>View Classes provide node, edge and degree &quot;views&quot; of a graph.</p><p>Views for nodes, edges and degree are provided for all base graph classes. A view means a read-only object that is quick to create, automatically updated when the graph changes, and provides basic access like <code>n : V</code>, <code>for n : V</code>, <code>V[n]</code> and sometimes set operations.</p><p>The views are read-only iterable containers that are updated as the graph is updated. As with dicts, the graph should not be updated while (iterating through the view. Views can be iterated multiple times.</p><p>Edge and Node views also allow data attribute lookup. The resulting attribute dict is writable as <code>gra.edges[3, 4][&quot;color&quot;]=&quot;red&quot;</code> Degree views allow lookup of degree values for single nodes. Weighted degree is supported with the <code>weight</code> argument.</p><section id="autotoc_md80"><h2><a href="#autotoc_md80">NodeView</a></h2><pre>`V = gra.nodes` (or `V = gra.nodes()`) allows `len(V)`, `n : V`, set
 operations e.g. &quot;gra.nodes &amp; H.nodes&quot;, and `dd = gra.nodes[n]`, where
 `dd` is the node data dict. Iteration is over the nodes by default.
-</pre></section><section id="autotoc_md78"><h2><a href="#autotoc_md78">NodeDataView</a></h2><pre>To iterate over (node, data) pairs, use arguments to `gra.nodes()`
+</pre></section><section id="autotoc_md81"><h2><a href="#autotoc_md81">NodeDataView</a></h2><pre>To iterate over (node, data) pairs, use arguments to `gra.nodes()`
 to create a DataView e.g. `DV = gra.nodes(data=&quot;color&quot;, default=&quot;red&quot;)`.
 The DataView iterates as `for n, color : DV` and allows
 `(n, &quot;red&quot;] : DV`. Using `DV = gra.nodes(data=true)`, the DataViews
 use the full datadict : writeable form also allowing contain testing as
 `(n, {&quot;color&quot;: &quot;red&quot;}] : VD`. DataViews allow set operations when
 data attributes are hashable.
-</pre></section><section id="autotoc_md79"><h2><a href="#autotoc_md79">DegreeView</a></h2><pre>`V = gra.degree` allows iteration over (node, degree) pairs as well
+</pre></section><section id="autotoc_md82"><h2><a href="#autotoc_md82">DegreeView</a></h2><pre>`V = gra.degree` allows iteration over (node, degree) pairs as well
 as lookup: `deg=V[n]`. There are many flavors of DegreeView
 for In/Out/Directed/Multi. For Directed Graphs, `gra.degree`
 counts both : and out going edges. `gra.out_degree` &amp;&amp;
@@ -91,7 +91,7 @@ No set operations are implemented for degrees, use NodeView.
 
 The argument `nbunch` restricts iteration to nodes : nbunch.
 The DegreeView can still lookup any node even if (nbunch is specified.
-</pre></section><section id="autotoc_md80"><h2><a href="#autotoc_md80">EdgeView</a></h2><pre>`V = gra.edges` or `V = gra.edges()` allows iteration over edges as well as
+</pre></section><section id="autotoc_md83"><h2><a href="#autotoc_md83">EdgeView</a></h2><pre>`V = gra.edges` or `V = gra.edges()` allows iteration over edges as well as
 `e : V`, set operations and edge data lookup `dd = gra.edges[2, 3]`.
 Iteration is over 2-tuples `(u, v)` for Graph/DiGraph. For multigraphs
 edges 3-tuples `(u, v, key)` are the default but 2-tuples can be obtained
@@ -103,7 +103,7 @@ So long as the set being compared to contains unique representations
 of its edges, the set operations will act as expected. If the other
 set contains both `(0, 1)` and `(1, 0)` however, the result of set
 operations may contain both representations of the same edge.
-</pre></section><section id="autotoc_md81"><h2><a href="#autotoc_md81">EdgeDataView</a></h2><pre>Edge data can be reported using an EdgeDataView typically created
+</pre></section><section id="autotoc_md84"><h2><a href="#autotoc_md84">EdgeDataView</a></h2><pre>Edge data can be reported using an EdgeDataView typically created
 by calling an EdgeView: `DV = gra.edges(data=&quot;weight&quot;, default=1)`.
 The EdgeDataView allows iteration over edge tuples, membership checking
 but no set operations.
@@ -116,81 +116,81 @@ For Multigraphs, if (`keys is true`, replace `u, v` with `u, v, key`
 to create 3-tuples and 4-tuples.
 
 The argument `nbunch` restricts edges to those incident to nodes : nbunch.
-</pre><p>Exceptions</p><p>Base exceptions and errors for <a href="classxnetwork_1_1XNetwork.html" class="m-doc">XNetwork</a>.</p></section>
+</pre><p>Exceptions</p><p>Base exceptions and errors for <a href="classxnetwork_1_1_x_network.html" class="m-doc">XNetwork</a>.</p></section>
         <section id="nested-classes">
           <h2><a href="#nested-classes">Classes</a></h2>
           <dl class="m-doc">
             <dt>
-              <div class="m-doc-template">template&lt;typename <a href="classxnetwork_1_1Graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a>, typename adjlist_t = py::dict&lt;<a href="graph_8hpp.html#aa9102c191b3e4d99b904a4860739563c" class="m-doc">Value_<wbr />type</a>&lt;<a href="classxnetwork_1_1Graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a>&gt;, int&gt;, typename adjlist_outer_dict_factory = py::dict&lt;<a href="graph_8hpp.html#aa9102c191b3e4d99b904a4860739563c" class="m-doc">Value_<wbr />type</a>&lt;<a href="classxnetwork_1_1Graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a>&gt;, adjlist_t&gt;&gt;</div>
-              class <a href="classxnetwork_1_1DiGraphS.html" class="m-doc">DiGraphS</a>
+              struct <a href="structxnetwork_1_1_ambiguous_solution.html" class="m-doc">AmbiguousSolution</a>
+            </dt>
+            <dd></dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename <a href="classxnetwork_1_1_graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a>, typename adjlist_t = py::dict&lt;<a href="graph_8hpp.html#aa9102c191b3e4d99b904a4860739563c" class="m-doc">Value_<wbr />type</a>&lt;<a href="classxnetwork_1_1_graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a>&gt;, int&gt;, typename adjlist_outer_dict_factory = py::dict&lt;<a href="graph_8hpp.html#aa9102c191b3e4d99b904a4860739563c" class="m-doc">Value_<wbr />type</a>&lt;<a href="classxnetwork_1_1_graph.html#a58c462cdc08b49a497345155a65bc627" class="m-doc">nodeview_<wbr />t</a>&gt;, adjlist_t&gt;&gt;</div>
+              class <a href="classxnetwork_1_1_di_graph_s.html" class="m-doc">DiGraphS</a>
+            </dt>
+            <dd></dd>
+            <dt>
+              struct <a href="structxnetwork_1_1_exceeded_max_iterations.html" class="m-doc">ExceededMaxIterations</a>
             </dt>
             <dd></dd>
             <dt>
               <div class="m-doc-template">template&lt;typename _nodeview_t, typename adjlist_t = py::set&lt;<a href="graph_8hpp.html#aa9102c191b3e4d99b904a4860739563c" class="m-doc">Value_<wbr />type</a>&lt;_nodeview_t&gt;&gt;, typename adjlist_outer_dict_factory = py::dict&lt;<a href="graph_8hpp.html#aa9102c191b3e4d99b904a4860739563c" class="m-doc">Value_<wbr />type</a>&lt;_nodeview_t&gt;, adjlist_t&gt;&gt;</div>
-              class <a href="classxnetwork_1_1Graph.html" class="m-doc">Graph</a>
+              class <a href="classxnetwork_1_1_graph.html" class="m-doc">Graph</a>
+            </dt>
+            <dd></dd>
+            <dt>
+              struct <a href="structxnetwork_1_1_has_a_cycle.html" class="m-doc">HasACycle</a>
+            </dt>
+            <dd></dd>
+            <dt>
+              struct <a href="structxnetwork_1_1_node_not_found.html" class="m-doc">NodeNotFound</a>
             </dt>
             <dd></dd>
             <dt>
               <div class="m-doc-template">template&lt;typename nodeview_t&gt;</div>
-              class <a href="classxnetwork_1_1NodeView.html" class="m-doc">NodeView</a>
+              class <a href="classxnetwork_1_1_node_view.html" class="m-doc">NodeView</a>
             </dt>
             <dd></dd>
             <dt>
-              struct <a href="structxnetwork_1_1XNetworkException.html" class="m-doc">XNetworkException</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              struct <a href="structxnetwork_1_1XNetworkError.html" class="m-doc">XNetworkError</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              struct <a href="structxnetwork_1_1XNetworkPointlessConcept.html" class="m-doc">XNetworkPointlessConcept</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              struct <a href="structxnetwork_1_1XNetworkAlgorithmError.html" class="m-doc">XNetworkAlgorithmError</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              struct <a href="structxnetwork_1_1XNetworkUnfeasible.html" class="m-doc">XNetworkUnfeasible</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              struct <a href="structxnetwork_1_1XNetworkNoPath.html" class="m-doc">XNetworkNoPath</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              struct <a href="structxnetwork_1_1XNetworkNoCycle.html" class="m-doc">XNetworkNoCycle</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              struct <a href="structxnetwork_1_1HasACycle.html" class="m-doc">HasACycle</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              struct <a href="structxnetwork_1_1XNetworkUnbounded.html" class="m-doc">XNetworkUnbounded</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              struct <a href="structxnetwork_1_1XNetworkNotImplemented.html" class="m-doc">XNetworkNotImplemented</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              struct <a href="structxnetwork_1_1NodeNotFound.html" class="m-doc">NodeNotFound</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              struct <a href="structxnetwork_1_1AmbiguousSolution.html" class="m-doc">AmbiguousSolution</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              struct <a href="structxnetwork_1_1ExceededMaxIterations.html" class="m-doc">ExceededMaxIterations</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              class <a href="classxnetwork_1_1XNetwork.html" class="m-doc">XNetwork</a>
+              class <a href="classxnetwork_1_1_x_network.html" class="m-doc">XNetwork</a>
             </dt>
             <dd>A class for saying hello in multiple languages.</dd>
+            <dt>
+              struct <a href="structxnetwork_1_1_x_network_algorithm_error.html" class="m-doc">XNetworkAlgorithmError</a>
+            </dt>
+            <dd></dd>
+            <dt>
+              struct <a href="structxnetwork_1_1_x_network_error.html" class="m-doc">XNetworkError</a>
+            </dt>
+            <dd></dd>
+            <dt>
+              struct <a href="structxnetwork_1_1_x_network_exception.html" class="m-doc">XNetworkException</a>
+            </dt>
+            <dd></dd>
+            <dt>
+              struct <a href="structxnetwork_1_1_x_network_no_cycle.html" class="m-doc">XNetworkNoCycle</a>
+            </dt>
+            <dd></dd>
+            <dt>
+              struct <a href="structxnetwork_1_1_x_network_no_path.html" class="m-doc">XNetworkNoPath</a>
+            </dt>
+            <dd></dd>
+            <dt>
+              struct <a href="structxnetwork_1_1_x_network_not_implemented.html" class="m-doc">XNetworkNotImplemented</a>
+            </dt>
+            <dd></dd>
+            <dt>
+              struct <a href="structxnetwork_1_1_x_network_pointless_concept.html" class="m-doc">XNetworkPointlessConcept</a>
+            </dt>
+            <dd></dd>
+            <dt>
+              struct <a href="structxnetwork_1_1_x_network_unbounded.html" class="m-doc">XNetworkUnbounded</a>
+            </dt>
+            <dd></dd>
+            <dt>
+              struct <a href="structxnetwork_1_1_x_network_unfeasible.html" class="m-doc">XNetworkUnfeasible</a>
+            </dt>
+            <dd></dd>
           </dl>
         </section>
         <section id="enum-members">
@@ -209,11 +209,11 @@ The argument `nbunch` restricts edges to those incident to nodes : nbunch.
           <h2><a href="#typedef-members">Typedefs</a></h2>
           <dl class="m-doc">
             <dt>
-              using <a href="#a3cadaf8568c8e1c06b47e2ea4575bf47" class="m-doc">SimpleDiGraphS</a> = <a href="classxnetwork_1_1DiGraphS.html" class="m-doc">DiGraphS</a>&lt;decltype(py::range&lt;uint32_t&gt;(uint32_t{})), py::dict&lt;uint32_t, int&gt;, std::vector&lt;py::dict&lt;uint32_t, int&gt;&gt;&gt;
+              using <a href="#a3cadaf8568c8e1c06b47e2ea4575bf47" class="m-doc">SimpleDiGraphS</a> = <a href="classxnetwork_1_1_di_graph_s.html" class="m-doc">DiGraphS</a>&lt;decltype(py::range&lt;uint32_t&gt;(uint32_t{})), py::dict&lt;uint32_t, int&gt;, std::vector&lt;py::dict&lt;uint32_t, int&gt;&gt;&gt;
             </dt>
             <dd><span></span></dd>
             <dt>
-              using <a href="#a704122a757267692f20523d09de137d1" class="m-doc">SimpleGraph</a> = <a href="classxnetwork_1_1Graph.html" class="m-doc">Graph</a>&lt;decltype(py::range&lt;uint32_t&gt;(uint32_t{})), py::set&lt;uint32_t&gt;, std::vector&lt;py::set&lt;uint32_t&gt;&gt;&gt;
+              using <a href="#a704122a757267692f20523d09de137d1" class="m-doc">SimpleGraph</a> = <a href="classxnetwork_1_1_graph.html" class="m-doc">Graph</a>&lt;decltype(py::range&lt;uint32_t&gt;(uint32_t{})), py::set&lt;uint32_t&gt;, std::vector&lt;py::set&lt;uint32_t&gt;&gt;&gt;
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -225,21 +225,21 @@ The argument `nbunch` restricts edges to those incident to nodes : nbunch.
               enum class xnetwork::<wbr /><a href="#a6f7dc0186dc3c5390bca427b40b19fdd" class="m-doc-self">LanguageCode</a>
               <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="greeter_8h.html">&lt;xnetwork/greeter.h&gt;</a></div>
             </h3>
-<p>Language codes to be used with the <a href="classxnetwork_1_1XNetwork.html" class="m-doc">XNetwork</a> class</p>
+<p>Language codes to be used with the <a href="classxnetwork_1_1_x_network.html" class="m-doc">XNetwork</a> class</p>
           </div></section>
         </section>
         <section>
           <h2>Typedef documentation</h2>
           <section class="m-doc-details" id="a3cadaf8568c8e1c06b47e2ea4575bf47"><div>
             <h3>
-              using xnetwork::<wbr /><a href="#a3cadaf8568c8e1c06b47e2ea4575bf47" class="m-doc-self">SimpleDiGraphS</a> = <a href="classxnetwork_1_1DiGraphS.html" class="m-doc">DiGraphS</a>&lt;decltype(py::range&lt;uint32_t&gt;(uint32_t{})), py::dict&lt;uint32_t, int&gt;, std::vector&lt;py::dict&lt;uint32_t, int&gt;&gt;&gt;
+              using xnetwork::<wbr /><a href="#a3cadaf8568c8e1c06b47e2ea4575bf47" class="m-doc-self">SimpleDiGraphS</a> = <a href="classxnetwork_1_1_di_graph_s.html" class="m-doc">DiGraphS</a>&lt;decltype(py::range&lt;uint32_t&gt;(uint32_t{})), py::dict&lt;uint32_t, int&gt;, std::vector&lt;py::dict&lt;uint32_t, int&gt;&gt;&gt;
               <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="digraphs_8hpp.html">&lt;xnetwork/classes/digraphs.hpp&gt;</a></div>
             </h3>
             <p><span></span></p>
           </div></section>
           <section class="m-doc-details" id="a704122a757267692f20523d09de137d1"><div>
             <h3>
-              using xnetwork::<wbr /><a href="#a704122a757267692f20523d09de137d1" class="m-doc-self">SimpleGraph</a> = <a href="classxnetwork_1_1Graph.html" class="m-doc">Graph</a>&lt;decltype(py::range&lt;uint32_t&gt;(uint32_t{})), py::set&lt;uint32_t&gt;, std::vector&lt;py::set&lt;uint32_t&gt;&gt;&gt;
+              using xnetwork::<wbr /><a href="#a704122a757267692f20523d09de137d1" class="m-doc-self">SimpleGraph</a> = <a href="classxnetwork_1_1_graph.html" class="m-doc">Graph</a>&lt;decltype(py::range&lt;uint32_t&gt;(uint32_t{})), py::set&lt;uint32_t&gt;, std::vector&lt;py::set&lt;uint32_t&gt;&gt;&gt;
               <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="graph_8hpp.html">&lt;xnetwork/classes/graph.hpp&gt;</a></div>
             </h3>
             <p><span></span></p>
@@ -289,7 +289,7 @@ The argument `nbunch` restricts edges to those incident to nodes : nbunch.
   <div class="m-container">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <p>XNetwork. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+        <p>XNetwork. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.7 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
       </div>
     </div>
   </div>

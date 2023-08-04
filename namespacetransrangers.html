@@ -76,8 +76,7 @@
           <h2><a href="#nested-classes">Classes</a></h2>
           <dl class="m-doc">
             <dt>
-              <div class="m-doc-template">template&lt;typename Cursor, typename F&gt;</div>
-              struct <a href="structtransrangers_1_1ranger__class.html" class="m-doc">ranger_class</a>
+              struct <a href="structtransrangers_1_1all__adaption.html" class="m-doc">all_adaption</a>
             </dt>
             <dd><span></span></dd>
             <dt>
@@ -92,7 +91,7 @@
             <dd><span></span></dd>
             <dt>
               <div class="m-doc-template">template&lt;typename Cursor, typename F&gt;</div>
-              struct <a href="structtransrangers_1_1deref__fun_3_01Cursor_00_01F_00_01typename_01std_1_1enable__if_3_01std_1_1942d4bea28449611b1003648612d3128.html" class="m-doc">deref_fun&lt;Cursor, F, typename std::enable_if&lt;std::is_trivially_default_constructible&lt;F&gt;::value &amp;&amp; std::is_empty&lt;F&gt;::value&gt;::type&gt;</a>
+              struct <a href="structtransrangers_1_1deref__fun_3_01_cursor_00_01_f_00_01typename_01std_1_1enable__if_3_01std_1d8f111657eb82e8e94d0ceecb1c74d81.html" class="m-doc">deref_fun&lt;Cursor, F, typename std::enable_if&lt;std::is_trivially_default_constructible&lt;F&gt;::value &amp;&amp; std::is_empty&lt;F&gt;::value&gt;::type&gt;</a>
             </dt>
             <dd><span></span></dd>
             <dt>
@@ -100,12 +99,13 @@
             </dt>
             <dd><span></span></dd>
             <dt>
-              struct <a href="structtransrangers_1_1all__adaption.html" class="m-doc">all_adaption</a>
+              <div class="m-doc-template">template&lt;typename Cursor, typename F&gt;</div>
+              struct <a href="structtransrangers_1_1ranger__class.html" class="m-doc">ranger_class</a>
             </dt>
             <dd><span></span></dd>
             <dt>
-              <div class="m-doc-template">template&lt;typename... Rangers&gt;</div>
-              struct <a href="structtransrangers_1_1zip__cursor.html" class="m-doc">zip_cursor</a>
+              <div class="m-doc-template">template&lt;typename Range&gt;</div>
+              struct <a href="structtransrangers_1_1skip__both__copy.html" class="m-doc">skip_both_copy</a>
             </dt>
             <dd><span></span></dd>
             <dt>
@@ -119,8 +119,8 @@
             </dt>
             <dd><span></span></dd>
             <dt>
-              <div class="m-doc-template">template&lt;typename Range&gt;</div>
-              struct <a href="structtransrangers_1_1skip__both__copy.html" class="m-doc">skip_both_copy</a>
+              <div class="m-doc-template">template&lt;typename... Rangers&gt;</div>
+              struct <a href="structtransrangers_1_1zip__cursor.html" class="m-doc">zip_cursor</a>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -150,7 +150,7 @@
             <dd><span></span></dd>
             <dt>
               <div class="m-doc-template">template&lt;typename Range&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#a9e28aa0d5204ebea09649c9ba2d8fad7" class="m-doc">all</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng) -&gt; std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1all__copy.html" class="m-doc">all_<wbr />copy</a>&lt;Range&gt;&gt;::type</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a8015cf25fea784e399390230e6ceb304" class="m-doc">all</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng) -&gt; std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1all__copy.html" class="m-doc">all_<wbr />copy</a>&lt;Range&gt;&gt;::type</span>
             </dt>
             <dd><span></span></dd>
             <dt>
@@ -221,7 +221,7 @@
             <dd><span></span></dd>
             <dt>
               <div class="m-doc-template">template&lt;typename Range&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#aeab638c350bd7cd848f2cbc58f7ed676" class="m-doc">skip_first</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng) -&gt; std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1skip__first__copy.html" class="m-doc">skip_<wbr />first_<wbr />copy</a>&lt;Range&gt;&gt;::type</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3f6bcd6a9d50722e7df279a3eed3c997" class="m-doc">skip_first</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng) -&gt; std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1skip__first__copy.html" class="m-doc">skip_<wbr />first_<wbr />copy</a>&lt;Range&gt;&gt;::type</span>
             </dt>
             <dd><span></span></dd>
             <dt>
@@ -231,7 +231,7 @@
             <dd><span></span></dd>
             <dt>
               <div class="m-doc-template">template&lt;typename Range&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#a9f73f4dbfd13e8e407e72bd452a5931c" class="m-doc">skip_last</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng) -&gt; std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1skip__last__copy.html" class="m-doc">skip_<wbr />last_<wbr />copy</a>&lt;Range&gt;&gt;::type</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#aced62a4fc461dd573242b16576bc17de" class="m-doc">skip_last</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng) -&gt; std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1skip__last__copy.html" class="m-doc">skip_<wbr />last_<wbr />copy</a>&lt;Range&gt;&gt;::type</span>
             </dt>
             <dd><span></span></dd>
             <dt>
@@ -241,7 +241,7 @@
             <dd><span></span></dd>
             <dt>
               <div class="m-doc-template">template&lt;typename Range&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#a9e75c7957eb87a66c501554a51626c2e" class="m-doc">skip_both</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng) -&gt; std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1skip__both__copy.html" class="m-doc">skip_<wbr />both_<wbr />copy</a>&lt;Range&gt;&gt;::type</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a089dbf327d1541b5330031b39ab66910" class="m-doc">skip_both</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng) -&gt; std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1skip__both__copy.html" class="m-doc">skip_<wbr />both_<wbr />copy</a>&lt;Range&gt;&gt;::type</span>
             </dt>
             <dd><span></span></dd>
             <dt>
@@ -299,13 +299,13 @@
             </h3>
             <p><span></span></p>
           </div></section>
-          <section class="m-doc-details" id="a9e28aa0d5204ebea09649c9ba2d8fad7"><div>
+          <section class="m-doc-details" id="a8015cf25fea784e399390230e6ceb304"><div>
             <h3>
               <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="transrangers_8hpp.html">&lt;transrangers.hpp&gt;</a></div>
               <div class="m-doc-template">
                 template&lt;typename Range&gt;
               </div>
-              <span class="m-doc-wrap-bumper">std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1all__copy.html" class="m-doc">all_<wbr />copy</a>&lt;Range&gt;&gt;::type transrangers::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9e28aa0d5204ebea09649c9ba2d8fad7" class="m-doc-self">all</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng)</span></span>
+              <span class="m-doc-wrap-bumper">std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1all__copy.html" class="m-doc">all_<wbr />copy</a>&lt;Range&gt;&gt;::type transrangers::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8015cf25fea784e399390230e6ceb304" class="m-doc-self">all</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng)</span></span>
             </h3>
             <p><span></span></p>
           </div></section>
@@ -435,13 +435,13 @@
             </h3>
             <p><span></span></p>
           </div></section>
-          <section class="m-doc-details" id="aeab638c350bd7cd848f2cbc58f7ed676"><div>
+          <section class="m-doc-details" id="a3f6bcd6a9d50722e7df279a3eed3c997"><div>
             <h3>
               <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="transrangers__ext_8hpp.html">&lt;transrangers_ext.hpp&gt;</a></div>
               <div class="m-doc-template">
                 template&lt;typename Range&gt;
               </div>
-              <span class="m-doc-wrap-bumper">std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1skip__first__copy.html" class="m-doc">skip_<wbr />first_<wbr />copy</a>&lt;Range&gt;&gt;::type transrangers::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aeab638c350bd7cd848f2cbc58f7ed676" class="m-doc-self">skip_first</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng)</span></span>
+              <span class="m-doc-wrap-bumper">std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1skip__first__copy.html" class="m-doc">skip_<wbr />first_<wbr />copy</a>&lt;Range&gt;&gt;::type transrangers::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3f6bcd6a9d50722e7df279a3eed3c997" class="m-doc-self">skip_first</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng)</span></span>
             </h3>
             <p><span></span></p>
           </div></section>
@@ -455,13 +455,13 @@
             </h3>
             <p><span></span></p>
           </div></section>
-          <section class="m-doc-details" id="a9f73f4dbfd13e8e407e72bd452a5931c"><div>
+          <section class="m-doc-details" id="aced62a4fc461dd573242b16576bc17de"><div>
             <h3>
               <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="transrangers__ext_8hpp.html">&lt;transrangers_ext.hpp&gt;</a></div>
               <div class="m-doc-template">
                 template&lt;typename Range&gt;
               </div>
-              <span class="m-doc-wrap-bumper">std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1skip__last__copy.html" class="m-doc">skip_<wbr />last_<wbr />copy</a>&lt;Range&gt;&gt;::type transrangers::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9f73f4dbfd13e8e407e72bd452a5931c" class="m-doc-self">skip_last</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng)</span></span>
+              <span class="m-doc-wrap-bumper">std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1skip__last__copy.html" class="m-doc">skip_<wbr />last_<wbr />copy</a>&lt;Range&gt;&gt;::type transrangers::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aced62a4fc461dd573242b16576bc17de" class="m-doc-self">skip_last</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng)</span></span>
             </h3>
             <p><span></span></p>
           </div></section>
@@ -475,13 +475,13 @@
             </h3>
             <p><span></span></p>
           </div></section>
-          <section class="m-doc-details" id="a9e75c7957eb87a66c501554a51626c2e"><div>
+          <section class="m-doc-details" id="a089dbf327d1541b5330031b39ab66910"><div>
             <h3>
               <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="transrangers__ext_8hpp.html">&lt;transrangers_ext.hpp&gt;</a></div>
               <div class="m-doc-template">
                 template&lt;typename Range&gt;
               </div>
-              <span class="m-doc-wrap-bumper">std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1skip__both__copy.html" class="m-doc">skip_<wbr />both_<wbr />copy</a>&lt;Range&gt;&gt;::type transrangers::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9e75c7957eb87a66c501554a51626c2e" class="m-doc-self">skip_both</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng)</span></span>
+              <span class="m-doc-wrap-bumper">std::enable_if&lt;std::is_rvalue_reference&lt;Range &amp;&amp; &gt;::value, <a href="structtransrangers_1_1skip__both__copy.html" class="m-doc">skip_<wbr />both_<wbr />copy</a>&lt;Range&gt;&gt;::type transrangers::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a089dbf327d1541b5330031b39ab66910" class="m-doc-self">skip_both</a>(</span><span class="m-doc-wrap">Range&amp;&amp; rng)</span></span>
             </h3>
             <p><span></span></p>
           </div></section>
@@ -551,7 +551,7 @@
   <div class="m-container">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <p>XNetwork. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+        <p>XNetwork. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.7 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
       </div>
     </div>
   </div>
