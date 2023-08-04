@@ -19,9 +19,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: "**/cpm_modules"
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
@@ -31,10 +31,6 @@ jobs:
           sudo apt-get install g++-10
           sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 90
 
-      # - name: Install dependencies
-      #   run: |
-      #     sudo apt-get install libboost-dev
-
       - name: build and install library
         run: |
           cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release
@@ -42,10 +38,12 @@ jobs:
           rm -rf build
 
       - name: configure
-        run: cmake -Stest_installed -Bbuild
+        run: cmake -Stest -Bbuild -DTEST_INSTALLED_VERSION=1
 
       - name: build
         run: cmake --build build --config Debug -j4
 
-      - name: run
-        run: ./build/test_installed/XNetwork
+      - name: test
+        run: |
+          cd build
+          ctest --build-config Debug

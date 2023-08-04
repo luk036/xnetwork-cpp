@@ -1,13 +1,19 @@
+cmake_minimum_required(VERSION 3.14...3.22)
+
+project(XNetworkDocs)
+
 # ---- Dependencies ----
 
-# CPMAddPackage("gh:mosra/m.css#42d4a9a48f31f5df6e246c948403b54b50574a2a")
-CPMAddPackage("gh:mosra/m.css#c7ee89e74cf96323b7bf14d4c7535b6867d57868")
+include(../cmake/CPM.cmake)
+
+CPMAddPackage("gh:mosra/m.css#a0d292ec311b97fefd21e93cdefb60f88d19ede6")
+CPMAddPackage(NAME XNetwork SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 
 # ---- Doxygen variables ----
 
 # set Doxyfile variables
-set(DOXYGEN_PROJECT_NAME ${PROJECT_NAME})
-set(DOXYGEN_PROJECT_VERSION ${PROJECT_VERSION})
+set(DOXYGEN_PROJECT_NAME XNetwork)
+set(DOXYGEN_PROJECT_VERSION ${XNetwork_VERSION})
 set(DOXYGEN_PROJECT_ROOT "${CMAKE_CURRENT_LIST_DIR}/..")
 set(DOXYGEN_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/doxygen")
 

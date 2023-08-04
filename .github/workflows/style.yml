@@ -15,27 +15,26 @@ env:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: "**/cpm_modules"
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
 
-      - name: Install format dependencies
+      - name: Before Install
         run: |
-          brew install clang-format
-          pip3 install cmake_format==0.6.11 pyyaml
+          sudo apt-get install g++-10
+          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 90
 
-      # - name: Install project dependencies
-      #   run: |
-      #     brew install boost
+      - name: Install format dependencies
+        run: pip3 install clang-format==14.0.6 cmake_format==0.6.11 pyyaml
 
       - name: configure
-        run: cmake -S. -Bbuild
+        run: cmake -Stest -Bbuild
 
       - name: check style
         run: cmake --build build --target check-format

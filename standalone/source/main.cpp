@@ -1,11 +1,10 @@
-#include <xnetwork/greeter.h> // for LanguageCode, LanguageCode::DE, Langua...
-#include <xnetwork/version.h> // for XNETWORK_VERSION
+#include <xnetwork/greeter.h>
+#include <xnetwork/version.h>
 
-#include <cxxopts.hpp>   // for value, OptionAdder, Options, OptionValue
-#include <iostream>      // for string, operator<<, endl, basic_ostream
-#include <memory>        // for shared_ptr
-#include <string>        // for char_traits, hash, operator==
-#include <unordered_map> // for operator==, unordered_map, __hash_map_...
+#include <cxxopts.hpp>
+#include <iostream>
+#include <string>
+#include <unordered_map>
 
 auto main(int argc, char **argv) -> int {
     const std::unordered_map<std::string, xnetwork::LanguageCode> languages{

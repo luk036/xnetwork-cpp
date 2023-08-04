@@ -2,6 +2,7 @@
 /.vscode
 /cpm_modules
 /.cache
-/.trunk
 /.xmake
+/.trunk
+compile_commands.json
 .DS_Store

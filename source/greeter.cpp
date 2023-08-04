@@ -1,5 +1,5 @@
-#include <fmt/format.h>
 #include <xnetwork/greeter.h>
+#include <fmt/format.h>
 
 using namespace xnetwork;
 
