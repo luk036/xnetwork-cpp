@@ -1,9 +1,9 @@
 // -*- coding: utf-8 -*-
-#include <doctest/doctest.h> // for TestCase, ResultBuilder
+#include <doctest/doctest.h>  // for TestCase, ResultBuilder
 
-#include <array>                             // for array
-#include <xnetwork/classes/digraphs.hpp>     // for DiGraphS
-#include <xnetwork/generators/testcases.hpp> // for create_test_case1, crea...
+#include <array>                              // for array
+#include <xnetwork/classes/digraphs.hpp>      // for DiGraphS
+#include <xnetwork/generators/testcases.hpp>  // for create_test_case1, crea...
 
 /**
  * @brief

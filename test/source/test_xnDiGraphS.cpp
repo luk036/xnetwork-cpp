@@ -1,20 +1,18 @@
 // -*- coding: utf-8 -*-
-#include <doctest/doctest.h> // for ResultBuilder, TestCase, CHECK
+#include <doctest/doctest.h>  // for ResultBuilder, TestCase, CHECK
 
-#include <array>                         // for array
-#include <iosfwd>                        // for string
-#include <string>                        // for basic_string, operator==
-#include <utility>                       // for pair
-#include <vector>                        // for vector
-#include <xnetwork/classes/digraphs.hpp> // for DiGraphS
+#include <array>                          // for array
+#include <iosfwd>                         // for string
+#include <string>                         // for basic_string, operator==
+#include <utility>                        // for pair
+#include <vector>                         // for vector
+#include <xnetwork/classes/digraphs.hpp>  // for DiGraphS
 
-template <typename Container>
-inline auto create_test_case4(const Container &weights) {
+template <typename Container> inline auto create_test_case4(const Container &weights) {
     using Edge = std::pair<std::string, std::string>;
     std::vector<std::string> nodes = {"A", "B", "C", "D", "E"};
-    const auto edges =
-        std::array<Edge, 5>{Edge{"A", "B"}, Edge{"B", "C"}, Edge{"C", "D"},
-                            Edge{"D", "E"}, Edge{"E", "A"}};
+    const auto edges = std::array<Edge, 5>{Edge{"A", "B"}, Edge{"B", "C"}, Edge{"C", "D"},
+                                           Edge{"D", "E"}, Edge{"E", "A"}};
     // constexpr auto weights = std::array<int, 5> {-5, 1, 1, 1, 1};
 
     auto gra = xnetwork::DiGraphS<std::vector<std::string>>{nodes};

@@ -1,13 +1,13 @@
 // -*- coding: utf-8 -*-
-#include <doctest/doctest.h> // for ResultBuilder, TestCase, CHECK
+#include <doctest/doctest.h>  // for ResultBuilder, TestCase, CHECK
 
-#include <cstdint>                    // for uint8_t
-#include <py2cpp/dict.hpp>            // for dict<>::Base
-#include <py2cpp/set.hpp>             // for set
-#include <tuple>                      // for tuple_element<>::type
-#include <unordered_map>              // for operator!=
-#include <vector>                     // for vector
-#include <xnetwork/classes/graph.hpp> // for Graph, SimpleGraph
+#include <cstdint>                     // for uint8_t
+#include <py2cpp/dict.hpp>             // for dict<>::Base
+#include <py2cpp/set.hpp>              // for set
+#include <tuple>                       // for tuple_element<>::type
+#include <unordered_map>               // for operator!=
+#include <vector>                      // for vector
+#include <xnetwork/classes/graph.hpp>  // for Graph, SimpleGraph
 
 // #if __cplusplus > 201703L
 // #include <cppcoro/generator.hpp> // for operator!=, generator
