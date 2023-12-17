@@ -43,7 +43,8 @@ template <typename Graph> static void do_case(const Graph &gra) {
     // CHECK(gra.number_of_edges() == count2);
 
     auto deg = 0U;
-    for ([[maybe_unused]] auto _ : gra["B"]) {
+    for (auto _ : gra["B"]) {
+        static_assert(sizeof _ >= 0, "unused");
         ++deg;
     }
     CHECK_EQ(gra.degree("B"), deg);

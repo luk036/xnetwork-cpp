@@ -52,11 +52,11 @@ template <typename Atlas> class AtlasView {
 
     explicit AtlasView(Atlas &d) : _atlas{d} {}
 
-    [[nodiscard]] auto size() const -> size_t { return this->_atlas.size(); }
+    auto size() const -> size_t { return this->_atlas.size(); }
 
-    [[nodiscard]] auto begin() const { return std::begin(this->_atlas); }
+    auto begin() const { return std::begin(this->_atlas); }
 
-    [[nodiscard]] auto end() const { return std::end(this->_atlas); }
+    auto end() const { return std::end(this->_atlas); }
 
     template <typename T> auto operator[](const T &key) const -> const auto & {
         return this->_atlas.at(key);
