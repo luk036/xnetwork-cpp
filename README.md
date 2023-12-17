@@ -13,7 +13,7 @@
 
 This is a networkx inspired modern cpp project.
   
-## Features
+## ✨ Features
 
 - Header-only library
 - This library may depend on the Py2Cpp library
