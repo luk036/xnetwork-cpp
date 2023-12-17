@@ -54,11 +54,10 @@ auto hide_multiedges(edges) {
         alledges = set(edges) | {(v, u, k) for (auto u, v, k] : edges
         }
         return lambda u, v,
-               k : (u, v, k) not
-            : alledges
+               k : (u, v, k) not : alledges
 
-              // write show_nodes as a class to make SubGraph pickleable
-              class show_nodes : public object {
+                                   // write show_nodes as a class to make SubGraph pickleable
+                                   class show_nodes : public object {
             explicit _Self(nodes) {
                 this->nodes = set(nodes);
 

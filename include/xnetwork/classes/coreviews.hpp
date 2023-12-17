@@ -66,9 +66,7 @@ template <typename Atlas> class AtlasView {
         return this->_atlas.at(key);
     }
 
-    template <typename T> auto operator[](const T &key) -> auto & {
-        return this->_atlas[key];
-    }
+    template <typename T> auto operator[](const T &key) -> auto & { return this->_atlas[key]; }
 
     // auto copy( ) {
     //     return std::tuple{n: self[n].copy() for n : this->_atlas};
