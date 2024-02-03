@@ -9,7 +9,7 @@
  * @brief
  *
  * @tparam Graph
- * @param gra
+ * @param[in] gra
  */
 template <typename Graph> static void do_case(const Graph &gra) {
     auto count = 0U;

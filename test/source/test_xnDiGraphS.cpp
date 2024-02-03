@@ -24,7 +24,7 @@ template <typename Container> inline auto create_test_case4(const Container &wei
  * @brief
  *
  * @tparam Graph
- * @param gra
+ * @param[in] gra
  */
 template <typename Graph> static void do_case(const Graph &gra) {
     auto count = 0U;
