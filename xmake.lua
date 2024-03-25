@@ -2,7 +2,7 @@ set_languages("c++14")
 
 add_rules("mode.debug", "mode.release", "mode.coverage")
 add_requires("doctest", {alias = "doctest"})
-add_requires("fmt 7.1.3", {alias = "fmt"})
+add_requires("fmt 9.1.0", {alias = "fmt"})
 -- add_requires("benchmark", {alias = "benchmark"})
 
 if is_mode("coverage") then
@@ -12,6 +12,8 @@ end
 if is_plat("linux") then
     set_warnings("all", "error")
     add_cxflags("-Wconversion", {force = true})
+elseif is_plat("windows") then
+    add_cxflags("/EHsc /W4 /WX /wd4819 /wd4996", {force = true})
 end
 
 
