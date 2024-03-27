@@ -50,7 +50,7 @@
       <div class="m-col-l-10 m-push-l-1">
         <h1>
           <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="nx2bgl_8hpp.html">&lt;py2cpp-old/nx2bgl.hpp&gt;</a></div>
-          <div class="m-doc-template">template&lt;typename _Graph&gt;</div>
+          <div class="m-doc-template">template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> _Graph&gt;</div>
           <span class="m-breadcrumb"><a href="namespacepy.html">py</a>::<wbr/></span>GrAdaptor <span class="m-thin">class</span>
         </h1>
         <table class="m-table m-fullwidth m-flat">
@@ -83,7 +83,7 @@
           <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
             <dt>
-              <div class="m-doc-template">template&lt;typename Graph&gt;</div>
+              <div class="m-doc-template">template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> Graph&gt;</div>
               class <a href="classpy_1_1_vertex_view.html" class="m-doc">VertexView&lt;_Graph&gt;</a>
             </dt>
             <dd></dd>
@@ -93,7 +93,7 @@
           <h2><a href="#pub-types">Public types</a></h2>
           <dl class="m-doc">
             <dt id="a56be230880edada0a57e80290015262a">
-              using <a href="#a56be230880edada0a57e80290015262a" class="m-doc-self">Vertex</a> = typename boost::graph_traits&lt;_Graph&gt;::vertex_descriptor
+              using <a href="#a56be230880edada0a57e80290015262a" class="m-doc-self">Vertex</a> = <a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> boost::graph_traits&lt;_Graph&gt;::vertex_descriptor
             </dt>
             <dd><span></span></dd>
             <dt id="a9855d36321af67a8c5863ae7a659e409">
@@ -101,7 +101,7 @@
             </dt>
             <dd><span></span></dd>
             <dt id="a1d6a7d3bc3a3370be0e3ae2bb2f49edd">
-              using <a href="#a1d6a7d3bc3a3370be0e3ae2bb2f49edd" class="m-doc-self">edge_t</a> = typename boost::graph_traits&lt;_Graph&gt;::edge_descriptor
+              using <a href="#a1d6a7d3bc3a3370be0e3ae2bb2f49edd" class="m-doc-self">edge_t</a> = <a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> boost::graph_traits&lt;_Graph&gt;::edge_descriptor
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -110,7 +110,7 @@
           <h2><a href="#pub-static-methods">Public static functions</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper">static auto <a href="#a07c28617aac94663f243cb92dae5d1bd" class="m-doc">null_vertex</a>(</span><span class="m-doc-wrap">) -&gt; Vertex -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">static auto <a href="#a07c28617aac94663f243cb92dae5d1bd" class="m-doc">null_vertex</a>(</span><span class="m-doc-wrap">) -&gt; Vertex -&gt; <a href="classpy_1_1_edge_view.html" class="m-doc">auto</a></span>
             </dt>
             <dd></dd>
           </dl>
@@ -132,39 +132,39 @@
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
             <dt id="a95d701bac3563083e8abf90b695508de">
-              <span class="m-doc-wrap-bumper">auto <a href="#a95d701bac3563083e8abf90b695508de" class="m-doc-self">number_of_nodes</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a95d701bac3563083e8abf90b695508de" class="m-doc-self">number_of_nodes</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classpy_1_1_edge_view.html" class="m-doc">auto</a></span>
             </dt>
             <dd><span></span></dd>
             <dt id="aad50fe3d3e78a7b8049844a4f31083ce">
-              <span class="m-doc-wrap-bumper">auto <a href="#aad50fe3d3e78a7b8049844a4f31083ce" class="m-doc-self">number_of_edges</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#aad50fe3d3e78a7b8049844a4f31083ce" class="m-doc-self">number_of_edges</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classpy_1_1_edge_view.html" class="m-doc">auto</a></span>
             </dt>
             <dd><span></span></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ab8c41cf373094e79784a75b513505f08" class="m-doc">edges</a>(</span><span class="m-doc-wrap">) const -&gt; EdgeView&lt; _Graph &gt; -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#ab8c41cf373094e79784a75b513505f08" class="m-doc">edges</a>(</span><span class="m-doc-wrap">) const -&gt; EdgeView&lt; _Graph &gt; -&gt; <a href="classpy_1_1_edge_view.html" class="m-doc">auto</a></span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a875120f8395bb60b4f01c1370a9df6ee" class="m-doc">neighbors</a>(</span><span class="m-doc-wrap"><a href="classpy_1_1_gr_adaptor.html#a56be230880edada0a57e80290015262a" class="m-doc">Vertex</a> v) const -&gt; AtlasView&lt; Vertex, _Graph &gt; -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a875120f8395bb60b4f01c1370a9df6ee" class="m-doc">neighbors</a>(</span><span class="m-doc-wrap"><a href="classpy_1_1_gr_adaptor.html#a56be230880edada0a57e80290015262a" class="m-doc">Vertex</a> v) const -&gt; AtlasView&lt; Vertex, _Graph &gt; -&gt; <a href="classpy_1_1_edge_view.html" class="m-doc">auto</a></span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a2742d59858e7f03555864fda69a317c6" class="m-doc">add_edge</a>(</span><span class="m-doc-wrap">int u,
-              int v) -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a2742d59858e7f03555864fda69a317c6" class="m-doc">add_edge</a>(</span><span class="m-doc-wrap"><a href="classpy_1_1_edge_view.html" class="m-doc">int</a> u,
+              <a href="classpy_1_1_edge_view.html" class="m-doc">int</a> v) -&gt; <a href="classpy_1_1_edge_view.html" class="m-doc">auto</a></span>
             </dt>
             <dd></dd>
             <dt>
-              <div class="m-doc-template">template&lt;typename Edge&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#a115298237547a835222be55154ec8190" class="m-doc">source</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex -&gt; auto</span>
+              <div class="m-doc-template">template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> <a href="classpy_1_1_edge_view.html" class="m-doc">Edge</a>&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a115298237547a835222be55154ec8190" class="m-doc">source</a>(</span><span class="m-doc-wrap"><a href="classpy_1_1_edge_view.html" class="m-doc">const</a> <a href="classpy_1_1_edge_view.html" class="m-doc">Edge</a>&amp; e) const -&gt; Vertex -&gt; <a href="classpy_1_1_edge_view.html" class="m-doc">auto</a></span>
             </dt>
             <dd></dd>
             <dt>
-              <div class="m-doc-template">template&lt;typename Edge&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#ae1c34f94e1597427fdf49c4def69cdb2" class="m-doc">target</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex -&gt; auto</span>
+              <div class="m-doc-template">template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> <a href="classpy_1_1_edge_view.html" class="m-doc">Edge</a>&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#ae1c34f94e1597427fdf49c4def69cdb2" class="m-doc">target</a>(</span><span class="m-doc-wrap"><a href="classpy_1_1_edge_view.html" class="m-doc">const</a> <a href="classpy_1_1_edge_view.html" class="m-doc">Edge</a>&amp; e) const -&gt; Vertex -&gt; <a href="classpy_1_1_edge_view.html" class="m-doc">auto</a></span>
             </dt>
             <dd></dd>
             <dt>
-              <div class="m-doc-template">template&lt;typename Edge&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#a1c188d42a7e7e6c90d941686ea499461" class="m-doc">end_points</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; auto</span>
+              <div class="m-doc-template">template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> <a href="classpy_1_1_edge_view.html" class="m-doc">Edge</a>&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a1c188d42a7e7e6c90d941686ea499461" class="m-doc">end_points</a>(</span><span class="m-doc-wrap"><a href="classpy_1_1_edge_view.html" class="m-doc">const</a> <a href="classpy_1_1_edge_view.html" class="m-doc">Edge</a>&amp; e) const -&gt; <a href="classpy_1_1_edge_view.html" class="m-doc">auto</a></span>
             </dt>
             <dd></dd>
           </dl>
@@ -174,9 +174,9 @@
           <section class="m-doc-details" id="a07c28617aac94663f243cb92dae5d1bd"><div>
             <h3>
               <div class="m-doc-template">
-                template&lt;typename _Graph&gt;
+                template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> _Graph&gt;
               </div>
-              <span class="m-doc-wrap-bumper">static auto py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a07c28617aac94663f243cb92dae5d1bd" class="m-doc-self">null_vertex</a>(</span><span class="m-doc-wrap">) -&gt; Vertex</span></span>
+              <span class="m-doc-wrap-bumper">static <a href="classpy_1_1_edge_view.html" class="m-doc">auto</a> py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a07c28617aac94663f243cb92dae5d1bd" class="m-doc-self">null_vertex</a>(</span><span class="m-doc-wrap">) -&gt; Vertex</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
@@ -190,7 +190,7 @@
           <section class="m-doc-details" id="ad2b8b6d649c98982e650ed1a6e30fa09"><div>
             <h3>
               <div class="m-doc-template">
-                template&lt;typename _Graph&gt;
+                template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> _Graph&gt;
               </div>
               <span class="m-doc-wrap-bumper"> py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad2b8b6d649c98982e650ed1a6e30fa09" class="m-doc-self">GrAdaptor</a>(</span><span class="m-doc-wrap">_Graph&amp;&amp; gra) <span class="m-label m-info">explicit</span>  <span class="m-label m-success">noexcept</span></span></span>
             </h3>
@@ -210,9 +210,9 @@
           <section class="m-doc-details" id="ab8c41cf373094e79784a75b513505f08"><div>
             <h3>
               <div class="m-doc-template">
-                template&lt;typename _Graph&gt;
+                template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> _Graph&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab8c41cf373094e79784a75b513505f08" class="m-doc-self">edges</a>(</span><span class="m-doc-wrap">) const -&gt; EdgeView&lt; _Graph &gt;</span></span>
+              <span class="m-doc-wrap-bumper"><a href="classpy_1_1_edge_view.html" class="m-doc">auto</a> py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab8c41cf373094e79784a75b513505f08" class="m-doc-self">edges</a>(</span><span class="m-doc-wrap">) const -&gt; EdgeView&lt; _Graph &gt;</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
@@ -226,9 +226,9 @@
           <section class="m-doc-details" id="a875120f8395bb60b4f01c1370a9df6ee"><div>
             <h3>
               <div class="m-doc-template">
-                template&lt;typename _Graph&gt;
+                template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> _Graph&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a875120f8395bb60b4f01c1370a9df6ee" class="m-doc-self">neighbors</a>(</span><span class="m-doc-wrap"><a href="classpy_1_1_gr_adaptor.html#a56be230880edada0a57e80290015262a" class="m-doc">Vertex</a> v) const -&gt; AtlasView&lt; Vertex, _Graph &gt;</span></span>
+              <span class="m-doc-wrap-bumper"><a href="classpy_1_1_edge_view.html" class="m-doc">auto</a> py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a875120f8395bb60b4f01c1370a9df6ee" class="m-doc-self">neighbors</a>(</span><span class="m-doc-wrap"><a href="classpy_1_1_gr_adaptor.html#a56be230880edada0a57e80290015262a" class="m-doc">Vertex</a> v) const -&gt; AtlasView&lt; Vertex, _Graph &gt;</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -251,10 +251,10 @@
           <section class="m-doc-details" id="a2742d59858e7f03555864fda69a317c6"><div>
             <h3>
               <div class="m-doc-template">
-                template&lt;typename _Graph&gt;
+                template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> _Graph&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2742d59858e7f03555864fda69a317c6" class="m-doc-self">add_edge</a>(</span><span class="m-doc-wrap">int u,
-              int v)</span></span>
+              <span class="m-doc-wrap-bumper"><a href="classpy_1_1_edge_view.html" class="m-doc">auto</a> py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2742d59858e7f03555864fda69a317c6" class="m-doc-self">add_edge</a>(</span><span class="m-doc-wrap"><a href="classpy_1_1_edge_view.html" class="m-doc">int</a> u,
+              <a href="classpy_1_1_edge_view.html" class="m-doc">int</a> v)</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -275,27 +275,18 @@
           <section class="m-doc-details" id="a115298237547a835222be55154ec8190"><div>
             <h3>
               <div class="m-doc-template">
-                template&lt;typename _Graph&gt;
-                template&lt;typename Edge&gt;
+                template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> _Graph&gt;
+                template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> <a href="classpy_1_1_edge_view.html" class="m-doc">Edge</a>&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a115298237547a835222be55154ec8190" class="m-doc-self">source</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex</span></span>
+              <span class="m-doc-wrap-bumper"><a href="classpy_1_1_edge_view.html" class="m-doc">auto</a> py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a115298237547a835222be55154ec8190" class="m-doc-self">source</a>(</span><span class="m-doc-wrap"><a href="classpy_1_1_edge_view.html" class="m-doc">const</a> <a href="classpy_1_1_edge_view.html" class="m-doc">Edge</a>&amp; e) const -&gt; Vertex</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Template parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">Edge</td>
-                  <td></td>
-                </tr>
-              </tbody>
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>e</td>
+                  <td style="width: 1%">e&nbsp;<span class="m-label m-flat m-info">in</span></td>
                   <td></td>
                 </tr>
               </tbody>
@@ -310,27 +301,18 @@
           <section class="m-doc-details" id="ae1c34f94e1597427fdf49c4def69cdb2"><div>
             <h3>
               <div class="m-doc-template">
-                template&lt;typename _Graph&gt;
-                template&lt;typename Edge&gt;
+                template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> _Graph&gt;
+                template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> <a href="classpy_1_1_edge_view.html" class="m-doc">Edge</a>&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae1c34f94e1597427fdf49c4def69cdb2" class="m-doc-self">target</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const -&gt; Vertex</span></span>
+              <span class="m-doc-wrap-bumper"><a href="classpy_1_1_edge_view.html" class="m-doc">auto</a> py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae1c34f94e1597427fdf49c4def69cdb2" class="m-doc-self">target</a>(</span><span class="m-doc-wrap"><a href="classpy_1_1_edge_view.html" class="m-doc">const</a> <a href="classpy_1_1_edge_view.html" class="m-doc">Edge</a>&amp; e) const -&gt; Vertex</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Template parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">Edge</td>
-                  <td></td>
-                </tr>
-              </tbody>
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>e&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td style="width: 1%">e&nbsp;<span class="m-label m-flat m-info">in</span></td>
                   <td></td>
                 </tr>
               </tbody>
@@ -345,27 +327,18 @@
           <section class="m-doc-details" id="a1c188d42a7e7e6c90d941686ea499461"><div>
             <h3>
               <div class="m-doc-template">
-                template&lt;typename _Graph&gt;
-                template&lt;typename Edge&gt;
+                template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> _Graph&gt;
+                template&lt;<a href="classpy_1_1_edge_view.html" class="m-doc">typename</a> <a href="classpy_1_1_edge_view.html" class="m-doc">Edge</a>&gt;
               </div>
-              <span class="m-doc-wrap-bumper">auto py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1c188d42a7e7e6c90d941686ea499461" class="m-doc-self">end_points</a>(</span><span class="m-doc-wrap">const Edge&amp; e) const</span></span>
+              <span class="m-doc-wrap-bumper"><a href="classpy_1_1_edge_view.html" class="m-doc">auto</a> py::<wbr />GrAdaptor&lt;_Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1c188d42a7e7e6c90d941686ea499461" class="m-doc-self">end_points</a>(</span><span class="m-doc-wrap"><a href="classpy_1_1_edge_view.html" class="m-doc">const</a> <a href="classpy_1_1_edge_view.html" class="m-doc">Edge</a>&amp; e) const</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Template parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">Edge</td>
-                  <td></td>
-                </tr>
-              </tbody>
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>e&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td style="width: 1%">e&nbsp;<span class="m-label m-flat m-info">in</span></td>
                   <td></td>
                 </tr>
               </tbody>
@@ -416,7 +389,7 @@
   <div class="m-container">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <p>XNetwork. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.7 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+        <p>XNetwork. Created with <a href="https://doxygen.org/">Doxygen</a> 1.10.0 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
       </div>
     </div>
   </div>
