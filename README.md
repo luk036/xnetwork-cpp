@@ -92,7 +92,7 @@ See [Format.cmake](https://github.com/TheLartians/Format.cmake) for details.
 These dependencies can be easily installed using pip.
 
 ```bash
-pip install clang-format==14.0.6 cmake_format==0.6.11 pyyaml
+pip install clang-format==18.1.2 cmake_format==0.6.13 pyyaml
 ```
 
 ### Build the documentation
