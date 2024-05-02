@@ -12,7 +12,7 @@
 # xnetwork-cpp
 
 This is a networkx inspired modern cpp project.
-  
+
 ## ✨ Features
 
 - Header-only library
@@ -45,7 +45,7 @@ This is a networkx inspired modern cpp project.
 Eventually, you can remove any unused files, such as the standalone directory or irrelevant github workflows for your project.
 Feel free to replace the License with one suited for your project.
 
-To cleanly separate the library and subproject code, the outer `CMakeList.txt` only defines the library itself while the tests and other subprojects are self-contained in their own directories. 
+To cleanly separate the library and subproject code, the outer `CMakeList.txt` only defines the library itself while the tests and other subprojects are self-contained in their own directories.
 During development it is usually convenient to [build all subprojects at once](#build-everything-at-once).
 
 ### Build and run the standalone target
@@ -67,7 +67,7 @@ cmake -S test -B build/test
 cmake --build build/test
 CTEST_OUTPUT_ON_FAILURE=1 cmake --build build/test --target test
 
-# or simply call the executable: 
+# or simply call the executable:
 ./build/test/XNetworkTests
 ```
 
@@ -147,7 +147,7 @@ Additional arguments can be passed to the analyzers by setting the `CLANG_TIDY_A
 
 Ccache can be enabled by configuring with `-DUSE_CCACHE=<ON | OFF>`.
 
-## FAQ
+## ❓ FAQ
 
 > Can I use this for header-only libraries?
 
@@ -168,7 +168,7 @@ Use this as the main directory for best IDE support.
 > I see you are using `GLOB` to add source files in CMakeLists.txt. Isn't that evil?
 
 Glob is considered bad because any changes to the source file structure [might not be automatically caught](https://cmake.org/cmake/help/latest/command/file.html#filesystem) by CMake's builders and you will need to manually invoke CMake on changes.
-  I personally prefer the `GLOB` solution for its simplicity, but feel free to change it to explicitly listing sources.
+I personally prefer the `GLOB` solution for its simplicity, but feel free to change it to explicitly listing sources.
 
 > I want create additional targets that depend on my library. Should I modify the main CMakeLists to include them?
 
