@@ -911,7 +911,7 @@ namespace xnetwork {
         auto clear() {
             this->_adj.clear();
             // this->_node.clear();
-            this->graph.clear();
+            // this->graph.clear();
         }
 
         /** Return true if (graph is a multigraph, false otherwise. */
