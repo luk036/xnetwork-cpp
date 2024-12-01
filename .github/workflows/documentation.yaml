@@ -11,7 +11,7 @@ env:
 jobs:
   build:
     name: Build and publish documentation
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          brew install doxygen
+          sudo apt-get install doxygen
           pip3 install jinja2 Pygments
 
       - name: Build
