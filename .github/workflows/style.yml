@@ -31,9 +31,7 @@ jobs:
           sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 90
 
       - name: Install format dependencies
-        run: |
-          sudo apt-get install clang-format
-          pip3 install cmake_format==0.6.13 pyyaml
+        run: pip3 install clang-format==18.1.2 cmake_format==0.6.13 pyyaml
 
       - name: configure
         run: cmake -Stest -Bbuild
