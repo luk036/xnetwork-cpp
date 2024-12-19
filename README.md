@@ -1,7 +1,6 @@
 [![Actions Status](https://github.com/luk036/xnetwork-cpp/workflows/MacOS/badge.svg)](https://github.com/luk036/xnetwork-cpp/actions)
 [![Actions Status](https://github.com/luk036/xnetwork-cpp/workflows/Windows/badge.svg)](https://github.com/luk036/xnetwork-cpp/actions)
 [![Actions Status](https://github.com/luk036/xnetwork-cpp/workflows/Ubuntu/badge.svg)](https://github.com/luk036/xnetwork-cpp/actions)
-[![Actions Status](https://github.com/luk036/xnetwork-cpp/workflows/Style/badge.svg)](https://github.com/luk036/xnetwork-cpp/actions)
 [![Actions Status](https://github.com/luk036/xnetwork-cpp/workflows/Install/badge.svg)](https://github.com/luk036/xnetwork-cpp/actions)
 [![codecov](https://codecov.io/gh/luk036/xnetwork-cpp/branch/master/graph/badge.svg)](https://codecov.io/gh/luk036/xnetwork-cpp)
 
