@@ -81,3 +81,85 @@ TEST_CASE("Test xnetwork::Graph (not simple graph)") {
 
     do_case(gra);
 }
+
+TEST_CASE("Test xnetwork::Graph (add_edges_from)") {
+    using Edge = std::pair<unsigned int, unsigned int>;
+    std::vector<Edge> edges{{0, 1}, {1, 2}, {2, 3}};
+    auto gra = xnetwork::SimpleGraph(4);
+    gra.add_edges_from(edges);
+    do_case(gra);
+}
+
+TEST_CASE("Test xnetwork::Graph (adj)") {
+    using Edge = std::pair<unsigned int, unsigned int>;
+    std::vector<Edge> edges{{0, 1}, {1, 2}, {2, 3}};
+    auto gra = xnetwork::SimpleGraph(4);
+    gra.add_edges_from(edges);
+    auto count = 0;
+    for (auto _ : gra.adj()[1]) {
+        static_assert(sizeof _ >= 0, "unused");
+        ++count;
+    }
+    CHECK(count == 2);
+}
+
+TEST_CASE("Test xnetwork::Graph (nodes)") {
+    using Edge = std::pair<unsigned int, unsigned int>;
+    std::vector<Edge> edges{{0, 1}, {1, 2}, {2, 3}};
+    auto gra = xnetwork::SimpleGraph(4);
+    gra.add_edges_from(edges);
+    auto count = 0;
+    for (auto _ : gra.nodes()) {
+        static_assert(sizeof _ >= 0, "unused");
+        ++count;
+    }
+    CHECK(count == 4);
+}
+
+TEST_CASE("Test xnetwork::Graph (has_node)") {
+    using Edge = std::pair<unsigned int, unsigned int>;
+    std::vector<Edge> edges{{0, 1}, {1, 2}, {2, 3}};
+    auto gra = xnetwork::SimpleGraph(4);
+    gra.add_edges_from(edges);
+    CHECK(gra.has_node(1));
+    CHECK(!gra.has_node(4));
+}
+
+TEST_CASE("Test xnetwork::Graph (has_edge)") {
+    using Edge = std::pair<unsigned int, unsigned int>;
+    std::vector<Edge> edges{{0, 1}, {1, 2}, {2, 3}};
+    auto gra = xnetwork::SimpleGraph(4);
+    gra.add_edges_from(edges);
+    CHECK(gra.has_edge(0, 1));
+    CHECK(!gra.has_edge(0, 2));
+}
+
+TEST_CASE("Test xnetwork::Graph (order)") {
+    auto gra = xnetwork::SimpleGraph(4);
+    CHECK(gra.order() == 4);
+}
+
+TEST_CASE("Test xnetwork::Graph (size)") {
+    auto gra = xnetwork::SimpleGraph(4);
+    CHECK(gra.size() == 4);
+}
+
+TEST_CASE("Test xnetwork::Graph (clear)") {
+    using Edge = std::pair<unsigned int, unsigned int>;
+    std::vector<Edge> edges{{0, 1}, {1, 2}, {2, 3}};
+    auto gra = xnetwork::SimpleGraph(4);
+    gra.add_edges_from(edges);
+    gra.clear();
+    CHECK(gra.number_of_nodes() == 4);
+    CHECK(gra.adj().size() == 0);
+}
+
+TEST_CASE("Test xnetwork::Graph (is_multigraph)") {
+    auto gra = xnetwork::SimpleGraph(4);
+    CHECK(!gra.is_multigraph());
+}
+
+TEST_CASE("Test xnetwork::Graph (is_directed)") {
+    auto gra = xnetwork::SimpleGraph(4);
+    CHECK(!gra.is_directed());
+}

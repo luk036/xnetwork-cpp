@@ -468,7 +468,7 @@ namespace xnetwork {
 
          */
         auto nodes() {
-            using T = decltype(*this);
+            using T = std::remove_reference_t<decltype(*this)>;
             auto nodes = NodeView<T>(*this);
             // Lazy View creation: overload the (class) property on the instance
             // Then future gra.nodes use the existing View
