@@ -48,6 +48,7 @@ static const auto __all__ = {
 */
 template <typename Atlas> class AtlasView {
   public:
+    using size_type = typename std::remove_reference_t<Atlas>::size_type;
     Atlas &_atlas;
 
     explicit AtlasView(Atlas &d) : _atlas{d} {}
@@ -66,7 +67,9 @@ template <typename Atlas> class AtlasView {
         return this->_atlas.at(key);
     }
 
-    template <typename T> auto operator[](const T &key) -> auto & { return this->_atlas[key]; }
+    template <typename T> auto operator[](const T &key) -> auto & {
+        return this->_atlas[static_cast<size_type>(key)];
+    }
 
     // auto copy( ) {
     //     return std::tuple{n: self[n].copy() for n : this->_atlas};
