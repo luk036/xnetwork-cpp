@@ -589,41 +589,21 @@ namespace xnetwork {
          */
         template <typename U = key_type> auto add_edge(const Node &u, const Node &v) ->
             typename std::enable_if<std::is_same<U, value_type>::value>::type {
-            // auto [u, v] = u_of_edge, v_of_edge;
-            // add nodes
-            // assert(this->_node.contains(u));
-            // assert(this->_node.contains(v));
-            // add the edge
-            // datadict = this->_adj[u].get(v, this->edge_attr_dict_factory());
-            // datadict.update(attr);
-            // set
             this->_adj[u].insert(v);
             this->_adj[v].insert(u);
-            // this->_num_of_edges += 1;
         }
 
         template <typename U = key_type> auto add_edge(const Node &u, const Node &v) ->
             typename std::enable_if<!std::is_same<U, value_type>::value>::type {
-            // auto [u, v] = u_of_edge, v_of_edge;
-            // add nodes
-            // assert(this->_node.contains(u));
-            // assert(this->_node.contains(v));
-            // add the edge
-            // datadict = this->_adj[u].get(v, this->edge_attr_dict_factory());
-            // datadict.update(attr);
             using T = typename adjlist_t::mapped_type;
             auto data = this->_adj[u].get(v, T{});
             this->_adj[u][v] = data;
-            this->_adj[v][u] = data;  // ???
-                                      // this->_num_of_edges += 1;
+            this->_adj[v][u] = data;
         }
 
         template <typename T> auto add_edge(const Node &u, const Node &v, const T &data) {
-            // assert(this->_node.contains(u));
-            // assert(this->_node.contains(v));
             this->_adj[u][v] = data;
             this->_adj[v][u] = data;
-            // this->_num_of_edges += 1;
         }
 
         template <typename C1> auto add_edges_from(const C1 &edges) {
@@ -734,165 +714,6 @@ namespace xnetwork {
                 > gra.edges(0);  // only edges incident to a single node (use
             gra.adj[0]?); EdgeDataView([(0, 1)]);
         */
-        // auto edges() {
-        //     auto edges = EdgeView(*this);
-        //     this->operator[]("edges") = std::any(edges);
-        //     return edges;
-        // }
-
-        /** An OutEdgeView of the DiGraph as gra.edges().
-
-            edges(self, nbunch=None, data=False, default=None)
-
-            The OutEdgeView provides set-like operations on the edge-tuples
-            as well as edge attribute lookup. When called, it also provides
-            an EdgeDataView object which allows control of access to edge
-            attributes (but does not provide set-like operations).
-            Hence, `gra.edges()[u, v]['color']` provides the value of the color
-            attribute for edge `(u, v)` while
-            `for (u, v, c) in gra.edges().data('color', default='red'):`
-            iterates through all the edges yielding the color attribute
-            with default `'red'` if no color attribute exists.
-
-            Parameters
-            ----------
-            nbunch : single node, container, or all nodes (default= all nodes)
-                The view will only report edges incident to these nodes.
-            data : string or bool, optional (default=False)
-                The edge attribute returned in 3-tuple (u, v, ddict[data]).
-                If True, return edge attribute dict in 3-tuple (u, v, ddict).
-                If False, return 2-tuple (u, v).
-            default : value, optional (default=None)
-                Value used for edges that don't have the requested attribute.
-                Only relevant if data is not True or False.
-
-            Returns
-            -------
-            edges : OutEdgeView
-                A view of edge attributes, usually it iterates over (u, v)
-                or (u, v, d) tuples of edges, but can also be used for
-                attribute lookup as `edges[u, v]['foo']`.
-
-            See Also
-            --------
-            in_edges, out_edges
-
-            Notes
-            -----
-            Nodes in nbunch that are not in the graph will be (quietly) ignored.
-            For directed graphs this returns the out-edges.
-
-            Examples
-            --------
-                > gra = nx.DiGraph()   # or MultiDiGraph, etc
-                > nx.add_path(gra, [0, 1, 2])
-                > gra.add_edge(2, 3, weight=5)
-                > [e for e in gra.edges()]
-            [(0, 1), (1, 2), (2, 3)]
-                > gra.edges().data()  # default data is {} (empty dict)
-            OutEdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {'weight': 5})])
-                > gra.edges().data('weight', default=1)
-            OutEdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)])
-                > gra.edges()([0, 2])  # only edges incident to these nodes
-            OutEdgeDataView([(0, 1), (2, 3)])
-                > gra.edges()(0)  # only edges incident to a single node (use
-           gra.adj[0]?) OutEdgeDataView([(0, 1)])
-
-        */
-        // using coro_t = boost::coroutines2::coroutine<edge_t>;
-        // using pull_t = typename coro_t::pull_type;
-
-        // /// @TODO: sync with networkx
-        // auto edges() const -> pull_t {
-        //     auto func = [&](typename coro_t::push_type& yield) {
-        //         if constexpr (std::is_same_v<nodeview_t,
-        //         decltype(py::range<uint32_t>(
-        //                                                      uint32_t{}))>) {  //
-        //                                                      this->_succ???
-        //             for (auto&& [n, nbrs] : py::enumerate(this->_adj)) {
-        //                 for (auto&& nbr : nbrs) {
-        //                     yield(edge_t{Node(n), Node(nbr)});
-        //                 }
-        //             }
-        //         } else {
-        //             for (auto&& [n, nbrs] : this->_adj.items()) {
-        //                 for (auto&& nbr : nbrs) {
-        //                     yield(edge_t{n, nbr});
-        //                 }
-        //             }
-        //         }
-        //     };
-
-        //     return pull_t(func);
-        // }
-        //
-        // #if __cplusplus > 201703L
-        //         auto edges() const -> cppcoro::generator<edge_t> {
-        //             if constexpr (std::is_same_v<nodeview_t,
-        //             decltype(py::range<uint32_t>(
-        //                                                          uint32_t{}))>) {
-        //                                                          //
-        //                                                          this->_succ???
-        //                 for (auto&& [n, nbrs] : py::enumerate(this->_adj)) {
-        //                     for (auto&& nbr : nbrs) {
-        //                         co_yield edge_t{Node(n), Node(nbr)};
-        //                     }
-        //                 }
-        //             } else {
-        //                 for (auto&& [n, nbrs] : this->_adj.items()) {
-        //                     for (auto&& nbr : nbrs) {
-        //                         co_yield edge_t{n, nbr};
-        //                     }
-        //                 }
-        //             }
-        //         }
-        // #endif
-        //
-        //
-        // auto degree() {
-        //     /** A DegreeView for the Graph as gra.degree or gra.degree().
-
-        //     The node degree is the number of edges adjacent to the node.
-        //     The weighted node degree is the sum of the edge weights for
-        //     edges incident to that node.
-
-        //     This object provides an iterator for (node, degree) as well as
-        //     lookup for the degree for a single node.
-
-        //     Parameters
-        //     ----------
-        //     nbunch : single node, container, or all nodes (default= all nodes);
-        //         The view will only report edges incident to these nodes.
-
-        //     weight : string or None, optional (default=None);
-        //        The name of an edge attribute that holds the numerical value used
-        //        as a weight.  If None, then each edge has weight 1.
-        //        The degree is the sum of the edge weights adjacent to the node.
-
-        //     Returns
-        //     -------
-        //     If a single node is requested
-        //     deg : int
-        //         Degree of the node
-
-        //     OR if (multiple nodes are requested
-        //     nd_view : A DegreeView object capable of iterating (node, degree)
-        //     pairs
-
-        //     Examples
-        //     --------
-        //         > gra = nx.path_graph(4);  // or DiGraph, MultiGraph,
-        //         MultiDiGraph,
-        //     etc
-        //         > gra.degree[0];  // node 0 has degree 1
-        //     1
-        //         > list(gra.degree([0, 1, 2]));
-        //     [(0, 1), (1, 2), (2, 2)];
-        //      */
-        //     auto degree = DegreeView(*this);
-        //     this->operator[]("degree") = std::any(degree);
-        //     return degree;
-        // }
 
         /** Remove all nodes and edges from the graph.
 

@@ -326,39 +326,18 @@ namespace xnetwork {
          */
         template <typename U = key_type> auto add_edge(const Node &u, const Node &v) ->
             typename std::enable_if<std::is_same<U, value_type>::value>::type {
-            // auto [u, v] = u_of_edge, v_of_edge;
-            // add nodes
-            // assert(this->s->_node.contains(u));
-            // assert(this->s->_node.contains(v));
-            // add the edge
-            // datadict = this->_adj[u].get(v, this->edge_attr_dict_factory());
-            // datadict.update(attr);
             this->_adj[u].insert(v);
-            // this->_prev[v].insert(u);
-            // this->_num_of_edges += 1;
         }
 
         template <typename U = key_type> auto add_edge(const Node &u, const Node &v) ->
             typename std::enable_if<!std::is_same<U, value_type>::value>::type {
-            // auto [u, v] = u_of_edge, v_of_edge;
-            // add nodes
-            // assert(this->s->_node.contains(u));
-            // assert(this->s->_node.contains(v));
-            // add the edge
-            // datadict = this->_adj[u].get(v, this->edge_attr_dict_factory());
-            // datadict.update(attr);
             using T = typename adjlist_t::mapped_type;
             auto data = this->_adj[u].get(v, T{});
             this->_adj[u][v] = data;
-            // this->_prev[v][u] = data;
-            // this->_num_of_edges += 1;
         }
 
         template <typename T> auto add_edge(const Node &u, const Node &v, const T &data) {
-            // assert(this->s->_node.contains(u));
-            // assert(this->s->_node.contains(v));
             this->_adj[u][v] = data;
-            // this->_num_of_edges += 1;
         }
 
         template <typename C1, typename C2> auto add_edges_from(const C1 &edges, const C2 &data) {
@@ -463,72 +442,6 @@ namespace xnetwork {
            gra.adj[0]?) OutEdgeDataView([(0, 1)])
 
         */
-        // using coro_t = boost::coroutines2::coroutine<edge_t>;
-        // using pull_t = typename coro_t::pull_type;
-
-        // /// @TODO: sync with networkx
-        // auto edges() const -> pull_t {
-        //     auto func = [&](typename coro_t::push_type& yield) {
-        //         if constexpr (std::is_same_v<nodeview_t,
-        //         decltype(py::range<uint32_t>(
-        //                                                      uint32_t{}))>) {  //
-        //                                                      this->_adj???
-        //             for (auto&& [n, nbrs] : py::enumerate(this->_adj)) {
-        //                 for (auto&& nbr : nbrs) {
-        //                     yield(edge_t{Node(n), Node(nbr)});
-        //                 }
-        //             }
-        //         } else {
-        //             for (auto&& [n, nbrs] : this->_adj.items()) {
-        //                 for (auto&& nbr : nbrs) {
-        //                     yield(edge_t{n, nbr});
-        //                 }
-        //             }
-        //         }
-        //     };
-
-        //     return pull_t(func);
-        // }
-
-        // #if __cplusplus > 201703L
-        // auto edges() const -> cppcoro::generator<edge_t> {
-        //     if constexpr (std::is_same_v<nodeview_t,
-        //     decltype(py::range<uint32_t>(
-        //                                                  uint32_t{}))>) {  //
-        //                                                  this->_adj???
-        //         for (auto&& [n, nbrs] : py::enumerate(this->_adj)) {
-        //             for (auto&& nbr : nbrs) {
-        //                 co_yield edge_t{Node(n), Node(nbr)};
-        //             }
-        //         }
-        //     } else {
-        //         for (auto&& [n, nbrs] : this->_adj.items()) {
-        //             for (auto&& nbr : nbrs) {
-        //                 co_yield edge_t{n, nbr};
-        //             }
-        //         }
-        //     }
-        // }
-        // #endif
-
-        // cppcoro::generator<edge_t> edges() const
-        // {
-        //     for (auto&& [n, nbrs] : this->_nodes_nbrs())
-        //     {
-        //         for (auto&& nbr : nbrs)
-        //         {
-        //             co_yield edge_t{Node(n), Node(nbr)};
-        //         }
-        //     }
-        // }
-
-        // auto edges() {
-        //     return OutEdgeView(*this);
-        // }
-
-        // auto in_edges() {
-        //     return InEdgeView(*this);
-        // }
 
         auto degree(const Node &n) const { return this->_adj[n].size(); }
 
