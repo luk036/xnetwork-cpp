@@ -27,14 +27,6 @@ template <typename Graph> static void do_case(const Graph &gra) {
     }
     CHECK(gra.number_of_nodes() == count);
 
-    // #if __cplusplus > 201703L
-    //     auto count2 = 0;
-    //     for ([[maybe_unused]] auto _ : gra.edges()) {
-    //         ++count2;
-    //     }
-    //     CHECK(count2 > 0);
-    // #endif
-    //
     auto deg = 0U;
     for (auto _ : gra[1U]) {
         static_assert(sizeof _ >= 0, "unused");

@@ -20,13 +20,6 @@ template <typename Graph> static void do_case(const Graph &gra) {
 
     CHECK(gra.number_of_nodes() == count);
 
-    // auto count2 = 0U;
-    // for ([[maybe_unused]] auto _ : gra.edges())
-    // {
-    //     ++count2;
-    // }
-    // CHECK(gra.number_of_edges() == count2);
-
     auto deg = 0U;
     for (auto _ : gra[1U]) {
         static_assert(sizeof _ >= 0, "unused");

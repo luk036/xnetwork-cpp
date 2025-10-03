@@ -46,8 +46,5 @@ auto main(int argc, char **argv) -> int {
         return 1;
     }
 
-    // xnetwork::XNetwork xnetwork(name);
-    // std::cout << xnetwork.greet(langIt->second) << std::endl;
-
     return 0;
 }

@@ -13,7 +13,6 @@ template <typename Container> inline auto create_test_case4(const Container &wei
     std::vector<std::string> nodes = {"A", "B", "C", "D", "E"};
     const auto edges = std::array<Edge, 5>{Edge{"A", "B"}, Edge{"B", "C"}, Edge{"C", "D"},
                                            Edge{"D", "E"}, Edge{"E", "A"}};
-    // constexpr auto weights = std::array<int, 5> {-5, 1, 1, 1, 1};
 
     auto gra = xnetwork::DiGraphS<std::vector<std::string>>{nodes};
     gra.add_edges_from(edges, weights);
@@ -35,13 +34,6 @@ template <typename Graph> static void do_case(const Graph &gra) {
 
     CHECK(gra.number_of_nodes() == count);
 
-    // auto count2 = 0U;
-    // for ([[maybe_unused]] auto _ : gra.edges())
-    // {
-    //     ++count2;
-    // }
-    // CHECK(gra.number_of_edges() == count2);
-
     auto deg = 0U;
     for (auto _ : gra["B"]) {
         static_assert(sizeof _ >= 0, "unused");
@@ -58,5 +50,4 @@ TEST_CASE("Test xnetwork Negative Cycle") {
     auto weights = std::array<int, 5>{-5, 1, 1, 1, 1};
     auto gra = create_test_case4(weights);
     do_case(gra);
-    // CHECK(hasNeg);
 }

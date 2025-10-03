@@ -11,9 +11,9 @@ end
 
 if is_plat("linux") then
     add_cxflags("-Wconversion", {force = true})
-    -- add_cxflags("-nostdinc++", {force = true})
-    -- add_sysincludedirs(os.getenv("PREFIX") .. "/include/c++/v1", {public = true})
-    -- add_sysincludedirs(os.getenv("PREFIX") .. "/include", {public = true})
+    add_cxflags("-nostdinc++", {force = true})
+    add_sysincludedirs(os.getenv("PREFIX") .. "/include/c++/v1", {public = true})
+    add_sysincludedirs(os.getenv("PREFIX") .. "/include", {public = true})
 elseif is_plat("windows") then
     add_cxflags("/EHsc /W4 /WX /wd4819 /wd4996", {force = true})
 end
@@ -25,6 +25,7 @@ target("test_xnetwork")
     add_includedirs("../py2cpp/include", {public = true})
     add_files("test/source/*.cpp")
     add_packages("doctest", "fmt")
+    add_tests("default")
     -- require py2cpp installed
 
 
