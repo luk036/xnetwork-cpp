@@ -189,18 +189,18 @@ namespace xnetwork {
         explicit NodeView(nodeview_t &nodes) : _nodes{nodes} {}
 
         // Mapping methods
-        auto size() { return this->_nodes.size(); }
+        auto size() const { return this->_nodes.size(); }
 
-        auto begin() { return std::begin(this->_nodes); }
+        auto begin() const { return std::begin(this->_nodes); }
 
-        auto end() { return std::end(this->_nodes); }
+        auto end() const { return std::end(this->_nodes); }
 
         auto operator[](const Node &n) const -> const auto & { return this->_nodes[n]; }
 
         auto operator[](const Node &n) -> auto & { return this->_nodes[n]; }
 
         // Set methods
-        auto contains(const Node &n) -> bool { return this->_nodes.contains(n); }
+        auto contains(const Node &n) const -> bool { return this->_nodes.contains(n); }
 
         // /// @classmethod
         // auto _from_iterable(cls, it) {

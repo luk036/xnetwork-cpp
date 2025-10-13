@@ -368,7 +368,7 @@ namespace xnetwork {
             > 1 : gra
         true
          */
-        auto contains(const Node &n) -> bool { return this->_node.contains(n); }
+        auto contains(const Node &n) const -> bool { return this->_node.contains(n); }
 
         /** Return a dict of neighbors of node n.  Use: "gra[n]".
 
@@ -512,7 +512,7 @@ namespace xnetwork {
         --------
         number_of_nodes, size  which are identical
          */
-        auto order() { return this->_node.size(); }
+        auto order() const { return this->_node.size(); }
 
         /** Return the number of nodes : the graph.
 
@@ -657,7 +657,7 @@ namespace xnetwork {
         true
 
          */
-        auto has_edge(const Node &u, const Node &v) -> bool { return this->_adj[u].contains(v); }
+        auto has_edge(const Node &u, const Node &v) const -> bool { return this->_adj.at(u).contains(v); }
 
         auto degree(const Node &n) const { return this->_adj[n].size(); }
 
@@ -736,10 +736,10 @@ namespace xnetwork {
         }
 
         /** Return true if (graph is a multigraph, false otherwise. */
-        auto is_multigraph() { return false; }
+        auto is_multigraph() const { return false; }
 
         /** Return true if (graph is directed, false otherwise. */
-        auto is_directed() { return false; }
+        auto is_directed() const { return false; }
     };
 
     using SimpleGraph = Graph<decltype(py::range<uint32_t>(uint32_t{})), py::set<uint32_t>,

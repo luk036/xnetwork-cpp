@@ -352,8 +352,8 @@ namespace xnetwork {
 
             This is true if graph has the edge u->v.
         */
-        auto has_successor(const Node &u, const Node &v) -> bool {
-            return this->_node.contains(u) && this->_adj[u].contains(v);
+        auto has_successor(const Node &u, const Node &v) const -> bool {
+            return this->_node.contains(u) && this->_adj.at(u).contains(v);
         }
 
         /** Returns an iterator over successor nodes of n.
@@ -466,10 +466,10 @@ namespace xnetwork {
         }
 
         /** Return true if (graph is a multigraph, false otherwise. */
-        auto is_multigraph() { return false; }
+        auto is_multigraph() const { return false; }
 
         /** Return true if (graph is directed, false otherwise. */
-        auto is_directed() { return true; }
+        auto is_directed() const { return true; }
     };
 
     using SimpleDiGraphS = DiGraphS<decltype(py::range<uint32_t>(uint32_t{})),
