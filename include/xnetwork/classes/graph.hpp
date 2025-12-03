@@ -527,6 +527,27 @@ namespace xnetwork {
          */
         auto size() const -> size_t { return this->_node.size(); }
 
+        /** Return the number of edges in the graph.
+
+        Returns
+        -------
+        nedges : size_t
+            The number of edges in the graph.
+            
+        Notes
+        -----
+        This method needs to iterate through the adjacency structure
+        to count the edges, so it has O(n) time complexity where n
+        is the number of nodes.
+         */
+        auto number_of_edges() const -> size_t {
+            size_t n_edges = 0;
+            for (const auto& node : this->_node) {
+                n_edges += this->_adj.at(node).size();
+            }
+            return n_edges / 2;  // Divide by 2 since it's an undirected graph
+        }
+
         /** Return true if (the graph contains the node n.
 
             Identical to `n : gra`

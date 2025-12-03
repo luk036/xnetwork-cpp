@@ -51,22 +51,56 @@ template <typename Atlas> class AtlasView {
     using size_type = typename std::remove_reference_t<Atlas>::size_type;
     Atlas &_atlas;
 
+    /**
+     * @brief Construct an AtlasView from an Atlas container
+     * @param d The Atlas container to create a view of
+     */
     explicit AtlasView(Atlas &d) : _atlas{d} {}
 
+    /**
+     * @brief Get the number of elements in the view
+     * @return The size of the Atlas container
+     */
     auto size() const -> size_t { return this->_atlas.size(); }
 
+    /**
+     * @brief Get iterator to the beginning of the view
+     * @return Iterator to the first element
+     */
     auto begin() const { return std::begin(this->_atlas); }
 
+    /**
+     * @brief Get iterator to the end of the view
+     * @return Iterator past the last element
+     */
     auto end() const { return std::end(this->_atlas); }
 
+    /**
+     * @brief Access element at specified key (const version)
+     * @tparam T The key type
+     * @param key The key to access
+     * @return Const reference to the value at the key
+     */
     template <typename T> auto operator[](const T &key) const -> const auto & {
         return this->_atlas.at(key);
     }
 
+    /**
+     * @brief Access element at specified key (const version)
+     * @tparam T The key type
+     * @param key The key to access
+     * @return Const reference to the value at the key
+     */
     template <typename T> auto at(const T &key) const -> const auto & {
         return this->_atlas.at(key);
     }
 
+    /**
+     * @brief Access element at specified key (non-const version)
+     * @tparam T The key type
+     * @param key The key to access
+     * @return Reference to the value at the key
+     */
     template <typename T> auto operator[](const T &key) -> auto & {
         return this->_atlas[static_cast<size_type>(key)];
     }
@@ -97,6 +131,10 @@ template <typename Atlas> class AtlasView {
 */
 template <typename Atlas> class AdjacencyView : public AtlasView<Atlas> {
   public:
+    /**
+     * @brief Construct an AdjacencyView from an Atlas container
+     * @param d The Atlas container to create a view of
+     */
     explicit AdjacencyView(Atlas &d) : AtlasView<Atlas>{d} {}
 
     // template <typename T>

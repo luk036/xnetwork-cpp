@@ -445,6 +445,27 @@ namespace xnetwork {
 
         auto degree(const Node &n) const { return this->_adj[n].size(); }
 
+        /** Return the number of edges in the directed graph.
+
+        Returns
+        -------
+        nedges : size_t
+            The number of edges in the graph.
+            
+        Notes
+        -----
+        This method iterates through the adjacency structure
+        to count the edges, so it has O(n) time complexity where n
+        is the number of nodes.
+         */
+        auto number_of_edges() const -> size_t {
+            size_t n_edges = 0;
+            for (const auto& node : this->_node) {
+                n_edges += this->_adj.at(node).size();
+            }
+            return n_edges;  // No division needed since it's a directed graph
+        }
+
         /** Remove all nodes and edges from the graph.
 
             This also removes the name, and all graph, node, and edge attributes.

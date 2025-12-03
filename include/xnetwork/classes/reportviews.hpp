@@ -186,20 +186,51 @@ namespace xnetwork {
         //     this->_nodes = state["_nodes"];
         // }
       public:
+        /**
+         * @brief Construct a NodeView from a node container
+         * @param nodes The node container to create a view of
+         */
         explicit NodeView(nodeview_t &nodes) : _nodes{nodes} {}
 
         // Mapping methods
+        /**
+         * @brief Get the number of nodes in the view
+         * @return The size of the node container
+         */
         auto size() const { return this->_nodes.size(); }
 
+        /**
+         * @brief Get iterator to the beginning of the view
+         * @return Iterator to the first node
+         */
         auto begin() const { return std::begin(this->_nodes); }
 
+        /**
+         * @brief Get iterator to the end of the view
+         * @return Iterator past the last node
+         */
         auto end() const { return std::end(this->_nodes); }
 
+        /**
+         * @brief Access node data at specified node (const version)
+         * @param n The node to access
+         * @return Const reference to the node data
+         */
         auto operator[](const Node &n) const -> const auto & { return this->_nodes[n]; }
 
+        /**
+         * @brief Access node data at specified node (non-const version)
+         * @param n The node to access
+         * @return Reference to the node data
+         */
         auto operator[](const Node &n) -> auto & { return this->_nodes[n]; }
 
         // Set methods
+        /**
+         * @brief Check if a node exists in the view
+         * @param n The node to check for
+         * @return true if the node exists, false otherwise
+         */
         auto contains(const Node &n) const -> bool { return this->_nodes.contains(n); }
 
         // /// @classmethod
