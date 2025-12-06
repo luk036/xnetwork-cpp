@@ -1,8 +1,8 @@
 /**
  * @file testcases.hpp
  * @brief Test case generators for XNetwork algorithms
- * 
- * This file contains functions to generate standard test cases 
+ *
+ * This file contains functions to generate standard test cases
  * for testing graph algorithms.
  */
 
@@ -12,15 +12,15 @@
 
 /**
  * @brief Create a test case with 5 nodes and 5 edges forming a cycle
- * 
+ *
  * This function creates a directed graph with 5 nodes (A, B, C, D, E)
  * connected in a cycle: A->B->C->D->E->A. Edge weights are assigned
  * from the provided container.
- * 
+ *
  * @tparam Container The type of container for weights (should support iteration)
  * @param weights A container of weights for the edges
  * @return xnetwork::SimpleDiGraphS A directed graph with the test structure
- * 
+ *
  * @note The graph has the structure: A->B->C->D->E->A
  */
 template <typename Container> inline auto create_test_case1(const Container &weights) {
@@ -37,14 +37,14 @@ template <typename Container> inline auto create_test_case1(const Container &wei
 
 /**
  * @brief Create a test case with 3 nodes and bidirectional connections
- * 
+ *
  * This function creates a directed graph with 3 nodes (A, B, C)
  * where each pair of nodes is connected in both directions.
- * 
+ *
  * @tparam Container The type of container for weights (should support iteration)
  * @param weights A container of weights for the edges
  * @return xnetwork::SimpleDiGraphS A directed graph with the test structure
- * 
+ *
  * @note The graph has the structure: A<->B<->C<->A (all bidirectional)
  */
 template <typename Container> inline auto create_test_case2(const Container &weights) {
@@ -60,15 +60,15 @@ template <typename Container> inline auto create_test_case2(const Container &wei
 
 /**
  * @brief Create a timing test case with 3 nodes and bidirectional connections
- * 
+ *
  * This function creates a directed graph with 3 nodes (A, B, C)
- * intended for timing tests, where each pair of nodes is connected 
+ * intended for timing tests, where each pair of nodes is connected
  * in both directions.
- * 
+ *
  * @tparam Container The type of container for weights (should support iteration)
  * @param weights A container of weights for the edges
  * @return xnetwork::SimpleDiGraphS A directed graph with the test structure
- * 
+ *
  * @note The graph has 6 edges: A<->B, B<->C, C<->A (all bidirectional)
  */
 template <typename Container> inline auto create_test_case_timing(const Container &weights) {

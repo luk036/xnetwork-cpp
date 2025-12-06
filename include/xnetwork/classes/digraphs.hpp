@@ -451,7 +451,7 @@ namespace xnetwork {
         -------
         nedges : size_t
             The number of edges in the graph.
-            
+
         Notes
         -----
         This method iterates through the adjacency structure
