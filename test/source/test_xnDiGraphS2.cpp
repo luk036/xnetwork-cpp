@@ -11,18 +11,18 @@
  * @tparam Graph
  * @param[in] gra
  */
-template <typename Graph> static void do_case(const Graph &gra) {
+template <typename Graph> static void do_case(const Graph& gra) {
     auto count = 0U;
-    for (auto _ : gra) {
-        static_assert(sizeof _ >= 0, "unused");
+    for (auto itr : gra) {
+        static_assert(sizeof itr >= 0, "unused");
         ++count;
     }
 
     CHECK(gra.number_of_nodes() == count);
 
     auto deg = 0U;
-    for (auto _ : gra[1U]) {
-        static_assert(sizeof _ >= 0, "unused");
+    for (auto itr : gra[1U]) {
+        static_assert(sizeof itr >= 0, "unused");
         ++deg;
     }
     CHECK_EQ(gra.degree(1U), deg);

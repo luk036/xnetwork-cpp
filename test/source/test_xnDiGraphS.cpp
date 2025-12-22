@@ -8,7 +8,7 @@
 #include <vector>                         // for vector
 #include <xnetwork/classes/digraphs.hpp>  // for DiGraphS
 
-template <typename Container> inline auto create_test_case4(const Container &weights) {
+template <typename Container> inline auto create_test_case4(const Container& weights) {
     using Edge = std::pair<std::string, std::string>;
     std::vector<std::string> nodes = {"A", "B", "C", "D", "E"};
     const auto edges = std::array<Edge, 5>{Edge{"A", "B"}, Edge{"B", "C"}, Edge{"C", "D"},
@@ -25,18 +25,18 @@ template <typename Container> inline auto create_test_case4(const Container &wei
  * @tparam Graph
  * @param[in] gra
  */
-template <typename Graph> static void do_case(const Graph &gra) {
+template <typename Graph> static void do_case(const Graph& gra) {
     auto count = 0U;
-    for (auto _ : gra) {
-        static_assert(sizeof _ >= 0, "unused");
+    for (auto itr : gra) {
+        static_assert(sizeof itr >= 0, "unused");
         ++count;
     }
 
     CHECK(gra.number_of_nodes() == count);
 
     auto deg = 0U;
-    for (auto _ : gra["B"]) {
-        static_assert(sizeof _ >= 0, "unused");
+    for (auto itr : gra["B"]) {
+        static_assert(sizeof itr >= 0, "unused");
         ++deg;
     }
     CHECK_EQ(gra.degree("B"), deg);

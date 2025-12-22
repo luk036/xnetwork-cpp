@@ -23,7 +23,7 @@
  *
  * @note The graph has the structure: A->B->C->D->E->A
  */
-template <typename Container> inline auto create_test_case1(const Container &weights) {
+template <typename Container> inline auto create_test_case1(const Container& weights) {
     using Edge = std::pair<uint32_t, uint32_t>;
     constexpr uint32_t num_nodes = 5;
     enum nodes { A, B, C, D, E };
@@ -47,7 +47,7 @@ template <typename Container> inline auto create_test_case1(const Container &wei
  *
  * @note The graph has the structure: A<->B<->C<->A (all bidirectional)
  */
-template <typename Container> inline auto create_test_case2(const Container &weights) {
+template <typename Container> inline auto create_test_case2(const Container& weights) {
     using Edge = std::pair<uint32_t, uint32_t>;
     constexpr uint32_t num_nodes = 3;
     enum nodes { A, B, C };
@@ -71,7 +71,7 @@ template <typename Container> inline auto create_test_case2(const Container &wei
  *
  * @note The graph has 6 edges: A<->B, B<->C, C<->A (all bidirectional)
  */
-template <typename Container> inline auto create_test_case_timing(const Container &weights) {
+template <typename Container> inline auto create_test_case_timing(const Container& weights) {
     using Edge = std::pair<uint32_t, uint32_t>;
     constexpr uint32_t num_nodes = 3;
     enum nodes { A, B, C };

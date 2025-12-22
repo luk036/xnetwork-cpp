@@ -19,17 +19,17 @@
  * @tparam Graph
  * @param[in] gra
  */
-template <typename Graph> static void do_case(const Graph &gra) {
+template <typename Graph> static void do_case(const Graph& gra) {
     auto count = 0U;
-    for (auto _ : gra) {
-        static_assert(sizeof _ >= 0, "unused");
+    for (auto itr : gra) {
+        static_assert(sizeof itr >= 0, "unused");
         ++count;
     }
     CHECK(gra.number_of_nodes() == count);
 
     auto deg = 0U;
-    for (auto _ : gra[1U]) {
-        static_assert(sizeof _ >= 0, "unused");
+    for (auto itr : gra[1U]) {
+        static_assert(sizeof itr >= 0, "unused");
         ++deg;
     }
     CHECK(gra.degree(1U) == deg);
@@ -88,8 +88,8 @@ TEST_CASE("Test xnetwork::Graph (adj)") {
     auto gra = xnetwork::SimpleGraph(4);
     gra.add_edges_from(edges);
     auto count = 0;
-    for (auto _ : gra.adj()[1]) {
-        static_assert(sizeof _ >= 0, "unused");
+    for (auto itr : gra.adj()[1]) {
+        static_assert(sizeof itr >= 0, "unused");
         ++count;
     }
     CHECK(count == 2);
@@ -101,8 +101,8 @@ TEST_CASE("Test xnetwork::Graph (nodes)") {
     auto gra = xnetwork::SimpleGraph(4);
     gra.add_edges_from(edges);
     auto count = 0;
-    for (auto _ : gra.nodes()) {
-        static_assert(sizeof _ >= 0, "unused");
+    for (auto itr : gra.nodes()) {
+        static_assert(sizeof itr >= 0, "unused");
         ++count;
     }
     CHECK(count == 4);

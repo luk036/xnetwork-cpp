@@ -176,7 +176,7 @@ namespace xnetwork {
         using Self = NodeView<nodeview_t>;
         using Node = typename nodeview_t::value_type;
 
-        nodeview_t &_nodes;
+        nodeview_t& _nodes;
 
         // auto __getstate__( ) {
         //     return {"_nodes": this->_nodes};
@@ -190,7 +190,7 @@ namespace xnetwork {
          * @brief Construct a NodeView from a node container
          * @param nodes The node container to create a view of
          */
-        explicit NodeView(nodeview_t &nodes) : _nodes{nodes} {}
+        explicit NodeView(nodeview_t& nodes) : _nodes{nodes} {}
 
         // Mapping methods
         /**
@@ -213,25 +213,25 @@ namespace xnetwork {
 
         /**
          * @brief Access node data at specified node (const version)
-         * @param n The node to access
+         * @param node The node to access
          * @return Const reference to the node data
          */
-        auto operator[](const Node &n) const -> const auto & { return this->_nodes[n]; }
+        auto operator[](const Node& node) const -> const auto& { return this->_nodes[node]; }
 
         /**
          * @brief Access node data at specified node (non-const version)
-         * @param n The node to access
+         * @param node The node to access
          * @return Reference to the node data
          */
-        auto operator[](const Node &n) -> auto & { return this->_nodes[n]; }
+        auto operator[](const Node& node) -> auto& { return this->_nodes[node]; }
 
         // Set methods
         /**
          * @brief Check if a node exists in the view
-         * @param n The node to check for
+         * @param node The node to check for
          * @return true if the node exists, false otherwise
          */
-        auto contains(const Node &n) const -> bool { return this->_nodes.contains(n); }
+        auto contains(const Node& node) const -> bool { return this->_nodes.contains(node); }
 
         // /// @classmethod
         // auto _from_iterable(cls, it) {

@@ -19,7 +19,7 @@ namespace py {
          *
          * @param[in] gra
          */
-        explicit VertexView(Graph &&gra) noexcept : Graph{std::forward<Graph>(gra)} {}
+        explicit VertexView(Graph&& gra) noexcept : Graph{std::forward<Graph>(gra)} {}
 
         auto begin() const {
             // auto [v_iter, v_end] = boost::vertices(*this);
@@ -53,7 +53,7 @@ namespace py {
      */
     template <typename Graph> class EdgeView {
       private:
-        const Graph &gra;
+        const Graph& gra;
 
       public:
         /**
@@ -61,7 +61,7 @@ namespace py {
          *
          * @param[in] gra
          */
-        explicit EdgeView(const Graph &gra) : gra{gra} {}
+        explicit EdgeView(const Graph& gra) : gra{gra} {}
 
         auto begin() const {
             // auto [e_iter, e_end] = boost::edges(_gra);
@@ -112,16 +112,16 @@ namespace py {
     template <typename Vertex, typename Graph> class AtlasView {
       private:
         Vertex _v;
-        const Graph &gra;
+        const Graph& gra;
 
       public:
         /**
          * @brief Construct a new Atlas View object
          *
-         * @param[in] v
+         * @param[in] vertex
          * @param[in] gra
          */
-        AtlasView(Vertex v, const Graph &gra) : _v{v}, gra{gra} {}
+        AtlasView(Vertex vertex, const Graph& gra) : _v{vertex}, gra{gra} {}
 
         /**
          * @brief
@@ -193,7 +193,7 @@ namespace py {
          *
          * @param[in] gra
          */
-        explicit GrAdaptor(_Graph &&gra) noexcept : VertexView<_Graph>{std::forward<_Graph>(gra)} {}
+        explicit GrAdaptor(_Graph&& gra) noexcept : VertexView<_Graph>{std::forward<_Graph>(gra)} {}
 
         // GrAdaptor(const GrAdaptor&) = delete;            // don't copy
         // GrAdaptor& operator=(const GrAdaptor&) = delete; // don't assign
@@ -213,20 +213,20 @@ namespace py {
         /**
          * @brief
          *
-         * @param[in] v
+         * @param[in] vertex
          * @return AtlasView<Vertex, _Graph>
          */
-        auto neighbors(Vertex v) const -> AtlasView<Vertex, _Graph> {
-            return AtlasView<Vertex, _Graph>(v, *this);
+        auto neighbors(Vertex vertex) const -> AtlasView<Vertex, _Graph> {
+            return AtlasView<Vertex, _Graph>(vertex, *this);
         }
 
         /**
          * @brief
          *
-         * @param[in] u
-         * @param[in] v
+         * @param[in] node_u
+         * @param[in] node_v
          */
-        auto add_edge(int u, int v) { return boost::add_edge(u, v, *this); }
+        auto add_edge(int node_u, int node_v) { return boost::add_edge(node_u, node_v, *this); }
 
         /**
          * @brief
@@ -239,34 +239,34 @@ namespace py {
          * @brief
          *
          * @tparam Edge
-         * @param[in] e
+         * @param[in] edge
          * @return Vertex
          */
-        template <typename Edge> auto source(const Edge &e) const -> Vertex {
-            return boost::source(e, *this);
+        template <typename Edge> auto source(const Edge& edge) const -> Vertex {
+            return boost::source(edge, *this);
         }
 
         /**
          * @brief
          *
          * @tparam Edge
-         * @param[in] e
+         * @param[in] edge
          * @return Vertex
          */
-        template <typename Edge> auto target(const Edge &e) const -> Vertex {
-            return boost::target(e, *this);
+        template <typename Edge> auto target(const Edge& edge) const -> Vertex {
+            return boost::target(edge, *this);
         }
 
         /**
          * @brief
          *
          * @tparam Edge
-         * @param[in] e
+         * @param[in] edge
          */
-        template <typename Edge> auto end_points(const Edge &e) const {
-            auto s = boost::source(e, *this);
-            auto t = boost::target(e, *this);
-            return std::make_pair(s, t);
+        template <typename Edge> auto end_points(const Edge& edge) const {
+            auto src = boost::source(edge, *this);
+            auto tgt = boost::target(edge, *this);
+            return std::make_pair(src, tgt);
         }
     };
 

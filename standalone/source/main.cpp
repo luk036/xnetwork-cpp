@@ -6,7 +6,7 @@
 #include <string>
 #include <unordered_map>
 
-auto main(int argc, char **argv) -> int {
+auto main(int argc, char** argv) -> int {
     const std::unordered_map<std::string, xnetwork::LanguageCode> languages{
         {"en", xnetwork::LanguageCode::EN},
         {"de", xnetwork::LanguageCode::DE},

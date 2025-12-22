@@ -234,7 +234,7 @@ namespace xnetwork {
                 > gra = xnetwork::DiGraphS(r, r);  // or DiGraph, MultiGraph,
            MultiDiGraph, etc
         */
-        explicit DiGraphS(const nodeview_t &Nodes) : _Base{Nodes} {}
+        explicit DiGraphS(const nodeview_t& Nodes) : _Base{Nodes} {}
 
         explicit DiGraphS(uint32_t num_nodes) : _Base{num_nodes} {}
 
@@ -324,27 +324,27 @@ namespace xnetwork {
                 > gra[1][2].update({0: 5});
                 > gra.edges()[1, 2].update({0: 5});
          */
-        template <typename U = key_type> auto add_edge(const Node &u, const Node &v) ->
+        template <typename U = key_type> auto add_edge(const Node& node_u, const Node& node_v) ->
             typename std::enable_if<std::is_same<U, value_type>::value>::type {
-            this->_adj[u].insert(v);
+            this->_adj[node_u].insert(node_v);
         }
 
-        template <typename U = key_type> auto add_edge(const Node &u, const Node &v) ->
+        template <typename U = key_type> auto add_edge(const Node& node_u, const Node& node_v) ->
             typename std::enable_if<!std::is_same<U, value_type>::value>::type {
             using T = typename adjlist_t::mapped_type;
-            auto data = this->_adj[u].get(v, T{});
-            this->_adj[u][v] = data;
+            auto data = this->_adj[node_u].get(node_v, T{});
+            this->_adj[node_u][node_v] = data;
         }
 
-        template <typename T> auto add_edge(const Node &u, const Node &v, const T &data) {
-            this->_adj[u][v] = data;
+        template <typename T> auto add_edge(const Node& node_u, const Node& node_v, const T& data) {
+            this->_adj[node_u][node_v] = data;
         }
 
-        template <typename C1, typename C2> auto add_edges_from(const C1 &edges, const C2 &data) {
+        template <typename C1, typename C2> auto add_edges_from(const C1& edges, const C2& data) {
             auto N = edges.size();
-            for (auto i = 0U; i != N; ++i) {
-                const auto &e = edges[i];
-                this->add_edge(e.first, e.second, data[i]);
+            for (auto idx = 0U; idx != N; ++idx) {
+                const auto& e = edges[idx];
+                this->add_edge(e.first, e.second, data[idx]);
             }
         }
 
@@ -352,8 +352,8 @@ namespace xnetwork {
 
             This is true if graph has the edge u->v.
         */
-        auto has_successor(const Node &u, const Node &v) const -> bool {
-            return this->_node.contains(u) && this->_adj.at(u).contains(v);
+        auto has_successor(const Node& node_u, const Node& node_v) const -> bool {
+            return this->_node.contains(node_u) && this->_adj.at(node_u).contains(node_v);
         }
 
         /** Returns an iterator over successor nodes of n.
@@ -379,9 +379,9 @@ namespace xnetwork {
             -----
             neighbors() and successors() are the same.
         */
-        auto successors(const Node &n) -> auto & { return this->_adj[n]; }
+        auto successors(const Node& node) -> auto& { return this->_adj[node]; }
 
-        auto successors(const Node &n) const -> const auto & { return this->_adj[n]; }
+        auto successors(const Node& node) const -> const auto& { return this->_adj[node]; }
 
         /** An OutEdgeView of the DiGraph as gra.edges().
 
@@ -443,7 +443,7 @@ namespace xnetwork {
 
         */
 
-        auto degree(const Node &n) const { return this->_adj[n].size(); }
+        auto degree(const Node& node) const { return this->_adj[node].size(); }
 
         /** Return the number of edges in the directed graph.
 

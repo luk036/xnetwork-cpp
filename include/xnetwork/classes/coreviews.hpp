@@ -49,13 +49,13 @@ static const auto __all__ = {
 template <typename Atlas> class AtlasView {
   public:
     using size_type = typename std::remove_reference_t<Atlas>::size_type;
-    Atlas &_atlas;
+    Atlas& _atlas;
 
     /**
      * @brief Construct an AtlasView from an Atlas container
      * @param d The Atlas container to create a view of
      */
-    explicit AtlasView(Atlas &d) : _atlas{d} {}
+    explicit AtlasView(Atlas& d) : _atlas{d} {}
 
     /**
      * @brief Get the number of elements in the view
@@ -81,7 +81,7 @@ template <typename Atlas> class AtlasView {
      * @param key The key to access
      * @return Const reference to the value at the key
      */
-    template <typename T> auto operator[](const T &key) const -> const auto & {
+    template <typename T> auto operator[](const T& key) const -> const auto& {
         return this->_atlas.at(key);
     }
 
@@ -91,7 +91,7 @@ template <typename Atlas> class AtlasView {
      * @param key The key to access
      * @return Const reference to the value at the key
      */
-    template <typename T> auto at(const T &key) const -> const auto & {
+    template <typename T> auto at(const T& key) const -> const auto& {
         return this->_atlas.at(key);
     }
 
@@ -101,7 +101,7 @@ template <typename Atlas> class AtlasView {
      * @param key The key to access
      * @return Reference to the value at the key
      */
-    template <typename T> auto operator[](const T &key) -> auto & {
+    template <typename T> auto operator[](const T& key) -> auto& {
         return this->_atlas[static_cast<size_type>(key)];
     }
 
@@ -135,7 +135,7 @@ template <typename Atlas> class AdjacencyView : public AtlasView<Atlas> {
      * @brief Construct an AdjacencyView from an Atlas container
      * @param d The Atlas container to create a view of
      */
-    explicit AdjacencyView(Atlas &d) : AtlasView<Atlas>{d} {}
+    explicit AdjacencyView(Atlas& d) : AtlasView<Atlas>{d} {}
 
     // template <typename T>
     // auto operator[](const T& name) const

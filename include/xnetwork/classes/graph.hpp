@@ -256,7 +256,7 @@ namespace xnetwork {
                 > r = py::range(100);
                 > gra = nx.Graph(r);  // or DiGraph, MultiGraph, MultiDiGraph, etc
         */
-        explicit Graph(const nodeview_t &Nodes)
+        explicit Graph(const nodeview_t& Nodes)
             : _node{Nodes},
               _adj{}  // py::dict???
         {}
@@ -276,7 +276,7 @@ namespace xnetwork {
          * @param[in] e
          * @return edge_t&
          */
-        static auto end_points(edge_t &e) -> edge_t & { return e; }
+        static auto end_points(edge_t& e) -> edge_t& { return e; }
 
         /**
          * @brief For compatible with BGL adaptor
@@ -284,7 +284,7 @@ namespace xnetwork {
          * @param[in] e
          * @return edge_t&
          */
-        static auto end_points(const edge_t &e) -> const edge_t & { return e; }
+        static auto end_points(const edge_t& e) -> const edge_t& { return e; }
 
         /** Graph adjacency object holding the neighbors of each node.
 
@@ -303,7 +303,7 @@ namespace xnetwork {
         */
         auto adj() const {
             using T = std::remove_reference_t<decltype(this->_adj)>;
-            return AdjacencyView<const T &>(this->_adj);
+            return AdjacencyView<const T&>(this->_adj);
         }
 
         auto adj() {
@@ -368,7 +368,7 @@ namespace xnetwork {
             > 1 : gra
         true
          */
-        auto contains(const Node &n) const -> bool { return this->_node.contains(n); }
+        auto contains(const Node& node) const -> bool { return this->_node.contains(node); }
 
         /** Return a dict of neighbors of node n.  Use: "gra[n]".
 
@@ -393,11 +393,11 @@ namespace xnetwork {
             > gra[0];
         AtlasView({1: {}});
          */
-        auto operator[](const Node &n) const -> const auto & { return this->adj().at(n); }
+        auto operator[](const Node& node) const -> const auto& { return this->adj().at(node); }
 
-        auto at(const Node &n) const -> const auto & { return this->adj().at(n); }
+        auto at(const Node& node) const -> const auto& { return this->adj().at(node); }
 
-        auto operator[](const Node &n) -> auto & { return this->adj()[n]; }
+        auto operator[](const Node& node) -> auto& { return this->adj()[node]; }
 
         /** A NodeView of the Graph as gra.nodes().
 
@@ -561,7 +561,7 @@ namespace xnetwork {
                 > gra = nx.path_graph(3);  // or DiGraph, MultiGraph, MultiDiGraph,
            etc > gra.has_node(0); true
          */
-        auto has_node(const Node &n) const -> bool { return this->_node.contains(n); }
+        auto has_node(const Node& node) const -> bool { return this->_node.contains(node); }
 
         /** Add an edge between u and v.
 
@@ -608,35 +608,35 @@ namespace xnetwork {
                 > gra[1][2].update({0: 5});
                 > gra.edges()[1, 2].update({0: 5});
          */
-        template <typename U = key_type> auto add_edge(const Node &u, const Node &v) ->
+        template <typename U = key_type> auto add_edge(const Node& node_u, const Node& node_v) ->
             typename std::enable_if<std::is_same<U, value_type>::value>::type {
-            this->_adj[u].insert(v);
-            this->_adj[v].insert(u);
+            this->_adj[node_u].insert(node_v);
+            this->_adj[node_v].insert(node_u);
         }
 
-        template <typename U = key_type> auto add_edge(const Node &u, const Node &v) ->
+        template <typename U = key_type> auto add_edge(const Node& node_u, const Node& node_v) ->
             typename std::enable_if<!std::is_same<U, value_type>::value>::type {
             using T = typename adjlist_t::mapped_type;
-            auto data = this->_adj[u].get(v, T{});
-            this->_adj[u][v] = data;
-            this->_adj[v][u] = data;
+            auto data = this->_adj[node_u].get(node_v, T{});
+            this->_adj[node_u][node_v] = data;
+            this->_adj[node_v][node_u] = data;
         }
 
-        template <typename T> auto add_edge(const Node &u, const Node &v, const T &data) {
-            this->_adj[u][v] = data;
-            this->_adj[v][u] = data;
+        template <typename T> auto add_edge(const Node& node_u, const Node& node_v, const T& data) {
+            this->_adj[node_u][node_v] = data;
+            this->_adj[node_v][node_u] = data;
         }
 
-        template <typename C1> auto add_edges_from(const C1 &edges) {
-            for (const auto &e : edges) {
+        template <typename C1> auto add_edges_from(const C1& edges) {
+            for (const auto& e : edges) {
                 this->add_edge(e.first, e.second);
                 // this->_num_of_edges += 1;
             }
         }
 
-        template <typename C1, typename C2> auto add_edges_from(const C1 &edges, const C2 &data) {
+        template <typename C1, typename C2> auto add_edges_from(const C1& edges, const C2& data) {
             auto it = data.begin();
-            for (const auto &e : edges) {
+            for (const auto& e : edges) {
                 this->add_edge(e.first, e.second, *it);
                 // this->_num_of_edges += 1;
                 ++it;
@@ -678,9 +678,11 @@ namespace xnetwork {
         true
 
          */
-        auto has_edge(const Node &u, const Node &v) const -> bool { return this->_adj.at(u).contains(v); }
+        auto has_edge(const Node& node_u, const Node& node_v) const -> bool {
+            return this->_adj.at(node_u).contains(node_v);
+        }
 
-        auto degree(const Node &n) const { return this->_adj[n].size(); }
+        auto degree(const Node& node) const { return this->_adj[node].size(); }
 
         /** An EdgeView of the Graph as gra.edges().
 

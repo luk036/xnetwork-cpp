@@ -8,9 +8,9 @@ TEST_CASE("Stress Test xnetwork::SimpleGraph") {
     auto gra = xnetwork::SimpleGraph{num_nodes};
 
     // Add a large number of edges
-    for (auto i = 0U; i < num_nodes; ++i) {
-        for (auto j = i + 1; j < num_nodes; ++j) {
-            gra.add_edge(i, j);
+    for (auto idx = 0U; idx < num_nodes; ++idx) {
+        for (auto jdx = idx + 1; jdx < num_nodes; ++jdx) {
+            gra.add_edge(idx, jdx);
         }
     }
 
