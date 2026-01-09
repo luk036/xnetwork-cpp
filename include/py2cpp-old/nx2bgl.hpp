@@ -21,25 +21,25 @@ namespace py {
          */
         explicit VertexView(Graph&& gra) noexcept : Graph{std::forward<Graph>(gra)} {}
 
-        auto begin() const {
+        typename boost::graph_traits<Graph>::vertex_iterator begin() const {
             // auto [v_iter, v_end] = boost::vertices(*this);
             // return v_iter;
             return boost::vertices(*this).first;
         }
 
-        auto end() const {
+        typename boost::graph_traits<Graph>::vertex_iterator end() const {
             // auto [v_iter, v_end] = boost::vertices(*this);
             // return v_end;
             return boost::vertices(*this).second;
         }
 
-        auto cbegin() const {
+        typename boost::graph_traits<Graph>::vertex_iterator cbegin() const {
             // auto [v_iter, v_end] = boost::vertices(*this);
             // return v_iter;
             return boost::vertices(*this).first;
         }
 
-        auto cend() const {
+        typename boost::graph_traits<Graph>::vertex_iterator cend() const {
             // auto [v_iter, v_end] = boost::vertices(*this);
             // return v_end;
             return boost::vertices(*this).second;
@@ -63,7 +63,7 @@ namespace py {
          */
         explicit EdgeView(const Graph& gra) : gra{gra} {}
 
-        auto begin() const {
+        typename boost::graph_traits<Graph>::edge_iterator begin() const {
             // auto [e_iter, e_end] = boost::edges(_gra);
             // return e_iter;
             return boost::edges(this->gra).first;
@@ -74,7 +74,7 @@ namespace py {
          *
          * @return auto
          */
-        auto end() const {
+        typename boost::graph_traits<Graph>::edge_iterator end() const {
             // auto [e_iter, e_end] = boost::edges(_gra);
             // return e_end;
             return boost::edges(this->gra).second;
@@ -85,7 +85,7 @@ namespace py {
          *
          * @return auto
          */
-        auto cbegin() const {
+        typename boost::graph_traits<Graph>::edge_iterator cbegin() const {
             // auto [e_iter, e_end] = boost::edges(_gra);
             // return e_iter;
             return boost::edges(this->gra).first;
@@ -96,7 +96,7 @@ namespace py {
          *
          * @return auto
          */
-        auto cend() const {
+        typename boost::graph_traits<Graph>::edge_iterator cend() const {
             // auto [e_iter, e_end] = boost::edges(_gra);
             // return e_end;
             return boost::edges(this->gra).second;
@@ -128,7 +128,7 @@ namespace py {
          *
          * @return auto
          */
-        auto begin() const {
+        typename boost::graph_traits<Graph>::out_edge_iterator begin() const {
             // auto [e_iter, e_end] = boost::out_edges(_v, _gra);
             // return e_iter;
             return boost::out_edges(this->_v, this->gra).first;
@@ -139,7 +139,7 @@ namespace py {
          *
          * @return auto
          */
-        auto end() const {
+        typename boost::graph_traits<Graph>::out_edge_iterator end() const {
             // auto [e_iter, e_end] = boost::out_edges(_v, _gra);
             // return e_end;
             return boost::out_edges(this->_v, this->gra).second;
@@ -150,7 +150,7 @@ namespace py {
          *
          * @return auto
          */
-        auto cbegin() const {
+        typename boost::graph_traits<Graph>::out_edge_iterator cbegin() const {
             // auto [e_iter, e_end] = boost::out_edges(_v, _gra);
             // return e_iter;
             return boost::out_edges(this->_v, this->gra).first;
@@ -161,7 +161,7 @@ namespace py {
          *
          * @return auto
          */
-        auto cend() const {
+        typename boost::graph_traits<Graph>::out_edge_iterator cend() const {
             // auto [e_iter, e_end] = boost::out_edges(_v, _gra);
             // return e_end;
             return boost::out_edges(this->_v, this->gra).second;
@@ -199,9 +199,9 @@ namespace py {
         // GrAdaptor& operator=(const GrAdaptor&) = delete; // don't assign
         // GrAdaptor(GrAdaptor&&) noexcept = default;                // don't copy
 
-        auto number_of_nodes() const { return boost::num_vertices(*this); }
+        typename boost::graph_traits<_Graph>::vertices_size_type number_of_nodes() const { return boost::num_vertices(*this); }
 
-        auto number_of_edges() const { return boost::num_edges(*this); }
+        typename boost::graph_traits<_Graph>::edges_size_type number_of_edges() const { return boost::num_edges(*this); }
 
         /**
          * @brief
@@ -226,7 +226,7 @@ namespace py {
          * @param[in] node_u
          * @param[in] node_v
          */
-        auto add_edge(int node_u, int node_v) { return boost::add_edge(node_u, node_v, *this); }
+        std::pair<typename boost::graph_traits<_Graph>::edge_descriptor, bool> add_edge(int node_u, int node_v) { return boost::add_edge(node_u, node_v, *this); }
 
         /**
          * @brief
@@ -263,7 +263,7 @@ namespace py {
          * @tparam Edge
          * @param[in] edge
          */
-        template <typename Edge> auto end_points(const Edge& edge) const {
+        template <typename Edge> std::pair<Vertex, Vertex> end_points(const Edge& edge) const {
             auto src = boost::source(edge, *this);
             auto tgt = boost::target(edge, *this);
             return std::make_pair(src, tgt);

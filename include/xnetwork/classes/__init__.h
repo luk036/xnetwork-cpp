@@ -1,11 +1,14 @@
-from.graph import Graph from.digraph import DiGraph from.multigraph import MultiGraph
-    from.multidigraph import MultiDiGraph
-        from.ordered import*
+#pragma once
 
-            from.function import*
+#include "graph.hpp"
+#include "digraphs.hpp"
+// #include "multigraph.hpp"
+// #include "multidigraph.hpp"
+// #include "ordered.hpp"
 
-                import xnetwork.classes
-                    .filters
+// #include "function.hpp"
 
-                        import xnetwork.classes.coreviews import
-                            xnetwork.classes.graphviews import xnetwork.classes.reportviews
+#include "filters.h"
+#include "coreviews.hpp"
+// #include "graphviews.hpp"
+#include "reportviews.hpp"

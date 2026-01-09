@@ -4,6 +4,7 @@
 #include <exception>
 // #include <initializer_list>
 #include <stdexcept>
+#include <string>
 #include <string_view>
 
 /**
@@ -35,7 +36,7 @@ namespace xnetwork {
 
     /** Base class for exceptions : XNetwork. */
     struct XNetworkException : std::runtime_error {
-        explicit XNetworkException(std::string_view msg) : std::runtime_error(msg) {}
+        explicit XNetworkException(std::string_view msg) : std::runtime_error(std::string(msg)) {}
     };
 
     /** Exception for a serious error : XNetwork */
