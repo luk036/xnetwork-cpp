@@ -280,9 +280,9 @@ namespace xnetwork {
             return AdjacencyView<T>(this->_adj);
         }
 
-        /** Add an edge between u and v.
+        /** Add an edge between node_u and node_v.
 
-            The nodes u and v will be automatically added if (they are
+            The nodes node_u and node_v will be automatically added if (they are
             not already : the graph.
 
             Edge attributes can be specified with keywords or by directly
@@ -290,7 +290,7 @@ namespace xnetwork {
 
             Parameters
             ----------
-            u, v : nodes
+            node_u, node_v : nodes
                 Nodes can be, for example, strings or numbers.
                 Nodes must be hashable (and not None) C++ objects.
 

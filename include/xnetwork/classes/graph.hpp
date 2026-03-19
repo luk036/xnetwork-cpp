@@ -563,9 +563,9 @@ namespace xnetwork {
          */
         auto has_node(const Node& node) const -> bool { return this->_node.contains(node); }
 
-        /** Add an edge between u and v.
+        /** Add an edge between node_u and node_v.
 
-            The nodes u and v will be automatically added if (they are
+            The nodes node_u and node_v will be automatically added if (they are
             not already : the graph.
 
             Edge attributes can be specified with keywords or by directly
@@ -573,7 +573,7 @@ namespace xnetwork {
 
             Parameters
             ----------
-            u, v : nodes
+            node_u, node_v : nodes
                 Nodes can be, for example, strings or numbers.
                 Nodes must be hashable (and not None) C++ objects.
 
@@ -643,13 +643,13 @@ namespace xnetwork {
             }
         }
 
-        /** Return true if (the edge (u, v) is : the graph.
+        /** Return true if (the edge (node_u, node_v) is : the graph.
 
-        This is the same as `v : gra[u]` without KeyError exceptions.
+        This is the same as `node_v : gra[node_u]` without KeyError exceptions.
 
         Parameters
         ----------
-        u, v : nodes
+        node_u, node_v : nodes
             Nodes can be, for example, strings or numbers.
             Nodes must be hashable (and not None) C++ objects.
 
