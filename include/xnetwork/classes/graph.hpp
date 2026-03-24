@@ -219,13 +219,13 @@ namespace xnetwork {
         using edge_t = std::pair<Node, Node>;
         using node_t = Node;
 
-        size_t _num_of_edges = 0;
+        size_t _num_of_edges = 0;  ///< Number of edges in the graph (cached)
 
-        // std::vector<Node > _Nodes{};
-        nodeview_t _node;
+        // std::vector<Node > _Nodes{}
+        nodeview_t _node;  ///< Container holding all nodes in the graph
         // graph_attr_dict_factory graph{};  // dictionary for graph attributes
         // node_dict_factory _node{};  // empty node attribute dict
-        adjlist_outer_dict_factory _adj;  // empty adjacency dict
+        adjlist_outer_dict_factory _adj;  ///< Adjacency dictionary keyed by node
 
         // auto __getstate__() {
         //     attr = this->__dict__.copy();
@@ -311,6 +311,11 @@ namespace xnetwork {
             return AdjacencyView<T>(this->_adj);
         }
 
+        /**
+         * @brief Iterate over nodes and their neighbors
+         * 
+         * @return auto An iterable of (node, adjacency dict) pairs
+         */
         auto _nodes_nbrs() const {
             // @TODO support py:dict
             return py::enumerate(this->_adj);
@@ -627,6 +632,12 @@ namespace xnetwork {
             this->_adj[node_v][node_u] = data;
         }
 
+        /**
+         * @brief Add edges from a container
+         * 
+         * @tparam C1 Container type for edges
+         * @param edges Container of edge pairs
+         */
         template <typename C1> auto add_edges_from(const C1& edges) {
             for (const auto& e : edges) {
                 this->add_edge(e.first, e.second);
@@ -634,6 +645,14 @@ namespace xnetwork {
             }
         }
 
+        /**
+         * @brief Add edges from a container with associated data
+         * 
+         * @tparam C1 Container type for edges
+         * @tparam C2 Container type for edge data
+         * @param edges Container of edge pairs
+         * @param data Container of edge data corresponding to each edge
+         */
         template <typename C1, typename C2> auto add_edges_from(const C1& edges, const C2& data) {
             auto it = data.begin();
             for (const auto& e : edges) {
@@ -682,6 +701,12 @@ namespace xnetwork {
             return this->_adj.at(node_u).contains(node_v);
         }
 
+        /**
+         * @brief Get the degree of a node
+         * 
+         * @param node The node to get the degree for
+         * @return auto The number of edges incident to the node
+         */
         auto degree(const Node& node) const { return this->_adj[node].size(); }
 
         /** An EdgeView of the Graph as gra.edges().
@@ -765,6 +790,12 @@ namespace xnetwork {
         auto is_directed() const { return false; }
     };
 
+    /**
+     * @brief A simple undirected graph with integer nodes
+     * 
+     * This is a convenience type alias for a Graph with uint32_t nodes
+     * and std::vector-based adjacency storage.
+     */
     using SimpleGraph = Graph<decltype(py::range<uint32_t>(uint32_t{})), py::set<uint32_t>,
                               std::vector<py::set<uint32_t>>>;
 

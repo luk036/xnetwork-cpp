@@ -32,16 +32,46 @@ These filters return the function used when creating `SubGraph`.
 //     "show_multidiedges",
 // };
 
+/**
+ * @brief Create a filter that shows all items
+ * 
+ * This filter factory returns a predicate function that returns true
+ * for all items, effectively showing everything.
+ * 
+ * @tparam T The type of items to filter
+ * @param items The collection of items (unused, kept for API consistency)
+ * @return auto A predicate function that accepts items and returns true
+ */
 template <typename T>
 auto no_filter(const T& /*items*/) {
     return [](const T& /*item*/) { return true; };
 }
 
+/**
+ * @brief Create a filter that hides specified nodes
+ * 
+ * This filter factory returns a predicate function that returns false
+ * for nodes in the given set, effectively hiding them from a subgraph.
+ * 
+ * @tparam T The type of nodes to filter
+ * @param nodes The set of nodes to hide
+ * @return auto A predicate function that accepts a node and returns true if not hidden
+ */
 template <typename T>
 auto hide_nodes(const std::set<T>& nodes) {
     return [nodes](const T& node) { return nodes.find(node) == nodes.end(); };
 }
 
+/**
+ * @brief Create a filter that hides specified directed edges
+ * 
+ * This filter factory returns a predicate function that returns false
+ * for directed edges in the given set, effectively hiding them from a subgraph.
+ * 
+ * @tparam T The type of nodes in the edges
+ * @param edges The set of directed edges to hide (as pairs)
+ * @return auto A predicate function that accepts two nodes and returns true if not hidden
+ */
 template <typename T>
 auto hide_diedges(const std::set<std::pair<T, T>>& edges) {
     return [edges](const T& u, const T& v) { 

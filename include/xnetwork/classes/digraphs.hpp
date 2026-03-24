@@ -324,11 +324,25 @@ namespace xnetwork {
                 > gra[1][2].update({0: 5});
                 > gra.edges()[1, 2].update({0: 5});
          */
+        /**
+         * @brief Add an edge between two nodes (for simple key type)
+         * 
+         * @tparam U Key type parameter for SFINAE
+         * @param node_u Source node
+         * @param node_v Target node
+         */
         template <typename U = key_type> auto add_edge(const Node& node_u, const Node& node_v) ->
             typename std::enable_if<std::is_same<U, value_type>::value>::type {
             this->_adj[node_u].insert(node_v);
         }
 
+        /**
+         * @brief Add an edge between two nodes (for complex key type)
+         * 
+         * @tparam U Key type parameter for SFINAE
+         * @param node_u Source node
+         * @param node_v Target node
+         */
         template <typename U = key_type> auto add_edge(const Node& node_u, const Node& node_v) ->
             typename std::enable_if<!std::is_same<U, value_type>::value>::type {
             using T = typename adjlist_t::mapped_type;
@@ -336,10 +350,26 @@ namespace xnetwork {
             this->_adj[node_u][node_v] = data;
         }
 
+        /**
+         * @brief Add an edge between two nodes with data
+         * 
+         * @tparam T Type of edge data
+         * @param node_u Source node
+         * @param node_v Target node
+         * @param data Edge data to associate with the edge
+         */
         template <typename T> auto add_edge(const Node& node_u, const Node& node_v, const T& data) {
             this->_adj[node_u][node_v] = data;
         }
 
+        /**
+         * @brief Add edges from a container with associated data
+         * 
+         * @tparam C1 Container type for edges
+         * @tparam C2 Container type for edge data
+         * @param edges Container of edge pairs
+         * @param data Container of edge data corresponding to each edge
+         */
         template <typename C1, typename C2> auto add_edges_from(const C1& edges, const C2& data) {
             auto N = edges.size();
             for (auto idx = 0U; idx != N; ++idx) {
@@ -443,6 +473,12 @@ namespace xnetwork {
 
         */
 
+        /**
+         * @brief Get the out-degree of a node in the directed graph
+         * 
+         * @param node The node to get the degree for
+         * @return size_t The number of outgoing edges from the node
+         */
         auto degree(const Node& node) const { return this->_adj[node].size(); }
 
         /** Return the number of edges in the directed graph.
@@ -493,6 +529,12 @@ namespace xnetwork {
         auto is_directed() const { return true; }
     };
 
+    /**
+     * @brief A simple directed graph with integer nodes
+     * 
+     * This is a convenience type alias for a DiGraphS with uint32_t nodes
+     * and std::vector-based adjacency storage.
+     */
     using SimpleDiGraphS = DiGraphS<decltype(py::range<uint32_t>(uint32_t{})),
                                     py::dict<uint32_t, int>, std::vector<py::dict<uint32_t, int>>>;
 
