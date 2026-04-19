@@ -313,7 +313,7 @@ namespace xnetwork {
 
         /**
          * @brief Iterate over nodes and their neighbors
-         * 
+         *
          * @return auto An iterable of (node, adjacency dict) pairs
          */
         auto _nodes_nbrs() const {
@@ -634,7 +634,7 @@ namespace xnetwork {
 
         /**
          * @brief Add edges from a container
-         * 
+         *
          * @tparam C1 Container type for edges
          * @param edges Container of edge pairs
          */
@@ -647,7 +647,7 @@ namespace xnetwork {
 
         /**
          * @brief Add edges from a container with associated data
-         * 
+         *
          * @tparam C1 Container type for edges
          * @tparam C2 Container type for edge data
          * @param edges Container of edge pairs
@@ -703,7 +703,7 @@ namespace xnetwork {
 
         /**
          * @brief Get the degree of a node
-         * 
+         *
          * @param node The node to get the degree for
          * @return auto The number of edges incident to the node
          */
@@ -792,7 +792,7 @@ namespace xnetwork {
 
     /**
      * @brief A simple undirected graph with integer nodes
-     * 
+     *
      * This is a convenience type alias for a Graph with uint32_t nodes
      * and std::vector-based adjacency storage.
      */

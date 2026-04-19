@@ -9,10 +9,10 @@ namespace py {
 
     /**
      * @brief A view class for iterating over vertices in a Boost Graph
-     * 
+     *
      * This class wraps a Boost Graph and provides iterators for traversing
      * all vertices in the graph.
-     * 
+     *
      * @tparam Graph The Boost graph type
      */
     template <typename Graph> class VertexView : public Graph {
@@ -67,9 +67,9 @@ namespace py {
 
     /**
      * @brief A view class for iterating over edges in a Boost Graph
-     * 
+     *
      * This class provides iterators for traversing all edges in the graph.
-     * 
+     *
      * @tparam Graph The Boost graph type
      */
     template <typename Graph> class EdgeView {
@@ -127,10 +127,10 @@ namespace py {
 
     /**
      * @brief A view class for iterating over outgoing edges of a vertex
-     * 
+     *
      * This class provides iterators for traversing all outgoing edges
      * from a given vertex in the graph.
-     * 
+     *
      * @tparam Vertex The vertex descriptor type
      * @tparam Graph The Boost graph type
      */
@@ -191,10 +191,10 @@ namespace py {
 
     /**
      * @brief Graph adaptor for Boost Graph Library interoperability
-     * 
+     *
      * This class provides a bridge between xnetwork and Boost Graph Library,
      * allowing Boost algorithms to work with xnetwork graph structures.
-     * 
+     *
      * @tparam _Graph The Boost graph type
      */
     template <typename _Graph> class GrAdaptor : public VertexView<_Graph> {
@@ -226,13 +226,17 @@ namespace py {
          * @brief Get the number of vertices in the graph
          * @return Number of vertices
          */
-        typename boost::graph_traits<_Graph>::vertices_size_type number_of_nodes() const { return boost::num_vertices(*this); }
+        typename boost::graph_traits<_Graph>::vertices_size_type number_of_nodes() const {
+            return boost::num_vertices(*this);
+        }
 
         /**
          * @brief Get the number of edges in the graph
          * @return Number of edges
          */
-        typename boost::graph_traits<_Graph>::edges_size_type number_of_edges() const { return boost::num_edges(*this); }
+        typename boost::graph_traits<_Graph>::edges_size_type number_of_edges() const {
+            return boost::num_edges(*this);
+        }
 
         /**
          * @brief Get a view of all edges in the graph
@@ -242,7 +246,7 @@ namespace py {
 
         /**
          * @brief Get a view of neighbors for a vertex
-         * 
+         *
          * @param[in] vertex The vertex to get neighbors for
          * @return AtlasView for iterating over outgoing edges
          */
@@ -252,12 +256,15 @@ namespace py {
 
         /**
          * @brief Add an edge between two vertices
-         * 
+         *
          * @param[in] node_u Source vertex
          * @param[in] node_v Target vertex
          * @return Pair of edge descriptor and success flag
          */
-        std::pair<typename boost::graph_traits<_Graph>::edge_descriptor, bool> add_edge(int node_u, int node_v) { return boost::add_edge(node_u, node_v, *this); }
+        std::pair<typename boost::graph_traits<_Graph>::edge_descriptor, bool> add_edge(
+            int node_u, int node_v) {
+            return boost::add_edge(node_u, node_v, *this);
+        }
 
         /**
          * @brief Get the null vertex descriptor
@@ -267,7 +274,7 @@ namespace py {
 
         /**
          * @brief Get the source vertex of an edge
-         * 
+         *
          * @tparam Edge The edge descriptor type
          * @param[in] edge The edge to get source of
          * @return Source vertex
@@ -278,7 +285,7 @@ namespace py {
 
         /**
          * @brief Get the target vertex of an edge
-         * 
+         *
          * @tparam Edge The edge descriptor type
          * @param[in] edge The edge to get target of
          * @return Target vertex
@@ -289,7 +296,7 @@ namespace py {
 
         /**
          * @brief Get both endpoints of an edge
-         * 
+         *
          * @tparam Edge The edge descriptor type
          * @param[in] edge The edge to get endpoints of
          * @return Pair of source and target vertices

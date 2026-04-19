@@ -326,7 +326,7 @@ namespace xnetwork {
          */
         /**
          * @brief Add an edge between two nodes (for simple key type)
-         * 
+         *
          * @tparam U Key type parameter for SFINAE
          * @param node_u Source node
          * @param node_v Target node
@@ -338,7 +338,7 @@ namespace xnetwork {
 
         /**
          * @brief Add an edge between two nodes (for complex key type)
-         * 
+         *
          * @tparam U Key type parameter for SFINAE
          * @param node_u Source node
          * @param node_v Target node
@@ -352,7 +352,7 @@ namespace xnetwork {
 
         /**
          * @brief Add an edge between two nodes with data
-         * 
+         *
          * @tparam T Type of edge data
          * @param node_u Source node
          * @param node_v Target node
@@ -364,7 +364,7 @@ namespace xnetwork {
 
         /**
          * @brief Add edges from a container with associated data
-         * 
+         *
          * @tparam C1 Container type for edges
          * @tparam C2 Container type for edge data
          * @param edges Container of edge pairs
@@ -475,7 +475,7 @@ namespace xnetwork {
 
         /**
          * @brief Get the out-degree of a node in the directed graph
-         * 
+         *
          * @param node The node to get the degree for
          * @return size_t The number of outgoing edges from the node
          */
@@ -531,7 +531,7 @@ namespace xnetwork {
 
     /**
      * @brief A simple directed graph with integer nodes
-     * 
+     *
      * This is a convenience type alias for a DiGraphS with uint32_t nodes
      * and std::vector-based adjacency storage.
      */
