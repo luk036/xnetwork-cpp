@@ -35,7 +35,7 @@ template <class GrAdaptor> struct exercise_vertex {
             // auto [src, targ] = g.end_points(e);
             // std::cout << "(" << index[src] << "," << index[targ] << ") ";
         }
-        // std::cout << std::endl;
+        // std::cout << '\n';
     }
     //...
 };
@@ -79,14 +79,14 @@ TEST_CASE("Test Boost") {
         static_assert(sizeof v >= 0, "unused");
         // std::cout << index[v] << " ";
     }
-    // std::cout << std::endl;
+    // std::cout << '\n';
 
     // std::cout << "edges(g) = ";
     // graph_traits<Graph>::edge_iterator ei, ei_end;
     // for (auto&& e : gra.edges())
     //     std::cout << "(" << index[boost::source(e, gra)] << ","
     //               << index[boost::target(e, gra)] << ") ";
-    // std::cout << std::endl;
+    // std::cout << '\n';
 
     std::for_each(boost::vertices(gra).first, boost::vertices(gra).second,
                   exercise_vertex<py::GrAdaptor<Graph>>(gra));
