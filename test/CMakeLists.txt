@@ -39,7 +39,7 @@ if(NOT TEST_INSTALLED_VERSION)
       XNetwork INTERFACE -Wall -Wpedantic -Wextra -Werror -Wno-deprecated-literal-operator
     )
   elseif(MSVC)
-    target_compile_options(XNetwork INTERFACE /W4 /WX /wd4819 /wd4996)
+    target_compile_options(XNetwork INTERFACE /W4 /WX /wd4459 /wd4819 /wd4996)
     target_compile_definitions(${PROJECT_NAME} INTERFACE DOCTEST_CONFIG_USE_STD_HEADERS)
   endif()
 endif()
