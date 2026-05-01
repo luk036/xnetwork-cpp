@@ -114,7 +114,7 @@ TEST_CASE("Test xnetwork::Graph (has_node)") {
     auto gra = xnetwork::SimpleGraph(4);
     gra.add_edges_from(edges);
     CHECK(gra.has_node(1));
-    CHECK(!gra.has_node(4));
+    CHECK_FALSE(gra.has_node(4));
 }
 
 TEST_CASE("Test xnetwork::Graph (has_edge)") {
@@ -123,7 +123,7 @@ TEST_CASE("Test xnetwork::Graph (has_edge)") {
     auto gra = xnetwork::SimpleGraph(4);
     gra.add_edges_from(edges);
     CHECK(gra.has_edge(0, 1));
-    CHECK(!gra.has_edge(0, 2));
+    CHECK_FALSE(gra.has_edge(0, 2));
 }
 
 TEST_CASE("Test xnetwork::Graph (order)") {
@@ -148,10 +148,10 @@ TEST_CASE("Test xnetwork::Graph (clear)") {
 
 TEST_CASE("Test xnetwork::Graph (is_multigraph)") {
     auto gra = xnetwork::SimpleGraph(4);
-    CHECK(!gra.is_multigraph());
+    CHECK_FALSE(gra.is_multigraph());
 }
 
 TEST_CASE("Test xnetwork::Graph (is_directed)") {
     auto gra = xnetwork::SimpleGraph(4);
-    CHECK(!gra.is_directed());
+    CHECK_FALSE(gra.is_directed());
 }
