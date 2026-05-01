@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>xnetwork/xnetwork_config.hpp file | XNetwork</title>
+  <title>xnetwork::Greeter class | XNetwork</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,49 +49,82 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <span class="m-breadcrumb"><a href="dir_38c00001a54616823030dadf662c376a.html">xnetwork</a>/</span>xnetwork_config.hpp <span class="m-thin">file</span>
+          <span class="m-breadcrumb"><a href="namespacexnetwork.html">xnetwork</a>::<wbr/></span>Greeter <span class="m-thin">class</span>
         </h1>
-        <p><span></span></p>
+        <p>A class that generates localized greeting messages.</p>
         <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
             <li>
               Reference
               <ul>
-                <li><a href="#define-members">Defines</a></li>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
               </ul>
             </li>
           </ul>
         </nav>
-        <section id="define-members">
-          <h2><a href="#define-members">Defines</a></h2>
+<p>This class provides functionality to generate greeting messages in multiple languages based on the provided language code.</p>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="a1c9dadae4ab11ef5d8db6362f37a5df4">
-              <span class="m-doc-wrap-bumper">#define <a href="#a1c9dadae4ab11ef5d8db6362f37a5df4" class="m-doc-self">XNETWORK_VERSION_MAJOR</a></span>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a68106ab98d2f4653c35bc830620b9234" class="m-doc">Greeter</a>(</span><span class="m-doc-wrap">std::string name) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="af927aeff4c73bf6ccb979ddec73c2461">
-              <span class="m-doc-wrap-bumper">#define <a href="#af927aeff4c73bf6ccb979ddec73c2461" class="m-doc-self">XNETWORK_VERSION_MINOR</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ae1c3018d22b915fa40e09546be5635be">
-              <span class="m-doc-wrap-bumper">#define <a href="#ae1c3018d22b915fa40e09546be5635be" class="m-doc-self">XNETWORK_VERSION_PATCH</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="af989845e24678c452b9222afdac95e7f">
-              <span class="m-doc-wrap-bumper">#define <a href="#af989845e24678c452b9222afdac95e7f" class="m-doc-self">__has_feature</a>(</span><span class="m-doc-wrap">x)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="aab54b4404ff5836247c33347c48f9dd1">
-              <span class="m-doc-wrap-bumper">#define <a href="#aab54b4404ff5836247c33347c48f9dd1" class="m-doc-self">XNETWORK_NO_EXCEPTIONS</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a5700bc0e84d8960ee93582d4705becd6">
-              <span class="m-doc-wrap-bumper">#define <a href="#a5700bc0e84d8960ee93582d4705becd6" class="m-doc-self">XNETWORK_THROW</a>(</span><span class="m-doc-wrap">_,
-              msg)</span>
-            </dt>
-            <dd><span></span></dd>
+            <dd>Construct a new <a href="classxnetwork_1_1Greeter.html" class="m-doc">Greeter</a> object.</dd>
           </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ab8681f4144c49259a5e5c0ad403fa8a9" class="m-doc">greet</a>(</span><span class="m-doc-wrap"><a href="namespacexnetwork.html#a6f7dc0186dc3c5390bca427b40b19fdd" class="m-doc">LanguageCode</a> lang) const -&gt; std::string</span>
+            </dt>
+            <dd>Generate a greeting message in the specified language.</dd>
+          </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a68106ab98d2f4653c35bc830620b9234"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> xnetwork::<wbr />Greeter::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a68106ab98d2f4653c35bc830620b9234" class="m-doc-self">Greeter</a>(</span><span class="m-doc-wrap">std::string name) <span class="m-label m-info">explicit</span> </span></span>
+            </h3>
+            <p>Construct a new <a href="classxnetwork_1_1Greeter.html" class="m-doc">Greeter</a> object.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">name</td>
+                  <td>The name to include in the greeting message</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="ab8681f4144c49259a5e5c0ad403fa8a9"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string xnetwork::<wbr />Greeter::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab8681f4144c49259a5e5c0ad403fa8a9" class="m-doc-self">greet</a>(</span><span class="m-doc-wrap"><a href="namespacexnetwork.html#a6f7dc0186dc3c5390bca427b40b19fdd" class="m-doc">LanguageCode</a> lang) const</span></span>
+            </h3>
+            <p>Generate a greeting message in the specified language.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">lang</td>
+                  <td>The language code for the greeting</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>std::string A localized greeting message containing the name</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>

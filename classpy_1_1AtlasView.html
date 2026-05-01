@@ -49,10 +49,10 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="nx2bgl_8hpp.html">&lt;py2cpp-old/nx2bgl.hpp&gt;</a></div>
           <div class="m-doc-template">template&lt;<a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Vertex, <a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Graph&gt;</div>
           <span class="m-breadcrumb"><a href="namespacepy.html">py</a>::<wbr/></span>AtlasView <span class="m-thin">class</span>
         </h1>
+        <p>A view class for iterating over outgoing edges of a vertex.</p>
         <table class="m-table m-fullwidth m-flat">
           <thead>
             <tr><th colspan="2">Template parameters</th></tr>
@@ -60,11 +60,11 @@
           <tbody>
             <tr>
               <td style="width: 1%">Vertex</td>
-              <td></td>
+              <td>The vertex descriptor type</td>
             </tr>
             <tr>
               <td>Graph</td>
-              <td></td>
+              <td>The Boost graph type</td>
             </tr>
           </tbody>
         </table>
@@ -80,11 +80,12 @@
             </li>
           </ul>
         </nav>
+<p>This class provides iterators for traversing all outgoing edges from a given vertex in the graph.</p>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper"><a href="#a1275b6d64636c5657fbe4d036aa59ea1" class="m-doc">AtlasView</a>(</span><span class="m-doc-wrap">Vertex v,
+              <span class="m-doc-wrap-bumper"><a href="#a22f282e46b6d07bed9d137a4dbd86473" class="m-doc">AtlasView</a>(</span><span class="m-doc-wrap">Vertex vertex,
               <a href="classpy_1_1EdgeView.html" class="m-doc">const</a> Graph&amp; gra)</span>
             </dt>
             <dd>Construct a new Atlas View object.</dd>
@@ -94,31 +95,31 @@
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a987781262abe5873972c0e2c3b336d07" class="m-doc">begin</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classpy_1_1EdgeView.html" class="m-doc">auto</a></span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a43e75605502596cd7e740a66c444f30f" class="m-doc">begin</a>(</span><span class="m-doc-wrap">) const -&gt; boost::graph_traits&lt;Graph&gt;::out_edge_iterator</span>
             </dt>
-            <dd></dd>
+            <dd>Get iterator to the first outgoing edge.</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a01ed062bb1960ee7045945ce537698e4" class="m-doc">end</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classpy_1_1EdgeView.html" class="m-doc">auto</a></span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a8ef544fcd6786b86d65be45206ab723f" class="m-doc">end</a>(</span><span class="m-doc-wrap">) const -&gt; boost::graph_traits&lt;Graph&gt;::out_edge_iterator</span>
             </dt>
-            <dd></dd>
+            <dd>Get iterator past the last outgoing edge.</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#aab0939c260ec88442fd61f94b2de208b" class="m-doc">cbegin</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classpy_1_1EdgeView.html" class="m-doc">auto</a></span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a1fceb70a8cb49c24f2d14e4dc3cc1eab" class="m-doc">cbegin</a>(</span><span class="m-doc-wrap">) const -&gt; boost::graph_traits&lt;Graph&gt;::out_edge_iterator</span>
             </dt>
-            <dd></dd>
+            <dd>Get const iterator to the first outgoing edge.</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a277af61654ab50f54341f194a4ada511" class="m-doc">cend</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classpy_1_1EdgeView.html" class="m-doc">auto</a></span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a6348f30934f5c2ac7bf7d93a16559957" class="m-doc">cend</a>(</span><span class="m-doc-wrap">) const -&gt; boost::graph_traits&lt;Graph&gt;::out_edge_iterator</span>
             </dt>
-            <dd></dd>
+            <dd>Get const iterator past the last outgoing edge.</dd>
           </dl>
         </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a1275b6d64636c5657fbe4d036aa59ea1"><div>
+          <section class="m-doc-details" id="a22f282e46b6d07bed9d137a4dbd86473"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;<a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Vertex, <a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Graph&gt;
               </div>
-              <span class="m-doc-wrap-bumper"> py::<wbr />AtlasView&lt;Vertex, Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1275b6d64636c5657fbe4d036aa59ea1" class="m-doc-self">AtlasView</a>(</span><span class="m-doc-wrap">Vertex v,
+              <span class="m-doc-wrap-bumper"> py::<wbr />AtlasView&lt;Vertex, Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a22f282e46b6d07bed9d137a4dbd86473" class="m-doc-self">AtlasView</a>(</span><span class="m-doc-wrap">Vertex vertex,
               <a href="classpy_1_1EdgeView.html" class="m-doc">const</a> Graph&amp; gra)</span></span>
             </h3>
             <p>Construct a new Atlas View object.</p>
@@ -128,76 +129,80 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="width: 1%">v&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td style="width: 1%">vertex&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>The source vertex</td>
                 </tr>
                 <tr>
                   <td>gra&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The graph to create a view of</td>
                 </tr>
               </tbody>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a987781262abe5873972c0e2c3b336d07"><div>
+          <section class="m-doc-details" id="a43e75605502596cd7e740a66c444f30f"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;<a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Vertex, <a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Graph&gt;
               </div>
-              <span class="m-doc-wrap-bumper"><a href="classpy_1_1EdgeView.html" class="m-doc">auto</a> py::<wbr />AtlasView&lt;Vertex, Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a987781262abe5873972c0e2c3b336d07" class="m-doc-self">begin</a>(</span><span class="m-doc-wrap">) const</span></span>
+              <span class="m-doc-wrap-bumper">boost::graph_traits&lt;Graph&gt;::out_edge_iterator py::<wbr />AtlasView&lt;Vertex, Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a43e75605502596cd7e740a66c444f30f" class="m-doc-self">begin</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
+            <p>Get iterator to the first outgoing edge.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
                   <th style="width: 1%">Returns</th>
-                  <td>auto</td>
+                  <td>Iterator to the first outgoing edge</td>
                 </tr>
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a01ed062bb1960ee7045945ce537698e4"><div>
+          <section class="m-doc-details" id="a8ef544fcd6786b86d65be45206ab723f"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;<a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Vertex, <a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Graph&gt;
               </div>
-              <span class="m-doc-wrap-bumper"><a href="classpy_1_1EdgeView.html" class="m-doc">auto</a> py::<wbr />AtlasView&lt;Vertex, Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a01ed062bb1960ee7045945ce537698e4" class="m-doc-self">end</a>(</span><span class="m-doc-wrap">) const</span></span>
+              <span class="m-doc-wrap-bumper">boost::graph_traits&lt;Graph&gt;::out_edge_iterator py::<wbr />AtlasView&lt;Vertex, Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8ef544fcd6786b86d65be45206ab723f" class="m-doc-self">end</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
+            <p>Get iterator past the last outgoing edge.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
                   <th style="width: 1%">Returns</th>
-                  <td>auto</td>
+                  <td>Iterator past the last outgoing edge</td>
                 </tr>
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="aab0939c260ec88442fd61f94b2de208b"><div>
+          <section class="m-doc-details" id="a1fceb70a8cb49c24f2d14e4dc3cc1eab"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;<a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Vertex, <a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Graph&gt;
               </div>
-              <span class="m-doc-wrap-bumper"><a href="classpy_1_1EdgeView.html" class="m-doc">auto</a> py::<wbr />AtlasView&lt;Vertex, Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aab0939c260ec88442fd61f94b2de208b" class="m-doc-self">cbegin</a>(</span><span class="m-doc-wrap">) const</span></span>
+              <span class="m-doc-wrap-bumper">boost::graph_traits&lt;Graph&gt;::out_edge_iterator py::<wbr />AtlasView&lt;Vertex, Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1fceb70a8cb49c24f2d14e4dc3cc1eab" class="m-doc-self">cbegin</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
+            <p>Get const iterator to the first outgoing edge.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
                   <th style="width: 1%">Returns</th>
-                  <td>auto</td>
+                  <td>Const iterator to the first outgoing edge</td>
                 </tr>
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a277af61654ab50f54341f194a4ada511"><div>
+          <section class="m-doc-details" id="a6348f30934f5c2ac7bf7d93a16559957"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;<a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Vertex, <a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Graph&gt;
               </div>
-              <span class="m-doc-wrap-bumper"><a href="classpy_1_1EdgeView.html" class="m-doc">auto</a> py::<wbr />AtlasView&lt;Vertex, Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a277af61654ab50f54341f194a4ada511" class="m-doc-self">cend</a>(</span><span class="m-doc-wrap">) const</span></span>
+              <span class="m-doc-wrap-bumper">boost::graph_traits&lt;Graph&gt;::out_edge_iterator py::<wbr />AtlasView&lt;Vertex, Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6348f30934f5c2ac7bf7d93a16559957" class="m-doc-self">cend</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
+            <p>Get const iterator past the last outgoing edge.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
                   <th style="width: 1%">Returns</th>
-                  <td>auto</td>
+                  <td>Const iterator past the last outgoing edge</td>
                 </tr>
               </tfoot>
             </table>

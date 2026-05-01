@@ -51,7 +51,7 @@
         <h1>
           <span class="m-breadcrumb"><a href="dir_38c00001a54616823030dadf662c376a.html">xnetwork</a>/</span><span class="m-breadcrumb"><a href="dir_10b695111bf97c06dd1742e71c208823.html">generators</a>/</span>testcases.hpp <span class="m-thin">file</span>
         </h1>
-        <p><span></span></p>
+        <p>Test case generators for XNetwork algorithms.</p>
         <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -63,25 +63,137 @@
             </li>
           </ul>
         </nav>
+<p>This file contains functions to generate standard test cases for testing graph algorithms.</p>
         <section id="func-members">
           <h2><a href="#func-members">Functions</a></h2>
           <dl class="m-doc">
-            <dt id="a9d47379803f9c27949e398844b79f1fa">
+            <dt>
               <div class="m-doc-template">template&lt;typename Container&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#a9d47379803f9c27949e398844b79f1fa" class="m-doc-self">create_test_case1</a>(</span><span class="m-doc-wrap">const Container&amp; weights) -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a9d47379803f9c27949e398844b79f1fa" class="m-doc">create_test_case1</a>(</span><span class="m-doc-wrap">const Container&amp; weights) -&gt; auto</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a81137b3ad39bfabd4575f1b5e8564859">
+            <dd>Create a test case with 5 nodes and 5 edges forming a cycle.</dd>
+            <dt>
               <div class="m-doc-template">template&lt;typename Container&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#a81137b3ad39bfabd4575f1b5e8564859" class="m-doc-self">create_test_case2</a>(</span><span class="m-doc-wrap">const Container&amp; weights) -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a81137b3ad39bfabd4575f1b5e8564859" class="m-doc">create_test_case2</a>(</span><span class="m-doc-wrap">const Container&amp; weights) -&gt; auto</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a8594eee9ba80f3e00ae86390ef62491a">
+            <dd>Create a test case with 3 nodes and bidirectional connections.</dd>
+            <dt>
               <div class="m-doc-template">template&lt;typename Container&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#a8594eee9ba80f3e00ae86390ef62491a" class="m-doc-self">create_test_case_timing</a>(</span><span class="m-doc-wrap">const Container&amp; weights) -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a8594eee9ba80f3e00ae86390ef62491a" class="m-doc">create_test_case_timing</a>(</span><span class="m-doc-wrap">const Container&amp; weights) -&gt; auto</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>Create a timing test case with 3 nodes and bidirectional connections.</dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a9d47379803f9c27949e398844b79f1fa"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename Container&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9d47379803f9c27949e398844b79f1fa" class="m-doc-self">create_test_case1</a>(</span><span class="m-doc-wrap">const Container&amp; weights)</span></span>
+            </h3>
+            <p>Create a test case with 5 nodes and 5 edges forming a cycle.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">Container</td>
+                  <td>The type of container for weights (should support iteration)</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>weights</td>
+                  <td>A container of weights for the edges</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><a href="namespacexnetwork.html#a3cadaf8568c8e1c06b47e2ea4575bf47" class="m-doc">xnetwork::<wbr />SimpleDiGraphS</a> A directed graph with the test structure</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>This function creates a directed graph with 5 nodes (A, B, C, D, E) connected in a cycle: A-&gt;B-&gt;C-&gt;D-&gt;E-&gt;A. Edge weights are assigned from the provided container.</p><aside class="m-note m-info"><h4>Note</h4><p>The graph has the structure: A-&gt;B-&gt;C-&gt;D-&gt;E-&gt;A</p></aside>
+          </div></section>
+          <section class="m-doc-details" id="a81137b3ad39bfabd4575f1b5e8564859"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename Container&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a81137b3ad39bfabd4575f1b5e8564859" class="m-doc-self">create_test_case2</a>(</span><span class="m-doc-wrap">const Container&amp; weights)</span></span>
+            </h3>
+            <p>Create a test case with 3 nodes and bidirectional connections.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">Container</td>
+                  <td>The type of container for weights (should support iteration)</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>weights</td>
+                  <td>A container of weights for the edges</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><a href="namespacexnetwork.html#a3cadaf8568c8e1c06b47e2ea4575bf47" class="m-doc">xnetwork::<wbr />SimpleDiGraphS</a> A directed graph with the test structure</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>This function creates a directed graph with 3 nodes (A, B, C) where each pair of nodes is connected in both directions.</p><aside class="m-note m-info"><h4>Note</h4><p>The graph has the structure: A&lt;-&gt;B&lt;-&gt;C&lt;-&gt;A (all bidirectional)</p></aside>
+          </div></section>
+          <section class="m-doc-details" id="a8594eee9ba80f3e00ae86390ef62491a"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename Container&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto </span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8594eee9ba80f3e00ae86390ef62491a" class="m-doc-self">create_test_case_timing</a>(</span><span class="m-doc-wrap">const Container&amp; weights)</span></span>
+            </h3>
+            <p>Create a timing test case with 3 nodes and bidirectional connections.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">Container</td>
+                  <td>The type of container for weights (should support iteration)</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>weights</td>
+                  <td>A container of weights for the edges</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><a href="namespacexnetwork.html#a3cadaf8568c8e1c06b47e2ea4575bf47" class="m-doc">xnetwork::<wbr />SimpleDiGraphS</a> A directed graph with the test structure</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>This function creates a directed graph with 3 nodes (A, B, C) intended for timing tests, where each pair of nodes is connected in both directions.</p><aside class="m-note m-info"><h4>Note</h4><p>The graph has 6 edges: A&lt;-&gt;B, B&lt;-&gt;C, C&lt;-&gt;A (all bidirectional)</p></aside>
+          </div></section>
         </section>
       </div>
     </div>

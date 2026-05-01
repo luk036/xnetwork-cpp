@@ -49,10 +49,10 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="nx2bgl_8hpp.html">&lt;py2cpp-old/nx2bgl.hpp&gt;</a></div>
           <div class="m-doc-template">template&lt;<a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Graph&gt;</div>
           <span class="m-breadcrumb"><a href="namespacepy.html">py</a>::<wbr/></span>VertexView <span class="m-thin">class</span>
         </h1>
+        <p>A view class for iterating over vertices in a Boost Graph.</p>
         <table class="m-table m-fullwidth m-flat">
           <thead>
             <tr><th colspan="2">Template parameters</th></tr>
@@ -60,7 +60,7 @@
           <tbody>
             <tr>
               <td style="width: 1%">Graph</td>
-              <td></td>
+              <td>The Boost graph type</td>
             </tr>
           </tbody>
         </table>
@@ -76,6 +76,7 @@
             </li>
           </ul>
         </nav>
+<p>This class wraps a Boost Graph and provides iterators for traversing all vertices in the graph.</p>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
@@ -88,22 +89,22 @@
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="ad9edfe1264854068c592970a8915a647">
-              <span class="m-doc-wrap-bumper">auto <a href="#ad9edfe1264854068c592970a8915a647" class="m-doc-self">begin</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classpy_1_1EdgeView.html" class="m-doc">auto</a></span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a039ff5efb986ae5a9d65e9851d3eb758" class="m-doc">begin</a>(</span><span class="m-doc-wrap">) const -&gt; boost::graph_traits&lt;Graph&gt;::vertex_iterator</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="aae1188f7ec00ad01ae427dcf0295feb8">
-              <span class="m-doc-wrap-bumper">auto <a href="#aae1188f7ec00ad01ae427dcf0295feb8" class="m-doc-self">end</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classpy_1_1EdgeView.html" class="m-doc">auto</a></span>
+            <dd>Get iterator to the first vertex.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a472fd5eb3b775b600843152204e44adf" class="m-doc">end</a>(</span><span class="m-doc-wrap">) const -&gt; boost::graph_traits&lt;Graph&gt;::vertex_iterator</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a83d3937af210741658042442755f72a2">
-              <span class="m-doc-wrap-bumper">auto <a href="#a83d3937af210741658042442755f72a2" class="m-doc-self">cbegin</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classpy_1_1EdgeView.html" class="m-doc">auto</a></span>
+            <dd>Get iterator past the last vertex.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a25630954cd450ec8ae3a3ed87e369d9b" class="m-doc">cbegin</a>(</span><span class="m-doc-wrap">) const -&gt; boost::graph_traits&lt;Graph&gt;::vertex_iterator</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a3cd856a98c1cb4adbc0eded19922b1a4">
-              <span class="m-doc-wrap-bumper">auto <a href="#a3cd856a98c1cb4adbc0eded19922b1a4" class="m-doc-self">cend</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classpy_1_1EdgeView.html" class="m-doc">auto</a></span>
+            <dd>Get const iterator to the first vertex.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aecc2cf45f804e7b0cd76a706f1979bba" class="m-doc">cend</a>(</span><span class="m-doc-wrap">) const -&gt; boost::graph_traits&lt;Graph&gt;::vertex_iterator</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>Get const iterator past the last vertex.</dd>
           </dl>
         </section>
         <section>
@@ -123,9 +124,77 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">gra&nbsp;<span class="m-label m-flat m-info">in</span></td>
-                  <td></td>
+                  <td>The graph to create a view of</td>
                 </tr>
               </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a039ff5efb986ae5a9d65e9851d3eb758"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;<a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Graph&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">boost::graph_traits&lt;Graph&gt;::vertex_iterator py::<wbr />VertexView&lt;Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a039ff5efb986ae5a9d65e9851d3eb758" class="m-doc-self">begin</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>Get iterator to the first vertex.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>Iterator to the first vertex</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a472fd5eb3b775b600843152204e44adf"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;<a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Graph&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">boost::graph_traits&lt;Graph&gt;::vertex_iterator py::<wbr />VertexView&lt;Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a472fd5eb3b775b600843152204e44adf" class="m-doc-self">end</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>Get iterator past the last vertex.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>Iterator past the last vertex</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a25630954cd450ec8ae3a3ed87e369d9b"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;<a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Graph&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">boost::graph_traits&lt;Graph&gt;::vertex_iterator py::<wbr />VertexView&lt;Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a25630954cd450ec8ae3a3ed87e369d9b" class="m-doc-self">cbegin</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>Get const iterator to the first vertex.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>Const iterator to the first vertex</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="aecc2cf45f804e7b0cd76a706f1979bba"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;<a href="classpy_1_1EdgeView.html" class="m-doc">typename</a> Graph&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">boost::graph_traits&lt;Graph&gt;::vertex_iterator py::<wbr />VertexView&lt;Graph&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aecc2cf45f804e7b0cd76a706f1979bba" class="m-doc-self">cend</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>Get const iterator past the last vertex.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>Const iterator past the last vertex</td>
+                </tr>
+              </tfoot>
             </table>
           </div></section>
         </section>

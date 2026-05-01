@@ -49,27 +49,24 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="coreviews_8hpp.html">&lt;xnetwork/classes/coreviews.hpp&gt;</a></div>
           <div class="m-doc-template">template&lt;typename Atlas&gt;</div>
           AtlasView <span class="m-thin">class</span>
         </h1>
         <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
-            <li><a href="#autotoc_md16">See Also</a></li>
+            <li><a href="#autotoc_md21">See Also</a></li>
             <li>
               Reference
               <ul>
                 <li><a href="#derived-classes">Derived classes</a></li>
-                <li><a href="#pub-types">Public types</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
                 <li><a href="#pub-methods">Public functions</a></li>
-                <li><a href="#pub-attribs">Public variables</a></li>
               </ul>
             </li>
           </ul>
         </nav>
-<p>An <a href="classAtlasView.html" class="m-doc">AtlasView</a> is a Read-only Mapping of Mappings.</p><p>It is a View into a dict-of-dict data structure. The inner level of dict is read-write. But the outer level is read-only.</p><section id="autotoc_md16"><h2><a href="#autotoc_md16">See Also</a></h2><p><a href="classAdjacencyView.html" class="m-doc">AdjacencyView</a> - View into dict-of-dict-of-dict MultiAdjacencyView - View into dict-of-dict-of-dict-of-dict</p><p>Interface: Mapping</p></section>
+<p>An <a href="classAtlasView.html" class="m-doc">AtlasView</a> is a Read-only Mapping of Mappings.</p><p>It is a View into a dict-of-dict data structure. The inner level of dict is read-write. But the outer level is read-only.</p><section id="autotoc_md21"><h2><a href="#autotoc_md21">See Also</a></h2><p><a href="classAdjacencyView.html" class="m-doc">AdjacencyView</a> - View into dict-of-dict-of-dict MultiAdjacencyView - View into dict-of-dict-of-dict-of-dict</p><p>Interface: Mapping</p></section>
         <section id="derived-classes">
           <h2><a href="#derived-classes">Derived classes</a></h2>
           <dl class="m-doc">
@@ -80,64 +77,228 @@
             <dd></dd>
           </dl>
         </section>
-        <section id="pub-types">
-          <h2><a href="#pub-types">Public types</a></h2>
-          <dl class="m-doc">
-            <dt id="a0f6d799778b7e892831622f5ce0868e0">
-              using <a href="#a0f6d799778b7e892831622f5ce0868e0" class="m-doc-self">size_type</a> = typename std::remove_reference_t&lt;Atlas&gt;::size_type
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="acbb57b02c4a90a5949cc28f92e8ef0fe">
-              <span class="m-doc-wrap-bumper"><a href="#acbb57b02c4a90a5949cc28f92e8ef0fe" class="m-doc-self">AtlasView</a>(</span><span class="m-doc-wrap">Atlas&amp; d) <span class="m-label m-flat m-info">explicit</span> </span>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#acbb57b02c4a90a5949cc28f92e8ef0fe" class="m-doc">AtlasView</a>(</span><span class="m-doc-wrap">Atlas&amp; d) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
-            <dd><span></span></dd>
+            <dd>Construct an <a href="classAtlasView.html" class="m-doc">AtlasView</a> from an Atlas container.</dd>
           </dl>
         </section>
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="a50ec323c123eb07273eb2f5739ae477f">
-              <span class="m-doc-wrap-bumper">auto <a href="#a50ec323c123eb07273eb2f5739ae477f" class="m-doc-self">size</a>(</span><span class="m-doc-wrap">) const -&gt; size_t -&gt; auto</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a50ec323c123eb07273eb2f5739ae477f" class="m-doc">size</a>(</span><span class="m-doc-wrap">) const -&gt; size_t -&gt; auto</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a216fadc9ce618dce7fdeb1ab468acfaf">
-              <span class="m-doc-wrap-bumper">auto <a href="#a216fadc9ce618dce7fdeb1ab468acfaf" class="m-doc-self">begin</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+            <dd>Get the number of elements in the view.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a216fadc9ce618dce7fdeb1ab468acfaf" class="m-doc">begin</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a5af3cb2193940a068024f65474c7463d">
-              <span class="m-doc-wrap-bumper">auto <a href="#a5af3cb2193940a068024f65474c7463d" class="m-doc-self">end</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
+            <dd>Get iterator to the beginning of the view.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a5af3cb2193940a068024f65474c7463d" class="m-doc">end</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a421395b7e084c3f00872c3cc9d03a320">
+            <dd>Get iterator to the end of the view.</dd>
+            <dt>
               <div class="m-doc-template">template&lt;typename T&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#a421395b7e084c3f00872c3cc9d03a320" class="m-doc-self">operator[]</a>(</span><span class="m-doc-wrap">const T&amp; key) const -&gt; const auto &amp; -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a421395b7e084c3f00872c3cc9d03a320" class="m-doc">operator[]</a>(</span><span class="m-doc-wrap">const T&amp; key) const -&gt; const auto &amp; -&gt; auto</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a11e00f90cd9ca0c78b17b1c16bdac53c">
+            <dd>Access element at specified key (const version)</dd>
+            <dt>
               <div class="m-doc-template">template&lt;typename T&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#a11e00f90cd9ca0c78b17b1c16bdac53c" class="m-doc-self">at</a>(</span><span class="m-doc-wrap">const T&amp; key) const -&gt; const auto &amp; -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a11e00f90cd9ca0c78b17b1c16bdac53c" class="m-doc">at</a>(</span><span class="m-doc-wrap">const T&amp; key) const -&gt; const auto &amp; -&gt; auto</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="abeae47ce354d27e68e00db64b75e39ff">
+            <dd>Access element at specified key (const version)</dd>
+            <dt>
               <div class="m-doc-template">template&lt;typename T&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#abeae47ce354d27e68e00db64b75e39ff" class="m-doc-self">operator[]</a>(</span><span class="m-doc-wrap">const T&amp; key) -&gt; auto &amp; -&gt; auto</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#abeae47ce354d27e68e00db64b75e39ff" class="m-doc">operator[]</a>(</span><span class="m-doc-wrap">const T&amp; key) -&gt; auto &amp; -&gt; auto</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>Access element at specified key (non-const version)</dd>
           </dl>
         </section>
-        <section id="pub-attribs">
-          <h2><a href="#pub-attribs">Public variables</a></h2>
-          <dl class="m-doc">
-            <dt id="ad284dc1488458cf4041d461be7fec102">
-              Atlas&amp; <a href="#ad284dc1488458cf4041d461be7fec102" class="m-doc-self">_atlas</a>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="acbb57b02c4a90a5949cc28f92e8ef0fe"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename Atlas&gt;
+              </div>
+              <span class="m-doc-wrap-bumper"> AtlasView&lt;Atlas&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#acbb57b02c4a90a5949cc28f92e8ef0fe" class="m-doc-self">AtlasView</a>(</span><span class="m-doc-wrap">Atlas&amp; d) <span class="m-label m-info">explicit</span> </span></span>
+            </h3>
+            <p>Construct an <a href="classAtlasView.html" class="m-doc">AtlasView</a> from an Atlas container.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">d</td>
+                  <td>The Atlas container to create a view of</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a50ec323c123eb07273eb2f5739ae477f"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename Atlas&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto AtlasView&lt;Atlas&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a50ec323c123eb07273eb2f5739ae477f" class="m-doc-self">size</a>(</span><span class="m-doc-wrap">) const -&gt; size_t</span></span>
+            </h3>
+            <p>Get the number of elements in the view.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The size of the Atlas container</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a216fadc9ce618dce7fdeb1ab468acfaf"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename Atlas&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto AtlasView&lt;Atlas&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a216fadc9ce618dce7fdeb1ab468acfaf" class="m-doc-self">begin</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>Get iterator to the beginning of the view.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>Iterator to the first element</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a5af3cb2193940a068024f65474c7463d"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename Atlas&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto AtlasView&lt;Atlas&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5af3cb2193940a068024f65474c7463d" class="m-doc-self">end</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>Get iterator to the end of the view.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>Iterator past the last element</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a421395b7e084c3f00872c3cc9d03a320"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename Atlas&gt;
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto AtlasView&lt;Atlas&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a421395b7e084c3f00872c3cc9d03a320" class="m-doc-self">operator[]</a>(</span><span class="m-doc-wrap">const T&amp; key) const -&gt; const auto &amp;</span></span>
+            </h3>
+            <p>Access element at specified key (const version)</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">T</td>
+                  <td>The key type</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>key</td>
+                  <td>The key to access</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>Const reference to the value at the key</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a11e00f90cd9ca0c78b17b1c16bdac53c"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename Atlas&gt;
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto AtlasView&lt;Atlas&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a11e00f90cd9ca0c78b17b1c16bdac53c" class="m-doc-self">at</a>(</span><span class="m-doc-wrap">const T&amp; key) const -&gt; const auto &amp;</span></span>
+            </h3>
+            <p>Access element at specified key (const version)</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">T</td>
+                  <td>The key type</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>key</td>
+                  <td>The key to access</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>Const reference to the value at the key</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="abeae47ce354d27e68e00db64b75e39ff"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename Atlas&gt;
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto AtlasView&lt;Atlas&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abeae47ce354d27e68e00db64b75e39ff" class="m-doc-self">operator[]</a>(</span><span class="m-doc-wrap">const T&amp; key) -&gt; auto &amp;</span></span>
+            </h3>
+            <p>Access element at specified key (non-const version)</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">T</td>
+                  <td>The key type</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>key</td>
+                  <td>The key to access</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>Reference to the value at the key</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>
