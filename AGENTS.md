@@ -166,8 +166,8 @@ Example:
 TEST_CASE("Test xnetwork::Graph") {
     auto gra = xnetwork::SimpleGraph{5};
     gra.add_edge(0, 1);
-    CHECK(gra.number_of_nodes() == 5);
-    CHECK(gra.number_of_edges() == 1);
+    CHECK_EQ(gra.number_of_nodes(), 5);
+    CHECK_EQ(gra.number_of_edges(), 1);
 }
 ```
 

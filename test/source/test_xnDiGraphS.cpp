@@ -32,7 +32,7 @@ template <typename Graph> static void do_case(const Graph& gra) {
         ++count;
     }
 
-    CHECK(gra.number_of_nodes() == count);
+    CHECK_EQ(gra.number_of_nodes(), count);
 
     auto deg = 0U;
     for (auto itr : gra["B"]) {

@@ -25,14 +25,14 @@ template <typename Graph> static void do_case(const Graph& gra) {
         static_assert(sizeof itr >= 0, "unused");
         ++count;
     }
-    CHECK(gra.number_of_nodes() == count);
+    CHECK_EQ(gra.number_of_nodes(), count);
 
     auto deg = 0U;
     for (auto itr : gra[1U]) {
         static_assert(sizeof itr >= 0, "unused");
         ++deg;
     }
-    CHECK(gra.degree(1U) == deg);
+    CHECK_EQ(gra.degree(1U), deg);
 }
 
 /**
@@ -92,7 +92,7 @@ TEST_CASE("Test xnetwork::Graph (adj)") {
         static_assert(sizeof itr >= 0, "unused");
         ++count;
     }
-    CHECK(count == 2);
+    CHECK_EQ(count, 2);
 }
 
 TEST_CASE("Test xnetwork::Graph (nodes)") {
@@ -105,7 +105,7 @@ TEST_CASE("Test xnetwork::Graph (nodes)") {
         static_assert(sizeof itr >= 0, "unused");
         ++count;
     }
-    CHECK(count == 4);
+    CHECK_EQ(count, 4);
 }
 
 TEST_CASE("Test xnetwork::Graph (has_node)") {
@@ -128,12 +128,12 @@ TEST_CASE("Test xnetwork::Graph (has_edge)") {
 
 TEST_CASE("Test xnetwork::Graph (order)") {
     auto gra = xnetwork::SimpleGraph(4);
-    CHECK(gra.order() == 4);
+    CHECK_EQ(gra.order(), 4);
 }
 
 TEST_CASE("Test xnetwork::Graph (size)") {
     auto gra = xnetwork::SimpleGraph(4);
-    CHECK(gra.size() == 4);
+    CHECK_EQ(gra.size(), 4);
 }
 
 TEST_CASE("Test xnetwork::Graph (clear)") {
@@ -142,8 +142,8 @@ TEST_CASE("Test xnetwork::Graph (clear)") {
     auto gra = xnetwork::SimpleGraph(4);
     gra.add_edges_from(edges);
     gra.clear();
-    CHECK(gra.number_of_nodes() == 4);
-    CHECK(gra.adj().size() == 0);
+    CHECK_EQ(gra.number_of_nodes(), 4);
+    CHECK_EQ(gra.adj().size(), 0);
 }
 
 TEST_CASE("Test xnetwork::Graph (is_multigraph)") {

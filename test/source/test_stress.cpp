@@ -15,13 +15,13 @@ TEST_CASE("Stress Test xnetwork::SimpleGraph") {
     }
 
     // Check the degree of a node
-    CHECK(gra.degree(0) == num_nodes - 1);
-    CHECK(gra.degree(num_nodes - 1) == num_nodes - 1);
+    CHECK_EQ(gra.degree(0), num_nodes - 1);
+    CHECK_EQ(gra.degree(num_nodes - 1), num_nodes - 1);
 
     // Clear the graph
     gra.clear();
 
     // Check that the graph is empty (@todo)
-    // CHECK(gra.degree(0) == 0);
-    // CHECK(gra.degree(num_nodes - 1) == 0);
+    // CHECK_EQ(gra.degree(0), 0);
+    // CHECK_EQ(gra.degree(num_nodes - 1), 0);
 }
