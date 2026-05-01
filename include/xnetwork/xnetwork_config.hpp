@@ -28,10 +28,10 @@
 #endif
 
 #if defined(XNETWORK_NO_EXCEPTIONS)
-#    define XNETWORK_THROW(_, msg)         \
-        {                                  \
+#    define XNETWORK_THROW(_, msg)    \
+        {                             \
             std::cerr << msg << '\n'; \
-            std::abort();                  \
+            std::abort();             \
         }
 #else
 #    define XNETWORK_THROW(exception, msg) throw exception(msg)
