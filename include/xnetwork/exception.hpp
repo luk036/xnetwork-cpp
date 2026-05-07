@@ -1,7 +1,7 @@
 // -*- coding: utf-8 -*-
 #pragma once
 
-#include <exception>
+// #include <exception>
 // #include <initializer_list>
 #include <stdexcept>
 #include <string>

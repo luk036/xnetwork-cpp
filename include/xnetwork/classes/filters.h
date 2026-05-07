@@ -10,7 +10,7 @@
 //          Dan Schult(dschult@colgate.edu>;
 #pragma once
 
-#include <functional>
+// #include <functional>
 #include <set>
 
 /** Filter factories to hide || show sets of nodes && edges.
