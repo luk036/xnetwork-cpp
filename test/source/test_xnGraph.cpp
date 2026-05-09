@@ -4,14 +4,8 @@
 #include <cstdint>                     // for uint8_t
 #include <py2cpp/dict.hpp>             // for dict<>::Base
 #include <py2cpp/set.hpp>              // for set
-#include <tuple>                       // for tuple_element<>::type
-#include <unordered_map>               // for operator!=
 #include <vector>                      // for vector
 #include <xnetwork/classes/graph.hpp>  // for Graph, SimpleGraph
-
-// #if __cplusplus > 201703L
-// #include <cppcoro/generator.hpp> // for operator!=, generator
-// #endif
 
 /**
  * @brief
@@ -21,15 +15,13 @@
  */
 template <typename Graph> static void do_case(const Graph& gra) {
     auto count = 0U;
-    for (auto itr : gra) {
-        static_assert(sizeof itr >= 0, "unused");
+    for ([[maybe_unused]] auto itr : gra) {
         ++count;
     }
     CHECK_EQ(gra.number_of_nodes(), count);
 
     auto deg = 0U;
-    for (auto itr : gra[1U]) {
-        static_assert(sizeof itr >= 0, "unused");
+    for ([[maybe_unused]] auto itr : gra[1U]) {
         ++deg;
     }
     CHECK_EQ(gra.degree(1U), deg);
@@ -88,8 +80,7 @@ TEST_CASE("Test xnetwork::Graph (adj)") {
     auto gra = xnetwork::SimpleGraph(4);
     gra.add_edges_from(edges);
     auto count = 0;
-    for (auto itr : gra.adj()[1]) {
-        static_assert(sizeof itr >= 0, "unused");
+    for ([[maybe_unused]] auto itr : gra.adj()[1]) {
         ++count;
     }
     CHECK_EQ(count, 2);
@@ -101,8 +92,7 @@ TEST_CASE("Test xnetwork::Graph (nodes)") {
     auto gra = xnetwork::SimpleGraph(4);
     gra.add_edges_from(edges);
     auto count = 0;
-    for (auto itr : gra.nodes()) {
-        static_assert(sizeof itr >= 0, "unused");
+    for ([[maybe_unused]] auto itr : gra.nodes()) {
         ++count;
     }
     CHECK_EQ(count, 4);

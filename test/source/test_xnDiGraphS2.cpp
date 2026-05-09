@@ -13,16 +13,14 @@
  */
 template <typename Graph> static void do_case(const Graph& gra) {
     auto count = 0U;
-    for (auto itr : gra) {
-        static_assert(sizeof itr >= 0, "unused");
+    for ([[maybe_unused]] auto itr : gra) {
         ++count;
     }
 
     CHECK_EQ(gra.number_of_nodes(), count);
 
     auto deg = 0U;
-    for (auto itr : gra[1U]) {
-        static_assert(sizeof itr >= 0, "unused");
+    for ([[maybe_unused]] auto itr : gra[1U]) {
         ++deg;
     }
     CHECK_EQ(gra.degree(1U), deg);

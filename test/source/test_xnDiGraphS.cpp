@@ -27,16 +27,14 @@ template <typename Container> inline auto create_test_case4(const Container& wei
  */
 template <typename Graph> static void do_case(const Graph& gra) {
     auto count = 0U;
-    for (const auto& itr : gra) {
-        static_assert(sizeof itr >= 0, "unused");
+    for ([[maybe_unused]] const auto& itr : gra) {
         ++count;
     }
 
     CHECK_EQ(gra.number_of_nodes(), count);
 
     auto deg = 0U;
-    for (const auto& itr : gra["B"]) {
-        static_assert(sizeof itr >= 0, "unused");
+    for ([[maybe_unused]] const auto& itr : gra["B"]) {
         ++deg;
     }
     CHECK_EQ(gra.degree("B"), deg);
