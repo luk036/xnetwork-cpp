@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>xnetwork::XNetworkPointlessConcept struct | XNetwork</title>
+  <title>xnetwork/thread_pool.hpp file | XNetwork</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,28 +49,26 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <span class="m-breadcrumb"><a href="namespacexnetwork.html">xnetwork</a>::<wbr/></span>XNetworkPointlessConcept <span class="m-thin">struct</span>
+          <span class="m-breadcrumb"><a href="dir_38c00001a54616823030dadf662c376a.html">xnetwork</a>/</span>thread_pool.hpp <span class="m-thin">file</span>
         </h1>
         <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
-            <li><a href="#autotoc_md93">References</a></li>
             <li>
               Reference
               <ul>
-                <li><a href="#base-classes">Base classes</a></li>
+                <li><a href="#namespaces">Namespaces</a></li>
               </ul>
             </li>
           </ul>
         </nav>
-<p>Raised when a null graph is provided as input to an algorithm that cannot use it.</p><p>The null graph is sometimes considered a pointless concept [1]_, thus the name of the exception.</p><section id="autotoc_md93"><h3><a href="#autotoc_md93">References</a></h3><p>.. [1] Harary, F. and Read, R. &quot;Is the Null Graph a Pointless
-   Concept?&quot; In Graphs and Combinatorics Conference, George Washington University. New York: Springer-Verlag, 1973.</p></section>
-        <section id="base-classes">
-          <h2><a href="#base-classes">Base classes</a></h2>
+<p>Minimal header-only thread pool for C++17.</p><p>Owns a fixed set of worker threads that process tasks from a shared queue. Tasks are enqueued via enqueue() which returns a std::future to the result.</p><p>Usage:</p><pre class="m-code"><span class="n">xnetwork</span><span class="o">::</span><span class="n">thread_pool</span><span class="w"> </span><span class="n">pool</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">future</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pool</span><span class="p">.</span><span class="n">enqueue</span><span class="p">([]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span><span class="w"> </span><span class="p">});</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">future</span><span class="p">.</span><span class="n">get</span><span class="p">();</span></pre><p>The destructor waits for all pending tasks to finish and joins all worker threads. It is safe to destroy the pool while tasks are still running — remaining tasks are abandoned.</p>
+        <section id="namespaces">
+          <h2><a href="#namespaces">Namespaces</a></h2>
           <dl class="m-doc">
-            <dt>
-              struct <a href="structxnetwork_1_1XNetworkException.html" class="m-doc">XNetworkException</a>
-            </dt>
+            <dt>namespace <a href="namespacexnetwork.html" class="m-doc">xnetwork</a></dt>
             <dd></dd>
           </dl>
         </section>

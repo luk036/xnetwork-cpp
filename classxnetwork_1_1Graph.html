@@ -167,6 +167,10 @@
             </dt>
             <dd></dd>
             <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a24ecaec42681c909da0bea371a25c559" class="m-doc">edges</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt; edge_t &gt; -&gt; auto</span>
+            </dt>
+            <dd></dd>
+            <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a67a348cd692b1abad7ea5cc6cf43429d" class="m-doc">has_node</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; node) const -&gt; bool -&gt; auto</span>
             </dt>
             <dd></dd>
@@ -402,6 +406,15 @@
             </h3>
 <p>Return the number of edges in the graph.</p><h5 id="autotoc_md68">Returns</h5><p>nedges : size_t The number of edges in the graph.</p><h5 id="autotoc_md69">Notes</h5><p>This method needs to iterate through the adjacency structure to count the edges, so it has O(n) time complexity where n is the number of nodes.</p>
           </div></section>
+          <section class="m-doc-details" id="a24ecaec42681c909da0bea371a25c559"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a24ecaec42681c909da0bea371a25c559" class="m-doc-self">edges</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt; edge_t &gt;</span></span>
+            </h3>
+<p>Return a vector of all edges in the graph as (u, v) pairs.</p><p>Each undirected edge is reported once with u &lt; v.</p><h5 id="autotoc_md70">Returns</h5><p>vector&lt;edge_t&gt; A vector of (u, v) pairs representing all edges in the graph.</p><h5 id="autotoc_md71">Examples</h5><p>&gt; auto g = nx::Graph(py::range(3)); &gt; g.add_edge(0, 1); &gt; g.add_edge(1, 2); &gt; g.edges(); [(0, 1), (1, 2)];</p>
+          </div></section>
           <section class="m-doc-details" id="a67a348cd692b1abad7ea5cc6cf43429d"><div>
             <h3>
               <div class="m-doc-template">
@@ -409,7 +422,7 @@
               </div>
               <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a67a348cd692b1abad7ea5cc6cf43429d" class="m-doc-self">has_node</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; node) const -&gt; bool</span></span>
             </h3>
-<p>Return true if (the graph contains the node n.</p><p>Identical to <code>n : gra</code></p><h5 id="autotoc_md70">Parameters</h5><p>n : node</p><h5 id="autotoc_md71">Examples</h5><p>&gt; gra = nx.path_graph(3); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; gra.has_node(0); true</p>
+<p>Return true if (the graph contains the node n.</p><p>Identical to <code>n : gra</code></p><h5 id="autotoc_md72">Parameters</h5><p>n : node</p><h5 id="autotoc_md73">Examples</h5><p>&gt; gra = nx.path_graph(3); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; gra.has_node(0); true</p>
           </div></section>
           <section class="m-doc-details" id="abb04189e026a1433b653eb9bd5d83cbc"><div>
             <h3>
@@ -420,7 +433,7 @@
               <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abb04189e026a1433b653eb9bd5d83cbc" class="m-doc-self">add_edge</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; node_u,
               const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; node_v) -&gt; typename std::enable_if&lt; std::is_same&lt; U, value_type &gt;::value &gt;::type</span></span>
             </h3>
-<p>Add an edge between node_u and node_v.</p><p>The nodes node_u and node_v will be automatically added if (they are not already : the graph.</p><p>Edge attributes can be specified with keywords or by directly accessing the edge&quot;s attribute dictionary. See examples below.</p><h5 id="autotoc_md72">Parameters</h5><p>node_u, node_v : nodes Nodes can be, for example, strings or numbers. Nodes must be hashable (and not None) C++ objects.</p><h5 id="autotoc_md73">See Also</h5><p>add_edges_from : add a collection of edges</p><h5 id="autotoc_md74">Notes</h5><p>Adding an edge that already exists updates the edge data.</p><p>Many XNetwork algorithms designed for weighted graphs use an edge attribute (by default <code>weight</code>) to hold a numerical value.</p><h5 id="autotoc_md75">Examples</h5><p>The following all add the edge e=(1, 2) to graph gra) {</p><pre>&gt; gra = nx.Graph()   // or DiGraph, MultiGraph, MultiDiGraph, etc
+<p>Add an edge between node_u and node_v.</p><p>The nodes node_u and node_v will be automatically added if (they are not already : the graph.</p><p>Edge attributes can be specified with keywords or by directly accessing the edge&quot;s attribute dictionary. See examples below.</p><h5 id="autotoc_md74">Parameters</h5><p>node_u, node_v : nodes Nodes can be, for example, strings or numbers. Nodes must be hashable (and not None) C++ objects.</p><h5 id="autotoc_md75">See Also</h5><p>add_edges_from : add a collection of edges</p><h5 id="autotoc_md76">Notes</h5><p>Adding an edge that already exists updates the edge data.</p><p>Many XNetwork algorithms designed for weighted graphs use an edge attribute (by default <code>weight</code>) to hold a numerical value.</p><h5 id="autotoc_md77">Examples</h5><p>The following all add the edge e=(1, 2) to graph gra) {</p><pre>&gt; gra = nx.Graph()   // or DiGraph, MultiGraph, MultiDiGraph, etc
 &gt; e = (1, 2);
 &gt; gra.add_edge(1, 2)           // explicit two-node form
 &gt; gra.add_edges_from([(1, 2)]);  // add edges from iterable
@@ -507,7 +520,7 @@
               <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6f6207f926abb08057b9a48e4116f4c0" class="m-doc-self">has_edge</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; node_u,
               const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; node_v) const -&gt; bool</span></span>
             </h3>
-<p>Return true if (the edge (node_u, node_v) is : the graph.</p><p>This is the same as <code>node_v : gra[node_u]</code> without KeyError exceptions.</p><h5 id="autotoc_md76">Parameters</h5><p>node_u, node_v : nodes Nodes can be, for example, strings or numbers. Nodes must be hashable (and not None) C++ objects.</p><h5 id="autotoc_md77">Returns</h5><p>edge_ind : bool true if (edge is : the graph, false otherwise.</p><h5 id="autotoc_md78">Examples</h5><p>&gt; gra = nx.path_graph(4); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; gra.has_edge(0, 1); // using two nodes true &gt; e = (0, 1); &gt; gra.has_edge(*e); // e is a 2-tuple (u, v); true &gt; e = (0, 1, {&quot;weight&quot;:7}); &gt; gra.has_edge(*e[:2]); // e is a 3-tuple (u, v, data_dictionary); true</p><p>The following syntax are equivalent) {</p><pre>&gt; gra.has_edge(0, 1);
+<p>Return true if (the edge (node_u, node_v) is : the graph.</p><p>This is the same as <code>node_v : gra[node_u]</code> without KeyError exceptions.</p><h5 id="autotoc_md78">Parameters</h5><p>node_u, node_v : nodes Nodes can be, for example, strings or numbers. Nodes must be hashable (and not None) C++ objects.</p><h5 id="autotoc_md79">Returns</h5><p>edge_ind : bool true if (edge is : the graph, false otherwise.</p><h5 id="autotoc_md80">Examples</h5><p>&gt; gra = nx.path_graph(4); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; gra.has_edge(0, 1); // using two nodes true &gt; e = (0, 1); &gt; gra.has_edge(*e); // e is a 2-tuple (u, v); true &gt; e = (0, 1, {&quot;weight&quot;:7}); &gt; gra.has_edge(*e[:2]); // e is a 3-tuple (u, v, data_dictionary); true</p><p>The following syntax are equivalent) {</p><pre>&gt; gra.has_edge(0, 1);
 </pre><p>true &gt; 1 : gra[0]; // though this gives KeyError if (0 not : gra true</p>
           </div></section>
           <section class="m-doc-details" id="accdc2e5f14d7c7ce199a21784daf39dd"><div>
@@ -543,22 +556,22 @@
               </div>
               <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad32e50b56451656de040254a65637d81" class="m-doc-self">clear</a>(</span><span class="m-doc-wrap">)</span></span>
             </h3>
-<p>An EdgeView of the <a href="classxnetwork_1_1Graph.html" class="m-doc">Graph</a> as gra.edges().</p><p>edges( nbunch=None, data=false, default=None);</p><p>The EdgeView provides set-like operations on the edge-tuples as well as edge attribute lookup. When called, it also provides an EdgeDataView object which allows control of access to edge attributes (but does not provide set-like operations). Hence, <code>gra.edges[u, v][&quot;color&quot;]</code> provides the value of the color attribute for edge <code>(u, v)</code> while <code>for (auto [u, v, c] : gra.edges.data(&quot;color&quot;, default=&quot;red&quot;) {</code> iterates through all the edges yielding the color attribute with default <code>&quot;red&quot;</code> if (no color attribute exists.</p><h5 id="autotoc_md79">Parameters</h5><p>nbunch : single node, container, or all nodes (default= all nodes); The view will only report edges incident to these nodes. data : string or bool, optional (default=false); The edge attribute returned : 3-tuple (u, v, ddict[data]). If true, return edge attribute dict : 3-tuple (u, v, ddict). If false, return 2-tuple (u, v). default : value, optional (default=None); Value used for edges that don&quot;t have the requested attribute.
+<p>An EdgeView of the <a href="classxnetwork_1_1Graph.html" class="m-doc">Graph</a> as gra.edges().</p><p>edges( nbunch=None, data=false, default=None);</p><p>The EdgeView provides set-like operations on the edge-tuples as well as edge attribute lookup. When called, it also provides an EdgeDataView object which allows control of access to edge attributes (but does not provide set-like operations). Hence, <code>gra.edges[u, v][&quot;color&quot;]</code> provides the value of the color attribute for edge <code>(u, v)</code> while <code>for (auto [u, v, c] : gra.edges.data(&quot;color&quot;, default=&quot;red&quot;) {</code> iterates through all the edges yielding the color attribute with default <code>&quot;red&quot;</code> if (no color attribute exists.</p><h5 id="autotoc_md81">Parameters</h5><p>nbunch : single node, container, or all nodes (default= all nodes); The view will only report edges incident to these nodes. data : string or bool, optional (default=false); The edge attribute returned : 3-tuple (u, v, ddict[data]). If true, return edge attribute dict : 3-tuple (u, v, ddict). If false, return 2-tuple (u, v). default : value, optional (default=None); Value used for edges that don&quot;t have the requested attribute.
     Only relevant if (data is not true or false.
 
-@subsection autotoc_md80 Returns
+@subsection autotoc_md82 Returns
 
 edges : EdgeView
     A view of edge attributes, usually it iterates over (u, v);
     or (u, v, d) tuples of edges, but can also be used for
     attribute lookup as &lt;tt&gt;edges[u, v][&quot;foo&quot;]&lt;/tt&gt;.
 
-@subsection autotoc_md81 Notes
+@subsection autotoc_md83 Notes
 
 Nodes : nbunch that are not : the graph will be (quietly) ignored.
 For directed graphs this returns the out-edges.
 
-@subsection autotoc_md82 Examples
+@subsection autotoc_md84 Examples
 
     &gt; gra = nx.path_graph(3)   // or MultiGraph, etc
     &gt; gra.add_edge(2, 3, weight=5);
@@ -566,7 +579,7 @@ For directed graphs this returns the out-edges.
 [(0, 1), (1, 2), (2, 3)];
     &gt; gra.edges.data();  // default data is {} (empty dict);
 EdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {&quot;weight&quot;: 5})]);
-    &gt; gra.edges.data(&quot;weight&quot;, default=1); EdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)]); &gt; gra.edges([0, 3]); // only edges incident to these nodes EdgeDataView([(0, 1), (3, 2)]); &gt; gra.edges(0); // only edges incident to a single node (use gra.adj[0]?); EdgeDataView([(0, 1)]); Remove all nodes and edges from the graph.</p><p>This also removes the name, and all graph, node, and edge attributes.</p><h5 id="autotoc_md83">Examples</h5><p>&gt; gra = nx.path_graph(4); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; gra.clear(); &gt; list(gra.nodes); []; &gt; list(gra.edges()); [];</p>
+    &gt; gra.edges.data(&quot;weight&quot;, default=1); EdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)]); &gt; gra.edges([0, 3]); // only edges incident to these nodes EdgeDataView([(0, 1), (3, 2)]); &gt; gra.edges(0); // only edges incident to a single node (use gra.adj[0]?); EdgeDataView([(0, 1)]); Remove all nodes and edges from the graph.</p><p>This also removes the name, and all graph, node, and edge attributes.</p><h5 id="autotoc_md85">Examples</h5><p>&gt; gra = nx.path_graph(4); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; gra.clear(); &gt; list(gra.nodes); []; &gt; list(gra.edges()); [];</p>
           </div></section>
           <section class="m-doc-details" id="a8b4b90bfc9b770d4323f8f123f75013a"><div>
             <h3>
