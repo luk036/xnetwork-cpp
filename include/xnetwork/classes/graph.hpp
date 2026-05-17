@@ -553,6 +553,35 @@ namespace xnetwork {
             return n_edges / 2;  // Divide by 2 since it's an undirected graph
         }
 
+        /** Return a vector of all edges in the graph as (u, v) pairs.
+
+            Each undirected edge is reported once with u < v.
+
+            Returns
+            -------
+            vector<edge_t>
+                A vector of (u, v) pairs representing all edges in the graph.
+
+            Examples
+            --------
+                > auto g = nx::Graph(py::range(3));
+                > g.add_edge(0, 1);
+                > g.add_edge(1, 2);
+                > g.edges();
+            [(0, 1), (1, 2)];
+         */
+        auto edges() const -> std::vector<edge_t> {
+            std::vector<edge_t> result;
+            for (const auto& node : this->_node) {
+                for (const auto& nbr : this->_adj[node]) {
+                    if (node < nbr) {
+                        result.emplace_back(node, nbr);
+                    }
+                }
+            }
+            return result;
+        }
+
         /** Return true if (the graph contains the node n.
 
             Identical to `n : gra`
