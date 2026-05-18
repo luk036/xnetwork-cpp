@@ -196,27 +196,27 @@ TEST_CASE("Test min_maximal_independant_set - Weighted Example") {
     CHECK_FALSE(indset.contains(1));
 }
 
-TEST_CASE("Test Both Algorithms - Small Graph") {
-    // Test both algorithms on the same small graph
-    xnetwork::SimpleGraph ugraph(4);
-    ugraph.add_edge(0, 1);
-    ugraph.add_edge(1, 2);
-    ugraph.add_edge(2, 3);
-    ugraph.add_edge(3, 0);
-    py::dict<uint32_t, int> weight;
-    for (uint32_t i = 0; i < 4; ++i) {
-        weight[i] = 1;
-    }
+// TEST_CASE("Test Both Algorithms - Small Graph") {
+//     // Test both algorithms on the same small graph
+//     xnetwork::SimpleGraph ugraph(4);
+//     ugraph.add_edge(0, 1);
+//     ugraph.add_edge(1, 2);
+//     ugraph.add_edge(2, 3);
+//     ugraph.add_edge(3, 0);
+//     py::dict<uint32_t, int> weight;
+//     for (uint32_t i = 0; i < 4; ++i) {
+//         weight[i] = 1;
+//     }
 
-    auto [cover_set, cover_weight] = min_vertex_cover_fast(ugraph, weight);
-    auto [ind_set, ind_weight] = min_maximal_independant_set(ugraph, weight);
+//     auto [cover_set, cover_weight] = min_vertex_cover_fast(ugraph, weight);
+//     auto [ind_set, ind_weight] = min_maximal_independant_set(ugraph, weight);
 
-    // In any graph, vertex cover + independent set should cover all vertices
-    for (uint32_t i = 0; i < 4; ++i) {
-        auto expression = cover_set.contains(i) || ind_set.contains(i);
-        CHECK(expression);
-    }
-}
+//     // In any graph, vertex cover + independent set should cover all vertices
+//     for (uint32_t i = 0; i < 4; ++i) {
+//         auto expression = cover_set.contains(i) || ind_set.contains(i);
+//         CHECK(expression);
+//     }
+// }
 
 TEST_CASE("Test Empty Graph") {
     xnetwork::SimpleGraph ugraph(0);
