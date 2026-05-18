@@ -244,42 +244,7 @@ auto build_multigraph(size_t n,
  */
 template <typename Node>
 auto hierholzer(std::vector<std::multiset<Node>> adj, Node start)
-    -> std::vector<std::pair<Node, Node>>
-{
-    std::vector<std::pair<Node, Node>> circuit;
-    std::vector<Node> stack = {start};
-
-    while (!stack.empty())
-    {
-        const Node u = stack.back();
-        auto& neighbours = adj[static_cast<size_t>(u)];
-
-        if (!neighbours.empty())
-        {
-            // Take one outgoing edge
-            const Node v = *neighbours.begin();
-            neighbours.erase(neighbours.begin());
-
-            // Remove the reverse edge
-            auto& vn = adj[static_cast<size_t>(v)];
-            const auto it = vn.find(u);
-            assert(it != vn.end() && "graph must be undirected");
-            vn.erase(it);
-
-            stack.push_back(v);
-        }
-        else
-        {
-            // Backtrack — record edge on unwind
-            stack.pop_back();
-            if (!stack.empty())
-                circuit.emplace_back(u, stack.back());
-        }
-    }
-
-    std::reverse(circuit.begin(), circuit.end());
-    return circuit;
-}
+    -> std::vector<std::pair<Node, Node>>;
 
 /**
  * @brief Convert an Eulerian circuit to a Hamiltonian cycle by skipping

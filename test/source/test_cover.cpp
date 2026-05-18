@@ -1,6 +1,7 @@
 #include <doctest/doctest.h>
 
 #include <cstdint>
+#include <queue>
 #include <optional>
 #include <py2cpp/dict.hpp>
 #include <py2cpp/set.hpp>
@@ -85,7 +86,7 @@ TEST_CASE("Test min_odd_cycle_cover triangle") {
     CHECK_GE(cost, 1);
 }
 
-TEST_CASE("Test _construct_cycle") {
+TEST_CASE("Test construct_cycle") {
     py::dict<uint32_t, BFSInfo<uint32_t>> info;
 
     info.insert_or_assign(static_cast<uint32_t>(0), BFSInfo<uint32_t>(static_cast<uint32_t>(0), 3));
@@ -93,7 +94,7 @@ TEST_CASE("Test _construct_cycle") {
     info.insert_or_assign(static_cast<uint32_t>(2), BFSInfo<uint32_t>(static_cast<uint32_t>(1), 1));
     info.insert_or_assign(static_cast<uint32_t>(3), BFSInfo<uint32_t>(static_cast<uint32_t>(2), 0));
 
-    auto cycle = _construct_cycle<uint32_t>(info, 1, 3);
+    auto cycle = construct_cycle<uint32_t>(info, 1, 3);
 
     // Cycle should contain the path
     CHECK_GE(cycle.size(), 2);

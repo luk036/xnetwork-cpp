@@ -20,9 +20,7 @@
  *     Cover," Technical Report, Yale University, 1985.
  */
 
-#include <algorithm>
 #include <cassert>
-#include <future>
 #include <optional>
 #include <random>
 #include <utility>
@@ -78,54 +76,7 @@ auto rand_vertex_cover_trial(const Graph& ugraph,
                               const WeightMap& weight,
                               const py::set<typename Graph::node_t>& coverset,
                               RNG& rng)
-    -> std::pair<py::set<typename Graph::node_t>, typename WeightMap::mapped_type> {
-    using node_t = typename Graph::node_t;
-    using CostType = typename WeightMap::mapped_type;
-
-    py::set<node_t> soln = coverset.copy();
-    std::vector<node_t> added_order;
-    std::uniform_real_distribution<double> dist(0.0, 1.0);
-
-    for (const auto& edge : ugraph.edges()) {
-        auto u = edge.first;
-        auto v = edge.second;
-
-        if (soln.contains(u) || soln.contains(v)) {
-            continue;
-        }
-
-        // Pitt's rule: pick u with prob w(v) / (w(u) + w(v))
-        auto w_u = weight[u];
-        auto w_v = weight[v];
-        const double threshold = static_cast<double>(w_v) /
-            (static_cast<double>(w_u) + static_cast<double>(w_v));
-
-        if (dist(rng) < threshold) {
-            soln.insert(u);
-            added_order.push_back(u);
-        } else {
-            soln.insert(v);
-            added_order.push_back(v);
-        }
-    }
-
-    // Phase 2: Reverse-Delete Post-Processing
-    auto is_covered = [&]() -> bool {
-        for (const auto& e : ugraph.edges()) {
-            if (!soln.contains(e.first) && !soln.contains(e.second)) {
-                return false;
-            }
-        }
-        return true;
-    };
-    detail::reverse_delete_cover(soln, added_order, is_covered);
-
-    CostType total_cost{};
-    for (const auto& v : soln) {
-        total_cost += weight[v];
-    }
-    return {std::move(soln), total_cost};
-}
+    -> std::pair<py::set<typename Graph::node_t>, typename WeightMap::mapped_type>;
 
 // -----------------------------------------------------------------------
 // Convenience overload — single trial with seed
@@ -182,30 +133,4 @@ auto rand_vertex_cover_mt(const Graph& ugraph,
                            unsigned int num_trials = 64,
                            unsigned int seed = 0,
                            const py::set<typename Graph::node_t>& coverset = {})
-    -> std::pair<py::set<typename Graph::node_t>, typename WeightMap::mapped_type> {
-    using node_t = typename Graph::node_t;
-    using CostType = typename WeightMap::mapped_type;
-    using Result = std::pair<py::set<node_t>, CostType>;
-
-    xnetwork::thread_pool pool;
-    std::vector<std::future<Result>> futures;
-    futures.reserve(num_trials);
-
-    for (unsigned int t = 0; t < num_trials; ++t) {
-        futures.push_back(pool.enqueue([&, t]() -> Result {
-            std::mt19937 rng{seed + t};
-            return rand_vertex_cover_trial(ugraph, weight, coverset, rng);
-        }));
-    }
-
-    // Collect results and keep the best (lowest cost)
-    auto best = futures[0].get();
-    for (unsigned int t = 1; t < num_trials; ++t) {
-        auto result = futures[t].get();
-        if (result.second < best.second) {
-            best = std::move(result);
-        }
-    }
-
-    return best;
-}
+    -> std::pair<py::set<typename Graph::node_t>, typename WeightMap::mapped_type>;

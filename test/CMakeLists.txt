@@ -36,11 +36,11 @@ set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
 if(NOT TEST_INSTALLED_VERSION)
   if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     target_compile_options(
-      XNetwork INTERFACE -Wall -Wpedantic -Wextra -Werror -Wno-deprecated-literal-operator
+      XNetwork PUBLIC -Wall -Wpedantic -Wextra -Werror -Wno-deprecated-literal-operator
     )
   elseif(MSVC)
-    target_compile_options(XNetwork INTERFACE /W4 /WX /wd4459 /wd4819 /wd4996)
-    target_compile_definitions(${PROJECT_NAME} INTERFACE DOCTEST_CONFIG_USE_STD_HEADERS)
+    target_compile_options(XNetwork PUBLIC /W4 /WX /wd4459 /wd4819 /wd4996)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE DOCTEST_CONFIG_USE_STD_HEADERS)
   endif()
 endif()
 
@@ -58,6 +58,6 @@ doctest_discover_tests(${PROJECT_NAME})
 # ---- code coverage ----
 
 if(ENABLE_TEST_COVERAGE)
-  target_compile_options(XNetwork INTERFACE -O0 -g -fprofile-arcs -ftest-coverage)
-  target_link_options(XNetwork INTERFACE -fprofile-arcs -ftest-coverage)
+  target_compile_options(XNetwork PUBLIC -O0 -g -fprofile-arcs -ftest-coverage)
+  target_link_options(XNetwork PUBLIC -fprofile-arcs -ftest-coverage)
 endif()

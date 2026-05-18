@@ -22,11 +22,18 @@ elseif is_plat("windows") then
 end
 
 
+target("XNetwork")
+    set_languages("c++17")
+    set_kind("static")
+    add_includedirs("include", {public = true})
+    add_includedirs("../py2cpp/include", {public = true})
+    add_files("source/*.cpp")
+    add_packages("fmt")
+
 target("test_xnetwork")
     set_languages("c++17")
     set_kind("binary")
-    add_includedirs("include", {public = true})
-    add_includedirs("../py2cpp/include", {public = true})
+    add_deps("XNetwork")
     add_files("test/source/*.cpp")
     add_packages("doctest", "fmt")
     add_tests("default")

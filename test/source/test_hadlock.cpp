@@ -1,6 +1,7 @@
 #include <doctest/doctest.h>
 
 #include <cstdint>
+#include <xnetwork/classes/graph.hpp> // for SimpleGraph
 #include <xnetwork/hadlock.hpp>
 #include <py2cpp/range.hpp>
 #include <py2cpp/set.hpp>
@@ -192,7 +193,10 @@ TEST_CASE("Unit weight overload") {
 
 TEST_CASE("biconnected_components — single triangle") {
     // Triangle has one bc component containing all 3 nodes
-    TestGraph G(3, {{0, 1}, {1, 2}, {2, 0}});
+    xnetwork::SimpleGraph G(3);
+    G.add_edge(0, 1);
+    G.add_edge(1, 2);
+    G.add_edge(2, 0);
     auto comps = detail::biconnected_components(G);
 
     CHECK_EQ(comps.size(), 1);
@@ -204,7 +208,13 @@ TEST_CASE("biconnected_components — single triangle") {
 TEST_CASE("biconnected_components — bowtie (two triangles sharing vertex)") {
     // Two triangles sharing node 2 → two bc components
     // Comp1: {0,1,2}, Comp2: {2,3,4}
-    TestGraph G(5, {{0, 1}, {1, 2}, {2, 0}, {2, 3}, {3, 4}, {4, 2}});
+    xnetwork::SimpleGraph G(5);
+    G.add_edge(0, 1);
+    G.add_edge(1, 2);
+    G.add_edge(2, 0);
+    G.add_edge(2, 3);
+    G.add_edge(3, 4);
+    G.add_edge(4, 2);
     auto comps = detail::biconnected_components(G);
 
     CHECK_EQ(comps.size(), 2);
@@ -219,7 +229,10 @@ TEST_CASE("biconnected_components — bowtie (two triangles sharing vertex)") {
 
 TEST_CASE("biconnected_components — tree (no cycles)") {
     // A tree has one biconnected component per edge (each is size 2)
-    TestGraph G(4, {{0, 1}, {1, 2}, {2, 3}});
+    xnetwork::SimpleGraph G(4);
+    G.add_edge(0, 1);
+    G.add_edge(1, 2);
+    G.add_edge(2, 3);
     auto comps = detail::biconnected_components(G);
 
     // 3 edges → 3 biconnected components, each with 2 nodes
@@ -230,7 +243,7 @@ TEST_CASE("biconnected_components — tree (no cycles)") {
 }
 
 TEST_CASE("biconnected_components — empty graph") {
-    TestGraph G(0, {});
+    xnetwork::SimpleGraph G(0);
     auto comps = detail::biconnected_components(G);
     CHECK(comps.empty());
 }
@@ -244,7 +257,13 @@ TEST_CASE("BC-optimized — bowtie (two unit-weight triangles)") {
     //   Triangle 1: 0-1-2 (unit weight)
     //   Triangle 2: 2-3-4 (unit weight)
     // Each triangle's max cut = 2 edges → total 4 edges in the cut
-    TestGraph G(5, {{0, 1}, {1, 2}, {2, 0}, {2, 3}, {3, 4}, {4, 2}});
+    xnetwork::SimpleGraph G(5);
+    G.add_edge(0, 1);
+    G.add_edge(1, 2);
+    G.add_edge(2, 0);
+    G.add_edge(2, 3);
+    G.add_edge(3, 4);
+    G.add_edge(4, 2);
 
     // Per-component faces
     // Comp 0 (triangle 0-1-2): inner {0,1,2}, outer {0,2,1}
@@ -266,7 +285,13 @@ TEST_CASE("BC-optimized — disconnected triangles") {
     // Two completely disconnected triangles (no shared vertex):
     //   Triangle 1: nodes {0,1,2}
     //   Triangle 2: nodes {3,4,5}
-    TestGraph G(6, {{0, 1}, {1, 2}, {2, 0}, {3, 4}, {4, 5}, {5, 3}});
+    xnetwork::SimpleGraph G(6);
+    G.add_edge(0, 1);
+    G.add_edge(1, 2);
+    G.add_edge(2, 0);
+    G.add_edge(3, 4);
+    G.add_edge(4, 5);
+    G.add_edge(5, 3);
 
     std::vector<std::vector<std::vector<uint32_t>>> component_faces = {
         {{0, 1, 2}, {0, 2, 1}},
@@ -285,7 +310,14 @@ TEST_CASE("BC-optimized — mixed: triangle + square") {
     // Triangle (nodes 0,1,2) + square (nodes 2,3,4,5) sharing node 2
     // Triangle faces: inner {0,1,2}, outer {0,2,1}
     // Square  faces: inner {2,3,4,5}, outer {2,5,4,3}
-    TestGraph G(6, {{0, 1}, {1, 2}, {2, 0}, {2, 3}, {3, 4}, {4, 5}, {5, 2}});
+    xnetwork::SimpleGraph G(6);
+    G.add_edge(0, 1);
+    G.add_edge(1, 2);
+    G.add_edge(2, 0);
+    G.add_edge(2, 3);
+    G.add_edge(3, 4);
+    G.add_edge(4, 5);
+    G.add_edge(5, 2);
     // Edge weights: triangle edges = 1, square edges = 1
     // Square is bipartite (even cycle) → all 4 square edges in cut
     // Triangle has max cut = 2 edges
@@ -307,7 +339,13 @@ TEST_CASE("BC-optimized — mixed: triangle + square") {
 
 TEST_CASE("BC-optimized — component_faces mismatch handled gracefully") {
     // Only provide faces for 1 component but graph has 2
-    TestGraph G(5, {{0, 1}, {1, 2}, {2, 0}, {2, 3}, {3, 4}, {4, 2}});
+    xnetwork::SimpleGraph G(5);
+    G.add_edge(0, 1);
+    G.add_edge(1, 2);
+    G.add_edge(2, 0);
+    G.add_edge(2, 3);
+    G.add_edge(3, 4);
+    G.add_edge(4, 2);
 
     // Only 1 face list for a 2-component graph
     std::vector<std::vector<std::vector<uint32_t>>> component_faces = {
