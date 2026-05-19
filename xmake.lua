@@ -39,6 +39,26 @@ target("test_xnetwork")
     add_tests("default")
     -- require py2cpp installed
 
+    -- Check if rapidcheck was downloaded by CMake (sister project netlistx-cpp)
+    local rapidcheck_build_dirs = {
+        path.join(os.projectdir(), "..", "netlistx-cpp", "build_test"),
+        path.join(os.projectdir(), "..", "netlistx-cpp", "build"),
+    }
+    for _, build_dir in ipairs(rapidcheck_build_dirs) do
+        local candidate_src = path.join(build_dir, "_deps", "rapidcheck-src")
+        local candidate_lib = path.join(build_dir, "_deps", "rapidcheck-build")
+        if is_plat("windows") then
+            candidate_lib = path.join(candidate_lib, "Release")
+        end
+
+        if os.isdir(candidate_src) and os.isdir(candidate_lib) then
+            add_includedirs(path.join(candidate_src, "include"))
+            add_linkdirs(candidate_lib)
+            add_links("rapidcheck")
+            add_defines("RAPIDCHECK_H")
+            break
+        end
+    end
 
 -- If you want to known more usage about xmake, please see https://xmake.io
 --
