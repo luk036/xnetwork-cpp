@@ -186,12 +186,6 @@
             </dt>
             <dd>Add edges from a container.</dd>
             <dt>
-              <div class="m-doc-template">template&lt;typename C1, typename C2&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#ae54b4cd97a923a2b6295340cb4bc9e9d" class="m-doc">add_edges_from</a>(</span><span class="m-doc-wrap">const C1&amp; edges,
-              const C2&amp; data) -&gt; auto</span>
-            </dt>
-            <dd>Add edges from a container with associated data.</dd>
-            <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a6f6207f926abb08057b9a48e4116f4c0" class="m-doc">has_edge</a>(</span><span class="m-doc-wrap">const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; node_u,
               const <a href="classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474" class="m-doc">Node</a>&amp; node_v) const -&gt; bool -&gt; auto</span>
             </dt>
@@ -204,6 +198,11 @@
               <span class="m-doc-wrap-bumper">auto <a href="#ad32e50b56451656de040254a65637d81" class="m-doc">clear</a>(</span><span class="m-doc-wrap">) -&gt; auto</span>
             </dt>
             <dd></dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename F&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#abbf7e7dca985af8deeef9b89cb3456bc" class="m-doc">for_each_edge</a>(</span><span class="m-doc-wrap">F&amp;&amp; func) const -&gt; void -&gt; auto</span>
+            </dt>
+            <dd>Apply a callable to each edge without materializing a vector.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a8b4b90bfc9b770d4323f8f123f75013a" class="m-doc">is_multigraph</a>(</span><span class="m-doc-wrap">) const -&gt; auto</span>
             </dt>
@@ -473,45 +472,6 @@
               </tbody>
             </table>
           </div></section>
-          <section class="m-doc-details" id="ae54b4cd97a923a2b6295340cb4bc9e9d"><div>
-            <h3>
-              <div class="m-doc-template">
-                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
-                template&lt;typename C1, typename C2&gt;
-              </div>
-              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae54b4cd97a923a2b6295340cb4bc9e9d" class="m-doc-self">add_edges_from</a>(</span><span class="m-doc-wrap">const C1&amp; edges,
-              const C2&amp; data)</span></span>
-            </h3>
-            <p>Add edges from a container with associated data.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Template parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">C1</td>
-                  <td>Container type for edges</td>
-                </tr>
-                <tr>
-                  <td>C2</td>
-                  <td>Container type for edge data</td>
-                </tr>
-              </tbody>
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>edges</td>
-                  <td>Container of edge pairs</td>
-                </tr>
-                <tr>
-                  <td>data</td>
-                  <td>Container of edge data corresponding to each edge</td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
           <section class="m-doc-details" id="a6f6207f926abb08057b9a48e4116f4c0"><div>
             <h3>
               <div class="m-doc-template">
@@ -580,6 +540,37 @@ For directed graphs this returns the out-edges.
     &gt; gra.edges.data();  // default data is {} (empty dict);
 EdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {&quot;weight&quot;: 5})]);
     &gt; gra.edges.data(&quot;weight&quot;, default=1); EdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)]); &gt; gra.edges([0, 3]); // only edges incident to these nodes EdgeDataView([(0, 1), (3, 2)]); &gt; gra.edges(0); // only edges incident to a single node (use gra.adj[0]?); EdgeDataView([(0, 1)]); Remove all nodes and edges from the graph.</p><p>This also removes the name, and all graph, node, and edge attributes.</p><h5 id="autotoc_md85">Examples</h5><p>&gt; gra = nx.path_graph(4); // or DiGraph, MultiGraph, MultiDiGraph, etc &gt; gra.clear(); &gt; list(gra.nodes); []; &gt; list(gra.edges()); [];</p>
+          </div></section>
+          <section class="m-doc-details" id="abbf7e7dca985af8deeef9b89cb3456bc"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename _nodeview_t, typename adjlist_t, typename adjlist_outer_dict_factory&gt;
+                template&lt;typename F&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">auto xnetwork::<wbr />Graph&lt;_nodeview_t, adjlist_t, adjlist_outer_dict_factory&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abbf7e7dca985af8deeef9b89cb3456bc" class="m-doc-self">for_each_edge</a>(</span><span class="m-doc-wrap">F&amp;&amp; func) const -&gt; void</span></span>
+            </h3>
+            <p>Apply a callable to each edge without materializing a vector.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">F</td>
+                  <td>Callable <code>void(const Node&amp;, const Node&amp;)</code> or similar</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>func</td>
+                  <td>Callable invoked for each edge</td>
+                </tr>
+              </tbody>
+            </table>
+<p>More efficient than <a href="classxnetwork_1_1Graph.html#a24ecaec42681c909da0bea371a25c559" class="m-doc">edges()</a> when you only need to iterate once, as it avoids allocating the result vector. Each edge (u, v) is yielded once with u &lt; v.</p>
           </div></section>
           <section class="m-doc-details" id="a8b4b90bfc9b770d4323f8f123f75013a"><div>
             <h3>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>XNetwork</title>
+  <title>BFSInfo struct | XNetwork</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -33,7 +33,7 @@
             <li><a href="namespaces.html">Namespaces</a></li>
           </ol>
           <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html" id="m-navbar-current">Classes</a></li>
+            <li><a href="annotated.html">Classes</a></li>
             <li><a href="files.html">Files</a></li>
             <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
               <use href="#m-doc-search-icon-path" />
@@ -48,50 +48,11 @@
   <div class="m-container m-container-inflatable">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <h1>Classes</h1>
-        <ul class="m-doc">
-          <li class="m-doc-collapsible">
-            <a href="#" onclick="return toggle(this)">namespace</a> <a href="namespacexnetwork.html" class="m-doc">xnetwork</a> <span class="m-doc"></span>
-            <ul class="m-doc">
-              <li>struct <a href="structxnetwork_1_1AmbiguousSolution.html" class="m-doc">AmbiguousSolution</a> <span class="m-doc"></span></li>
-              <li>class <a href="classxnetwork_1_1DiGraphS.html" class="m-doc">DiGraphS</a> <span class="m-doc"></span></li>
-              <li>struct <a href="structxnetwork_1_1ExceededMaxIterations.html" class="m-doc">ExceededMaxIterations</a> <span class="m-doc"></span></li>
-              <li>class <a href="classxnetwork_1_1Graph.html" class="m-doc">Graph</a> <span class="m-doc"></span></li>
-              <li>class <a href="classxnetwork_1_1Greeter.html" class="m-doc">Greeter</a> <span class="m-doc">A class that generates localized greeting messages.</span></li>
-              <li>struct <a href="structxnetwork_1_1HasACycle.html" class="m-doc">HasACycle</a> <span class="m-doc"></span></li>
-              <li>struct <a href="structxnetwork_1_1NodeNotFound.html" class="m-doc">NodeNotFound</a> <span class="m-doc"></span></li>
-              <li>class <a href="classxnetwork_1_1NodeView.html" class="m-doc">NodeView</a> <span class="m-doc"></span></li>
-              <li>struct <a href="structxnetwork_1_1XNetworkAlgorithmError.html" class="m-doc">XNetworkAlgorithmError</a> <span class="m-doc"></span></li>
-              <li>struct <a href="structxnetwork_1_1XNetworkError.html" class="m-doc">XNetworkError</a> <span class="m-doc"></span></li>
-              <li>struct <a href="structxnetwork_1_1XNetworkException.html" class="m-doc">XNetworkException</a> <span class="m-doc"></span></li>
-              <li>struct <a href="structxnetwork_1_1XNetworkNoCycle.html" class="m-doc">XNetworkNoCycle</a> <span class="m-doc"></span></li>
-              <li>struct <a href="structxnetwork_1_1XNetworkNoPath.html" class="m-doc">XNetworkNoPath</a> <span class="m-doc"></span></li>
-              <li>struct <a href="structxnetwork_1_1XNetworkNotImplemented.html" class="m-doc">XNetworkNotImplemented</a> <span class="m-doc"></span></li>
-              <li>struct <a href="structxnetwork_1_1XNetworkPointlessConcept.html" class="m-doc">XNetworkPointlessConcept</a> <span class="m-doc"></span></li>
-              <li>struct <a href="structxnetwork_1_1XNetworkUnbounded.html" class="m-doc">XNetworkUnbounded</a> <span class="m-doc"></span></li>
-              <li>struct <a href="structxnetwork_1_1XNetworkUnfeasible.html" class="m-doc">XNetworkUnfeasible</a> <span class="m-doc"></span></li>
-            </ul>
-          </li>
-          <li>class <a href="classAdjacencyView.html" class="m-doc">AdjacencyView</a> <span class="m-doc"></span></li>
-          <li>class <a href="classAtlasView.html" class="m-doc">AtlasView</a> <span class="m-doc"></span></li>
-          <li>struct <a href="structBFSInfo.html" class="m-doc">BFSInfo</a> <span class="m-doc">Information structure for BFS traversal.</span></li>
-        </ul>
-        <script>
-        function toggle(e) {
-            e.parentElement.className = e.parentElement.className == 'm-doc-collapsible' ?
-                'm-doc-expansible' : 'm-doc-collapsible';
-            return false;
-        }
-        /* Collapse all nodes marked as such. Doing it via JS instead of
-           directly in markup so disabling it doesn't harm usability. The list
-           is somehow regenerated on every iteration and shrinks as I change
-           the classes. It's not documented anywhere and I'm not sure if this
-           is the same across browsers, so I am going backwards in that list to
-           be sure. */
-        var collapsed = document.getElementsByClassName("collapsed");
-        for(var i = collapsed.length - 1; i >= 0; --i)
-            collapsed[i].className = 'm-doc-expansible';
-        </script>
+        <h1>
+          <div class="m-doc-template">template&lt;typename Node&gt;</div>
+          BFSInfo <span class="m-thin">struct</span>
+        </h1>
+        <p>Information structure for BFS traversal.</p>
       </div>
     </div>
   </div>
