@@ -9,7 +9,7 @@ option(INSTALL_ONLY "Enable for installation only" OFF)
 # Note: update this to your new project's name and version
 project(
   XNetwork
-  VERSION 1.7.2
+  VERSION 1.7.3
   LANGUAGES CXX
 )
 
@@ -74,5 +74,5 @@ packageProject(
   INCLUDE_DESTINATION include/${PROJECT_NAME}-${PROJECT_VERSION}
   VERSION_HEADER "${VERSION_HEADER_LOCATION}"
   COMPATIBILITY SameMajorVersion
-  DEPENDENCIES "Py2Cpp 1.4"
+  DEPENDENCIES "Py2Cpp 1.6.0"
 )

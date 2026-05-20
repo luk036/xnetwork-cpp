@@ -148,7 +148,7 @@ auto min_vertex_cover(const Graph& ugraph, WeightMap& weight, CoverSet& coverset
 
     auto make_violate_graph = [&]() {
         auto edge_list = ugraph.edges();
-        return [&coverset, edge_list, idx = std::size_t{0}]() mutable
+        return [&coverset, edge_list = std::move(edge_list), idx = std::size_t{0}]() mutable
             -> std::optional<std::vector<node_t>> {
             while (idx < edge_list.size())
             {

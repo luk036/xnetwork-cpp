@@ -546,11 +546,7 @@ namespace xnetwork {
         is the number of nodes.
          */
         auto number_of_edges() const -> size_t {
-            size_t n_edges = 0;
-            for (const auto& node : this->_node) {
-                n_edges += this->_adj.at(node).size();
-            }
-            return n_edges / 2;  // Divide by 2 since it's an undirected graph
+            return this->_num_of_edges;
         }
 
         /** Return a vector of all edges in the graph as (u, v) pairs.
@@ -646,6 +642,7 @@ namespace xnetwork {
             typename std::enable_if<std::is_same<U, value_type>::value>::type {
             this->_adj[node_u].insert(node_v);
             this->_adj[node_v].insert(node_u);
+            ++this->_num_of_edges;
         }
 
         template <typename U = key_type> auto add_edge(const Node& node_u, const Node& node_v) ->
@@ -654,11 +651,13 @@ namespace xnetwork {
             auto data = this->_adj[node_u].get(node_v, T{});
             this->_adj[node_u][node_v] = data;
             this->_adj[node_v][node_u] = data;
+            ++this->_num_of_edges;
         }
 
         template <typename T> auto add_edge(const Node& node_u, const Node& node_v, const T& data) {
             this->_adj[node_u][node_v] = data;
             this->_adj[node_v][node_u] = data;
+            ++this->_num_of_edges;
         }
 
         /**
@@ -670,23 +669,13 @@ namespace xnetwork {
         template <typename C1> auto add_edges_from(const C1& edges) {
             for (const auto& e : edges) {
                 this->add_edge(e.first, e.second);
-                // this->_num_of_edges += 1;
             }
         }
 
-        /**
-         * @brief Add edges from a container with associated data
-         *
-         * @tparam C1 Container type for edges
-         * @tparam C2 Container type for edge data
-         * @param edges Container of edge pairs
-         * @param data Container of edge data corresponding to each edge
-         */
         template <typename C1, typename C2> auto add_edges_from(const C1& edges, const C2& data) {
             auto it = data.begin();
             for (const auto& e : edges) {
                 this->add_edge(e.first, e.second, *it);
-                // this->_num_of_edges += 1;
                 ++it;
             }
         }
@@ -810,6 +799,26 @@ namespace xnetwork {
             this->_adj.clear();
             // this->_node.clear();
             // this->graph.clear();
+        }
+
+        /**
+         * @brief Apply a callable to each edge without materializing a vector
+         *
+         * More efficient than edges() when you only need to iterate once,
+         * as it avoids allocating the result vector. Each edge (u, v) is
+         * yielded once with u < v.
+         *
+         * @tparam F Callable `void(const Node&, const Node&)` or similar
+         * @param func Callable invoked for each edge
+         */
+        template <typename F> auto for_each_edge(F&& func) const -> void {
+            for (const auto& node : this->_node) {
+                for (const auto& nbr : this->_adj[node]) {
+                    if (node < nbr) {
+                        std::forward<F>(func)(node, nbr);
+                    }
+                }
+            }
         }
 
         /** Return true if (graph is a multigraph, false otherwise. */

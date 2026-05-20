@@ -112,16 +112,26 @@ auto exact_mwpm(
 {
     const int n = static_cast<int>(odd_faces.size());
     const int size = 1 << n;
+
+    // Precompute first_unset[mask]: smallest i where bit i is 0 in mask
+    // Recurrence: first_unset[mask] = (mask & 1) ? first_unset[mask >> 1] + 1 : 0
+    // Precompute first_set[mask]: smallest i where bit i is 1 in mask
+    // Recurrence: first_set[mask] = (mask & 1) ? 0 : first_set[mask >> 1] + 1
+    std::vector<int> first_unset(size, 0);
+    std::vector<int> first_set(size, 0);
+    for (int mask = 1; mask < size; ++mask) {
+        first_unset[mask] = (mask & 1) ? first_unset[mask >> 1] + 1 : 0;
+        first_set[mask] = (mask & 1) ? 0 : first_set[mask >> 1] + 1;
+    }
+
     std::vector<int> dp(size, INF);
     dp[0] = 0;
 
     for (int mask = 0; mask < size; ++mask)
     {
         if (dp[mask] == INF) continue;
-        int first = -1;
-        for (int i = 0; i < n; ++i)
-            if (!(mask & (1 << i))) { first = i; break; }
-        if (first == -1) continue;
+        const int first = first_unset[mask];
+        if (first >= n) continue;
 
         for (int j = first + 1; j < n; ++j)
         {
@@ -137,9 +147,7 @@ auto exact_mwpm(
     int mask = size - 1;
     while (mask)
     {
-        int first = -1;
-        for (int i = 0; i < n; ++i)
-            if (mask & (1 << i)) { first = i; break; }
+        const int first = first_set[mask];
         for (int j = first + 1; j < n; ++j)
         {
             if (!(mask & (1 << j))) continue;

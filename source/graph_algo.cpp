@@ -84,13 +84,9 @@ auto min_vertex_cover_fast(const Graph& ugraph, WeightMap& weight, CoverSet& cov
     CostType total_dual_cost = 0;
     CostType total_prml_cost = 0;
 
-    for (const auto& edge : ugraph.edges())
-    {
-        auto utx = edge.first;
-        auto vtx = edge.second;
-
+    ugraph.for_each_edge([&](auto utx, auto vtx) {
         if (coverset.contains(utx) || coverset.contains(vtx))
-            continue;
+            return;
 
         if (gap[utx] < gap[vtx])
             std::swap(utx, vtx);
@@ -100,7 +96,7 @@ auto min_vertex_cover_fast(const Graph& ugraph, WeightMap& weight, CoverSet& cov
         total_prml_cost += weight[vtx];
         gap[utx] -= gap[vtx];
         gap[vtx] = 0;
-    }
+    });
 
     assert(total_dual_cost <= total_prml_cost);
     return std::make_pair(coverset, total_prml_cost);
