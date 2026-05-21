@@ -3,10 +3,9 @@
 #include <cstdint>
 #include <py2cpp/dict.hpp>
 #include <py2cpp/set.hpp>
-#include <utility>  // for std::pair
-
-#include <xnetwork/graph_algo.hpp>
+#include <utility>                     // for std::pair
 #include <xnetwork/classes/graph.hpp>  // for SimpleGraph
+#include <xnetwork/graph_algo.hpp>
 
 TEST_CASE("Test min_vertex_cover_fast - Basic Example 1") {
     // Create graph: 0-1-2 with all weights 1

@@ -5,7 +5,6 @@
 #include <py2cpp/range.hpp>
 #include <py2cpp/set.hpp>
 #include <utility>
-
 #include <xnetwork/classes/graph.hpp>  // for SimpleGraph
 #include <xnetwork/rand_cover.hpp>
 
@@ -206,11 +205,10 @@ TEST_CASE("rand_vertex_cover_mt larger graph") {
     ugraph.add_edge(5, 6);
     ugraph.add_edge(5, 7);
     ugraph.add_edge(6, 7);
-    py::dict<uint32_t, int> weight{{0, 1}, {1, 1}, {2, 1}, {3, 1},
-                                   {4, 1}, {5, 1}, {6, 1}, {7, 1}};
+    py::dict<uint32_t, int> weight{{0, 1}, {1, 1}, {2, 1}, {3, 1}, {4, 1}, {5, 1}, {6, 1}, {7, 1}};
 
     auto [soln, cost] = rand_vertex_cover_mt(ugraph, weight, 128, 1);
     CHECK(is_valid_vertex_cover(ugraph, soln));
-    CHECK_LE(cost, 8);   // can't exceed all vertices
-    CHECK_GE(cost, 1);   // must have at least one vertex
+    CHECK_LE(cost, 8);  // can't exceed all vertices
+    CHECK_GE(cost, 1);  // must have at least one vertex
 }

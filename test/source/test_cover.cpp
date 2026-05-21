@@ -1,15 +1,14 @@
 #include <doctest/doctest.h>
 
 #include <cstdint>
-#include <queue>
 #include <optional>
 #include <py2cpp/dict.hpp>
 #include <py2cpp/set.hpp>
+#include <queue>
 #include <utility>
 #include <vector>
-
-#include <xnetwork/cover.hpp>
 #include <xnetwork/classes/graph.hpp>  // for SimpleGraph
+#include <xnetwork/cover.hpp>
 
 TEST_CASE("Test pd_cover basic") {
     // A violator that returns three pre-defined edges one at a time.
@@ -164,8 +163,7 @@ TEST_CASE("Test odd cycle cover detection") {
     ugraph.add_edge(4, 5);
     ugraph.add_edge(5, 6);
     ugraph.add_edge(6, 4);  // odd cycle (triangle)
-    py::dict<uint32_t, int> weight{{0, 1}, {1, 1}, {2, 1}, {3, 1},
-                                   {4, 1}, {5, 1}, {6, 1}};
+    py::dict<uint32_t, int> weight{{0, 1}, {1, 1}, {2, 1}, {3, 1}, {4, 1}, {5, 1}, {6, 1}};
 
     py::set<uint32_t> soln;
     auto [covered, cost] = min_odd_cycle_cover(ugraph, weight, soln);

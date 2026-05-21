@@ -1,12 +1,12 @@
 #include <doctest/doctest.h>
 
 #include <cstdint>
-#include <xnetwork/classes/graph.hpp> // for SimpleGraph
-#include <xnetwork/hadlock.hpp>
 #include <py2cpp/range.hpp>
 #include <py2cpp/set.hpp>
 #include <utility>
 #include <vector>
+#include <xnetwork/classes/graph.hpp>  // for SimpleGraph
+#include <xnetwork/hadlock.hpp>
 
 // ===================================================================
 // Test graph — minimal mock following test_graph_algo / test_cover pattern
@@ -17,8 +17,7 @@ struct TestGraph {
     std::vector<std::vector<node_t>> adjacency;
     uint32_t num_nodes;
 
-    TestGraph(uint32_t num_nodes,
-              std::vector<std::pair<node_t, node_t>> edges)
+    TestGraph(uint32_t num_nodes, std::vector<std::pair<node_t, node_t>> edges)
         : edges_list(std::move(edges)), adjacency(num_nodes), num_nodes(num_nodes) {
         for (const auto& e : edges_list) {
             adjacency[e.first].push_back(e.second);
@@ -26,20 +25,12 @@ struct TestGraph {
         }
     }
 
-    auto edges() const -> const std::vector<std::pair<node_t, node_t>>& {
-        return edges_list;
-    }
+    auto edges() const -> const std::vector<std::pair<node_t, node_t>>& { return edges_list; }
 
-    auto operator[](node_t node) const -> const std::vector<node_t>& {
-        return adjacency[node];
-    }
+    auto operator[](node_t node) const -> const std::vector<node_t>& { return adjacency[node]; }
 
-    auto begin() const {
-        return py::range<uint32_t>(0, num_nodes).begin();
-    }
-    auto end() const {
-        return py::range<uint32_t>(0, num_nodes).end();
-    }
+    auto begin() const { return py::range<uint32_t>(0, num_nodes).begin(); }
+    auto end() const { return py::range<uint32_t>(0, num_nodes).end(); }
 
     auto number_of_nodes() const -> size_t { return num_nodes; }
 };
@@ -69,7 +60,7 @@ TEST_CASE("Triangle") {
     auto [ok, val] = validate_max_cut(G, cut, weight);
 
     CHECK(ok);
-    CHECK_EQ(val, 15); // 5 + 10
+    CHECK_EQ(val, 15);  // 5 + 10
 }
 
 TEST_CASE("Square with diagonal") {
@@ -86,24 +77,20 @@ TEST_CASE("Square with diagonal") {
     };
     // Face 0 = triangle 1-2-3 (odd), Face 1 = triangle 1-3-4 (odd),
     // Face 2 = outer quad 1-4-3-2 (even)
-    std::vector<std::vector<uint32_t>> faces = {
-        {1, 2, 3}, {1, 3, 4}, {1, 4, 3, 2}
-    };
+    std::vector<std::vector<uint32_t>> faces = {{1, 2, 3}, {1, 3, 4}, {1, 4, 3, 2}};
 
     auto cut = solve_hadlock_max_cut(G, weight, faces);
     auto [ok, val] = validate_max_cut(G, cut, weight);
 
     CHECK(ok);
-    CHECK_EQ(val, 30); // 5 + 10 + 5 + 10
+    CHECK_EQ(val, 30);  // 5 + 10 + 5 + 10
 }
 
 TEST_CASE("Grid 2x2 is bipartite — all edges in cut") {
     // (0,0)->0, (0,1)->1, (1,0)->2, (1,1)->3
     TestGraph G(4, {{0, 1}, {0, 2}, {1, 3}, {2, 3}});
     // Inner face 0-1-3-2 (even), outer face 0-2-3-1 (even)
-    std::vector<std::vector<uint32_t>> faces = {
-        {0, 1, 3, 2}, {0, 2, 3, 1}
-    };
+    std::vector<std::vector<uint32_t>> faces = {{0, 1, 3, 2}, {0, 2, 3, 1}};
 
     auto cut = solve_hadlock_max_cut(G, unit_weight, faces);
 
@@ -160,8 +147,7 @@ TEST_CASE("Valid cut validates as bipartite") {
     cut.insert({3, 4});
     cut.insert({4, 1});
 
-    auto [ok, val] = validate_max_cut(
-        G, cut, [](uint32_t, uint32_t) { return 1; });
+    auto [ok, val] = validate_max_cut(G, cut, [](uint32_t, uint32_t) { return 1; });
     CHECK(ok);
     CHECK_EQ(val, 4);
 }
@@ -268,10 +254,8 @@ TEST_CASE("BC-optimized — bowtie (two unit-weight triangles)") {
     // Per-component faces
     // Comp 0 (triangle 0-1-2): inner {0,1,2}, outer {0,2,1}
     // Comp 1 (triangle 2-3-4): inner {2,3,4}, outer {2,4,3}
-    std::vector<std::vector<std::vector<uint32_t>>> component_faces = {
-        {{0, 1, 2}, {0, 2, 1}},
-        {{2, 3, 4}, {2, 4, 3}}
-    };
+    std::vector<std::vector<std::vector<uint32_t>>> component_faces
+        = {{{0, 1, 2}, {0, 2, 1}}, {{2, 3, 4}, {2, 4, 3}}};
 
     auto cut = solve_hadlock_max_cut(G, unit_weight, component_faces);
     auto [ok, val] = validate_max_cut(G, cut, unit_weight);
@@ -293,10 +277,8 @@ TEST_CASE("BC-optimized — disconnected triangles") {
     G.add_edge(4, 5);
     G.add_edge(5, 3);
 
-    std::vector<std::vector<std::vector<uint32_t>>> component_faces = {
-        {{0, 1, 2}, {0, 2, 1}},
-        {{3, 4, 5}, {3, 5, 4}}
-    };
+    std::vector<std::vector<std::vector<uint32_t>>> component_faces
+        = {{{0, 1, 2}, {0, 2, 1}}, {{3, 4, 5}, {3, 5, 4}}};
 
     auto cut = solve_hadlock_max_cut(G, unit_weight, component_faces);
     auto [ok, val] = validate_max_cut(G, cut, unit_weight);
@@ -324,8 +306,8 @@ TEST_CASE("BC-optimized — mixed: triangle + square") {
     // Total cut = 6 edges, weight = 6
 
     std::vector<std::vector<std::vector<uint32_t>>> component_faces = {
-        {{0, 1, 2}, {0, 2, 1}},             // triangle
-        {{2, 3, 4, 5}, {2, 5, 4, 3}}        // square
+        {{0, 1, 2}, {0, 2, 1}},       // triangle
+        {{2, 3, 4, 5}, {2, 5, 4, 3}}  // square
     };
 
     auto cut = solve_hadlock_max_cut(G, unit_weight, component_faces);
@@ -348,9 +330,7 @@ TEST_CASE("BC-optimized — component_faces mismatch handled gracefully") {
     G.add_edge(4, 2);
 
     // Only 1 face list for a 2-component graph
-    std::vector<std::vector<std::vector<uint32_t>>> component_faces = {
-        {{0, 1, 2}, {0, 2, 1}}
-    };
+    std::vector<std::vector<std::vector<uint32_t>>> component_faces = {{{0, 1, 2}, {0, 2, 1}}};
 
     // Should not crash — returns partial cut
     auto cut = solve_hadlock_max_cut(G, unit_weight, component_faces);

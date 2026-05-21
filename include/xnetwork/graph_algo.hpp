@@ -49,8 +49,7 @@ auto min_vertex_cover_fast(const Graph& ugraph, WeightMap& weight)
  */
 template <typename Graph, typename WeightMap, typename IndSet, typename DepSet>
 auto min_maximal_independant_set(const Graph& ugraph, WeightMap& weight, IndSet& indset,
-                                 DepSet& dep)
-    -> std::pair<IndSet, typename WeightMap::mapped_type>;
+                                 DepSet& dep) -> std::pair<IndSet, typename WeightMap::mapped_type>;
 
 /**
  * @brief Overload that creates empty indset and dep sets

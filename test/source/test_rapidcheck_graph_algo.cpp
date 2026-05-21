@@ -19,7 +19,6 @@
 #    include <py2cpp/dict.hpp>
 #    include <py2cpp/set.hpp>
 #    include <vector>
-
 #    include <xnetwork/classes/graph.hpp>
 #    include <xnetwork/cover.hpp>
 #    include <xnetwork/graph_algo.hpp>

@@ -545,9 +545,7 @@ namespace xnetwork {
         to count the edges, so it has O(n) time complexity where n
         is the number of nodes.
          */
-        auto number_of_edges() const -> size_t {
-            return this->_num_of_edges;
-        }
+        auto number_of_edges() const -> size_t { return this->_num_of_edges; }
 
         /** Return a vector of all edges in the graph as (u, v) pairs.
 

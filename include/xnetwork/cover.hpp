@@ -4,11 +4,10 @@
 #include <cassert>
 #include <deque>
 #include <optional>
-#include <utility>
-#include <vector>
-
 #include <py2cpp/dict.hpp>
 #include <py2cpp/set.hpp>
+#include <utility>
+#include <vector>
 
 /**
  * @brief Implements a primal-dual approximation algorithm for covering problems.
@@ -44,9 +43,9 @@ auto pd_cover(MakeViolator make_violator, WeightMap& weight, SolutionSet& soln)
             auto& violate_set = *opt;
             if (violate_set.empty()) continue;
 
-            auto min_vtx
-                = *std::min_element(violate_set.begin(), violate_set.end(),
-                                    [&](const auto& v1, const auto& v2) { return gap[v1] < gap[v2]; });
+            auto min_vtx = *std::min_element(
+                violate_set.begin(), violate_set.end(),
+                [&](const auto& v1, const auto& v2) { return gap[v1] < gap[v2]; });
             auto min_val = gap[min_vtx];
 
             if (!soln.contains(min_vtx)) {
@@ -135,9 +134,8 @@ template <typename Node> struct BFSInfo {
  * @param child Second node in cycle
  * @return std::deque<Node> The constructed cycle
  */
-template <typename Node>
-auto construct_cycle(const py::dict<Node, BFSInfo<Node>>& info,
-                      Node parent, Node child) -> std::deque<Node>;
+template <typename Node> auto construct_cycle(const py::dict<Node, BFSInfo<Node>>& info,
+                                              Node parent, Node child) -> std::deque<Node>;
 
 /**
  * @brief Generic BFS cycle detection
@@ -154,7 +152,7 @@ auto construct_cycle(const py::dict<Node, BFSInfo<Node>>& info,
 template <typename Graph, typename CoverSet>
 auto generic_bfs_cycle(const Graph& ugraph, const CoverSet& coverset)
     -> std::vector<std::tuple<py::dict<typename Graph::node_t, BFSInfo<typename Graph::node_t>>,
-                               typename Graph::node_t, typename Graph::node_t>>;
+                              typename Graph::node_t, typename Graph::node_t>>;
 
 /**
  * @brief Performs minimum cycle cover using primal-dual approximation.
