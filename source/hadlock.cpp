@@ -114,7 +114,7 @@ namespace detail {
                 if (mask & (1 << j)) continue;
                 const int new_mask = mask | (1 << first) | (1 << j);
                 const int w = dist[odd_faces[first]][odd_faces[j]];
-                if (dp[mask] + w < dp[new_mask]) dp[new_mask] = dp[mask] + w;
+                dp[new_mask] = std::min(dp[mask] + w, dp[new_mask]);
             }
         }
 
@@ -149,8 +149,8 @@ namespace detail {
         dist[src] = 0;
 
         using P = std::pair<int, int>;
-        std::priority_queue<P, std::vector<P>, std::greater<P>> pq;
-        pq.push({0, src});
+        std::priority_queue<P, std::vector<P>, std::greater<>> pq;
+        pq.emplace(0, src);
 
         while (!pq.empty()) {
             auto [d, u] = pq.top();
