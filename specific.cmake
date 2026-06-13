@@ -20,9 +20,8 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   # using clang
   add_compile_options(-stdlib=libc++)
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-  # using Visual Studio C++
-  # /await is deprecated and errors in MSVC 2026 (STL1011);
-  # C++20 coroutines are available by default with /std:c++latest
+  # using Visual Studio C++ /await is deprecated and errors in MSVC 2026 (STL1011); C++20 coroutines
+  # are available by default with /std:c++latest
   add_compile_options(/std:c++latest)
 endif()
 
