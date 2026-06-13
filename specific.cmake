@@ -21,7 +21,9 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   add_compile_options(-stdlib=libc++)
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   # using Visual Studio C++
-  add_compile_options(/std:c++latest /await)
+  # /await is deprecated and errors in MSVC 2026 (STL1011);
+  # C++20 coroutines are available by default with /std:c++latest
+  add_compile_options(/std:c++latest)
 endif()
 
 set(SPECIFIC_LIBS Py2Cpp::Py2Cpp fmt::fmt)
