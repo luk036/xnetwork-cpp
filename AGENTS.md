@@ -149,7 +149,7 @@ test/source/
 ## Dependencies
 
 - **py2cpp** (>= 1.4): Python-like C++ syntax utilities
-- **doctest** (2.4.11): Testing framework
+- **doctest** (2.5.2): Testing framework
 - **PackageProject.cmake**: For installable targets
 
 ---
