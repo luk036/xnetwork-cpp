@@ -1,15 +1,15 @@
+/**
+ * @file reportviews.hpp
+ * @brief View classes for nodes, edges, and degrees in XNetwork graphs
+ *
+ * Views for nodes, edges and degree are provided for all base graph classes.
+ * A view means a read-only object that is quick to create, automatically
+ * updated when the graph changes, and provides basic access like `n in V`,
+ * `for n in V`, `V[n]` and sometimes set operations.
+ */
+
 #pragma once
 
-//    Copyright (C) 2004-2018 by
-//    Wai-Shing Luk <luk036@gmail.com>
-//
-//
-//    All rights reserved.
-//    BSD license.
-//
-// Authors: Wai-Shing Luk (luk036@gmail.com),
-//          Pieter Swart (swart@lanl.gov),
-//          Dan Schult(dschult@colgate.edu);
 /**
 View Classes provide node, edge and degree "views" of a graph.
 
@@ -123,54 +123,10 @@ namespace xnetwork {
     //                              "InMultiDegreeView",
     //                              "OutMultiDegreeView"};
 
-    // NodeViews
-    /** A NodeView class to act as gra.nodes for a XNetwork Graph
-    Set operations act on the nodes without considering data.
-    Iteration is over nodes. Node data can be looked up like a dict.
-    Use NodeDataView to iterate over node data or to specify a data
-    attribute for lookup. NodeDataView is created by calling the NodeView.
-
-    Parameters
-    ----------
-    graph : XNetwork graph-like class
-
-    Examples
-    --------
-        > gra = xnetwork::path_graph(3);
-        > NV = gra.nodes();
-        > 2 : NV
-    true
-        > for n : NV: print(n);
-    0
-    1
-    2
-        > assert(NV & {1, 2, 3} == {1, 2});
-        > gra.add_node(2, color="blue");
-        > NV[2];
-    {"color": "blue"}
-        > gra.add_node(8, color="red");
-        > NDV = gra.nodes(data=true);
-        > (2, NV[2]] : NDV
-    true
-        > for n, dd : NDV: print((n, dd.get("color", "aqua")));
-    (0, "aqua");
-    (1, "aqua");
-    (2, "blue");
-    (8, "red");
-        > NDV[2] == NV[2];
-    true
-        > NVdata = gra.nodes(data="color", default="aqua");
-        > (2, NVdata[2]] : NVdata
-    true
-        > for n, dd : NVdata: print((n, dd));
-    (0, "aqua");
-    (1, "aqua");
-    (2, "blue");
-    (8, "red");
-        > NVdata[2] == NV[2];  // NVdata gets "color", NV gets datadict
-    false
-     */
-    // interface: Mapping, Set
+    /** @brief NodeView class — acts as gra.nodes() for an XNetwork Graph
+        @details Set operations act on the nodes without considering data.
+        Iteration is over nodes. Node data can be looked up like a dict.
+        @tparam nodeview_t The underlying node container type */
     template <typename nodeview_t> class NodeView {
       private:
         using Self = NodeView<nodeview_t>;

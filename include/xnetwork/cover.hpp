@@ -1,3 +1,12 @@
+/**
+ * @file cover.hpp
+ * @brief Primal-dual approximation algorithms for covering problems
+ *
+ * Implements a generic primal-dual cover algorithm (pd_cover) and specialized
+ * functions for minimum vertex cover, minimum cycle cover, and minimum odd
+ * cycle cover.
+ */
+
 #pragma once
 
 #include <algorithm>

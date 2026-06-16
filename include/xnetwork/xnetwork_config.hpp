@@ -7,11 +7,22 @@
  * The full license is in the file LICENSE, distributed with this software. *
  ****************************************************************************/
 
+/**
+ * @file xnetwork_config.hpp
+ * @brief Configuration and version macros for XNetwork library
+ *
+ * Defines version numbers, exception handling macros, and compiler
+ * feature detection for the XNetwork header-only C++ graph library.
+ */
+
 #ifndef XNETWORK_CONFIG_HPP
 #define XNETWORK_CONFIG_HPP
 
+/** @brief Major version number */
 #define XNETWORK_VERSION_MAJOR 0
+/** @brief Minor version number */
 #define XNETWORK_VERSION_MINOR 1
+/** @brief Patch version number */
 #define XNETWORK_VERSION_PATCH 1
 
 #ifndef __has_feature

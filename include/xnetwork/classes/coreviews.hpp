@@ -1,17 +1,12 @@
-#pragma once
-
-//    Copyright (C) 2004-2018 by
-//    Wai-Shing Luk <luk036@gmail.com>
-//
-//
-//    All rights reserved.
-//    BSD license.
-//
-// Authors: Wai-Shing Luk (luk036@gmail.com),
-//          Pieter Swart (swart@lanl.gov),
-//          Dan Schult(dschult@colgate.edu);
 /**
+ * @file coreviews.hpp
+ * @brief Read-only view classes for graph data structures
+ *
+ * Provides AtlasView and AdjacencyView — read-only wrappers around
+ * nested dict-like containers used internally by XNetwork graph classes.
  */
+
+#pragma once
 // from collections import Mapping
 // #include <xnetwork.hpp> // as xn
 #include <iterator>
@@ -33,19 +28,9 @@ static const auto __all__ = {
 };
 */
 
-/** An AtlasView is a Read-only Mapping of Mappings.
-
-    It is a View into a dict-of-dict data structure.
-    The inner level of dict is read-write. But the
-    outer level is read-only.
-
-    See Also
-    ========
-    AdjacencyView - View into dict-of-dict-of-dict
-    MultiAdjacencyView - View into dict-of-dict-of-dict-of-dict
-
-    Interface: Mapping
-*/
+/** @brief Read-only mapping of mappings (view into a dict-of-dict data structure)
+    @details The inner level of dict is read-write, but the outer level is read-only.
+    @tparam Atlas The underlying mapping type */
 template <typename Atlas> class AtlasView {
   public:
     using size_type = typename std::remove_reference_t<Atlas>::size_type;
@@ -118,17 +103,9 @@ template <typename Atlas> class AtlasView {
     // }
 };
 
-/** An AdjacencyView is a Read-only Map of Maps of Maps.
-
-    It is a View into a dict-of-dict-of-dict data structure.
-    The inner level of dict is read-write. But the
-    outer levels are read-only.
-
-    See Also
-    ========
-    AtlasView - View into dict-of-dict
-    MultiAdjacencyView - View into dict-of-dict-of-dict-of-dict
-*/
+/** @brief Read-only map of maps of maps (view into a dict-of-dict-of-dict structure)
+    @details The inner level of dict is read-write, but the outer levels are read-only.
+    @tparam Atlas The underlying mapping type */
 template <typename Atlas> class AdjacencyView : public AtlasView<Atlas> {
   public:
     /**

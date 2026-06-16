@@ -1,9 +1,17 @@
+/**
+ * @file graph_algo.hpp
+ * @brief Graph algorithm implementations for vertex cover and independent set
+ *
+ * Provides primal-dual approximation algorithms for minimum weighted vertex
+ * cover and minimum maximal independent set.
+ */
+
 #pragma once
 
 #include <cassert>
 #include <py2cpp/dict.hpp>
 #include <py2cpp/set.hpp>
-#include <utility>  // for std::pair
+#include <utility>
 
 /**
  * @brief Performs minimum weighted vertex cover using a primal-dual approximation algorithm

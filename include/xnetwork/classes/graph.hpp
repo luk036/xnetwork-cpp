@@ -1,3 +1,11 @@
+/**
+ * @file graph.hpp
+ * @brief Undirected graph data structure for XNetwork
+ *
+ * Defines the Graph class template and related utilities for
+ * representing undirected graphs with arbitrary node types.
+ */
+
 #pragma once
 
 #include <cassert>
@@ -8,195 +16,25 @@
 #include <xnetwork/classes/coreviews.hpp>    // import AtlasView, AdjacencyView
 #include <xnetwork/classes/reportviews.hpp>  // import NodeView, EdgeView, DegreeView
 
-// #if __cplusplus > 201703L
-// #include <cppcoro/generator.hpp>
-// #endif
-
+/** @brief Alias for the value_type of a container */
 template <typename T> using Value_type = typename T::value_type;
 
 namespace xnetwork {
 
-    /** Base class for undirected graphs.
-
-        A Graph stores nodes and edges with optional data, or attributes.
-
-        Graphs hold undirected edges.  Self loops are allowed but multiple
-        (parallel) edges are not.
-
-        Nodes can be arbitrary (hashable) C++ objects with optional
-        key/value attributes. By convention `None` is not used as a node.
-
-        Edges are represented as links between nodes with optional
-        key/value attributes.
-
-        Parameters
-        ----------
-        node_container : input graph (optional, default: None)
-            Data to initialize graph. If None (default) an empty
-            graph is created.  The data can be any format that is supported
-            by the to_networkx_graph() function, currently including edge list,
-            dict of dicts, dict of lists, NetworkX graph, NumPy matrix
-            or 2d ndarray, SciPy sparse matrix, or PyGraphviz graph.
-
-        See Also
-        --------
-        DiGraph
-        MultiGraph
-        MultiDiGraph
-        OrderedGraph
-
-        Examples
-        --------
-        Create an empty graph structure (a "null graph") with 5 nodes and
-        no edges.
-
-            > auto v = std::vector{3, 4, 2, 8};
-            > auto gra = nx.Graph(v);
-
-            > auto va = py::dict{{3, 0.1}, {4, 0.5}, {2, 0.2}};
-            > auto gra = nx.Graph(va);
-
-            > auto r = py::range(100);
-            > auto gra = nx.Graph(r);
-
-        gra can be grown in several ways.
-
-        **Nodes:**
-
-        Add one node at a time:
-
-            > gra.add_node(1)
-
-        Add the nodes from any container (a list, dict, set or
-        even the lines from a file or the nodes from another graph).
-
-            > gra.add_nodes_from([2, 3])
-            > gra.add_nodes_from(range(100, 110))
-            > H = nx.path_graph(10)
-            > gra.add_nodes_from(H)
-
-        In addition to strings and integers any hashable C++ object
-        (except None) can represent a node, e.g. a customized node object,
-        or even another Graph.
-
-            > gra.add_node(H)
-
-        **Edges:**
-
-        gra can also be grown by adding edges.
-
-        Add one edge,
-
-            > gra.add_edge(1, 2);
-
-        a list of edges,
-
-            > gra.add_edges_from([(1, 2), (1, 3)]);
-
-        or a collection of edges,
-
-            > gra.add_edges_from(H.edges());
-
-        If some edges connect nodes not yet in the graph, the nodes
-        are added automatically.  There are no errors when adding
-        nodes or edges that already exist.
-
-        **Attributes:**
-
-        Each graph can hold key/value attribute pairs
-        in an associated attribute dictionary (the keys must be hashable).
-        By default these are empty, but can be added or changed using
-        direct manipulation of the attribute
-        dictionaries named graph, node and edge respectively.
-
-            > gra.graph["day"] = std::any("Friday");
-        {'day': 'Friday'}
-
-        **Subclasses (Advanced):**
+    /** @brief Undirected graph with arbitrary node types
+        @details A Graph stores nodes and edges with optional data or attributes.
+        Graphs hold undirected edges. Self loops are allowed but multiple
+        (parallel) edges are not. Nodes can be arbitrary (hashable) C++ objects.
 
         The Graph class uses a container-of-container-of-container data structure.
         The outer dict (node_dict) holds adjacency information keyed by node.
         The next dict (adjlist_dict) represents the adjacency information and holds
-        edge data keyed by neighbor.  The inner dict (edge_attr_dict) represents
+        edge data keyed by neighbor. The inner dict (edge_attr_dict) represents
         the edge data and holds edge attribute values keyed by attribute names.
 
-        Each of these three dicts can be replaced in a subclass by a user defined
-        dict-like object. In general, the dict-like features should be
-        maintained but extra features can be added. To replace one of the
-        dicts create a new graph class by changing the class(!) variable
-        holding the factory for that dict-like structure. The variable names are
-        node_dict_factory, node_attr_dict_factory, adjlist_inner_dict_factory,
-        adjlist_outer_dict_factory, edge_attr_dict_factory and
-       graph_attr_dict_factory.
-
-        node_dict_factory : function, (default: dict)
-            Factory function to be used to create the dict containing node
-            attributes, keyed by node id.
-            It should require no arguments and return a dict-like object
-
-        node_attr_dict_factory: function, (default: dict)
-            Factory function to be used to create the node attribute
-            dict which holds attribute values keyed by attribute name.
-            It should require no arguments and return a dict-like object
-
-        adjlist_outer_dict_factory : function, (default: dict)
-            Factory function to be used to create the outer-most dict
-            in the data structure that holds adjacency info keyed by node.
-            It should require no arguments and return a dict-like object.
-
-        adjlist_inner_dict_factory : function, (default: dict)
-            Factory function to be used to create the adjacency list
-            dict which holds edge data keyed by neighbor.
-            It should require no arguments and return a dict-like object
-
-        edge_attr_dict_factory : function, (default: dict)
-            Factory function to be used to create the edge attribute
-            dict which holds attribute values keyed by attribute name.
-            It should require no arguments and return a dict-like object.
-
-        graph_attr_dict_factory : function, (default: dict)
-            Factory function to be used to create the graph attribute
-            dict which holds attribute values keyed by attribute name.
-            It should require no arguments and return a dict-like object.
-
-        Typically, if your extension doesn't impact the data structure all
-        methods will inherit without issue except: `to_directed/to_undirected`.
-        By default these methods create a DiGraph/Graph class and you probably
-        want them to create your extension of a DiGraph/Graph. To facilitate
-        this we define two class variables that you can set in your subclass.
-
-        to_directed_class : callable, (default: DiGraph or MultiDiGraph)
-            Class to create a new graph structure in the `to_directed` method.
-            If `None`, a NetworkX class (DiGraph or MultiDiGraph) is used.
-
-        to_undirected_class : callable, (default: Graph or MultiGraph)
-            Class to create a new graph structure in the `to_undirected` method.
-            If `None`, a NetworkX class (Graph or MultiGraph) is used.
-
-        Examples
-        --------
-
-        Create a low memory graph class that effectively disallows edge
-        attributes by using a single attribute dict for all edges.
-        This reduces the memory used, but you lose edge attributes.
-
-            > class ThinGraph(nx.Graph):
-        ...     all_edge_dict = {'weight': 1}
-        ...     def single_edge_dict(self):
-        ...         return self.all_edge_dict
-        ...     edge_attr_dict_factory = single_edge_dict
-            > gra = ThinGraph()
-            > gra.add_edge(2, 1)
-            > gra[2][1]
-        {'weight': 1}
-            > gra.add_edge(2, 2)
-            > gra[2][1] is gra[2][2]
-        True
-
-        Please see :mod:`~networkx.classes.ordered` for more examples of
-        creating graph subclasses by overwriting the base class `dict` with
-        a dictionary-like object.
-    */
+        @tparam _nodeview_t The node container type
+        @tparam adjlist_t The adjacency list type (default: py::set of node values)
+        @tparam adjlist_outer_dict_factory The outer dict factory (default: py::dict) */
 
     // struct object : py::dict<const char*, std::any> {};
 
@@ -242,25 +80,15 @@ namespace xnetwork {
         //     return attr;
         // }
 
-        /** Initialize a graph with edges, name, or graph attributes.
-
-            Parameters
-            ----------
-            node_container : input nodes
-
-            Examples
-            --------
-                > v = std::vector{5, 3, 2};
-                > gra = nx.Graph(v);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-
-                > r = py::range(100);
-                > gra = nx.Graph(r);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-        */
+        /** @brief Construct a graph from a node container
+            @param[in] Nodes Container of nodes to initialize the graph */
         explicit Graph(const nodeview_t& Nodes)
             : _node{Nodes},
               _adj{}  // py::dict???
         {}
 
+        /** @brief Construct a graph with a given number of integer nodes
+            @param[in] num_nodes Number of nodes (0 to num_nodes-1) */
         explicit Graph(uint32_t num_nodes)
             : _node{py::range<uint32_t>(num_nodes)},
               _adj(num_nodes)  // std::vector
@@ -286,36 +114,22 @@ namespace xnetwork {
          */
         static auto end_points(const edge_t& e) -> const edge_t& { return e; }
 
-        /** Graph adjacency object holding the neighbors of each node.
-
-            This object is a read-only dict-like structure with node keys
-            and neighbor-dict values.  The neighbor-dict is keyed by neighbor
-            to the edge-data-dict.  So `gra.adj[3][2]['color'] = 'blue'` sets
-            the color of the edge `(3, 2)` to `"blue"`.
-
-            Iterating over gra.adj behaves like a dict. Useful idioms include
-            `for nbr, datadict in gra.adj[n].items():`.
-
-            The neighbor information is also provided by subscripting the graph.
-            So `for nbr, foovalue in gra[node].data('foo', default=1):` works.
-
-            For directed graphs, `gra.adj` holds outgoing (successor) info.
-        */
+        /** @brief Get the adjacency mapping of the graph (const version)
+            @return AdjacencyView of the internal adjacency structure */
         auto adj() const {
             using T = std::remove_reference_t<decltype(this->_adj)>;
             return AdjacencyView<const T&>(this->_adj);
         }
 
+        /** @brief Get the adjacency mapping of the graph (non-const version)
+            @return AdjacencyView of the internal adjacency structure */
         auto adj() {
             using T = std::remove_cv_t<decltype(this->_adj)>;
             return AdjacencyView<T>(this->_adj);
         }
 
-        /**
-         * @brief Iterate over nodes and their neighbors
-         *
-         * @return auto An iterable of (node, adjacency dict) pairs
-         */
+        /** @brief Iterate over nodes and their neighbors
+            @return An iterable of (node, adjacency dict) pairs */
         auto _nodes_nbrs() const {
             // @TODO support py:dict
             return py::enumerate(this->_adj);
@@ -347,131 +161,36 @@ namespace xnetwork {
         // // @name.setter
         // auto set_name(std::string_view s) { this->graph["name"] = std::any(s); }
 
-        /** Iterate over the nodes. Use: "for (const auto& n : gra)".
-        Returns
-        -------
-        niter : iterator
-            An iterator over all nodes : the graph.
-
-        Examples
-        --------
-            > gra = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-            > [n for n : gra];
-        [0, 1, 2, 3];
-            > list(gra);
-        [0, 1, 2, 3];
-         */
+        /** @brief Begin iterator over nodes
+            @return Iterator to the first node */
         auto begin() const { return std::begin(this->_node); }
 
+        /** @brief End iterator over nodes
+            @return Iterator past the last node */
         auto end() const { return std::end(this->_node); }
 
-        /** Return true if (n is a node, false otherwise. Use: "n : gra".
-
-        Examples
-        --------
-            > gra = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-            > 1 : gra
-        true
-         */
+        /** @brief Check if a node is in the graph
+            @param[in] node The node to check
+            @return true if the node exists, false otherwise */
         auto contains(const Node& node) const -> bool { return this->_node.contains(node); }
 
-        /** Return a dict of neighbors of node n.  Use: "gra[n]".
-
-        Parameters
-        ----------
-        n : node
-           A node in the graph.
-
-        Returns
-        -------
-        adj_dict : dictionary
-           The adjacency dictionary for nodes connected to n.
-
-        Notes
-        -----
-        gra[n] is the same as gra.adj[n] and similar to gra.neighbors(n);
-        (which is an iterator over gra.adj[n]);
-
-        Examples
-        --------
-            > gra = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-            > gra[0];
-        AtlasView({1: {}});
-         */
+        /** @brief Access adjacency dict of a node (const version)
+            @param[in] node The node to look up
+            @return Const reference to the adjacency dict of the node */
         auto operator[](const Node& node) const -> const auto& { return this->adj().at(node); }
 
+        /** @brief Access adjacency dict of a node with bounds check (const version)
+            @param[in] node The node to look up
+            @return Const reference to the adjacency dict of the node */
         auto at(const Node& node) const -> const auto& { return this->adj().at(node); }
 
+        /** @brief Access adjacency dict of a node (non-const version)
+            @param[in] node The node to look up
+            @return Reference to the adjacency dict of the node */
         auto operator[](const Node& node) -> auto& { return this->adj()[node]; }
 
-        /** A NodeView of the Graph as gra.nodes().
-
-        Returns
-        -------
-        NodeView
-            Allows set-like operations over the nodes as well as node
-            attribute dict lookup and calling to get a NodeDataView.
-            A NodeDataView iterates over `(n, data)` and has no set operations.
-            A NodeView iterates over `n` and includes set operations.
-
-            When called, if (data == false, an iterator over nodes.
-            Otherwise an iterator of 2-tuples (node, attribute value);
-            where the attribute is specified : `data`.
-            If data is true then the attribute becomes the
-            entire data dictionary.
-
-        Notes
-        -----
-        If your node data is not needed, it is simpler and equivalent
-        to use the expression ``for n : gra``, or ``list(gra)``.
-
-        Examples
-        --------
-        There are two simple ways of getting a list of all nodes : the graph) {
-
-            > gra = nx.path_graph(3);
-            > list(gra.nodes);
-        [0, 1, 2];
-            > list(gra);
-        [0, 1, 2];
-
-        To get the node data along with the nodes) {
-
-            > gra.add_node(1, time="5pm");
-            > gra.nodes[0]["foo"] = "bar";
-            > list(gra.nodes(data=true));
-        [(0, {"foo": "bar"}), (1, {"time": "5pm"}), (2, {})];
-            > list(gra.nodes.data());
-        [(0, {"foo": "bar"}), (1, {"time": "5pm"}), (2, {})];
-
-            > list(gra.nodes(data="foo"));
-        [(0, "bar"), (1, None), (2, None)];
-            > list(gra.nodes.data("foo"));
-        [(0, "bar"), (1, None), (2, None)];
-
-            > list(gra.nodes(data="time"));
-        [(0, None), (1, "5pm"), (2, None)];
-            > list(gra.nodes.data("time"));
-        [(0, None), (1, "5pm"), (2, None)];
-
-            > list(gra.nodes(data="time", default="Not Available"));
-        [(0, "Not Available"), (1, "5pm"), (2, "Not Available")];
-            > list(gra.nodes.data("time", default="Not Available"));
-        [(0, "Not Available"), (1, "5pm"), (2, "Not Available")];
-
-        If some of your nodes have an attribute and the rest are assumed
-        to have a default attribute value you can create a dictionary
-        from node/attribute pairs using the `default` keyword argument
-        to guarantee the value is never None:) {
-
-                > gra = nx.Graph();
-                > gra.add_node(0);
-                > gra.add_node(1, weight=2);
-                > gra.add_node(2, weight=3);
-                > dict(gra.nodes(data="weight", default=1));
-            {0: 1, 1: 2, 2: 3}
-
-         */
+        /** @brief Get a NodeView of the graph
+            @return NodeView providing set-like operations and data lookup */
         auto nodes() {
             using T = std::remove_reference_t<decltype(*this)>;
             auto nodes = NodeView<T>(*this);
@@ -482,88 +201,25 @@ namespace xnetwork {
             return nodes;
         }
 
-        /** Return the number of nodes : the graph.
-
-        Returns
-        -------
-        nnodes : int
-            The number of nodes : the graph.
-
-        See Also
-        --------
-        order, size  which are identical
-
-        Examples
-        --------
-            > gra = nx.path_graph(3);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-            > len(gra);
-        3
-         */
+        /** @brief Get the number of nodes in the graph
+            @return Number of nodes */
         auto number_of_nodes() const -> size_t { return this->_node.size(); }
 
-        // auto number_of_edges() const
-        // {
-        //     return this->_num_of_edges;
-        // }
-
-        /** Return the number of nodes : the graph.
-
-        Returns
-        -------
-        nnodes : int
-            The number of nodes : the graph.
-
-        See Also
-        --------
-        number_of_nodes, size  which are identical
-         */
+        /** @brief Get the number of nodes (same as number_of_nodes)
+            @return Number of nodes */
         auto order() const { return this->_node.size(); }
 
-        /** Return the number of nodes : the graph.
-
-        Returns
-        -------
-        nnodes : int
-            The number of nodes : the graph.
-
-        See Also
-        --------
-        number_of_nodes, order  which are identical
-         */
+        /** @brief Get the number of nodes (same as number_of_nodes)
+            @return Number of nodes */
         auto size() const -> size_t { return this->_node.size(); }
 
-        /** Return the number of edges in the graph.
-
-        Returns
-        -------
-        nedges : size_t
-            The number of edges in the graph.
-
-        Notes
-        -----
-        This method needs to iterate through the adjacency structure
-        to count the edges, so it has O(n) time complexity where n
-        is the number of nodes.
-         */
+        /** @brief Get the number of edges in the graph
+            @return Number of edges (cached value, O(1)) */
         auto number_of_edges() const -> size_t { return this->_num_of_edges; }
 
-        /** Return a vector of all edges in the graph as (u, v) pairs.
-
-            Each undirected edge is reported once with u < v.
-
-            Returns
-            -------
-            vector<edge_t>
-                A vector of (u, v) pairs representing all edges in the graph.
-
-            Examples
-            --------
-                > auto g = nx::Graph(py::range(3));
-                > g.add_edge(0, 1);
-                > g.add_edge(1, 2);
-                > g.edges();
-            [(0, 1), (1, 2)];
-         */
+        /** @brief Return a vector of all edges as (u, v) pairs
+            @details Each undirected edge is reported once with u < v.
+            @return Vector of (u, v) pairs representing all edges */
         auto edges() const -> std::vector<edge_t> {
             std::vector<edge_t> result;
             for (const auto& node : this->_node) {
@@ -576,66 +232,15 @@ namespace xnetwork {
             return result;
         }
 
-        /** Return true if (the graph contains the node n.
-
-            Identical to `n : gra`
-
-            Parameters
-            ----------
-            n : node
-
-            Examples
-            --------
-                > gra = nx.path_graph(3);  // or DiGraph, MultiGraph, MultiDiGraph,
-           etc > gra.has_node(0); true
-         */
+        /** @brief Check if the graph contains a node
+            @param[in] node The node to check
+            @return true if the node exists, false otherwise */
         auto has_node(const Node& node) const -> bool { return this->_node.contains(node); }
 
-        /** Add an edge between node_u and node_v.
-
-            The nodes node_u and node_v will be automatically added if (they are
-            not already : the graph.
-
-            Edge attributes can be specified with keywords or by directly
-            accessing the edge"s attribute dictionary. See examples below.
-
-            Parameters
-            ----------
-            node_u, node_v : nodes
-                Nodes can be, for example, strings or numbers.
-                Nodes must be hashable (and not None) C++ objects.
-
-            See Also
-            --------
-            add_edges_from : add a collection of edges
-
-            Notes
-            -----
-            Adding an edge that already exists updates the edge data.
-
-            Many XNetwork algorithms designed for weighted graphs use
-            an edge attribute (by default `weight`) to hold a numerical value.
-
-            Examples
-            --------
-            The following all add the edge e=(1, 2) to graph gra) {
-
-                > gra = nx.Graph()   // or DiGraph, MultiGraph, MultiDiGraph, etc
-                > e = (1, 2);
-                > gra.add_edge(1, 2)           // explicit two-node form
-                > gra.add_edges_from([(1, 2)]);  // add edges from iterable
-           container
-
-            Associate data to edges using keywords) {
-
-                > gra.add_edge(1, 2);
-
-            For non-string attribute keys, use subscript notation.
-
-                > gra.add_edge(1, 2);
-                > gra[1][2].update({0: 5});
-                > gra.edges()[1, 2].update({0: 5});
-         */
+        /** @brief Add an edge between two nodes (for simple key type, SFINAE)
+            @tparam U Key type parameter for SFINAE dispatch
+            @param[in] node_u First endpoint of the edge
+            @param[in] node_v Second endpoint of the edge */
         template <typename U = key_type> auto add_edge(const Node& node_u, const Node& node_v) ->
             typename std::enable_if<std::is_same<U, value_type>::value>::type {
             this->_adj[node_u].insert(node_v);
@@ -643,6 +248,10 @@ namespace xnetwork {
             ++this->_num_of_edges;
         }
 
+        /** @brief Add an edge between two nodes (for complex key type, SFINAE)
+            @tparam U Key type parameter for SFINAE dispatch
+            @param[in] node_u First endpoint of the edge
+            @param[in] node_v Second endpoint of the edge */
         template <typename U = key_type> auto add_edge(const Node& node_u, const Node& node_v) ->
             typename std::enable_if<!std::is_same<U, value_type>::value>::type {
             using T = typename adjlist_t::mapped_type;
@@ -652,24 +261,31 @@ namespace xnetwork {
             ++this->_num_of_edges;
         }
 
+        /** @brief Add an edge with attached data
+            @tparam T Type of edge data
+            @param[in] node_u First endpoint
+            @param[in] node_v Second endpoint
+            @param[in] data Data to associate with the edge */
         template <typename T> auto add_edge(const Node& node_u, const Node& node_v, const T& data) {
             this->_adj[node_u][node_v] = data;
             this->_adj[node_v][node_u] = data;
             ++this->_num_of_edges;
         }
 
-        /**
-         * @brief Add edges from a container
-         *
-         * @tparam C1 Container type for edges
-         * @param edges Container of edge pairs
-         */
+        /** @brief Add edges from a container of edge pairs
+            @tparam C1 Container type for edges
+            @param[in] edges Container of edge pairs */
         template <typename C1> auto add_edges_from(const C1& edges) {
             for (const auto& e : edges) {
                 this->add_edge(e.first, e.second);
             }
         }
 
+        /** @brief Add edges from a container with associated data
+            @tparam C1 Container type for edges
+            @tparam C2 Container type for edge data
+            @param[in] edges Container of edge pairs
+            @param[in] data Container of edge data values */
         template <typename C1, typename C2> auto add_edges_from(const C1& edges, const C2& data) {
             auto it = data.begin();
             for (const auto& e : edges) {
@@ -678,137 +294,31 @@ namespace xnetwork {
             }
         }
 
-        /** Return true if (the edge (node_u, node_v) is : the graph.
-
-        This is the same as `node_v : gra[node_u]` without KeyError exceptions.
-
-        Parameters
-        ----------
-        node_u, node_v : nodes
-            Nodes can be, for example, strings or numbers.
-            Nodes must be hashable (and not None) C++ objects.
-
-        Returns
-        -------
-        edge_ind : bool
-            true if (edge is : the graph, false otherwise.
-
-        Examples
-        --------
-            > gra = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-            > gra.has_edge(0, 1);  // using two nodes
-        true
-            > e = (0, 1);
-            > gra.has_edge(*e);  //  e is a 2-tuple (u, v);
-        true
-            > e = (0, 1, {"weight":7});
-            > gra.has_edge(*e[:2]);  // e is a 3-tuple (u, v, data_dictionary);
-        true
-
-        The following syntax are equivalent) {
-
-            > gra.has_edge(0, 1);
-        true
-            > 1 : gra[0];  // though this gives KeyError if (0 not : gra
-        true
-
-         */
+        /** @brief Check if an edge exists between two nodes
+            @param[in] node_u First endpoint
+            @param[in] node_v Second endpoint
+            @return true if the edge exists, false otherwise */
         auto has_edge(const Node& node_u, const Node& node_v) const -> bool {
             return this->_adj.at(node_u).contains(node_v);
         }
 
-        /**
-         * @brief Get the degree of a node
-         *
-         * @param node The node to get the degree for
-         * @return auto The number of edges incident to the node
-         */
+        /** @brief Get the degree of a node
+            @param[in] node The node to get the degree for
+            @return The number of edges incident to the node */
         auto degree(const Node& node) const { return this->_adj[node].size(); }
 
-        /** An EdgeView of the Graph as gra.edges().
-
-            edges( nbunch=None, data=false, default=None);
-
-            The EdgeView provides set-like operations on the edge-tuples
-            as well as edge attribute lookup. When called, it also provides
-            an EdgeDataView object which allows control of access to edge
-            attributes (but does not provide set-like operations).
-            Hence, `gra.edges[u, v]["color"]` provides the value of the color
-            attribute for edge `(u, v)` while
-            `for (auto [u, v, c] : gra.edges.data("color", default="red") {`
-            iterates through all the edges yielding the color attribute
-            with default `"red"` if (no color attribute exists.
-
-            Parameters
-            ----------
-            nbunch : single node, container, or all nodes (default= all nodes);
-                The view will only report edges incident to these nodes.
-            data : string or bool, optional (default=false);
-                The edge attribute returned : 3-tuple (u, v, ddict[data]).
-                If true, return edge attribute dict : 3-tuple (u, v, ddict).
-                If false, return 2-tuple (u, v).
-            default : value, optional (default=None);
-                Value used for edges that don"t have the requested attribute.
-                Only relevant if (data is not true or false.
-
-            Returns
-            -------
-            edges : EdgeView
-                A view of edge attributes, usually it iterates over (u, v);
-                or (u, v, d) tuples of edges, but can also be used for
-                attribute lookup as `edges[u, v]["foo"]`.
-
-            Notes
-            -----
-            Nodes : nbunch that are not : the graph will be (quietly) ignored.
-            For directed graphs this returns the out-edges.
-
-            Examples
-            --------
-                > gra = nx.path_graph(3)   // or MultiGraph, etc
-                > gra.add_edge(2, 3, weight=5);
-                > [e for e : gra.edges];
-            [(0, 1), (1, 2), (2, 3)];
-                > gra.edges.data();  // default data is {} (empty dict);
-            EdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {"weight": 5})]);
-                > gra.edges.data("weight", default=1);
-            EdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)]);
-                > gra.edges([0, 3]);  // only edges incident to these nodes
-            EdgeDataView([(0, 1), (3, 2)]);
-                > gra.edges(0);  // only edges incident to a single node (use
-            gra.adj[0]?); EdgeDataView([(0, 1)]);
-        */
-
-        /** Remove all nodes and edges from the graph.
-
-        This also removes the name, and all graph, node, and edge attributes.
-
-        Examples
-        --------
-            > gra = nx.path_graph(4);  // or DiGraph, MultiGraph, MultiDiGraph, etc
-            > gra.clear();
-            > list(gra.nodes);
-        [];
-            > list(gra.edges());
-        [];
-
-         */
+        /** @brief Remove all nodes and edges from the graph */
         auto clear() {
             this->_adj.clear();
             // this->_node.clear();
             // this->graph.clear();
         }
 
-        /**
-         * @brief Apply a callable to each edge without materializing a vector
-         *
-         * More efficient than edges() when you only need to iterate once,
-         * as it avoids allocating the result vector. Each edge (u, v) is
-         * yielded once with u < v.
-         *
-         * @tparam F Callable `void(const Node&, const Node&)` or similar
-         * @param func Callable invoked for each edge
-         */
+        /** @brief Apply a callable to each edge without materializing a vector
+            @details More efficient than edges() when you only need to iterate once,
+            as it avoids allocating the result vector. Each edge (u, v) is yielded once with u < v.
+            @tparam F Callable `void(const Node&, const Node&)` or similar
+            @param[in] func Callable invoked for each edge */
         template <typename F> auto for_each_edge(F&& func) const -> void {
             for (const auto& node : this->_node) {
                 for (const auto& nbr : this->_adj[node]) {
@@ -819,19 +329,17 @@ namespace xnetwork {
             }
         }
 
-        /** Return true if (graph is a multigraph, false otherwise. */
+        /** @brief Check if the graph is a multigraph
+            @return false (this is a simple graph) */
         auto is_multigraph() const { return false; }
 
-        /** Return true if (graph is directed, false otherwise. */
+        /** @brief Check if the graph is directed
+            @return false (this is an undirected graph) */
         auto is_directed() const { return false; }
     };
 
-    /**
-     * @brief A simple undirected graph with integer nodes
-     *
-     * This is a convenience type alias for a Graph with uint32_t nodes
-     * and std::vector-based adjacency storage.
-     */
+    /** @brief A simple undirected graph with integer nodes
+        @details Convenience alias for a Graph with uint32_t nodes and vector-based adjacency storage */
     using SimpleGraph = Graph<decltype(py::range<uint32_t>(uint32_t{})), py::set<uint32_t>,
                               std::vector<py::set<uint32_t>>>;
 

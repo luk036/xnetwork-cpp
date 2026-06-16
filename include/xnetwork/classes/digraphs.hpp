@@ -1,10 +1,15 @@
+/**
+ * @file digraphs.hpp
+ * @brief Directed graph data structure for XNetwork
+ *
+ * Defines the DiGraphS class template — a directed graph implementation
+ * based on the undirected Graph base class.
+ */
+
 #pragma once
 
-// #include <any>
-// #include <boost/coroutine2/all.hpp>
 #include <cassert>
 #include <py2cpp/py2cpp.hpp>
-// #include <range/v3/view/enumerate.hpp>
 #include <type_traits>
 #include <utility>
 #include <vector>
@@ -18,189 +23,13 @@
 
 namespace xnetwork {
 
-    /** Base class for directed graphs.
-
-        A DiGraphS stores nodes and edges with optional data, or attributes.
-
-        DiGraphSs hold directed edges.  Self loops are allowed but multiple
-        (parallel) edges are not.
-
-        Nodes can be arbitrary (hashable) C++ objects with optional
-        key/value attributes. By convention `None` is not used as a node.
-
-        Edges are represented as links between nodes with optional
-        key/value attributes.
-
-        Parameters
-        ----------
-        node_container : input graph (optional, default: None)
-            Data to initialize graph. If None (default) an empty
-            graph is created.  The data can be any format that is supported
-            by the to_networkx_graph() function, currently including edge list,
-            dict of dicts, dict of lists, NetworkX graph, NumPy matrix
-            or 2d ndarray, SciPy sparse matrix, or PyGraphviz graph.
-
-        See Also
-        --------
-        Graph
-        DiGraph
-        MultiGraph
-        MultiDiGraph
-        OrderedGraph
-
-        Examples
-        --------
-        Create an empty graph structure (a "null graph") with 5 nodes and
-        no edges.
-
-            > auto v = std::vector{3, 4, 2, 8};
-            > auto gra = xnetwork::DiGraphS(v);
-
-            > auto va = py::dict{{3, 0.1}, {4, 0.5}, {2, 0.2}};
-            > auto gra = xnetwork::DiGraphS(va);
-
-            > auto r = py::range(100);
-            > auto gra = xnetwork::DiGraphS(r);
-
-        gra can be grown in several ways.
-
-        **Nodes:**
-
-        Add one node at a time:
-
-            > gra.add_node(1)
-
-        Add the nodes from any container (a list, dict, set or
-        even the lines from a file or the nodes from another graph).
-
-            > gra.add_nodes_from([2, 3])
-            > gra.add_nodes_from(range(100, 110))
-            > H = xnetwork::path_graph(10)
-            > gra.add_nodes_from(H)
-
-        In addition to strings and integers any hashable C++ object
-        (except None) can represent a node, e.g. a customized node object,
-        or even another DiGraphS.
-
-            > gra.add_node(H)
-
-        **Edges:**
-
-        gra can also be grown by adding edges.
-
-        Add one edge,
-
-            > gra.add_edge(1, 2);
-
-        a list of edges,
-
-            > gra.add_edges_from([(1, 2), (1, 3)]);
-
-        or a collection of edges,
-
-            > gra.add_edges_from(H.edges());
-
-        If some edges connect nodes not yet in the graph, the nodes
-        are added automatically.  There are no errors when adding
-        nodes or edges that already exist.
-
-        **Attributes:**
-
-        Each graph can hold key/value attribute pairs
-        in an associated attribute dictionary (the keys must be hashable).
-        By default these are empty, but can be added or changed using
-        direct manipulation of the attribute
-        dictionaries named graph, node and edge respectively.
-
-            > gra.graph["day"] = std::any("Friday");
-        {'day': 'Friday'}
-
-        **Subclasses (Advanced):**
-
-        The DiGraphS class uses a container-of-container-of-container data
-       structure. The outer dict (node_dict) holds adjacency information keyed by
-       node. The next dict (adjlist_dict) represents the adjacency information and
-       holds edge data keyed by neighbor.  The inner dict (edge_attr_dict)
-       represents the edge data and holds edge attribute values keyed by attribute
-       names.
-
-        Each of these three dicts can be replaced in a subclass by a user defined
-        dict-like object. In general, the dict-like features should be
-        maintained but extra features can be added. To replace one of the
-        dicts create a new graph class by changing the class(!) variable
-        holding the factory for that dict-like structure. The variable names are
-        node_dict_factory, node_attr_dict_factory, adjlist_inner_dict_factory,
-        adjlist_outer_dict_factory, edge_attr_dict_factory and
-       graph_attr_dict_factory.
-
-        node_dict_factory : function, (default: dict)
-            Factory function to be used to create the dict containing node
-            attributes, keyed by node id.
-            It should require no arguments and return a dict-like object
-
-        node_attr_dict_factory: function, (default: dict)
-            Factory function to be used to create the node attribute
-            dict which holds attribute values keyed by attribute name.
-            It should require no arguments and return a dict-like object
-
-        adjlist_outer_dict_factory : function, (default: dict)
-            Factory function to be used to create the outer-most dict
-            in the data structure that holds adjacency info keyed by node.
-            It should require no arguments and return a dict-like object.
-
-        adjlist_inner_dict_factory : function, (default: dict)
-            Factory function to be used to create the adjacency list
-            dict which holds edge data keyed by neighbor.
-            It should require no arguments and return a dict-like object
-
-        edge_attr_dict_factory : function, (default: dict)
-            Factory function to be used to create the edge attribute
-            dict which holds attribute values keyed by attribute name.
-            It should require no arguments and return a dict-like object.
-
-        graph_attr_dict_factory : function, (default: dict)
-            Factory function to be used to create the graph attribute
-            dict which holds attribute values keyed by attribute name.
-            It should require no arguments and return a dict-like object.
-
-        Typically, if your extension doesn't impact the data structure all
-        methods will inherit without issue except: `to_directed/to_undirected`.
-        By default these methods create a DiGraph/DiGraphS class and you probably
-        want them to create your extension of a DiGraph/DiGraphS. To facilitate
-        this we define two class variables that you can set in your subclass.
-
-        to_directed_class : callable, (default: DiGraph or MultiDiGraph)
-            Class to create a new graph structure in the `to_directed` method.
-            If `None`, a NetworkX class (DiGraph or MultiDiGraph) is used.
-
-        to_undirected_class : callable, (default: DiGraphS or MultiGraph)
-            Class to create a new graph structure in the `to_undirected` method.
-            If `None`, a NetworkX class (DiGraphS or MultiGraph) is used.
-
-        Examples
-        --------
-
-        Create a low memory graph class that effectively disallows edge
-        attributes by using a single attribute dict for all edges.
-        This reduces the memory used, but you lose edge attributes.
-
-            > class ThinGraph(xnetwork::DiGraphS):
-        ...     all_edge_dict = {'weight': 1}
-        ...     def single_edge_dict(self):
-        ...         return self.all_edge_dict
-        ...     edge_attr_dict_factory = single_edge_dict
-            > gra = ThinGraph()
-            > gra.add_edge(2, 1)
-            > gra[2][1]
-        {'weight': 1}
-            > gra.add_edge(2, 2)
-            > gra[2][1] is gra[2][2]
-        True
-
-        Please see :mod:`~networkx.classes.ordered` for more examples of
-        creating graph subclasses by overwriting the base class `dict` with
-        a dictionary-like object.
-    */
+    /** @brief Directed graph with arbitrary node types
+        @details A DiGraphS stores nodes and edges with optional data or attributes.
+        Directed edges are stored. Self loops are allowed but multiple (parallel) edges are not.
+        Inherits from the undirected Graph base class.
+        @tparam nodeview_t The node container type
+        @tparam adjlist_t The adjacency list type
+        @tparam adjlist_outer_dict_factory The outer dict factory */
     template <typename nodeview_t, typename adjlist_t = py::dict<Value_type<nodeview_t>, int>,
               typename adjlist_outer_dict_factory = py::dict<Value_type<nodeview_t>, adjlist_t>>
     class DiGraphS : public Graph<nodeview_t, adjlist_t, adjlist_outer_dict_factory> {
@@ -218,63 +47,22 @@ namespace xnetwork {
       public:
         // adjlist_outer_dict_factory &_adj; // successor
 
-        /** Initialize a graph with edges, name, or graph attributes.
-
-            Parameters
-            ----------
-            node_container : input nodes
-
-            Examples
-            --------
-                > v = std::vector{5, 3, 2};
-                > gra = xnetwork::DiGraphS(v);  // or DiGraph, MultiGraph,
-           MultiDiGraph, etc
-
-                > r = py::range(100);
-                > gra = xnetwork::DiGraphS(r, r);  // or DiGraph, MultiGraph,
-           MultiDiGraph, etc
-        */
+        /** @brief Construct a directed graph from a node container
+            @param[in] Nodes Container of nodes */
         explicit DiGraphS(const nodeview_t& Nodes) : _Base{Nodes} {}
 
+        /** @brief Construct a directed graph with a given number of integer nodes
+            @param[in] num_nodes Number of nodes (0 to num_nodes-1) */
         explicit DiGraphS(uint32_t num_nodes) : _Base{num_nodes} {}
 
-        /** DiGraphS adjacency object holding the neighbors of each node.
-
-            This object is a read-only dict-like structure with node keys
-            and neighbor-dict values.  The neighbor-dict is keyed by neighbor
-            to the edge-data-dict.  So `gra.adj[3][2]['color'] = 'blue'` sets
-            the color of the edge `(3, 2)` to `"blue"`.
-
-            Iterating over gra.adj behaves like a dict. Useful idioms include
-            `for nbr, datadict in gra.adj[n].items():`.
-
-            The neighbor information is also provided by subscripting the graph.
-            So `for nbr, foovalue in gra[node].data('foo', default=1):` works.
-
-            For directed graphs, `gra.adj` holds outgoing (successor) info.
-        */
+        /** @brief Get adjacency mapping (successors) of the directed graph (const version) */
         auto adj() const {
             using T = decltype(this->_adj);
             return AdjacencyView<T>(this->_adj);
         }
 
-        /** Graph adjacency object holding the successors of each node.
-
-            This object is a read-only dict-like structure with node keys
-            and neighbor-dict values.  The neighbor-dict is keyed by neighbor
-            to the edge-data-dict.  So `gra.succ[3][2]['color'] = 'blue'` sets
-            the color of the edge `(3, 2)` to `"blue"`.
-
-            Iterating over gra.succ behaves like a dict. Useful idioms include
-            `for nbr, datadict in gra.succ[n].items():`.  A data-view not provided
-            by dicts also exists: `for nbr, foovalue in gra.succ[node].data('foo'):`
-            and a default can be set via a `default` argument to the `data` method.
-
-            The neighbor information is also provided by subscripting the graph.
-            So `for nbr, foovalue in gra[node].data('foo', default=1):` works.
-
-            For directed graphs, `gra.adj` is identical to `gra.succ`.
-        */
+        /** @brief Get the successors mapping (same as adj)
+            @return AdjacencyView of the successor structure */
         auto succ() const {
             using T = decltype(this->_adj);
             return AdjacencyView<T>(this->_adj);
@@ -324,13 +112,10 @@ namespace xnetwork {
                 > gra[1][2].update({0: 5});
                 > gra.edges()[1, 2].update({0: 5});
          */
-        /**
-         * @brief Add an edge between two nodes (for simple key type)
-         *
-         * @tparam U Key type parameter for SFINAE
-         * @param node_u Source node
-         * @param node_v Target node
-         */
+        /** @brief Add a directed edge between two nodes (for simple key type, SFINAE)
+            @tparam U Key type parameter for SFINAE dispatch
+            @param[in] node_u Source node
+            @param[in] node_v Target node */
         template <typename U = key_type> auto add_edge(const Node& node_u, const Node& node_v) ->
             typename std::enable_if<std::is_same<U, value_type>::value>::type {
             this->_adj[node_u].insert(node_v);
@@ -378,122 +163,32 @@ namespace xnetwork {
             }
         }
 
-        /** Returns True if node u has successor v.
-
-            This is true if graph has the edge u->v.
-        */
+        /** @brief Check if a node has a specific successor
+            @param[in] node_u Source node
+            @param[in] node_v Potential successor node
+            @return true if the edge u->v exists */
         auto has_successor(const Node& node_u, const Node& node_v) const -> bool {
             return this->_node.contains(node_u) && this->_adj.at(node_u).contains(node_v);
         }
 
-        /** Returns an iterator over successor nodes of n.
-
-            A successor of n is a node m such that there exists a directed
-            edge from n to m.
-
-            Parameters
-            ----------
-            n : node
-               A node in the graph
-
-            Raises
-            -------
-            NetworkXError
-               If n is not in the graph.
-
-            See Also
-            --------
-            predecessors
-
-            Notes
-            -----
-            neighbors() and successors() are the same.
-        */
+        /** @brief Get iterator over successors of a node (non-const)
+            @param[in] node The node to get successors for
+            @return Reference to the adjacency list of the node */
         auto successors(const Node& node) -> auto& { return this->_adj[node]; }
 
+        /** @brief Get iterator over successors of a node (const)
+            @param[in] node The node to get successors for
+            @return Const reference to the adjacency list of the node */
         auto successors(const Node& node) const -> const auto& { return this->_adj[node]; }
 
-        /** An OutEdgeView of the DiGraph as gra.edges().
-
-            edges(self, nbunch=None, data=False, default=None)
-
-            The OutEdgeView provides set-like operations on the edge-tuples
-            as well as edge attribute lookup. When called, it also provides
-            an EdgeDataView object which allows control of access to edge
-            attributes (but does not provide set-like operations).
-            Hence, `gra.edges()[u, v]['color']` provides the value of the color
-            attribute for edge `(u, v)` while
-            `for (u, v, c) in gra.edges().data('color', default='red'):`
-            iterates through all the edges yielding the color attribute
-            with default `'red'` if no color attribute exists.
-
-            Parameters
-            ----------
-            nbunch : single node, container, or all nodes (default= all nodes)
-                The view will only report edges incident to these nodes.
-            data : string or bool, optional (default=False)
-                The edge attribute returned in 3-tuple (u, v, ddict[data]).
-                If True, return edge attribute dict in 3-tuple (u, v, ddict).
-                If False, return 2-tuple (u, v).
-            default : value, optional (default=None)
-                Value used for edges that don't have the requested attribute.
-                Only relevant if data is not True or False.
-
-            Returns
-            -------
-            edges : OutEdgeView
-                A view of edge attributes, usually it iterates over (u, v)
-                or (u, v, d) tuples of edges, but can also be used for
-                attribute lookup as `edges[u, v]['foo']`.
-
-            See Also
-            --------
-            in_edges, out_edges
-
-            Notes
-            -----
-            Nodes in nbunch that are not in the graph will be (quietly) ignored.
-            For directed graphs this returns the out-edges.
-
-            Examples
-            --------
-                > gra = nx.DiGraph()   # or MultiDiGraph, etc
-                > nx.add_path(gra, [0, 1, 2])
-                > gra.add_edge(2, 3, weight=5)
-                > [e for e in gra.edges()]
-            [(0, 1), (1, 2), (2, 3)]
-                > gra.edges().data()  # default data is {} (empty dict)
-            OutEdgeDataView([(0, 1, {}), (1, 2, {}), (2, 3, {'weight': 5})])
-                > gra.edges().data('weight', default=1)
-            OutEdgeDataView([(0, 1, 1), (1, 2, 1), (2, 3, 5)])
-                > gra.edges()([0, 2])  # only edges incident to these nodes
-            OutEdgeDataView([(0, 1), (2, 3)])
-                > gra.edges()(0)  # only edges incident to a single node (use
-           gra.adj[0]?) OutEdgeDataView([(0, 1)])
-
-        */
-
-        /**
-         * @brief Get the out-degree of a node in the directed graph
-         *
-         * @param node The node to get the degree for
-         * @return size_t The number of outgoing edges from the node
-         */
+        /** @brief Get the out-degree of a node in the directed graph
+            @param[in] node The node to get the degree for
+            @return The number of outgoing edges from the node */
         auto degree(const Node& node) const { return this->_adj[node].size(); }
 
-        /** Return the number of edges in the directed graph.
-
-        Returns
-        -------
-        nedges : size_t
-            The number of edges in the graph.
-
-        Notes
-        -----
-        This method iterates through the adjacency structure
-        to count the edges, so it has O(n) time complexity where n
-        is the number of nodes.
-         */
+        /** @brief Get the number of edges in the directed graph
+            @details Iterates through the adjacency structure to count edges.
+            @return Number of edges */
         auto number_of_edges() const -> size_t {
             size_t n_edges = 0;
             for (const auto& node : this->_node) {
@@ -502,19 +197,7 @@ namespace xnetwork {
             return n_edges;  // No division needed since it's a directed graph
         }
 
-        /** Remove all nodes and edges from the graph.
-
-            This also removes the name, and all graph, node, and edge attributes.
-
-            Examples
-            --------
-                > gra = xnetwork::path_graph(4);  // or DiGraph, MultiGraph,
-           MultiDiGraph, etc > gra.clear(); > list(gra.nodes);
-            [];
-                > list(gra.edges());
-            [];
-
-        */
+        /** @brief Remove all nodes and edges from the graph */
         auto clear() {
             this->_adj.clear();
             // this->_pred.clear()
@@ -522,19 +205,17 @@ namespace xnetwork {
             this->graph.clear();
         }
 
-        /** Return true if (graph is a multigraph, false otherwise. */
+        /** @brief Check if the graph is a multigraph
+            @return false (this is a simple directed graph) */
         auto is_multigraph() const { return false; }
 
-        /** Return true if (graph is directed, false otherwise. */
+        /** @brief Check if the graph is directed
+            @return true (this is a directed graph) */
         auto is_directed() const { return true; }
     };
 
-    /**
-     * @brief A simple directed graph with integer nodes
-     *
-     * This is a convenience type alias for a DiGraphS with uint32_t nodes
-     * and std::vector-based adjacency storage.
-     */
+    /** @brief A simple directed graph with integer nodes
+        @details Convenience alias for a DiGraphS with uint32_t nodes and vector-based adjacency storage */
     using SimpleDiGraphS = DiGraphS<decltype(py::range<uint32_t>(uint32_t{})),
                                     py::dict<uint32_t, int>, std::vector<py::dict<uint32_t, int>>>;
 
