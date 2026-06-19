@@ -23,7 +23,7 @@
  *
  * @tparam MakeViolator Factory callable: make_violator() returns a "violator".
  *   The violator is called repeatedly; each call returns
- *   std::optional<std::vector<NodeType>> — the next violation,
+ *   std::optional<std::vector<NodeType>> - the next violation,
  *   or std::nullopt when exhausted.
  * @tparam WeightMap Weight mapping (mutable)
  * @tparam SolutionSet Set-like container for the solution

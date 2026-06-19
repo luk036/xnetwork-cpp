@@ -2,7 +2,7 @@
 
 /**
  * @file hadlock.hpp
- * Hadlock's algorithm: planar MAX-CUT → minimum weight perfect matching on dual.
+ * Hadlock's algorithm: planar MAX-CUT -> minimum weight perfect matching on dual.
  *
  * The algorithm is accelerated by **biconnected component decomposition**:
  * MAX-CUT is additive over biconnected components because edges in different
@@ -28,7 +28,7 @@
 #include <vector>
 #include <xnetwork/thread_pool.hpp>
 
-// Hash for std::pair — needed by py::set<std::pair<...>> (backed by unordered_set)
+// Hash for std::pair - needed by py::set<std::pair<...>> (backed by unordered_set)
 namespace std {
     template <typename T1, typename T2> struct hash<pair<T1, T2>> {
         size_t operator()(const pair<T1, T2>& p) const {
@@ -50,8 +50,8 @@ namespace detail {
     // -------------------------------------------------------------------
     // Dual graph construction
     //
-    // Each face → dual vertex. Two dual vertices connect if faces share a
-    // primal edge. Parallel edges → only the minimum-weight edge is kept.
+    // Each face -> dual vertex. Two dual vertices connect if faces share a
+    // primal edge. Parallel edges -> only the minimum-weight edge is kept.
     // -------------------------------------------------------------------
     template <typename Node, typename WeightFunc>
     auto build_dual(const std::vector<std::vector<Node>>& faces, WeightFunc weight)
@@ -129,7 +129,7 @@ namespace detail {
         -> std::vector<std::pair<int, int>>;
 
     /**
-     * Exact MWPM via DP over subsets (n ≤ 18, 2^18 = 262k states).
+     * Exact MWPM via DP over subsets (n <= 18, 2^18 = 262k states).
      */
     template <typename Node>
     auto exact_mwpm(const std::vector<int>& odd_faces, const std::vector<std::vector<int>>& dist)
@@ -208,7 +208,7 @@ namespace detail {
             }
         }
 
-        // No odd faces → graph is bipartite → all edges are in the cut
+        // No odd faces -> graph is bipartite -> all edges are in the cut
         if (odd_faces.size() < 2) {
             py::set<std::pair<node_t, node_t>> all_edges;
             for (const auto& e : G.edges()) {
@@ -217,7 +217,7 @@ namespace detail {
             return all_edges;
         }
 
-        // Odd number of odd faces → drop one (planar graphs have even #odd faces)
+        // Odd number of odd faces -> drop one (planar graphs have even #odd faces)
         if (odd_faces.size() % 2 != 0) {
             odd_faces.pop_back();
             if (odd_faces.size() < 2) {
@@ -231,7 +231,7 @@ namespace detail {
 
         const int n_odd = static_cast<int>(odd_faces.size());
 
-        // odd_faces[k] → k lookup
+        // odd_faces[k] -> k lookup
         std::map<int, int> odd_idx;
         for (int k = 0; k < n_odd; ++k) {
             odd_idx[odd_faces[k]] = k;
@@ -256,7 +256,7 @@ namespace detail {
         auto matching = min_weight_perfect_matching<node_t>(odd_faces, dist_mat);
 
         // (5) Collect primal edges excluded from the cut
-        // Build dual-edge → primal-edge lookup
+        // Build dual-edge -> primal-edge lookup
         std::map<std::pair<int, int>, std::pair<node_t, node_t>> dedge_primal;
         for (int fi = 0; fi < static_cast<int>(dual.size()); ++fi) {
             for (const auto& e : dual[fi]) {

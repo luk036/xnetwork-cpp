@@ -58,7 +58,7 @@ if(NOT TEST_INSTALLED_VERSION)
       XNetwork PUBLIC -Wall -Wpedantic -Wextra -Werror
     )
   elseif(MSVC)
-    target_compile_options(XNetwork PUBLIC /utf-8 /W4 /WX)
+    target_compile_options(XNetwork PUBLIC /W4 /WX)
     # target_compile_definitions(${PROJECT_NAME} PRIVATE DOCTEST_CONFIG_USE_STD_HEADERS)
   endif()
 endif()

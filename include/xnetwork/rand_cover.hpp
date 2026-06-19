@@ -74,7 +74,7 @@ auto rand_vertex_cover_trial(const Graph& ugraph, const WeightMap& weight,
     -> std::pair<py::set<typename Graph::node_t>, typename WeightMap::mapped_type>;
 
 // -----------------------------------------------------------------------
-// Convenience overload — single trial with seed
+// Convenience overload - single trial with seed
 // -----------------------------------------------------------------------
 
 /**

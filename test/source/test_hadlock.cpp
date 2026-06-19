@@ -9,7 +9,7 @@
 #include <xnetwork/hadlock.hpp>
 
 // ===================================================================
-// Test graph — minimal mock following test_graph_algo / test_cover pattern
+// Test graph - minimal mock following test_graph_algo / test_cover pattern
 // ===================================================================
 struct TestGraph {
     using node_t = uint32_t;
@@ -86,7 +86,7 @@ TEST_CASE("Square with diagonal") {
     CHECK_EQ(val, 30);  // 5 + 10 + 5 + 10
 }
 
-TEST_CASE("Grid 2x2 is bipartite — all edges in cut") {
+TEST_CASE("Grid 2x2 is bipartite - all edges in cut") {
     // (0,0)->0, (0,1)->1, (1,0)->2, (1,1)->3
     TestGraph G(4, {{0, 1}, {0, 2}, {1, 3}, {2, 3}});
     // Inner face 0-1-3-2 (even), outer face 0-2-3-1 (even)
@@ -111,7 +111,7 @@ TEST_CASE("Empty graph") {
 
 TEST_CASE("Single edge") {
     TestGraph G(2, {{0, 1}});
-    // Two faces, each a digon [0,1] — both even (2 nodes)
+    // Two faces, each a digon [0,1] - both even (2 nodes)
     std::vector<std::vector<uint32_t>> faces = {{0, 1}, {1, 0}};
 
     auto weight = [](uint32_t, uint32_t) -> int { return 7; };
@@ -177,7 +177,7 @@ TEST_CASE("Unit weight overload") {
 // Tests: biconnected_components
 // ===================================================================
 
-TEST_CASE("biconnected_components — single triangle") {
+TEST_CASE("biconnected_components - single triangle") {
     // Triangle has one bc component containing all 3 nodes
     xnetwork::SimpleGraph G(3);
     G.add_edge(0, 1);
@@ -191,8 +191,8 @@ TEST_CASE("biconnected_components — single triangle") {
     CHECK(comps[0].contains(2));
 }
 
-TEST_CASE("biconnected_components — bowtie (two triangles sharing vertex)") {
-    // Two triangles sharing node 2 → two bc components
+TEST_CASE("biconnected_components - bowtie (two triangles sharing vertex)") {
+    // Two triangles sharing node 2 -> two bc components
     // Comp1: {0,1,2}, Comp2: {2,3,4}
     xnetwork::SimpleGraph G(5);
     G.add_edge(0, 1);
@@ -213,7 +213,7 @@ TEST_CASE("biconnected_components — bowtie (two triangles sharing vertex)") {
     CHECK(comps[1].contains(2));
 }
 
-TEST_CASE("biconnected_components — tree (no cycles)") {
+TEST_CASE("biconnected_components - tree (no cycles)") {
     // A tree has one biconnected component per edge (each is size 2)
     xnetwork::SimpleGraph G(4);
     G.add_edge(0, 1);
@@ -221,14 +221,14 @@ TEST_CASE("biconnected_components — tree (no cycles)") {
     G.add_edge(2, 3);
     auto comps = detail::biconnected_components(G);
 
-    // 3 edges → 3 biconnected components, each with 2 nodes
+    // 3 edges -> 3 biconnected components, each with 2 nodes
     CHECK_EQ(comps.size(), 3);
     for (const auto& comp : comps) {
         CHECK_EQ(comp.size(), 2);
     }
 }
 
-TEST_CASE("biconnected_components — empty graph") {
+TEST_CASE("biconnected_components - empty graph") {
     xnetwork::SimpleGraph G(0);
     auto comps = detail::biconnected_components(G);
     CHECK(comps.empty());
@@ -238,11 +238,11 @@ TEST_CASE("biconnected_components — empty graph") {
 // Tests: bc-optimized solve_hadlock_max_cut
 // ===================================================================
 
-TEST_CASE("BC-optimized — bowtie (two unit-weight triangles)") {
+TEST_CASE("BC-optimized - bowtie (two unit-weight triangles)") {
     // Two triangles sharing node 2:
     //   Triangle 1: 0-1-2 (unit weight)
     //   Triangle 2: 2-3-4 (unit weight)
-    // Each triangle's max cut = 2 edges → total 4 edges in the cut
+    // Each triangle's max cut = 2 edges -> total 4 edges in the cut
     xnetwork::SimpleGraph G(5);
     G.add_edge(0, 1);
     G.add_edge(1, 2);
@@ -265,7 +265,7 @@ TEST_CASE("BC-optimized — bowtie (two unit-weight triangles)") {
     CHECK_EQ(val, 4);
 }
 
-TEST_CASE("BC-optimized — disconnected triangles") {
+TEST_CASE("BC-optimized - disconnected triangles") {
     // Two completely disconnected triangles (no shared vertex):
     //   Triangle 1: nodes {0,1,2}
     //   Triangle 2: nodes {3,4,5}
@@ -288,7 +288,7 @@ TEST_CASE("BC-optimized — disconnected triangles") {
     CHECK_EQ(val, 4);
 }
 
-TEST_CASE("BC-optimized — mixed: triangle + square") {
+TEST_CASE("BC-optimized - mixed: triangle + square") {
     // Triangle (nodes 0,1,2) + square (nodes 2,3,4,5) sharing node 2
     // Triangle faces: inner {0,1,2}, outer {0,2,1}
     // Square  faces: inner {2,3,4,5}, outer {2,5,4,3}
@@ -301,7 +301,7 @@ TEST_CASE("BC-optimized — mixed: triangle + square") {
     G.add_edge(4, 5);
     G.add_edge(5, 2);
     // Edge weights: triangle edges = 1, square edges = 1
-    // Square is bipartite (even cycle) → all 4 square edges in cut
+    // Square is bipartite (even cycle) -> all 4 square edges in cut
     // Triangle has max cut = 2 edges
     // Total cut = 6 edges, weight = 6
 
@@ -314,12 +314,12 @@ TEST_CASE("BC-optimized — mixed: triangle + square") {
     auto [ok, val] = validate_max_cut(G, cut, unit_weight);
 
     CHECK(ok);
-    // Square has 0 odd faces → all 4 edges in cut
+    // Square has 0 odd faces -> all 4 edges in cut
     // Triangle has max cut = 2 edges
     CHECK_EQ(val, 6);
 }
 
-TEST_CASE("BC-optimized — component_faces mismatch handled gracefully") {
+TEST_CASE("BC-optimized - component_faces mismatch handled gracefully") {
     // Only provide faces for 1 component but graph has 2
     xnetwork::SimpleGraph G(5);
     G.add_edge(0, 1);
@@ -332,7 +332,7 @@ TEST_CASE("BC-optimized — component_faces mismatch handled gracefully") {
     // Only 1 face list for a 2-component graph
     std::vector<std::vector<std::vector<uint32_t>>> component_faces = {{{0, 1, 2}, {0, 2, 1}}};
 
-    // Should not crash — returns partial cut
+    // Should not crash - returns partial cut
     auto cut = solve_hadlock_max_cut(G, unit_weight, component_faces);
     CHECK_GE(cut.size(), 0);  // at least the first component's cut
 }

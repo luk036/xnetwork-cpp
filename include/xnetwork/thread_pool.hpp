@@ -17,7 +17,7 @@
  *
  * The destructor waits for all pending tasks to finish and joins all
  * worker threads.  It is safe to destroy the pool while tasks are
- * still running — remaining tasks are abandoned.
+ * still running - remaining tasks are abandoned.
  */
 
 #include <condition_variable>

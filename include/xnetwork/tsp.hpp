@@ -14,9 +14,9 @@
  *   1. Compute a Minimum Spanning Tree (MST).
  *   2. Find odd-degree vertices in the MST.
  *   3. Compute a Minimum Weight Perfect Matching on odd vertices.
- *   4. Superimpose MST and matching → an Eulerian multigraph.
+ *   4. Superimpose MST and matching -> an Eulerian multigraph.
  *   5. Find an Eulerian circuit (Hierholzer).
- *   6. Shortcut repeated vertices → Hamiltonian cycle.
+ *   6. Shortcut repeated vertices -> Hamiltonian cycle.
  *
  * Combining with 2-Opt refinement typically yields near-optimal tours
  * for moderate-size metric instances.
@@ -62,11 +62,11 @@ double calculate_total_distance(const std::vector<Node>& path, WeightFunc&& weig
 namespace detail {
 
     /**
-     * @brief Prim's MST for dense (complete) graphs — O(n²).
+     * @brief Prim's MST for dense (complete) graphs - O(n^2).
      *
      * @tparam Node     integral node type
      * @tparam WeightFunc  callable ``double(Node, Node)``
-     * @param n        number of vertices (assumed 0 … n-1)
+     * @param n        number of vertices (assumed 0 .. n-1)
      * @param weight   edge-weight function
      * @return vector of undirected edges forming the MST
      */
@@ -136,7 +136,7 @@ namespace detail {
     }
 
     /**
-     * @brief Greedy minimum-weight perfect matching — O(k² log k).
+     * @brief Greedy minimum-weight perfect matching - O(k^2 log k).
      *
      * Builds a sorted list of all candidate edges among ``odd_nodes`` and
      * greedily picks the cheapest non-adjacent pair.  This is a heuristic;
@@ -165,7 +165,7 @@ namespace detail {
         matching.reserve(k / 2);
 
         for (const auto& [w, u, v] : edges) {
-            // Map node → index in odd_nodes (linear scan, k is small)
+            // Map node -> index in odd_nodes (linear scan, k is small)
             size_t iu = 0;
             size_t iv = 0;
             for (size_t t = 0; t < k; ++t) {
@@ -182,7 +182,7 @@ namespace detail {
     }
 
     /**
-     * @brief Build a multigraph adjacency list (MST ∪ matching).
+     * @brief Build a multigraph adjacency list (MST + matching).
      *
      * Parallel edges are preserved via ``std::multiset`` so that the graph
      * is Eulerian (all vertices have even degree).
@@ -202,11 +202,11 @@ namespace detail {
     }
 
     /**
-     * @brief Hierholzer's algorithm — find an Eulerian circuit.
+     * @brief Hierholzer's algorithm - find an Eulerian circuit.
      *
      * Assumes the graph is connected and every vertex has even degree.
      *
-     * @param adj    adjacency (multiset per vertex) — consumed by the algorithm
+     * @param adj    adjacency (multiset per vertex) - consumed by the algorithm
      * @param start  start vertex
      * @return vector of directed edges ``(u, v)`` forming the circuit
      */
@@ -235,7 +235,7 @@ namespace detail {
 }  // namespace detail
 
 // ---------------------------------------------------------------------------
-// Christofides TSP — 3/2-approximation
+// Christofides TSP - 3/2-approximation
 // ---------------------------------------------------------------------------
 
 /**
@@ -245,7 +245,7 @@ namespace detail {
  * @tparam WeightFunc  callable ``double(node_t, node_t)``
  * @param G            input graph (only ``number_of_nodes()`` is used)
  * @param weight       edge-weight function (must satisfy triangle inequality)
- * @return Hamiltonian cycle ``[v0, v1, …, vn, v0]``
+ * @return Hamiltonian cycle ``[v0, v1, ..., vn, v0]``
  */
 template <typename Graph, typename WeightFunc>
 auto christofides_tsp(const Graph& G, WeightFunc&& weight) -> std::vector<typename Graph::node_t> {
@@ -265,13 +265,13 @@ auto christofides_tsp(const Graph& G, WeightFunc&& weight) -> std::vector<typena
     const auto matching
         = detail::greedy_min_weight_matching(odd_nodes, std::forward<WeightFunc>(weight));
 
-    // 4. Build the Eulerian multigraph (MST ∪ matching)
+    // 4. Build the Eulerian multigraph (MST + matching)
     auto adj = detail::build_multigraph<Node>(n, mst_edges, matching);
 
     // 5. Eulerian circuit via Hierholzer
     const auto eulerian_circuit = detail::hierholzer<Node>(std::move(adj), Node{0});
 
-    // 6. Shortcut → Hamiltonian cycle
+    // 6. Shortcut -> Hamiltonian cycle
     return detail::shortcut_eulerian(eulerian_circuit);
 }
 
@@ -335,7 +335,7 @@ auto two_opt(std::vector<typename Graph::node_t> path, const Graph& G, WeightFun
  * @tparam WeightFunc  callable ``double(node_t, node_t)``
  * @param G            input graph
  * @param weight       metric edge-weight function
- * @return refined Hamiltonian cycle ``[v0, v1, …, vn, v0]``
+ * @return refined Hamiltonian cycle ``[v0, v1, ..., vn, v0]``
  */
 template <typename Graph, typename WeightFunc>
 auto solve_christofides_2opt_tsp(const Graph& G, WeightFunc&& weight)

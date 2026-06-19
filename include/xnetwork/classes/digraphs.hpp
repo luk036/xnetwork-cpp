@@ -2,7 +2,7 @@
  * @file digraphs.hpp
  * @brief Directed graph data structure for XNetwork
  *
- * Defines the DiGraphS class template — a directed graph implementation
+ * Defines the DiGraphS class template - a directed graph implementation
  * based on the undirected Graph base class.
  */
 

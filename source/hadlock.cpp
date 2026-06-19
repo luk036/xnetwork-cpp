@@ -80,7 +80,7 @@ namespace detail {
     }
 
     // -------------------------------------------------------------------
-    // exact_mwpm: DP over subsets — Node template for type generality
+    // exact_mwpm: DP over subsets - Node template for type generality
     // -------------------------------------------------------------------
 
     template <typename Node>

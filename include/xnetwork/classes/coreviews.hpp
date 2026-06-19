@@ -2,7 +2,7 @@
  * @file coreviews.hpp
  * @brief Read-only view classes for graph data structures
  *
- * Provides AtlasView and AdjacencyView — read-only wrappers around
+ * Provides AtlasView and AdjacencyView - read-only wrappers around
  * nested dict-like containers used internally by XNetwork graph classes.
  */
 

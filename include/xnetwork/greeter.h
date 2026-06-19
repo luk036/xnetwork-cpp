@@ -43,7 +43,7 @@ namespace xnetwork {
                 case LanguageCode::DE:
                     return "Hallo " + name_ + "!";
                 case LanguageCode::ES:
-                    return "¡Hola " + name_ + "!";
+                    return "!Hola " + name_ + "!";
                 case LanguageCode::FR:
                     return "Bonjour " + name_ + "!";
                 default:

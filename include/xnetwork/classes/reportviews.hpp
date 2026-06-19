@@ -123,7 +123,7 @@ namespace xnetwork {
     //                              "InMultiDegreeView",
     //                              "OutMultiDegreeView"};
 
-    /** @brief NodeView class — acts as gra.nodes() for an XNetwork Graph
+    /** @brief NodeView class - acts as gra.nodes() for an XNetwork Graph
         @details Set operations act on the nodes without considering data.
         Iteration is over nodes. Node data can be looked up like a dict.
         @tparam nodeview_t The underlying node container type */

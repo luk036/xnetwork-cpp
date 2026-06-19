@@ -138,7 +138,7 @@ TEST_CASE("Test minimal vertex cover triangle") {
 }
 
 TEST_CASE("Test cycle cover tree") {
-    // A tree has no cycles → cycle cover should be empty
+    // A tree has no cycles -> cycle cover should be empty
     xnetwork::SimpleGraph ugraph(4);
     ugraph.add_edge(0, 1);
     ugraph.add_edge(1, 2);
