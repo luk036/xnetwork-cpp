@@ -64,6 +64,8 @@ namespace xnetwork {
 
         thread_pool(const thread_pool&) = delete;
         thread_pool& operator=(const thread_pool&) = delete;
+        thread_pool(thread_pool&&) = delete;
+        thread_pool& operator=(thread_pool&&) = delete;
 
         /**
          * Enqueue a callable for execution on the thread pool.

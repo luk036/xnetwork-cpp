@@ -131,7 +131,10 @@ template <typename Node> struct BFSInfo {
 
     BFSInfo(Node p, int d) : parent(p), depth(d) {}
     BFSInfo(const BFSInfo&) = default;
+    BFSInfo(BFSInfo&&) = default;
     BFSInfo& operator=(const BFSInfo&) = default;
+    BFSInfo& operator=(BFSInfo&&) = default;
+    ~BFSInfo() = default;
 };
 
 /**

@@ -1,7 +1,5 @@
 #include <algorithm>
-#include <cstdint>
 #include <functional>
-#include <limits>
 #include <map>
 #include <py2cpp/set.hpp>
 #include <queue>

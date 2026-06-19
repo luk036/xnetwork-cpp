@@ -96,7 +96,7 @@ EdgeDataView
 */
 // from collections import Mapping, Set, Iterable
 // #include <initializer_list>
-#include <utility>  // for std::begin, std::end
+#include <iterator>
 
 namespace xnetwork {
 

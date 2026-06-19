@@ -2,7 +2,6 @@
 #include <doctest/doctest.h>  // for ResultBuilder, TestCase, CHECK
 
 #include <array>                          // for array
-#include <iosfwd>                         // for string
 #include <string>                         // for basic_string, operator==
 #include <utility>                        // for pair
 #include <vector>                         // for vector

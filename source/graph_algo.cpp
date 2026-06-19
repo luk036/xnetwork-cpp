@@ -1,5 +1,4 @@
 #include <cassert>
-#include <cstdint>
 #include <py2cpp/dict.hpp>
 #include <py2cpp/set.hpp>
 #include <utility>

@@ -26,7 +26,11 @@
 template <typename Container> inline auto create_test_case1(const Container& weights) {
     using Edge = std::pair<uint32_t, uint32_t>;
     constexpr uint32_t num_nodes = 5;
-    constexpr uint32_t A = 0, B = 1, C = 2, D = 3, E = 4;
+    constexpr uint32_t A = 0;
+    constexpr uint32_t B = 1;
+    constexpr uint32_t C = 2;
+    constexpr uint32_t D = 3;
+    constexpr uint32_t E = 4;
     const auto edges
         = std::array<Edge, 5>{Edge{A, B}, Edge{B, C}, Edge{C, D}, Edge{D, E}, Edge{E, A}};
     // constexpr auto weights = std::array<int, 5> {-5, 1, 1, 1, 1};
@@ -50,7 +54,9 @@ template <typename Container> inline auto create_test_case1(const Container& wei
 template <typename Container> inline auto create_test_case2(const Container& weights) {
     using Edge = std::pair<uint32_t, uint32_t>;
     constexpr uint32_t num_nodes = 3;
-    constexpr uint32_t A = 0, B = 1, C = 2;
+    constexpr uint32_t A = 0;
+    constexpr uint32_t B = 1;
+    constexpr uint32_t C = 2;
     const auto edges = std::array<Edge, 6>{Edge{A, B}, Edge{B, A}, Edge{B, C},
                                            Edge{C, B}, Edge{C, A}, Edge{A, C}};
     auto gra = xnetwork::SimpleDiGraphS{num_nodes};
@@ -74,7 +80,9 @@ template <typename Container> inline auto create_test_case2(const Container& wei
 template <typename Container> inline auto create_test_case_timing(const Container& weights) {
     using Edge = std::pair<uint32_t, uint32_t>;
     constexpr uint32_t num_nodes = 3;
-    constexpr uint32_t A = 0, B = 1, C = 2;
+    constexpr uint32_t A = 0;
+    constexpr uint32_t B = 1;
+    constexpr uint32_t C = 2;
     const auto edges = std::array<Edge, 6>{Edge{A, B}, Edge{B, A}, Edge{B, C}, Edge{C, B},
                                            Edge{C, A}, Edge{A, C}};  // no multiple edges
     auto gra = xnetwork::SimpleDiGraphS{num_nodes};
