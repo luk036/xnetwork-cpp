@@ -80,11 +80,11 @@ auto rand_vertex_cover_trial(const Graph& ugraph, const WeightMap& weight,
 /**
  * @brief Single-trial randomized vertex cover (seeded convenience wrapper).
  *
- * @copydetails rand_vertex_cover_trial
  * @param ugraph Input graph
  * @param weight Vertex weights
  * @param seed Random seed (default: 0). Use std::nullopt for non-deterministic.
  * @param coverset Optional initial cover set
+ * @return A pair of (cover set, total weight)
  */
 template <typename Graph, typename WeightMap>
 auto rand_vertex_cover(const Graph& ugraph, const WeightMap& weight,

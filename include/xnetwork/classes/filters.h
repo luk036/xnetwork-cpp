@@ -32,17 +32,13 @@ These filters return the function used when creating `SubGraph`.
 //     "show_multidiedges",
 // };
 
-/**
- * @brief Create a filter that shows all items
- *
- * This filter factory returns a predicate function that returns true
- * for all items, effectively showing everything.
- *
- * @tparam T The type of items to filter
- * @param items The collection of items (unused, kept for API consistency)
- * @return auto A predicate function that accepts items and returns true
- */
-template <typename T> auto no_filter(const T& /*items*/) {
+    /**
+     * @brief A predicate that always returns true (no filtering).
+     *
+     * @tparam T The type of the item to filter.
+     * @return true Always returns true.
+     */
+    template <typename T> auto no_filter(const T& /*items*/) {
     return [](const T& /*item*/) { return true; };
 }
 
