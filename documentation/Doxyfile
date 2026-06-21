@@ -20,10 +20,19 @@ FULL_PATH_NAMES = YES
 STRIP_FROM_PATH = @DOXYGEN_PROJECT_ROOT@/include @DOXYGEN_PROJECT_ROOT@
 
 # We use m.css to generate the html documentation, so we only need XML output
-GENERATE_XML = YES
-GENERATE_HTML = NO
+# Generate HTML directly with MathJax for formula rendering
+GENERATE_HTML = YES
+GENERATE_XML = NO
 GENERATE_LATEX = NO
 XML_PROGRAMLISTING = NO
 CREATE_SUBDIRS = NO
 
+# MathJax configuration (client-side rendering, no LaTeX toolchain needed)
+USE_MATHJAX = YES
+# Use MathJax v2 (Doxygen generates v2-compatible config by default)
+# MATHJAX_RELPATH defaults to https://cdn.jsdelivr.net/npm/mathjax@2
 
+# Exclude external dependencies fetched by CPM.cmake
+EXCLUDE_PATTERNS = */build/_deps/* */build/deps/*
+
+# Include all directories, files and namespaces in the documentation
