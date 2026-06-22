@@ -33,6 +33,6 @@ USE_MATHJAX = YES
 # MATHJAX_RELPATH defaults to https://cdn.jsdelivr.net/npm/mathjax@2
 
 # Exclude external dependencies fetched by CPM.cmake
-EXCLUDE_PATTERNS = */build/_deps/* */build/deps/*
+EXCLUDE_PATTERNS = */build/_deps/*
 
 # Include all directories, files and namespaces in the documentation
