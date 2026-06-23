@@ -1,0 +1,9 @@
+<map id="xnetwork::XNetworkUnfeasible" name="xnetwork::XNetworkUnfeasible">
+<area shape="rect" id="Node000001" title="Exception raised by algorithms trying to solve a problem instance that has no feasible solution." alt="" coords="5,240,231,265"/>
+<area shape="rect" id="Node000002" href="$structxnetwork_1_1XNetworkAlgorithmError.html" title="Exception for unexpected termination of algorithms." alt="" coords="9,152,227,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,206,121,240,115,240,115,206"/>
+<area shape="rect" id="Node000003" href="$structxnetwork_1_1XNetworkException.html" title="Base class for all XNetwork exceptions." alt="" coords="9,79,227,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="121,118,121,152,115,152,115,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="49,5,187,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="121,44,121,79,115,79,115,44"/>
+</map>

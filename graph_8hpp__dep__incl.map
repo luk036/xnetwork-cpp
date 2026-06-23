@@ -1,0 +1,12 @@
+<map id="xnetwork/classes/graph.hpp" name="xnetwork/classes/graph.hpp">
+<area shape="rect" id="Node000001" title="Undirected graph data structure for XNetwork." alt="" coords="125,5,329,31"/>
+<area shape="rect" id="Node000002" href="$____init_____8h.html" title=" " alt="" coords="5,152,152,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,38,136,55,106,80,95,97,88,116,82,152,77,151,83,115,91,95,102,77,133,51,168,33"/>
+<area shape="rect" id="Node000003" href="$digraphs_8hpp.html" title="Directed graph data structure for XNetwork." alt="" coords="115,79,338,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="229,44,229,79,224,79,224,44"/>
+<area shape="rect" id="Node000005" href="$tsp_8hpp.html" title="Traveling Salesman Problem (TSP) approximation algorithms." alt="" coords="362,79,497,104"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="273,33,397,76,396,81,271,38"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="194,113,116,154,113,149,191,108"/>
+<area shape="rect" id="Node000004" href="$testcases_8hpp.html" title="Test case generators for XNetwork algorithms." alt="" coords="176,152,333,192"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="238,116,250,151,245,153,233,118"/>
+</map>

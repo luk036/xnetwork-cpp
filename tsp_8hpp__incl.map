@@ -1,0 +1,38 @@
+<map id="xnetwork/tsp.hpp" name="xnetwork/tsp.hpp">
+<area shape="rect" id="Node000001" title="Traveling Salesman Problem (TSP) approximation algorithms." alt="" coords="457,5,591,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,91,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="457,31,110,81,105,82,104,77,109,76,456,26"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="53,152,123,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="457,23,396,27,326,37,253,55,184,81,141,110,108,143,104,139,138,106,181,76,252,49,325,32,396,22,456,18"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="445,79,515,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="519,32,497,68,492,66,514,30"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="540,79,599,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="534,30,557,66,552,69,529,32"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="623,79,761,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="552,28,653,71,651,76,550,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="786,79,907,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="576,28,782,73,781,78,575,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="932,79,975,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="592,23,739,42,827,57,919,76,918,81,826,62,738,47,591,28"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="999,79,1054,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="592,22,767,41,875,56,986,76,985,82,874,62,766,46,591,27"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="147,152,210,177"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="457,27,388,33,314,44,249,60,224,70,207,81,197,93,190,108,183,138,177,137,185,106,192,90,204,77,222,65,248,55,313,39,387,28,456,21"/>
+<area shape="rect" id="Node000011" href="$graph_8hpp.html" title="Undirected graph data structure for XNetwork." alt="" coords="217,79,421,104"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="492,33,366,77,364,72,490,28"/>
+<area shape="poly" id="edge11_Node000011_Node000003" title=" " alt="" coords="282,107,136,151,135,146,281,101"/>
+<area shape="poly" id="edge15_Node000011_Node000010" title=" " alt="" coords="297,106,215,148,212,143,295,102"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="1048,152,1115,177"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="421,100,434,101,601,113,733,118,866,127,1035,149,1034,155,865,132,733,123,601,118,433,107,421,106"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="234,152,382,177"/>
+<area shape="poly" id="edge13_Node000011_Node000013" title=" " alt="" coords="320,105,314,139,309,138,314,104"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="406,152,498,177"/>
+<area shape="poly" id="edge14_Node000011_Node000014" title=" " alt="" coords="341,102,419,143,417,148,339,106"/>
+<area shape="rect" id="Node000015" href="$coreviews_8hpp.html" title="Read&#45;only view classes for graph data structures." alt="" coords="790,152,1023,177"/>
+<area shape="poly" id="edge16_Node000011_Node000015" title=" " alt="" coords="413,101,799,148,798,153,413,107"/>
+<area shape="rect" id="Node000017" href="$reportviews_8hpp.html" title="View classes for nodes, edges, and degrees in XNetwork graphs." alt="" coords="522,152,766,177"/>
+<area shape="poly" id="edge18_Node000011_Node000017" title=" " alt="" coords="372,101,579,146,577,152,370,107"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="739,225,810,251"/>
+<area shape="poly" id="edge17_Node000015_Node000016" title=" " alt="" coords="887,180,809,221,807,216,884,175"/>
+<area shape="poly" id="edge19_Node000017_Node000016" title=" " alt="" coords="666,175,743,216,740,221,664,180"/>
+</map>

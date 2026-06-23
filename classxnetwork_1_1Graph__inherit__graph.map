@@ -1,0 +1,5 @@
+<map id="xnetwork::Graph&lt; _nodeview_t, adjlist_t, adjlist_outer_dict_factory &gt;" name="xnetwork::Graph&lt; _nodeview_t, adjlist_t, adjlist_outer_dict_factory &gt;">
+<area shape="rect" id="Node000001" title="Undirected graph with arbitrary node types." alt="" coords="5,5,220,60"/>
+<area shape="rect" id="Node000002" href="$classxnetwork_1_1DiGraphS.html" title="Directed graph with arbitrary node types." alt="" coords="33,108,193,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,74,115,108,110,108,110,74"/>
+</map>

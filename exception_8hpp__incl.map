@@ -1,0 +1,9 @@
+<map id="xnetwork/exception.hpp" name="xnetwork/exception.hpp">
+<area shape="rect" id="Node000001" title="Exception hierarchy for the XNetwork library." alt="" coords="57,5,235,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,92,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,33,77,72,74,68,129,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="117,79,175,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="149,31,149,65,143,65,143,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="200,79,297,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="164,28,222,68,219,73,161,33"/>
+</map>

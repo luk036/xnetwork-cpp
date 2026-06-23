@@ -1,0 +1,15 @@
+<map id="xnetwork::XNetworkAlgorithmError" name="xnetwork::XNetworkAlgorithmError">
+<area shape="rect" id="Node000001" title="Exception for unexpected termination of algorithms." alt="" coords="136,152,355,192"/>
+<area shape="rect" id="Node000004" href="$structxnetwork_1_1XNetworkUnbounded.html" title="Exception raised when a maximization or minimization problem instance is unbounded." alt="" coords="5,240,235,265"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="205,202,140,242,137,238,202,197"/>
+<area shape="rect" id="Node000005" href="$structxnetwork_1_1XNetworkUnfeasible.html" title="Exception raised by algorithms trying to solve a problem instance that has no feasible solution." alt="" coords="259,240,485,265"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="289,197,355,238,352,242,286,202"/>
+<area shape="rect" id="Node000002" href="$structxnetwork_1_1XNetworkException.html" title="Base class for all XNetwork exceptions." alt="" coords="136,79,355,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,118,248,152,243,152,243,118"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="176,5,315,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="248,44,248,79,243,79,243,44"/>
+<area shape="rect" id="Node000006" href="$structxnetwork_1_1XNetworkNoCycle.html" title="Exception for algorithms that should return a cycle when running on graphs where such a cycle does no..." alt="" coords="153,313,362,339"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="344,275,277,315,275,311,341,270"/>
+<area shape="rect" id="Node000007" href="$structxnetwork_1_1XNetworkNoPath.html" title="Exception for algorithms that should return a path when running on graphs where such a path does not ..." alt="" coords="386,313,587,339"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="403,270,469,311,467,315,400,275"/>
+</map>

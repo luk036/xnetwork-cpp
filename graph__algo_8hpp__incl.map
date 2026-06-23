@@ -1,0 +1,11 @@
+<map id="xnetwork/graph_algo.hpp" name="xnetwork/graph_algo.hpp">
+<area shape="rect" id="Node000001" title="Graph algorithm implementations for vertex cover and independent set." alt="" coords="141,5,328,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,75,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,33,85,76,84,71,202,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="99,79,224,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="224,33,185,71,181,67,221,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="249,79,370,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="248,29,289,67,285,71,245,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="394,79,454,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="266,28,382,71,380,76,264,33"/>
+</map>
