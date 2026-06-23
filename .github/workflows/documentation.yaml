@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - "*"
+    branches:
+      - dev
 
 env:
   CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
@@ -28,4 +30,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/doxygen graphviz/html
+          publish_dir: ./build/doxygen/html
