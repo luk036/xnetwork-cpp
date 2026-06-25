@@ -4,3 +4,11 @@
 /.cache
 /.xmake
 .DS_Store
+
+# Generated artifacts
+*.log
+*.exe
+a.out
+compile_commands.json
+.pytest_cache/
+.ruff_cache/
