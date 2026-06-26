@@ -59,13 +59,39 @@ namespace detail {
 /**
  * @brief Single trial of Pitt's randomized vertex cover algorithm.
  *
+ * For each uncovered edge \f$(u, v)\f$, selects one endpoint with probability
+ * inversely proportional to its weight:
+ * @f[
+ *     P(\text{pick } u) = \frac{w(v)}{w(u) + w(v)}
+ * @f]
+ *
+ * @dot
+ *   digraph random_trial {
+ *     rankdir=TB; bgcolor="transparent";
+ *     node [shape=box, style=filled, fillcolor="#d4e6f1"];
+ *     start [label="Start with\ninitial coverset", fillcolor="#a9cce3"];
+ *     pick [label="Pick uncovered\nedge (u,v)"];
+ *     prob [label="Choose endpoint\nP(u) = w(v)/(w(u)+w(v))", shape=diamond, fillcolor="#f9e79f"];
+ *     add [label="Add chosen\nvertex to cover"];
+ *     check [label="All edges\ncovered?", shape=diamond, fillcolor="#f9e79f"];
+ *     reverse [label="Reverse-delete\npost-processing"];
+ *     done [label="Minimal\ncover", fillcolor="#7fb3d8"];
+ *     start -> pick;
+ *     pick -> prob;
+ *     prob -> add;
+ *     add -> check;
+ *     check -> pick [label="No", style=dashed, color="#e74c3c"];
+ *     check -> reverse [label="Yes", color="#27ae60"];
+ *     reverse -> done;
+ *   }
+ * @enddot
+ *
  * @tparam Graph Graph type (requires node_t, edges())
  * @tparam WeightMap Weight map type (requires mapped_type, operator[])
  * @tparam RNG Random number generator type
  * @param ugraph Input undirected graph
  * @param weight Vertex weight mapping
  * @param coverset Initial vertex cover (preserved in the result)
- * @param rng Random number generator (seeded externally)
  * @return std::pair<py::set<typename Graph::node_t>, typename WeightMap::mapped_type>
  */
 template <typename Graph, typename WeightMap, typename RNG>

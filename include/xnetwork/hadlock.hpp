@@ -53,6 +53,35 @@ namespace detail {
     // Each face -> dual vertex. Two dual vertices connect if faces share a
     // primal edge. Parallel edges -> only the minimum-weight edge is kept.
     // -------------------------------------------------------------------
+    /**
+     * @brief Build the planar dual graph: faces become vertices, shared primal
+     *        edges become edges with equal weight.
+     *
+     * @dot
+     *   digraph dual_construction {
+     *     bgcolor="transparent"; splines=true;
+     *     subgraph cluster_primal {
+     *       label="Primal"; style=solid; color="#27ae60";
+     *       node [shape=circle, style=filled, fillcolor="#d5f5e3"];
+     *       pa; pb; pc; pd;
+     *       pa -> pb -> pc -> pd -> pa;
+     *     }
+     *     subgraph cluster_dual {
+     *       label="Dual"; style=solid; color="#e74c3c";
+     *       node [shape=box, style=filled, fillcolor="#fadbd8"];
+     *       da [label="Face A"]; db [label="Face B"];
+     *       da -> db [label="shared edge"];
+     *     }
+     *     pa -> da [style=dashed, color="#888", label="maps to"];
+     *   }
+     * @enddot
+     *
+     * @tparam Node        node type
+     * @tparam WeightFunc  callable ``int(Node, Node)``
+     * @param faces        face boundaries (cyclic node sequences)
+     * @param weight       edge-weight function
+     * @return vector of adjacency lists for the dual graph
+     */
     template <typename Node, typename WeightFunc>
     auto build_dual(const std::vector<std::vector<Node>>& faces, WeightFunc weight)
         -> std::vector<std::vector<DualEdge<Node>>> {
@@ -183,6 +212,21 @@ namespace detail {
      * This is the core Hadlock logic factored out so it can be called once
      * per biconnected component.  The existing 3-argument overload of
      * `solve_hadlock_max_cut` delegates here.
+     *
+     * @dot
+     *   digraph hadlock_component_flow {
+     *     rankdir=TB; bgcolor="transparent";
+     *     node [shape=box, style=filled, fillcolor="#d4e6f1"];
+     *     step1 [label="1. Build dual graph\nfaces -> vertices", fillcolor="#a9cce3"];
+     *     step2 [label="2. Find odd-degree\nfaces"];
+     *     step3 [label="3. All-pairs shortest\npaths on dual"];
+     *     step4 [label="4. Min-weight perfect\nmatching (MWPM)"];
+     *     step5 [label="5. Walk matched paths\ncollect primal edges"];
+     *     step6 [label="6. Max cut = all edges\nnot excluded", fillcolor="#7fb3d8"];
+     *     step1 -> step2 -> step3;
+     *     step3 -> step4 -> step5 -> step6;
+     *   }
+     * @enddot
      *
      * @tparam Graph      Graph type
      * @tparam WeightFunc Callable `(u, v) -> int`
