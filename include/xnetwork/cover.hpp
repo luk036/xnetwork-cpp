@@ -21,6 +21,22 @@
 /**
  * @brief Implements a primal-dual approximation algorithm for covering problems.
  *
+ * @dot
+ *   digraph pd_flow {
+ *     rankdir=LR; bgcolor="transparent";
+ *     node [shape=box, style=filled, fillcolor="#d4e6f1"];
+ *     init [label="Initialize gaps", fillcolor="#a9cce3"];
+ *     pick [label="Pick min-gap\nvertex v in net"];
+ *     cover [label="Add v to\ncover set"];
+ *     update [label="Update gaps\ngap -= min_val"];
+ *     check [label="More nets?", shape=diamond, fillcolor="#f9e79f"];
+ *     done [label="Cover found!", fillcolor="#7fb3d8"];
+ *     init -> pick -> cover -> update -> check;
+ *     check -> pick [label="Yes", style=dashed, color="#e74c3c"];
+ *     check -> done [label="No", color="#27ae60"];
+ *   }
+ * @enddot
+ *
  * @tparam MakeViolator Factory callable: make_violator() returns a "violator".
  *   The violator is called repeatedly; each call returns
  *   std::optional<std::vector<NodeType>> - the next violation,

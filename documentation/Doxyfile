@@ -27,6 +27,11 @@ GENERATE_LATEX = NO
 XML_PROGRAMLISTING = NO
 CREATE_SUBDIRS = NO
 
+# Dot/Graphviz configuration for inline diagrams
+HAVE_DOT = YES
+DOT_IMAGE_FORMAT = svg
+DOT_GRAPH_MAX_NODES = 50
+
 # MathJax configuration (client-side rendering, no LaTeX toolchain needed)
 USE_MATHJAX = YES
 # Use MathJax v2 (Doxygen generates v2-compatible config by default)

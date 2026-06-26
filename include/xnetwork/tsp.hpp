@@ -241,6 +241,20 @@ namespace detail {
 /**
  * @brief Solve Metric TSP using the Christofides approximation algorithm.
  *
+ * @dot
+ *   digraph christofides_flow {
+ *     rankdir=TB; bgcolor="transparent";
+ *     node [shape=box, style=filled, fillcolor="#d4e6f1"];
+ *     step1 [label="1. MST\n(Prim's)", fillcolor="#a9cce3"];
+ *     step2 [label="2. Odd-degree\nvertices"];
+ *     step3 [label="3. Min-weight\nperfect matching"];
+ *     step4 [label="4. Eulerian\nmultigraph"];
+ *     step5 [label="5. Eulerian circuit\n(Hierholzer)"];
+ *     step6 [label="6. Shortcut\nHamiltonian cycle", fillcolor="#7fb3d8"];
+ *     step1 -> step2 -> step3 -> step4 -> step5 -> step6;
+ *   }
+ * @enddot
+ *
  * @tparam Graph       graph type with ``node_t`` and ``number_of_nodes()``
  * @tparam WeightFunc  callable ``double(node_t, node_t)``
  * @param G            input graph (only ``number_of_nodes()`` is used)
@@ -286,6 +300,34 @@ auto christofides_tsp(const Graph& G, WeightFunc&& weight) -> std::vector<typena
  * ``(i,j+1)`` by reversing segment ``[i, j]`` whenever this reduces
  * total length.  Repeats until a local optimum is reached.
  *
+ * @f[
+ *     \Delta = w(i-1,j) + w(i,j+1) - w(i-1,i) - w(j,j+1)
+ * @f]
+ *
+ * @dot
+ *   digraph two_opt_swap {
+ *     bgcolor="transparent"; rankdir=LR;
+ *     node [shape=circle, style=filled, fillcolor="#d4e6f1", fontsize=10];
+ *     edge [fontsize=10];
+ *     subgraph cluster_before {
+ *       label="Before"; style=dashed; color="#888"; fontcolor="#888";
+ *       i1 [label="i-1"]; i [label="i"]; j [label="j"]; j1 [label="j+1"];
+ *       i1 -> i [label="w1", color="#27ae60"];
+ *       i -> j [label="...", style=dashed, color="#888"];
+ *       j -> j1 [label="w2", color="#27ae60"];
+ *     }
+ *     subgraph cluster_after {
+ *       label="After"; style=dashed; color="#888"; fontcolor="#888";
+ *       ni1 [label="i-1"]; ni [label="i"]; nj [label="j"]; nj1 [label="j+1"];
+ *       ni1 -> nj [label="new w1", color="#e74c3c"];
+ *       nj -> ni [label="reversed", style=dashed, color="#e74c3c"];
+ *       ni -> nj1 [label="new w2", color="#e74c3c"];
+ *     }
+ *     note [shape=note, fillcolor="#fcf3cf", label="Delta = w(i-1,j) + w(i,j+1)\n        - w(i-1,i) - w(j,j+1)"];
+ *     j1 -> note [style=dashed, color="#888", constraint=false];
+ *   }
+ * @enddot
+ *
  * @tparam Graph       graph type
  * @tparam WeightFunc  callable ``double(node_t, node_t)``
  * @param path         initial tour (last == first)
@@ -330,6 +372,18 @@ auto two_opt(std::vector<typename Graph::node_t> path, const Graph& G, WeightFun
  * This is the recommended entry point.  The 2-Opt post-processing typically
  * improves the Christofides tour significantly, often yielding results very
  * close to optimal for moderate-size metric instances.
+ *
+ * @dot
+ *   digraph combined_flow {
+ *     rankdir=LR; bgcolor="transparent";
+ *     node [shape=box, style=filled, fillcolor="#d4e6f1"];
+ *     christofides [label="Christofides\n3/2-approximation", fillcolor="#a9cce3"];
+ *     twoopt [label="2-Opt\nlocal search", fillcolor="#7fb3d8"];
+ *     result [label="Near-optimal\ntour"];
+ *     christofides -> twoopt [label="refine"];
+ *     twoopt -> result;
+ *   }
+ * @enddot
  *
  * @tparam Graph       graph type
  * @tparam WeightFunc  callable ``double(node_t, node_t)``
