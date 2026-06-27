@@ -339,7 +339,8 @@ namespace xnetwork {
     };
 
     /** @brief A simple undirected graph with integer nodes
-        @details Convenience alias for a Graph with uint32_t nodes and vector-based adjacency storage */
+        @details Convenience alias for a Graph with uint32_t nodes and vector-based adjacency
+       storage */
     using SimpleGraph = Graph<decltype(py::range<uint32_t>(uint32_t{})), py::set<uint32_t>,
                               std::vector<py::set<uint32_t>>>;
 
