@@ -144,10 +144,13 @@ namespace detail {
     template <typename Node>
     auto dijkstra(const std::vector<std::vector<DualEdge<Node>>>& dual, int src)
         -> std::pair<std::vector<int>, std::vector<int>> {
-        const int n = static_cast<int>(dual.size());
+        const auto n = dual.size();
         std::vector<int> dist(n, INF);
         std::vector<int> prev(n, -1);
-        dist[src] = 0;
+        auto* dist_raw = dist.data();
+        auto* prev_raw = prev.data();
+        auto* dual_raw = dual.data();
+        dist_raw[src] = 0;
 
         using P = std::pair<int, int>;
         std::priority_queue<P, std::vector<P>, std::greater<>> pq;
@@ -156,12 +159,12 @@ namespace detail {
         while (!pq.empty()) {
             auto [d, u] = pq.top();
             pq.pop();
-            if (d != dist[u]) continue;
-            for (const auto& e : dual[u]) {
-                if (dist[e.neighbor] > d + e.weight) {
-                    dist[e.neighbor] = d + e.weight;
-                    prev[e.neighbor] = u;
-                    pq.push({dist[e.neighbor], e.neighbor});
+            if (d != dist_raw[u]) continue;
+            for (const auto& e : dual_raw[u]) {
+                if (dist_raw[e.neighbor] > d + e.weight) {
+                    dist_raw[e.neighbor] = d + e.weight;
+                    prev_raw[e.neighbor] = u;
+                    pq.push({dist_raw[e.neighbor], e.neighbor});
                 }
             }
         }
@@ -175,12 +178,14 @@ namespace detail {
     template <typename Node>
     auto greedy_mwpm(const std::vector<int>& odd_faces, const std::vector<std::vector<int>>& dist)
         -> std::vector<std::pair<int, int>> {
-        const int n = static_cast<int>(odd_faces.size());
+        const auto n = odd_faces.size();
         std::vector<std::tuple<int, int, int>> edges;
         edges.reserve(n * (n - 1) / 2);
-        for (int i = 0; i < n; ++i)
-            for (int j = i + 1; j < n; ++j)
-                edges.emplace_back(dist[odd_faces[i]][odd_faces[j]], odd_faces[i], odd_faces[j]);
+        const auto* of = odd_faces.data();
+        const auto* dist_raw = dist.data();
+        for (size_t i = 0; i < n; ++i)
+            for (size_t j = i + 1; j < n; ++j)
+                edges.emplace_back(dist_raw[of[i]].data()[of[j]], of[i], of[j]);
 
         std::sort(edges.begin(), edges.end());
 
@@ -191,7 +196,7 @@ namespace detail {
             used.insert(u);
             used.insert(v);
             matching.emplace_back(u, v);
-            if (used.size() == static_cast<size_t>(n)) break;
+            if (used.size() == n) break;
         }
         return matching;
     }

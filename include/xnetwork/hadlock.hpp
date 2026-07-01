@@ -118,11 +118,12 @@ namespace detail {
         }
 
         std::vector<std::vector<DualEdge<Node>>> dual(n_face);
+        auto* dual_raw = dual.data();
         for (const auto& [key, info] : best) {
             const auto& [fi, fj] = key;
             const auto& [w, primal] = info;
-            dual[fi].push_back({fj, w, primal});
-            dual[fj].push_back({fi, w, primal});
+            dual_raw[fi].push_back({fj, w, primal});
+            dual_raw[fj].push_back({fi, w, primal});
         }
         return dual;
     }
