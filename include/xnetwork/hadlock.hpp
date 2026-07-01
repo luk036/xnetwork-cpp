@@ -85,17 +85,17 @@ namespace detail {
     template <typename Node, typename WeightFunc>
     auto build_dual(const std::vector<std::vector<Node>>& faces, WeightFunc weight)
         -> std::vector<std::vector<DualEdge<Node>>> {
-        const auto n_face = static_cast<int>(faces.size());
+        const auto n_face = faces.size();
 
         std::map<std::pair<Node, Node>, std::vector<int>> edge_face_map;
-        for (int fi = 0; fi < n_face; ++fi) {
+        for (size_t fi = 0; fi < n_face; ++fi) {
             const auto& f = faces[fi];
-            const auto sz = static_cast<int>(f.size());
-            for (int i = 0; i < sz; ++i) {
+            const auto sz = f.size();
+            for (size_t i = 0; i < sz; ++i) {
                 auto u = f[i];
                 auto v = f[(i + 1) % sz];
                 if (u > v) std::swap(u, v);
-                edge_face_map[{u, v}].push_back(fi);
+                edge_face_map[{u, v}].push_back(static_cast<int>(fi));
             }
         }
 
@@ -247,9 +247,9 @@ namespace detail {
 
         // (2) Identify odd-degree faces
         std::vector<int> odd_faces;
-        for (int i = 0; i < static_cast<int>(faces.size()); ++i) {
+        for (size_t i = 0; i < faces.size(); ++i) {
             if (faces[i].size() % 2 == 1) {
-                odd_faces.push_back(i);
+                odd_faces.push_back(static_cast<int>(i));
             }
         }
 
@@ -303,9 +303,9 @@ namespace detail {
         // (5) Collect primal edges excluded from the cut
         // Build dual-edge -> primal-edge lookup
         std::map<std::pair<int, int>, std::pair<node_t, node_t>> dedge_primal;
-        for (int fi = 0; fi < static_cast<int>(dual.size()); ++fi) {
+        for (size_t fi = 0; fi < dual.size(); ++fi) {
             for (const auto& e : dual[fi]) {
-                int a = fi;
+                int a = static_cast<int>(fi);
                 int b = e.neighbor;
                 if (a > b) std::swap(a, b);
                 dedge_primal[{a, b}] = e.primal;

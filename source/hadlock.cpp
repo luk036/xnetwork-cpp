@@ -86,46 +86,49 @@ namespace detail {
     template <typename Node>
     auto exact_mwpm(const std::vector<int>& odd_faces, const std::vector<std::vector<int>>& dist)
         -> std::vector<std::pair<int, int>> {
-        const int n = static_cast<int>(odd_faces.size());
-        const int size = 1 << n;
+        const auto n = odd_faces.size();
+        const auto size = static_cast<size_t>(1) << n;
 
         // Precompute first_unset[mask]: smallest i where bit i is 0 in mask
         // Recurrence: first_unset[mask] = (mask & 1) ? first_unset[mask >> 1] + 1 : 0
         // Precompute first_set[mask]: smallest i where bit i is 1 in mask
         // Recurrence: first_set[mask] = (mask & 1) ? 0 : first_set[mask >> 1] + 1
-        std::vector<int> first_unset(size, 0);
-        std::vector<int> first_set(size, 0);
-        for (int mask = 1; mask < size; ++mask) {
-            first_unset[mask] = (mask & 1) ? first_unset[mask >> 1] + 1 : 0;
-            first_set[mask] = (mask & 1) ? 0 : first_set[mask >> 1] + 1;
+        std::vector<unsigned> first_unset(size, 0u);
+        std::vector<unsigned> first_set(size, 0u);
+        for (size_t mask = 1; mask < size; ++mask) {
+            first_unset[mask] = (mask & 1u) ? first_unset[mask >> 1] + 1u : 0u;
+            first_set[mask] = (mask & 1u) ? 0u : first_set[mask >> 1] + 1u;
         }
 
         std::vector<int> dp(size, INF);
         dp[0] = 0;
 
-        for (int mask = 0; mask < size; ++mask) {
+        const auto* of = odd_faces.data();
+        const auto* dist_raw = dist.data();
+
+        for (size_t mask = 0; mask < size; ++mask) {
             if (dp[mask] == INF) continue;
-            const int first = first_unset[mask];
+            const auto first = first_unset[mask];
             if (first >= n) continue;
 
-            for (int j = first + 1; j < n; ++j) {
-                if (mask & (1 << j)) continue;
-                const int new_mask = mask | (1 << first) | (1 << j);
-                const int w = dist[odd_faces[first]][odd_faces[j]];
+            for (auto j = first + 1; j < n; ++j) {
+                if (mask & (size_t(1) << j)) continue;
+                const auto new_mask = mask | (size_t(1) << first) | (size_t(1) << j);
+                const int w = dist_raw[of[first]].data()[of[j]];
                 dp[new_mask] = std::min(dp[mask] + w, dp[new_mask]);
             }
         }
 
         std::vector<std::pair<int, int>> matching;
-        int mask = size - 1;
+        auto mask = size - 1;
         while (mask) {
-            const int first = first_set[mask];
-            for (int j = first + 1; j < n; ++j) {
-                if (!(mask & (1 << j))) continue;
-                const int prev_mask = mask ^ (1 << first) ^ (1 << j);
-                const int w = dist[odd_faces[first]][odd_faces[j]];
+            const auto first = first_set[mask];
+            for (auto j = first + 1; j < n; ++j) {
+                if (!(mask & (size_t(1) << j))) continue;
+                const auto prev_mask = mask ^ (size_t(1) << first) ^ (size_t(1) << j);
+                const int w = dist_raw[of[first]].data()[of[j]];
                 if (dp[mask] == dp[prev_mask] + w) {
-                    matching.emplace_back(odd_faces[first], odd_faces[j]);
+                    matching.emplace_back(of[first], of[j]);
                     mask = prev_mask;
                     break;
                 }
