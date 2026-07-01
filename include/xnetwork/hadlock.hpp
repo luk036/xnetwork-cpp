@@ -137,7 +137,8 @@ namespace detail {
     inline auto reconstruct_path(const std::vector<int>& prev, int src, int dst)
         -> std::vector<int> {
         std::vector<int> path;
-        for (int v = dst; v != -1 && v != src; v = prev[static_cast<size_t>(v)]) {
+        const auto* p = prev.data();
+        for (int v = dst; v != -1 && v != src; v = p[v]) {
             path.push_back(v);
         }
         if (path.empty() && src != dst) return {};
@@ -273,23 +274,23 @@ namespace detail {
             }
         }
 
-        const int n_odd = static_cast<int>(odd_faces.size());
+        const auto n_odd = odd_faces.size();
 
         // odd_faces[k] -> k lookup
-        std::map<int, int> odd_idx;
-        for (int k = 0; k < n_odd; ++k) {
-            odd_idx[odd_faces[static_cast<size_t>(k)]] = k;
+        std::map<int, size_t> odd_idx;
+        for (size_t k = 0; k < n_odd; ++k) {
+            odd_idx[odd_faces[k]] = k;
         }
 
         // (3) All-pairs shortest paths between odd faces
-        std::vector<std::vector<int>> dist_mat(static_cast<size_t>(n_odd));
-        std::vector<std::vector<std::vector<int>>> path_mat(static_cast<size_t>(n_odd),
-                                                            std::vector<std::vector<int>>(static_cast<size_t>(n_odd)));
+        std::vector<std::vector<int>> dist_mat(n_odd);
+        std::vector<std::vector<std::vector<int>>> path_mat(n_odd,
+                                                            std::vector<std::vector<int>>(n_odd));
 
-        for (int i = 0; i < n_odd; ++i) {
+        for (size_t i = 0; i < n_odd; ++i) {
             auto [dist, prev] = dijkstra<node_t>(dual, odd_faces[i]);
             dist_mat[i] = std::move(dist);
-            for (int j = 0; j < n_odd; ++j) {
+            for (size_t j = 0; j < n_odd; ++j) {
                 if (i != j) {
                     path_mat[i][j] = reconstruct_path(prev, odd_faces[i], odd_faces[j]);
                 }
