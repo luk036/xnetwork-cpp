@@ -93,11 +93,11 @@ namespace detail {
         // Recurrence: first_unset[mask] = (mask & 1) ? first_unset[mask >> 1] + 1 : 0
         // Precompute first_set[mask]: smallest i where bit i is 1 in mask
         // Recurrence: first_set[mask] = (mask & 1) ? 0 : first_set[mask >> 1] + 1
-        std::vector<unsigned> first_unset(size, 0u);
-        std::vector<unsigned> first_set(size, 0u);
+        std::vector<unsigned> first_unset(size, 0U);
+        std::vector<unsigned> first_set(size, 0U);
         for (size_t mask = 1; mask < size; ++mask) {
-            first_unset[mask] = (mask & 1u) ? first_unset[mask >> 1] + 1u : 0u;
-            first_set[mask] = (mask & 1u) ? 0u : first_set[mask >> 1] + 1u;
+            first_unset[mask] = (mask & 1U) ? first_unset[mask >> 1] + 1U : 0U;
+            first_set[mask] = (mask & 1U) ? 0U : first_set[mask >> 1] + 1U;
         }
 
         std::vector<int> dp(size, INF);
@@ -112,8 +112,8 @@ namespace detail {
             if (first >= n) continue;
 
             for (auto j = first + 1; j < n; ++j) {
-                if (mask & (size_t(1) << j)) continue;
-                const auto new_mask = mask | (size_t(1) << first) | (size_t(1) << j);
+                if (mask & (static_cast<size_t>(1) << j)) continue;
+                const auto new_mask = mask | (static_cast<size_t>(1) << first) | (static_cast<size_t>(1) << j);
                 const int w = dist_raw[of[first]].data()[of[j]];
                 dp[new_mask] = std::min(dp[mask] + w, dp[new_mask]);
             }
@@ -124,8 +124,8 @@ namespace detail {
         while (mask) {
             const auto first = first_set[mask];
             for (auto j = first + 1; j < n; ++j) {
-                if (!(mask & (size_t(1) << j))) continue;
-                const auto prev_mask = mask ^ (size_t(1) << first) ^ (size_t(1) << j);
+                if (!(mask & (static_cast<size_t>(1) << j))) continue;
+                const auto prev_mask = mask ^ (static_cast<size_t>(1) << first) ^ (static_cast<size_t>(1) << j);
                 const int w = dist_raw[of[first]].data()[of[j]];
                 if (dp[mask] == dp[prev_mask] + w) {
                     matching.emplace_back(of[first], of[j]);
