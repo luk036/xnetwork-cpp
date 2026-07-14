@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.5;  VERSION ${PROJECT_VERSION}</span>
+   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.6;  VERSION ${PROJECT_VERSION}</span>
    </div>
   </td>
  </tr>
@@ -93,6 +93,7 @@ Classes</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a3f1c98aef7ff174b360872a9fc03c9c7" id="r_a3f1c98aef7ff174b360872a9fc03c9c7"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node , <a class="el" href="classAdjacencyView.html">typename</a> <a class="el" href="classAdjacencyView.html">WeightFunc</a> &gt; </td></tr>
 <tr class="memitem:a3f1c98aef7ff174b360872a9fc03c9c7"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a3f1c98aef7ff174b360872a9fc03c9c7">build_dual</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::vector&lt; Node &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">faces</a>, <a class="el" href="classAdjacencyView.html">WeightFunc</a> weight) -&gt; std::vector&lt; std::vector&lt; <a class="el" href="structdetail_1_1DualEdge.html">DualEdge</a>&lt; Node &gt; &gt; &gt;</td></tr>
+<tr class="memdesc:a3f1c98aef7ff174b360872a9fc03c9c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build the planar dual graph: faces become vertices, shared primal edges become edges with equal weight.  <br /></td></tr>
 <tr class="separator:a3f1c98aef7ff174b360872a9fc03c9c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01225ec6cf8106ebaddf47948a2223be" id="r_a01225ec6cf8106ebaddf47948a2223be"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </td></tr>
 <tr class="memitem:a01225ec6cf8106ebaddf47948a2223be"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a01225ec6cf8106ebaddf47948a2223be">dijkstra</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::vector&lt; <a class="el" href="structdetail_1_1DualEdge.html">DualEdge</a>&lt; Node &gt; &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">dual</a>, <a class="el" href="classAdjacencyView.html">int</a> <a class="el" href="classAdjacencyView.html">src</a>) -&gt; std::pair&lt; std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt;, std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt;</td></tr>
@@ -215,6 +216,25 @@ template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node , <a 
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Build the planar dual graph: faces become vertices, shared primal edges become edges with equal weight. </p>
+<div class="dotgraph">
+<iframe scrolling="no" frameborder="0" src="dot_inline_dotgraph_6.svg" width="315" height="528"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Node</td><td>node type </td></tr>
+    <tr><td class="paramname">WeightFunc</td><td>callable <code>int(Node, Node)</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">faces</td><td>face boundaries (cyclic node sequences) </td></tr>
+    <tr><td class="paramname">weight</td><td>edge-weight function </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>vector of adjacency lists for the dual graph </dd></dl>
 
 </div>
 </div>
@@ -687,6 +707,8 @@ template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Graph , <a
 
 <p>Solve MAX-CUT for a single planar biconnected component. </p>
 <p>This is the core Hadlock logic factored out so it can be called once per biconnected component. The existing 3-argument overload of <code>solve_hadlock_max_cut</code> delegates here.</p>
+<div class="dotgraph">
+<iframe scrolling="no" frameborder="0" src="dot_inline_dotgraph_7.svg" width="250" height="555"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Graph</td><td>Graph type </td></tr>

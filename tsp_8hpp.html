@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.5;  VERSION ${PROJECT_VERSION}</span>
+   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.6;  VERSION ${PROJECT_VERSION}</span>
    </div>
   </td>
  </tr>
@@ -102,45 +102,7 @@ $(function() {
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for tsp.hpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="tsp_8hpp__incl.png" border="0" usemap="#axnetwork_2tsp_8hpp" alt=""/></div>
-<map name="axnetwork_2tsp_8hpp" id="axnetwork_2tsp_8hpp">
-<area shape="rect" title="Traveling Salesman Problem (TSP) approximation algorithms." alt="" coords="457,5,591,31"/>
-<area shape="rect" title=" " alt="" coords="5,79,91,104"/>
-<area shape="poly" title=" " alt="" coords="457,31,110,81,105,82,104,77,109,76,456,26"/>
-<area shape="rect" title=" " alt="" coords="53,152,123,177"/>
-<area shape="poly" title=" " alt="" coords="457,23,396,27,326,37,253,55,184,81,141,110,108,143,104,139,138,106,181,76,252,49,325,32,396,22,456,18"/>
-<area shape="rect" title=" " alt="" coords="445,79,515,104"/>
-<area shape="poly" title=" " alt="" coords="519,32,497,68,492,66,514,30"/>
-<area shape="rect" title=" " alt="" coords="540,79,599,104"/>
-<area shape="poly" title=" " alt="" coords="534,30,557,66,552,69,529,32"/>
-<area shape="rect" title=" " alt="" coords="623,79,761,104"/>
-<area shape="poly" title=" " alt="" coords="552,28,653,71,651,76,550,33"/>
-<area shape="rect" title=" " alt="" coords="786,79,907,104"/>
-<area shape="poly" title=" " alt="" coords="576,28,782,73,781,78,575,33"/>
-<area shape="rect" title=" " alt="" coords="932,79,975,104"/>
-<area shape="poly" title=" " alt="" coords="592,23,739,42,827,57,919,76,918,81,826,62,738,47,591,28"/>
-<area shape="rect" title=" " alt="" coords="999,79,1054,104"/>
-<area shape="poly" title=" " alt="" coords="592,22,767,41,875,56,986,76,985,82,874,62,766,46,591,27"/>
-<area shape="rect" title=" " alt="" coords="147,152,210,177"/>
-<area shape="poly" title=" " alt="" coords="457,27,388,33,314,44,249,60,224,70,207,81,197,93,190,108,183,138,177,137,185,106,192,90,204,77,222,65,248,55,313,39,387,28,456,21"/>
-<area shape="rect" href="graph_8hpp.html" title="Undirected graph data structure for XNetwork." alt="" coords="217,79,421,104"/>
-<area shape="poly" title=" " alt="" coords="492,33,366,77,364,72,490,28"/>
-<area shape="poly" title=" " alt="" coords="282,107,136,151,135,146,281,101"/>
-<area shape="poly" title=" " alt="" coords="297,106,215,148,212,143,295,102"/>
-<area shape="rect" title=" " alt="" coords="1048,152,1115,177"/>
-<area shape="poly" title=" " alt="" coords="421,100,434,101,601,113,733,118,866,127,1035,149,1034,155,865,132,733,123,601,118,433,107,421,106"/>
-<area shape="rect" title=" " alt="" coords="234,152,382,177"/>
-<area shape="poly" title=" " alt="" coords="320,105,314,139,309,138,314,104"/>
-<area shape="rect" title=" " alt="" coords="406,152,498,177"/>
-<area shape="poly" title=" " alt="" coords="341,102,419,143,417,148,339,106"/>
-<area shape="rect" href="coreviews_8hpp.html" title="Read&#45;only view classes for graph data structures." alt="" coords="790,152,1023,177"/>
-<area shape="poly" title=" " alt="" coords="413,101,799,148,798,153,413,107"/>
-<area shape="rect" href="reportviews_8hpp.html" title="View classes for nodes, edges, and degrees in XNetwork graphs." alt="" coords="522,152,766,177"/>
-<area shape="poly" title=" " alt="" coords="372,101,579,146,577,152,370,107"/>
-<area shape="rect" title=" " alt="" coords="739,225,810,251"/>
-<area shape="poly" title=" " alt="" coords="887,180,809,221,807,216,884,175"/>
-<area shape="poly" title=" " alt="" coords="666,175,743,216,740,221,664,180"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="tsp_8hpp__incl.svg" width="1120" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="tsp_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -283,6 +245,8 @@ template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Graph , <a
 </div><div class="memdoc">
 
 <p>Solve Metric TSP using the Christofides approximation algorithm. </p>
+<div class="dotgraph">
+<iframe scrolling="no" frameborder="0" src="dot_inline_dotgraph_3.svg" width="206" height="555"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Graph</td><td>graph type with <code>node_t</code> and <code>number_of_nodes()</code> </td></tr>
@@ -331,6 +295,8 @@ template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Graph , <a
 
 <p>Solve Metric TSP using Christofides followed by 2-Opt refinement. </p>
 <p>This is the recommended entry point. The 2-Opt post-processing typically improves the Christofides tour significantly, often yielding results very close to optimal for moderate-size metric instances.</p>
+<div class="dotgraph">
+<iframe scrolling="no" frameborder="0" src="dot_inline_dotgraph_4.svg" width="642" height="62"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Graph</td><td>graph type </td></tr>
@@ -385,6 +351,13 @@ template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Graph , <a
 
 <p>Refine a TSP tour using 2-opt neighbourhood search. </p>
 <p>Replaces edge pairs <code>(i-1,i)</code> &amp; <code>(j,j+1)</code> with <code>(i-1,j)</code> &amp; <code>(i,j+1)</code> by reversing segment <code>[i, j]</code> whenever this reduces total length. Repeats until a local optimum is reached.</p>
+<p class="formulaDsp">
+\[
+    \Delta = w(i-1,j) + w(i,j+1) - w(i-1,i) - w(j,j+1)
+\]
+</p>
+<div class="dotgraph">
+<iframe scrolling="no" frameborder="0" src="dot_inline_dotgraph_5.svg" width="686" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Graph</td><td>graph type </td></tr>
