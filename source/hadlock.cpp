@@ -86,46 +86,49 @@ namespace detail {
     template <typename Node>
     auto exact_mwpm(const std::vector<int>& odd_faces, const std::vector<std::vector<int>>& dist)
         -> std::vector<std::pair<int, int>> {
-        const int n = static_cast<int>(odd_faces.size());
-        const int size = 1 << n;
+        const auto n = odd_faces.size();
+        const auto size = static_cast<size_t>(1) << n;
 
         // Precompute first_unset[mask]: smallest i where bit i is 0 in mask
         // Recurrence: first_unset[mask] = (mask & 1) ? first_unset[mask >> 1] + 1 : 0
         // Precompute first_set[mask]: smallest i where bit i is 1 in mask
         // Recurrence: first_set[mask] = (mask & 1) ? 0 : first_set[mask >> 1] + 1
-        std::vector<int> first_unset(size, 0);
-        std::vector<int> first_set(size, 0);
-        for (int mask = 1; mask < size; ++mask) {
-            first_unset[mask] = (mask & 1) ? first_unset[mask >> 1] + 1 : 0;
-            first_set[mask] = (mask & 1) ? 0 : first_set[mask >> 1] + 1;
+        std::vector<unsigned> first_unset(size, 0U);
+        std::vector<unsigned> first_set(size, 0U);
+        for (size_t mask = 1; mask < size; ++mask) {
+            first_unset[mask] = (mask & 1U) ? first_unset[mask >> 1] + 1U : 0U;
+            first_set[mask] = (mask & 1U) ? 0U : first_set[mask >> 1] + 1U;
         }
 
         std::vector<int> dp(size, INF);
         dp[0] = 0;
 
-        for (int mask = 0; mask < size; ++mask) {
+        const auto* of = odd_faces.data();
+        const auto* dist_raw = dist.data();
+
+        for (size_t mask = 0; mask < size; ++mask) {
             if (dp[mask] == INF) continue;
-            const int first = first_unset[mask];
+            const auto first = first_unset[mask];
             if (first >= n) continue;
 
-            for (int j = first + 1; j < n; ++j) {
-                if (mask & (1 << j)) continue;
-                const int new_mask = mask | (1 << first) | (1 << j);
-                const int w = dist[odd_faces[first]][odd_faces[j]];
+            for (auto j = first + 1; j < n; ++j) {
+                if (mask & (static_cast<size_t>(1) << j)) continue;
+                const auto new_mask = mask | (static_cast<size_t>(1) << first) | (static_cast<size_t>(1) << j);
+                const int w = dist_raw[of[first]].data()[of[j]];
                 dp[new_mask] = std::min(dp[mask] + w, dp[new_mask]);
             }
         }
 
         std::vector<std::pair<int, int>> matching;
-        int mask = size - 1;
+        auto mask = size - 1;
         while (mask) {
-            const int first = first_set[mask];
-            for (int j = first + 1; j < n; ++j) {
-                if (!(mask & (1 << j))) continue;
-                const int prev_mask = mask ^ (1 << first) ^ (1 << j);
-                const int w = dist[odd_faces[first]][odd_faces[j]];
+            const auto first = first_set[mask];
+            for (auto j = first + 1; j < n; ++j) {
+                if (!(mask & (static_cast<size_t>(1) << j))) continue;
+                const auto prev_mask = mask ^ (static_cast<size_t>(1) << first) ^ (static_cast<size_t>(1) << j);
+                const int w = dist_raw[of[first]].data()[of[j]];
                 if (dp[mask] == dp[prev_mask] + w) {
-                    matching.emplace_back(odd_faces[first], odd_faces[j]);
+                    matching.emplace_back(of[first], of[j]);
                     mask = prev_mask;
                     break;
                 }
@@ -141,10 +144,13 @@ namespace detail {
     template <typename Node>
     auto dijkstra(const std::vector<std::vector<DualEdge<Node>>>& dual, int src)
         -> std::pair<std::vector<int>, std::vector<int>> {
-        const int n = static_cast<int>(dual.size());
+        const auto n = dual.size();
         std::vector<int> dist(n, INF);
         std::vector<int> prev(n, -1);
-        dist[src] = 0;
+        auto* dist_raw = dist.data();
+        auto* prev_raw = prev.data();
+        auto* dual_raw = dual.data();
+        dist_raw[src] = 0;
 
         using P = std::pair<int, int>;
         std::priority_queue<P, std::vector<P>, std::greater<>> pq;
@@ -153,12 +159,12 @@ namespace detail {
         while (!pq.empty()) {
             auto [d, u] = pq.top();
             pq.pop();
-            if (d != dist[u]) continue;
-            for (const auto& e : dual[u]) {
-                if (dist[e.neighbor] > d + e.weight) {
-                    dist[e.neighbor] = d + e.weight;
-                    prev[e.neighbor] = u;
-                    pq.push({dist[e.neighbor], e.neighbor});
+            if (d != dist_raw[u]) continue;
+            for (const auto& e : dual_raw[u]) {
+                if (dist_raw[e.neighbor] > d + e.weight) {
+                    dist_raw[e.neighbor] = d + e.weight;
+                    prev_raw[e.neighbor] = u;
+                    pq.push({dist_raw[e.neighbor], e.neighbor});
                 }
             }
         }
@@ -172,12 +178,14 @@ namespace detail {
     template <typename Node>
     auto greedy_mwpm(const std::vector<int>& odd_faces, const std::vector<std::vector<int>>& dist)
         -> std::vector<std::pair<int, int>> {
-        const int n = static_cast<int>(odd_faces.size());
+        const auto n = odd_faces.size();
         std::vector<std::tuple<int, int, int>> edges;
         edges.reserve(n * (n - 1) / 2);
-        for (int i = 0; i < n; ++i)
-            for (int j = i + 1; j < n; ++j)
-                edges.emplace_back(dist[odd_faces[i]][odd_faces[j]], odd_faces[i], odd_faces[j]);
+        const auto* of = odd_faces.data();
+        const auto* dist_raw = dist.data();
+        for (size_t i = 0; i < n; ++i)
+            for (size_t j = i + 1; j < n; ++j)
+                edges.emplace_back(dist_raw[of[i]].data()[of[j]], of[i], of[j]);
 
         std::sort(edges.begin(), edges.end());
 
@@ -188,7 +196,7 @@ namespace detail {
             used.insert(u);
             used.insert(v);
             matching.emplace_back(u, v);
-            if (used.size() == static_cast<size_t>(n)) break;
+            if (used.size() == n) break;
         }
         return matching;
     }

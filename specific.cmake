@@ -7,7 +7,7 @@ CPMAddPackage(
 
 CPMAddPackage(
   NAME Py2Cpp
-  GIT_TAG 1.6.0
+  GIT_TAG v1.6.3
   GITHUB_REPOSITORY luk036/py2cpp
   OPTIONS "INSTALL_ONLY YES" # create an installable target
 )

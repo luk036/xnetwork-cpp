@@ -85,17 +85,17 @@ namespace detail {
     template <typename Node, typename WeightFunc>
     auto build_dual(const std::vector<std::vector<Node>>& faces, WeightFunc weight)
         -> std::vector<std::vector<DualEdge<Node>>> {
-        const auto n_face = static_cast<int>(faces.size());
+        const auto n_face = faces.size();
 
         std::map<std::pair<Node, Node>, std::vector<int>> edge_face_map;
-        for (int fi = 0; fi < n_face; ++fi) {
+        for (size_t fi = 0; fi < n_face; ++fi) {
             const auto& f = faces[fi];
-            const auto sz = static_cast<int>(f.size());
-            for (int i = 0; i < sz; ++i) {
+            const auto sz = f.size();
+            for (size_t i = 0; i < sz; ++i) {
                 auto u = f[i];
                 auto v = f[(i + 1) % sz];
                 if (u > v) std::swap(u, v);
-                edge_face_map[{u, v}].push_back(fi);
+                edge_face_map[{u, v}].push_back(static_cast<int>(fi));
             }
         }
 
@@ -118,11 +118,12 @@ namespace detail {
         }
 
         std::vector<std::vector<DualEdge<Node>>> dual(n_face);
+        auto* dual_raw = dual.data();
         for (const auto& [key, info] : best) {
             const auto& [fi, fj] = key;
             const auto& [w, primal] = info;
-            dual[fi].push_back({fj, w, primal});
-            dual[fj].push_back({fi, w, primal});
+            dual_raw[fi].push_back({fj, w, primal});
+            dual_raw[fj].push_back({fi, w, primal});
         }
         return dual;
     }
@@ -137,7 +138,8 @@ namespace detail {
     inline auto reconstruct_path(const std::vector<int>& prev, int src, int dst)
         -> std::vector<int> {
         std::vector<int> path;
-        for (int v = dst; v != -1 && v != src; v = prev[v]) {
+        const auto* p = prev.data();
+        for (int v = dst; v != -1 && v != src; v = p[v]) {
             path.push_back(v);
         }
         if (path.empty() && src != dst) return {};
@@ -246,9 +248,9 @@ namespace detail {
 
         // (2) Identify odd-degree faces
         std::vector<int> odd_faces;
-        for (int i = 0; i < static_cast<int>(faces.size()); ++i) {
+        for (size_t i = 0; i < faces.size(); ++i) {
             if (faces[i].size() % 2 == 1) {
-                odd_faces.push_back(i);
+                odd_faces.push_back(static_cast<int>(i));
             }
         }
 
@@ -273,11 +275,11 @@ namespace detail {
             }
         }
 
-        const int n_odd = static_cast<int>(odd_faces.size());
+        const auto n_odd = odd_faces.size();
 
         // odd_faces[k] -> k lookup
-        std::map<int, int> odd_idx;
-        for (int k = 0; k < n_odd; ++k) {
+        std::map<int, size_t> odd_idx;
+        for (size_t k = 0; k < n_odd; ++k) {
             odd_idx[odd_faces[k]] = k;
         }
 
@@ -286,10 +288,10 @@ namespace detail {
         std::vector<std::vector<std::vector<int>>> path_mat(n_odd,
                                                             std::vector<std::vector<int>>(n_odd));
 
-        for (int i = 0; i < n_odd; ++i) {
+        for (size_t i = 0; i < n_odd; ++i) {
             auto [dist, prev] = dijkstra<node_t>(dual, odd_faces[i]);
             dist_mat[i] = std::move(dist);
-            for (int j = 0; j < n_odd; ++j) {
+            for (size_t j = 0; j < n_odd; ++j) {
                 if (i != j) {
                     path_mat[i][j] = reconstruct_path(prev, odd_faces[i], odd_faces[j]);
                 }
@@ -302,9 +304,9 @@ namespace detail {
         // (5) Collect primal edges excluded from the cut
         // Build dual-edge -> primal-edge lookup
         std::map<std::pair<int, int>, std::pair<node_t, node_t>> dedge_primal;
-        for (int fi = 0; fi < static_cast<int>(dual.size()); ++fi) {
+        for (size_t fi = 0; fi < dual.size(); ++fi) {
             for (const auto& e : dual[fi]) {
-                int a = fi;
+                int a = static_cast<int>(fi);
                 int b = e.neighbor;
                 if (a > b) std::swap(a, b);
                 dedge_primal[{a, b}] = e.primal;
