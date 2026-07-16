@@ -32,13 +32,13 @@ These filters return the function used when creating `SubGraph`.
 //     "show_multidiedges",
 // };
 
-    /**
-     * @brief A predicate that always returns true (no filtering).
-     *
-     * @tparam T The type of the item to filter.
-     * @return true Always returns true.
-     */
-    template <typename T> auto no_filter(const T& /*items*/) {
+/**
+ * @brief A predicate that always returns true (no filtering).
+ *
+ * @tparam T The type of the item to filter.
+ * @return true Always returns true.
+ */
+template <typename T> auto no_filter(const T& /*items*/) {
     return [](const T& /*item*/) { return true; };
 }
 

@@ -54,17 +54,20 @@ namespace xnetwork {
         explicit XNetworkAlgorithmError(std::string_view msg) : XNetworkException(msg) {}
     };
 
-    /** @brief Exception raised by algorithms trying to solve a problem instance that has no feasible solution */
+    /** @brief Exception raised by algorithms trying to solve a problem instance that has no
+     * feasible solution */
     struct XNetworkUnfeasible : XNetworkAlgorithmError {
         explicit XNetworkUnfeasible(std::string_view msg) : XNetworkAlgorithmError(msg) {}
     };
 
-    /** @brief Exception for algorithms that should return a path when running on graphs where such a path does not exist */
+    /** @brief Exception for algorithms that should return a path when running on graphs where such
+     * a path does not exist */
     struct XNetworkNoPath : XNetworkUnfeasible {
         explicit XNetworkNoPath(std::string_view msg) : XNetworkUnfeasible(msg) {}
     };
 
-    /** @brief Exception for algorithms that should return a cycle when running on graphs where such a cycle does not exist */
+    /** @brief Exception for algorithms that should return a cycle when running on graphs where such
+     * a cycle does not exist */
     struct XNetworkNoCycle : XNetworkUnfeasible {
         explicit XNetworkNoCycle(std::string_view msg) : XNetworkUnfeasible(msg) {}
     };
@@ -89,7 +92,8 @@ namespace xnetwork {
         explicit NodeNotFound(std::string_view msg) : XNetworkException(msg) {}
     };
 
-    /** @brief Raised when more than one valid solution exists for an intermediary step of an algorithm
+    /** @brief Raised when more than one valid solution exists for an intermediary step of an
+       algorithm
         @details In the face of ambiguity, refuse the temptation to guess.
         This may occur, for example, when trying to determine the bipartite node sets
         in a disconnected bipartite graph when computing bipartite matchings. */

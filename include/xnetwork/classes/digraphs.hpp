@@ -215,7 +215,8 @@ namespace xnetwork {
     };
 
     /** @brief A simple directed graph with integer nodes
-        @details Convenience alias for a DiGraphS with uint32_t nodes and vector-based adjacency storage */
+        @details Convenience alias for a DiGraphS with uint32_t nodes and vector-based adjacency
+       storage */
     using SimpleDiGraphS = DiGraphS<decltype(py::range<uint32_t>(uint32_t{})),
                                     py::dict<uint32_t, int>, std::vector<py::dict<uint32_t, int>>>;
 
