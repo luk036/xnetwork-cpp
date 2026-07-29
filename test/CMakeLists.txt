@@ -16,7 +16,12 @@ include(../cmake/tools.cmake)
 include(../cmake/CPM.cmake)
 include(../specific.cmake)
 
-CPMAddPackage("gh:doctest/doctest@2.5.2")
+# Try system-installed doctest first (Ubuntu: doctest-dev, macOS: brew install doctest, Termux: doctest)
+find_package(doctest CONFIG QUIET)
+
+if(NOT doctest_FOUND)
+  CPMAddPackage("gh:doctest/doctest@2.5.2")
+endif()
 CPMAddPackage("gh:TheLartians/Format.cmake@1.7.3")
 CPMAddPackage(
   NAME rapidcheck
