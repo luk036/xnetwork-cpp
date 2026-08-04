@@ -323,8 +323,8 @@ auto christofides_tsp(const Graph& G, WeightFunc&& weight) -> std::vector<typena
  *       nj -> ni [label="reversed", style=dashed, color="#e74c3c"];
  *       ni -> nj1 [label="new w2", color="#e74c3c"];
  *     }
- *     note [shape=note, fillcolor="#fcf3cf", label="Delta = w(i-1,j) + w(i,j+1)\n        - w(i-1,i) - w(j,j+1)"];
- *     j1 -> note [style=dashed, color="#888", constraint=false];
+ *     note [shape=note, fillcolor="#fcf3cf", label="Delta = w(i-1,j) + w(i,j+1)\n        - w(i-1,i)
+ * - w(j,j+1)"]; j1 -> note [style=dashed, color="#888", constraint=false];
  *   }
  * @enddot
  *

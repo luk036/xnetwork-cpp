@@ -113,7 +113,8 @@ namespace detail {
 
             for (auto j = first + 1; j < n; ++j) {
                 if (mask & (static_cast<size_t>(1) << j)) continue;
-                const auto new_mask = mask | (static_cast<size_t>(1) << first) | (static_cast<size_t>(1) << j);
+                const auto new_mask
+                    = mask | (static_cast<size_t>(1) << first) | (static_cast<size_t>(1) << j);
                 const int w = dist_raw[of[first]].data()[of[j]];
                 dp[new_mask] = std::min(dp[mask] + w, dp[new_mask]);
             }
@@ -125,7 +126,8 @@ namespace detail {
             const auto first = first_set[mask];
             for (auto j = first + 1; j < n; ++j) {
                 if (!(mask & (static_cast<size_t>(1) << j))) continue;
-                const auto prev_mask = mask ^ (static_cast<size_t>(1) << first) ^ (static_cast<size_t>(1) << j);
+                const auto prev_mask
+                    = mask ^ (static_cast<size_t>(1) << first) ^ (static_cast<size_t>(1) << j);
                 const int w = dist_raw[of[first]].data()[of[j]];
                 if (dp[mask] == dp[prev_mask] + w) {
                     matching.emplace_back(of[first], of[j]);

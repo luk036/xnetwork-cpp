@@ -91,12 +91,12 @@ During development it is usually convenient to [build all subprojects at once](#
 
 ### Build and run the standalone target
 
-Use the following command to build and run the executable target.
+Use the following command from the project's root directory to build and run the executable target.
 
 ```bash
-cmake -S standalone -B build/standalone
-cmake --build build/standalone
-./build/standalone/XNetwork --help
+cmake -B build
+cmake --build build
+./build/XNetwork --help
 ```
 
 ### Build and run test suite
@@ -104,15 +104,15 @@ cmake --build build/standalone
 Use the following commands from the project's root directory to run the test suite.
 
 ```bash
-cmake -S test -B build/test
-cmake --build build/test
-CTEST_OUTPUT_ON_FAILURE=1 cmake --build build/test --target test
+cmake -B build
+cmake --build build
+ctest --test-dir build --output-on-failure
 
 # or simply call the executable:
-./build/test/XNetworkTests
+./build/XNetworkTests
 ```
 
-To collect code coverage information, run CMake with the `-DENABLE_TEST_COVERAGE=1` option.
+To collect code coverage information, run CMake with the `-DXNETWORK_ENABLE_COVERAGE=1` option.
 
 ### Run clang-format
 
@@ -120,13 +120,13 @@ Use the following commands from the project's root directory to check and fix C+
 This requires _clang-format_, _cmake-format_ and _pyyaml_ to be installed on the current system.
 
 ```bash
-cmake -S test -B build/test
+cmake -B build
 
 # view changes
-cmake --build build/test --target format
+cmake --build build --target format
 
 # apply changes
-cmake --build build/test --target fix-format
+cmake --build build --target fix-format
 ```
 
 See [Format.cmake](https://github.com/TheLartians/Format.cmake) for details.
@@ -142,30 +142,30 @@ The documentation is automatically built and [published](https://thelartians.git
 To manually build documentation, call the following command.
 
 ```bash
-cmake -S documentation -B build/doc
-cmake --build build/doc --target GenerateDocs
+cmake -B build -DXNETWORK_BUILD_DOCS=ON
+cmake --build build --target GenerateDocs
 # view the docs
-open build/doc/doxygen/html/index.html
+open build/doxygen/html/index.html
 ```
 
-To build the documentation locally, you will need Doxygen, jinja2 and Pygments installed on your system.
+To build the documentation locally, you will need Doxygen and Graphviz installed on your system.
 
 ### Build everything at once {#build-everything-at-once}
 
-The project also includes an `all` directory that allows building all targets at the same time.
-This is useful during development, as it exposes all subprojects to your IDE and avoids redundant builds of the library.
+A single build configuration from the project root builds the library, tests and standalone together.
+This is useful during development, as it exposes all targets to your IDE and avoids redundant builds of the library.
 
 ```bash
-cmake -S all -B build
+cmake -B build
 cmake --build build
 
 # run tests
-./build/test/XNetworkTests
+./build/XNetworkTests
 # format code
 cmake --build build --target fix-format
 # run standalone
-./build/standalone/XNetwork --help
-# build docs
+./build/XNetwork --help
+# build docs (requires -DXNETWORK_BUILD_DOCS=ON at configure time)
 cmake --build build --target GenerateDocs
 ```
 

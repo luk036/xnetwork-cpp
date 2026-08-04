@@ -11,34 +11,30 @@ This is a **header-only C++ graph library** inspired by Python's NetworkX. The p
 ### Full Build
 ```bash
 # Build everything (library + tests + standalone)
-cmake -S all -B build
+cmake -B build
 cmake --build build
 ```
 
 ### Test Build & Run
 ```bash
-# Configure and build tests
-cmake -S test -B build/test
-cmake --build build/test
-
 # Run all tests
-CTEST_OUTPUT_ON_FAILURE=1 cmake --build build/test --target test
+ctest --test-dir build --output-on-failure
 
 # Or run directly
-./build/test/XNetworkTests
+./build/XNetworkTests
 ```
 
 ### Run a Single Test
 ```bash
 # Run a specific test case by name
-./build/test/XNetworkTests -tc="Test xnetwork::Graph"
+./build/XNetworkTests -tc="Test xnetwork::Graph"
 ```
 
 ### Build Standalone Example
 ```bash
-cmake -S standalone -B build/standalone
-cmake --build build/standalone
-./build/standalone/XNetwork --help
+cmake -B build
+cmake --build build --target XNetworkStandalone
+./build/XNetwork --help
 ```
 
 ### Code Formatting
@@ -47,23 +43,16 @@ cmake --build build/standalone
 pip install clang-format==18.1.2 cmake_format==0.6.13 pyyaml
 
 # Check formatting
-cmake --build build/test --target format
+cmake --build build --target format
 
 # Apply formatting
-cmake --build build/test --target fix-format
-```
-
-### Enable Sanitizers
-```bash
-cmake -S test -B build/test -DUSE_SANITIZER="Address;Undefined"
-cmake --build build/test
-./build/test/XNetworkTests
+cmake --build build --target fix-format
 ```
 
 ### Enable Static Analysis
 ```bash
-cmake -S test -B build/test -DUSE_STATIC_ANALYZER=clang-tidy
-cmake --build build/test
+cmake -B build -DXNETWORK_ENABLE_CLANG_TIDY=ON
+cmake --build build --target clang-tidy
 ```
 
 ---

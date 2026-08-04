@@ -2,48 +2,44 @@ name: Ubuntu
 
 on:
   push:
-    branches:
-      - master
-      - main
-      - dev
+    branches: [master, main, dev]
   pull_request:
-    branches:
-      - master
-      - main
-      - dev
+    branches: [master, main, dev]
 
 env:
   CTEST_OUTPUT_ON_FAILURE: 1
   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-  CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/cache@v3
-        with:
-          path: "**/cpm_modules"
-          key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
+      - name: Configure
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
 
-      # - name: Before Install
-      #   run: |
-      #     sudo apt-get install g++-10
-      #     sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 90
-
-      - name: configure
-        run: cmake -Stest -Bbuild -DENABLE_TEST_COVERAGE=1 -DCMAKE_BUILD_TYPE=Debug
-
-      - name: build
+      - name: Build
         run: cmake --build build -j4
 
-      - name: test
-        run: |
-          cd build
-          ctest --build-config Debug
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
 
-      - name: collect code coverage
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure with coverage
+        run: cmake -B build -DXNETWORK_ENABLE_COVERAGE=ON -DXNETWORK_BUILD_TESTS=ON
+
+      - name: Build
+        run: cmake --build build -j4
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Collect code coverage
         run: bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
