@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.6;  VERSION ${PROJECT_VERSION}</span>
+   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.7</span>
    </div>
   </td>
  </tr>
@@ -161,53 +161,53 @@ Adjust the template to your needs</h3>
 <p>To cleanly separate the library and subproject code, the outer <code><a class="el" href="classAdjacencyView.html#a334355d54106a13e02b2070dfbd4d816" title="Construct an AdjacencyView from an Atlas container.">CMakeList.txt</a></code> only defines the library itself while the tests and other subprojects are self-contained in their own directories. During development it is usually convenient to <a class="el" href="index.html#build-everything-at-once">build all subprojects at once</a>.</p>
 <h3><a class="anchor" id="autotoc_md8"></a>
 Build and run the standalone target</h3>
-<p>Use the following command to build and run the executable target.</p>
-<div class="fragment"><div class="line">cmake -S standalone -B build/standalone</div>
-<div class="line">cmake --build build/standalone</div>
-<div class="line">./build/standalone/XNetwork --help</div>
+<p>Use the following command from the project's root directory to build and run the executable target.</p>
+<div class="fragment"><div class="line">cmake -B build</div>
+<div class="line">cmake --build build</div>
+<div class="line">./build/XNetwork --help</div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md9"></a>
 Build and run test suite</h3>
 <p>Use the following commands from the project's root directory to run the test suite.</p>
-<div class="fragment"><div class="line">cmake -S test -B build/test</div>
-<div class="line">cmake --build build/test</div>
-<div class="line">CTEST_OUTPUT_ON_FAILURE=1 cmake --build build/test --target test</div>
+<div class="fragment"><div class="line">cmake -B build</div>
+<div class="line">cmake --build build</div>
+<div class="line">ctest --test-dir build --output-on-failure</div>
 <div class="line"> </div>
 <div class="line"># or simply call the executable:</div>
-<div class="line">./build/test/XNetworkTests</div>
-</div><!-- fragment --><p>To collect code coverage information, run CMake with the <code>-DENABLE_TEST_COVERAGE=1</code> option.</p>
+<div class="line">./build/XNetworkTests</div>
+</div><!-- fragment --><p>To collect code coverage information, run CMake with the <code>-DXNETWORK_ENABLE_COVERAGE=1</code> option.</p>
 <h3><a class="anchor" id="autotoc_md10"></a>
 Run clang-format</h3>
 <p>Use the following commands from the project's root directory to check and fix C++ and CMake source style. This requires <em>clang-format</em>, <em>cmake-format</em> and <em>pyyaml</em> to be installed on the current system.</p>
-<div class="fragment"><div class="line">cmake -S test -B build/test</div>
+<div class="fragment"><div class="line">cmake -B build</div>
 <div class="line"> </div>
 <div class="line"># view changes</div>
-<div class="line">cmake --build build/test --target format</div>
+<div class="line">cmake --build build --target format</div>
 <div class="line"> </div>
 <div class="line"># apply changes</div>
-<div class="line">cmake --build build/test --target fix-format</div>
+<div class="line">cmake --build build --target fix-format</div>
 </div><!-- fragment --><p>See <a href="https://github.com/TheLartians/Format.cmake">Format.cmake</a> for details. These dependencies can be easily installed using pip.</p>
 <div class="fragment"><div class="line">pip install clang-format==18.1.2 cmake_format==0.6.13 pyyaml</div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md11"></a>
 Build the documentation</h3>
 <p>The documentation is automatically built and <a href="https://thelartians.github.io/ModernCppStarter">published</a> whenever a <a href="https://help.github.com/en/github/administering-a-repository/managing-releases-in-a-repository">GitHub Release</a> is created. To manually build documentation, call the following command.</p>
-<div class="fragment"><div class="line">cmake -S documentation -B build/doc</div>
-<div class="line">cmake --build build/doc --target GenerateDocs</div>
+<div class="fragment"><div class="line">cmake -B build -DXNETWORK_BUILD_DOCS=ON</div>
+<div class="line">cmake --build build --target GenerateDocs</div>
 <div class="line"># view the docs</div>
-<div class="line">open build/doc/doxygen/html/index.html</div>
-</div><!-- fragment --><p>To build the documentation locally, you will need Doxygen, jinja2 and Pygments installed on your system.</p>
+<div class="line">open build/doxygen/html/index.html</div>
+</div><!-- fragment --><p>To build the documentation locally, you will need Doxygen and Graphviz installed on your system.</p>
 <h3><a class="anchor" id="build-everything-at-once"></a>
 Build everything at once</h3>
-<p>The project also includes an <code>all</code> directory that allows building all targets at the same time. This is useful during development, as it exposes all subprojects to your IDE and avoids redundant builds of the library.</p>
-<div class="fragment"><div class="line">cmake -S all -B build</div>
+<p>A single build configuration from the project root builds the library, tests and standalone together. This is useful during development, as it exposes all targets to your IDE and avoids redundant builds of the library.</p>
+<div class="fragment"><div class="line">cmake -B build</div>
 <div class="line">cmake --build build</div>
 <div class="line"> </div>
 <div class="line"># run tests</div>
-<div class="line">./build/test/XNetworkTests</div>
+<div class="line">./build/XNetworkTests</div>
 <div class="line"># format code</div>
 <div class="line">cmake --build build --target fix-format</div>
 <div class="line"># run standalone</div>
-<div class="line">./build/standalone/XNetwork --help</div>
-<div class="line"># build docs</div>
+<div class="line">./build/XNetwork --help</div>
+<div class="line"># build docs (requires -DXNETWORK_BUILD_DOCS=ON at configure time)</div>
 <div class="line">cmake --build build --target GenerateDocs</div>
 </div><!-- fragment --><h3><a class="anchor" id="additional-tools"></a>
 Additional tools</h3>
