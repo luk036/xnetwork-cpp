@@ -180,9 +180,13 @@ Sanitizers can be enabled by configuring CMake with `-DUSE_SANITIZER=<Address | 
 
 #### Static Analyzers
 
-Static Analyzers can be enabled by setting `-DUSE_STATIC_ANALYZER=<clang-tidy | iwyu | cppcheck>`, or a combination of those in quotation marks, separated by semicolons.
-By default, analyzers will automatically find configuration files such as `.clang-format`.
-Additional arguments can be passed to the analyzers by setting the `CLANG_TIDY_ARGS`, `IWYU_ARGS` or `CPPCHECK_ARGS` variables.
+clang-tidy can be enabled by configuring CMake with `-DXNETWORK_ENABLE_CLANG_TIDY=ON` and building the `clang-tidy` target.
+It analyzes the public headers using the checks configured in `.clang-tidy`.
+
+```bash
+cmake -B build -DXNETWORK_ENABLE_CLANG_TIDY=ON
+cmake --build build --target clang-tidy
+```
 
 #### Ccache
 
