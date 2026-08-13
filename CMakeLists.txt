@@ -135,14 +135,20 @@ packageProject(
 # ---------------------------------------------------------------------------
 
 if(XNETWORK_BUILD_STANDALONE)
-  # cxxopts is a header-only CLI parser used by the standalone example
-  CPMAddPackage(
-    GITHUB_REPOSITORY jarro2783/cxxopts
-    VERSION 3.2.1
-    OPTIONS "CXXOPTS_BUILD_EXAMPLES NO" "CXXOPTS_BUILD_TESTS NO" "CXXOPTS_ENABLE_INSTALL NO"
-  )
+  # cxxopts is a header-only CLI parser used by the standalone example. Prefer a consumer- or
+  # system-provided cxxopts; only fall back to CPM when no cxxopts target is available.
+  find_package(cxxopts CONFIG QUIET)
+  if(NOT cxxopts_FOUND AND NOT TARGET cxxopts::cxxopts)
+    CPMAddPackage(
+      GITHUB_REPOSITORY jarro2783/cxxopts
+      VERSION 3.2.1
+      OPTIONS "CXXOPTS_BUILD_EXAMPLES NO" "CXXOPTS_BUILD_TESTS NO" "CXXOPTS_ENABLE_INSTALL NO"
+    )
+  endif()
   # keep third-party headers out of our -Werror scope
-  get_target_property(CXXOPTS_INCLUDE_DIRS cxxopts::cxxopts INTERFACE_INCLUDE_DIRECTORIES)
+  if(TARGET cxxopts::cxxopts)
+    get_target_property(CXXOPTS_INCLUDE_DIRS cxxopts::cxxopts INTERFACE_INCLUDE_DIRECTORIES)
+  endif()
 
   file(GLOB XNETWORK_STANDALONE_SOURCES CONFIGURE_DEPENDS "standalone/source/*.cpp")
   add_executable(XNetworkStandalone ${XNETWORK_STANDALONE_SOURCES})
