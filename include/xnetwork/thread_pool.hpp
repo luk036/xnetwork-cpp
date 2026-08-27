@@ -32,6 +32,13 @@
 
 namespace xnetwork {
 
+    /**
+     * @brief Command pattern: tasks are encapsulated as command objects
+     * (std::function<void()>) placed in a shared queue; producers (enqueue)
+     * are decoupled from executors (worker threads).
+     *
+     * enqueue() returns a std::future for result retrieval.
+     */
     class thread_pool {
       public:
         /**
