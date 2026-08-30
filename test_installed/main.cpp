@@ -1,7 +1,6 @@
+#include <iostream>
 #include <py2cpp/dict.hpp>
 #include <xnetwork/classes/graph.hpp>
-
-#include <iostream>
 
 auto main() -> int {
     auto gra = xnetwork::SimpleGraph{5};

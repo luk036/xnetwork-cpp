@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14...3.22)
 
 project(
   XNetwork
-  VERSION 1.7.7
+  VERSION 1.7.8
   LANGUAGES CXX
 )
 
@@ -40,17 +40,16 @@ option(XNETWORK_ENABLE_COVERAGE "Enable coverage reporting" OFF)
 # Dependencies
 # ---------------------------------------------------------------------------
 
-# Download CPM.cmake for reproducible dependency management
-# see https://github.com/cpm-cmake/CPM.cmake for more info
+# Download CPM.cmake for reproducible dependency management see
+# https://github.com/cpm-cmake/CPM.cmake for more info
 set(CPM_DOWNLOAD_VERSION 0.38.5)
 set(CPM_HASH_SUM "192aa0ccdc57dfe75bd9e4b176bf7fb5692fd2b3e3f7b09c74856fc39572b31c")
 set(CPM_DOWNLOAD_LOCATION "${CMAKE_BINARY_DIR}/cmake/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
 if(NOT (EXISTS ${CPM_DOWNLOAD_LOCATION}))
   message(STATUS "Downloading CPM.cmake to ${CPM_DOWNLOAD_LOCATION}")
-  file(
-    DOWNLOAD https://github.com/cpm-cmake/CPM.cmake/releases/download/v${CPM_DOWNLOAD_VERSION}/CPM.cmake
-             ${CPM_DOWNLOAD_LOCATION}
-    EXPECTED_HASH SHA256=${CPM_HASH_SUM}
+  file(DOWNLOAD
+       https://github.com/cpm-cmake/CPM.cmake/releases/download/v${CPM_DOWNLOAD_VERSION}/CPM.cmake
+       ${CPM_DOWNLOAD_LOCATION} EXPECTED_HASH SHA256=${CPM_HASH_SUM}
   )
 endif()
 include(${CPM_DOWNLOAD_LOCATION})
@@ -58,12 +57,20 @@ include(${CPM_DOWNLOAD_LOCATION})
 # PackageProject.cmake will be used to make our target installable
 CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
 
-# fmt is a transitive dependency of py2cpp; prefer a system-installed fmt when available.
-find_package(fmt CONFIG QUIET)
-if(fmt_FOUND)
-  message(STATUS "Found system fmt: ${fmt_DIR}")
-  set(CPM_fmt_ADDED YES)
-else()
+# fmt is a transitive dependency of py2cpp; prefer a system-installed fmt when available. On MSVC,
+# skip prebuilt system packages (e.g. conda): they are Release-only shared libraries whose
+# std::string ABI (_ITERATOR_DEBUG_LEVEL=0) mismatches Debug builds (_ITERATOR_DEBUG_LEVEL=2),
+# corrupting std::strings returned by fmt::format. Build fmt from source on MSVC so the ABI always
+# matches (same as CI's windows-latest runner).
+if(NOT MSVC)
+  find_package(fmt CONFIG QUIET)
+  if(fmt_FOUND)
+    message(STATUS "Found system fmt: ${fmt_DIR}")
+    set(CPM_fmt_ADDED YES)
+  endif()
+endif()
+
+if(NOT fmt_FOUND)
   CPMAddPackage(
     NAME fmt
     GIT_TAG 12.1.0
@@ -74,7 +81,7 @@ endif()
 
 CPMAddPackage(
   NAME Py2Cpp
-  GIT_TAG v1.6.4
+  GIT_TAG v1.6.5
   GITHUB_REPOSITORY luk036/py2cpp
   OPTIONS "INSTALL_ONLY YES" "PY2CPP_BUILD_TESTS OFF"
 )
@@ -92,8 +99,7 @@ endif()
 
 # Note: globbing sources is considered bad practice as CMake's generators may not detect new files
 # automatically. Keep that in mind when changing files, or explicitly mention them here.
-file(GLOB_RECURSE headers CONFIGURE_DEPENDS
-     "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h"
+file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h"
      "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp"
 )
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp")
@@ -129,7 +135,7 @@ packageProject(
   INCLUDE_DESTINATION include/${PROJECT_NAME}-${PROJECT_VERSION}
   VERSION_HEADER "${VERSION_HEADER_LOCATION}"
   COMPATIBILITY SameMajorVersion
-  DEPENDENCIES "fmt 12.1.0" "Py2Cpp 1.6.4"
+  DEPENDENCIES "fmt 12.1.0" "Py2Cpp 1.6.5"
 )
 
 # ---------------------------------------------------------------------------
@@ -137,14 +143,20 @@ packageProject(
 # ---------------------------------------------------------------------------
 
 if(XNETWORK_BUILD_STANDALONE)
-  # cxxopts is a header-only CLI parser used by the standalone example
-  CPMAddPackage(
-    GITHUB_REPOSITORY jarro2783/cxxopts
-    VERSION 3.2.1
-    OPTIONS "CXXOPTS_BUILD_EXAMPLES NO" "CXXOPTS_BUILD_TESTS NO" "CXXOPTS_ENABLE_INSTALL NO"
-  )
+  # cxxopts is a header-only CLI parser used by the standalone example. Prefer a consumer- or
+  # system-provided cxxopts; only fall back to CPM when no cxxopts target is available.
+  find_package(cxxopts CONFIG QUIET)
+  if(NOT cxxopts_FOUND AND NOT TARGET cxxopts::cxxopts)
+    CPMAddPackage(
+      GITHUB_REPOSITORY jarro2783/cxxopts
+      VERSION 3.2.1
+      OPTIONS "CXXOPTS_BUILD_EXAMPLES NO" "CXXOPTS_BUILD_TESTS NO" "CXXOPTS_ENABLE_INSTALL NO"
+    )
+  endif()
   # keep third-party headers out of our -Werror scope
-  get_target_property(CXXOPTS_INCLUDE_DIRS cxxopts::cxxopts INTERFACE_INCLUDE_DIRECTORIES)
+  if(TARGET cxxopts::cxxopts)
+    get_target_property(CXXOPTS_INCLUDE_DIRS cxxopts::cxxopts INTERFACE_INCLUDE_DIRECTORIES)
+  endif()
 
   file(GLOB XNETWORK_STANDALONE_SOURCES CONFIGURE_DEPENDS "standalone/source/*.cpp")
   add_executable(XNetworkStandalone ${XNETWORK_STANDALONE_SOURCES})
@@ -204,8 +216,7 @@ if(XNETWORK_ENABLE_CLANG_TIDY)
   if(CLANG_TIDY)
     add_custom_target(
       clang-tidy
-      COMMAND ${CLANG_TIDY} --extra-arg=-std=c++17
-              --extra-arg=-I${CMAKE_CURRENT_SOURCE_DIR}/include
+      COMMAND ${CLANG_TIDY} --extra-arg=-std=c++17 --extra-arg=-I${CMAKE_CURRENT_SOURCE_DIR}/include
               ${CMAKE_CURRENT_SOURCE_DIR}/include/xnetwork/*.hpp
       COMMENT "Running clang-tidy static analysis"
     )
@@ -272,13 +283,15 @@ if(XNETWORK_ENABLE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleCl
       coverage
       COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure
       COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/coverage
-      COMMAND ${GCOVR_PATH} --root ${PROJECT_SOURCE_DIR} --html-details
-              ${CMAKE_BINARY_DIR}/coverage/index.html --exclude test/ --exclude build/
-              ${extra_gcovr_args}
+      COMMAND
+        ${GCOVR_PATH} --root ${PROJECT_SOURCE_DIR} --html-details
+        ${CMAKE_BINARY_DIR}/coverage/index.html --exclude test/ --exclude build/ ${extra_gcovr_args}
       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
       COMMENT "Generating coverage report in ${CMAKE_BINARY_DIR}/coverage/index.html"
     )
   else()
-    message(WARNING "gcovr not found - coverage target unavailable. Install with: pip install gcovr")
+    message(
+      WARNING "gcovr not found - coverage target unavailable. Install with: pip install gcovr"
+    )
   endif()
 endif()
