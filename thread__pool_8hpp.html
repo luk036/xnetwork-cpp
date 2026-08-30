@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.7</span>
+   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.8</span>
    </div>
   </td>
  </tr>
@@ -111,6 +111,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxnetwork_1_1thread__pool.html">xnetwork::thread_pool</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command pattern: tasks are encapsulated as command objects (std::function&lt;void()&gt;) placed in a shared queue; producers (enqueue) are decoupled from executors (worker threads).  <a href="classxnetwork_1_1thread__pool.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -125,7 +126,7 @@ Namespaces</h2></td></tr>
 <div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classAdjacencyView.html">future</a> = <a class="code hl_class" href="classAdjacencyView.html">pool</a>.enqueue([] { <span class="keywordflow">return</span> 42; });</div>
 <div class="line"><span class="keywordtype">int</span> <a class="code hl_class" href="classAdjacencyView.html">result</a> = <a class="code hl_class" href="classAdjacencyView.html">future</a>.get();</div>
 <div class="ttc" id="aclassAdjacencyView_html"><div class="ttname"><a href="classAdjacencyView.html">AdjacencyView</a></div><div class="ttdoc">Read-only map of maps of maps (view into a dict-of-dict-of-dict structure)</div><div class="ttdef"><b>Definition</b> coreviews.hpp:109</div></div>
-<div class="ttc" id="aclassxnetwork_1_1thread__pool_html"><div class="ttname"><a href="classxnetwork_1_1thread__pool.html">xnetwork::thread_pool</a></div><div class="ttdef"><b>Definition</b> thread_pool.hpp:35</div></div>
+<div class="ttc" id="aclassxnetwork_1_1thread__pool_html"><div class="ttname"><a href="classxnetwork_1_1thread__pool.html">xnetwork::thread_pool</a></div><div class="ttdoc">Command pattern: tasks are encapsulated as command objects (std::function&lt;void()&gt;) placed in a shared...</div><div class="ttdef"><b>Definition</b> thread_pool.hpp:42</div></div>
 </div><!-- fragment --><p>The destructor waits for all pending tasks to finish and joins all worker threads. It is safe to destroy the pool while tasks are still running - remaining tasks are abandoned. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->

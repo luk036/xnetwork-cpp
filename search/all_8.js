@@ -9,5 +9,5 @@ var searchData=
   ['hide_5fdiedges_6',['hide_diedges',['../filters_8h.html#a1b63ba16bcacfd9aa528b961647b2621',1,'filters.h']]],
   ['hide_5fnodes_7',['hide_nodes',['../filters_8h.html#acd2e1fa59daab7af76d6d07dfb7809c2',1,'filters.h']]],
   ['hierholzer_8',['hierholzer',['../namespacedetail.html#acc4c777a4603702801538a8278f9412b',1,'detail']]],
-  ['history_9',['Star History',['../index.html#autotoc_md20',1,'']]]
+  ['history_9',['Star History',['../index.html#autotoc_md18',1,'']]]
 ];

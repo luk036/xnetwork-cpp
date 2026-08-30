@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.7</span>
+   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.8</span>
    </div>
   </td>
  </tr>
@@ -209,19 +209,12 @@ Build everything at once</h3>
 <div class="line">./build/XNetwork --help</div>
 <div class="line"># build docs (requires -DXNETWORK_BUILD_DOCS=ON at configure time)</div>
 <div class="line">cmake --build build --target GenerateDocs</div>
-</div><!-- fragment --><h3><a class="anchor" id="additional-tools"></a>
-Additional tools</h3>
-<p>The test and standalone subprojects include the <a href="cmake/tools.cmake">tools.cmake</a> file which is used to import additional tools on-demand through CMake configuration arguments. The following are currently supported.</p>
-<h4><a class="anchor" id="autotoc_md12"></a>
-Sanitizers</h4>
-<p>Sanitizers can be enabled by configuring CMake with &lsquo;-DUSE_SANITIZER=&lt;Address | Memory | MemoryWithOrigins | Undefined | Thread | Leak | 'Address;Undefined&rsquo;&gt;`.</p>
-<h4><a class="anchor" id="autotoc_md13"></a>
-Static Analyzers</h4>
-<p>Static Analyzers can be enabled by setting <code>-DUSE_STATIC_ANALYZER=&lt;clang-tidy | iwyu | cppcheck&gt;</code>, or a combination of those in quotation marks, separated by semicolons. By default, analyzers will automatically find configuration files such as <code>.clang-format</code>. Additional arguments can be passed to the analyzers by setting the <code>CLANG_TIDY_ARGS</code>, <code>IWYU_ARGS</code> or <code>CPPCHECK_ARGS</code> variables.</p>
-<h4><a class="anchor" id="autotoc_md14"></a>
-Ccache</h4>
-<p>Ccache can be enabled by configuring with <code>-DUSE_CCACHE=&lt;ON | OFF&gt;</code>.</p>
-<h2><a class="anchor" id="autotoc_md15"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md12"></a>
+Static analysis</h3>
+<p>clang-tidy can be enabled by configuring CMake with <code>-DXNETWORK_ENABLE_CLANG_TIDY=ON</code> and building the <code>clang-tidy</code> target. It analyzes the public headers using the checks configured in <code>.clang-tidy</code>.</p>
+<div class="fragment"><div class="line">cmake -B build -DXNETWORK_ENABLE_CLANG_TIDY=ON</div>
+<div class="line">cmake --build build --target clang-tidy</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md13"></a>
 ❓ FAQ</h2>
 <blockquote class="doxtable">
 <p>&zwj;Can I use this for header-only libraries? </p>
@@ -259,26 +252,26 @@ Ccache</h4>
 <p>&zwj;This is too much, I just want to play with C++ code and test some libraries. </p>
 </blockquote>
 <p>Perhaps the <a href="https://github.com/TheLartians/MiniCppStarter">MiniCppStarter</a> is something for you!</p>
-<h2><a class="anchor" id="autotoc_md16"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 Related Projects</h2>
-<h3><a class="anchor" id="autotoc_md17"></a>
+<h3><a class="anchor" id="autotoc_md15"></a>
 Parallel Implementations</h3>
 <ul>
 <li><a href="https://github.com/luk036/algorithm-polyglot"><b>algorithm-polyglot</b></a> - Meta-repo documenting the polyglot algorithm strategy</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md18"></a>
+<h3><a class="anchor" id="autotoc_md16"></a>
 Graph Libraries</h3>
 <ul>
 <li><a href="https://github.com/luk036/digraphx-rs"><b>digraphx-rs</b></a> - Rust implementation of directed graph algorithms</li>
 <li><a href="https://github.com/luk036/netoptim-cpp"><b>netoptim-cpp</b></a> - Network optimization algorithms in C++</li>
 <li><a href="https://github.com/luk036/xnetwork"><b>xnetwork (Python)</b></a> - Original Python NetworkX wrapper</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md19"></a>
+<h3><a class="anchor" id="autotoc_md17"></a>
 Related Libraries</h3>
 <ul>
 <li><a href="https://github.com/luk036/py2cpp"><b>py2cpp</b></a> - Python-like C++ syntax library (used by xnetwork-cpp)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md20"></a>
+<h2><a class="anchor" id="autotoc_md18"></a>
 Star History</h2>
 <p><a href="https://star-history.com/#TheLartians/ModernCppStarter&amp;cpp-best-practices/gui_starter_template&amp;filipdutescu/modern-cpp-template&amp;Date"><img src="https://api.star-history.com/svg?repos=TheLartians/ModernCppStarter,cpp-best-practices/gui_starter_template,filipdutescu/modern-cpp-template&amp;type=Date" alt="Star History Chart" class="inline"/></a> </p>
 </div></div><!-- PageDoc -->

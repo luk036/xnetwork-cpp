@@ -11,7 +11,7 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="classxnetwork_1_1thread__pool.html" target="_top" xlink:title=" ">
+<g id="a_Node000000"><a xlink:href="classxnetwork_1_1thread__pool.html" target="_top" xlink:title="Command pattern: tasks are encapsulated as command objects (std::function&lt;void()&gt;) placed in a shared...">
 <polygon fill="white" stroke="#666666" points="126,-19 0,-19 0,0 126,0 126,-19"/>
 <text text-anchor="middle" x="63" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">xnetwork::thread_pool</text>
 </a>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['faq_0',['❓ FAQ',['../index.html#autotoc_md15',1,'']]],
+  ['faq_0',['❓ FAQ',['../index.html#autotoc_md13',1,'']]],
   ['features_1',['✨ Features',['../index.html#autotoc_md2',1,'']]],
   ['filters_2eh_2',['filters.h',['../filters_8h.html',1,'']]],
   ['find_5fodd_5fdegree_5fnodes_3',['find_odd_degree_nodes',['../namespacedetail.html#a590f10b21c75f81b82a4a89e28c6cab4',1,'detail']]],

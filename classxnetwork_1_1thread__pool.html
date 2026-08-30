@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.7</span>
+   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.8</span>
    </div>
   </td>
  </tr>
@@ -87,6 +87,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Command pattern: tasks are encapsulated as command objects (std::function&lt;void()&gt;) placed in a shared queue; producers (enqueue) are decoupled from executors (worker threads).  
+ <a href="classxnetwork_1_1thread__pool.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="thread__pool_8hpp_source.html">thread_pool.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -107,7 +110,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af11591d99423f89c519204363d883358"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classxnetwork_1_1thread__pool.html#af11591d99423f89c519204363d883358">enqueue</a> (<a class="el" href="classAdjacencyView.html">F</a> &amp;&amp;<a class="el" href="classAdjacencyView.html">task</a>) -&gt; std::future&lt; std::invoke_result_t&lt; std::decay_t&lt; <a class="el" href="classAdjacencyView.html">F</a> &gt; &gt; &gt;</td></tr>
 <tr class="separator:af11591d99423f89c519204363d883358"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Command pattern: tasks are encapsulated as command objects (std::function&lt;void()&gt;) placed in a shared queue; producers (enqueue) are decoupled from executors (worker threads). </p>
+<p><a class="el" href="classxnetwork_1_1thread__pool.html#af11591d99423f89c519204363d883358">enqueue()</a> returns a std::future for result retrieval. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7067851bc5a36fc06d4881eee9fbaefd" name="a7067851bc5a36fc06d4881eee9fbaefd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7067851bc5a36fc06d4881eee9fbaefd">&#9670;&#160;</a></span>thread_pool() <span class="overload">[1/3]</span></h2>
 

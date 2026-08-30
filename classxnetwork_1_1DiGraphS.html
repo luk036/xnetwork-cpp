@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.7</span>
+   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.8</span>
    </div>
   </td>
  </tr>
@@ -490,17 +490,17 @@ template&lt;<a class="el" href="classAdjacencyView.html">typename</a> <a class="
 <p>Add an edge between node_u and node_v.</p>
 <p>The nodes node_u and node_v will be automatically added if (they are not already : the graph.</p>
 <p>Edge attributes can be specified with keywords or by directly accessing the edge"s attribute dictionary. See examples below.</p>
-<h2><a class="anchor" id="autotoc_md21"></a>
+<h2><a class="anchor" id="autotoc_md19"></a>
 Parameters</h2>
 <p>node_u, node_v : nodes Nodes can be, for example, strings or numbers. Nodes must be hashable (and not None) C++ objects.</p>
-<h2><a class="anchor" id="autotoc_md22"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 See Also</h2>
 <p>add_edges_from : add a collection of edges</p>
-<h2><a class="anchor" id="autotoc_md23"></a>
+<h2><a class="anchor" id="autotoc_md21"></a>
 Notes</h2>
 <p>Adding an edge that already exists updates the edge data.</p>
 <p>Many XNetwork algorithms designed for weighted graphs use an edge attribute (by default <code>weight</code>) to hold a numerical value.</p>
-<h2><a class="anchor" id="autotoc_md24"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
 Examples</h2>
 <p>The following all add the edge e=(1, 2) to graph gra) { </p><pre class="fragment">&gt; gra = xnetwork::DiGraphS()   // or DiGraph, MultiGraph,
 </pre><p> MultiDiGraph, etc &gt; e = (1, 2); &gt; gra.add_edge(1, 2) // explicit two-node form &gt; gra.add_edges_from([(1, 2)]); // add edges from iterable container</p>
