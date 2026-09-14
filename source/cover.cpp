@@ -73,42 +73,11 @@ auto generic_bfs_cycle(const Graph& ugraph, const CoverSet& coverset)
                               typename Graph::node_t, typename Graph::node_t>> {
     using node_t = typename Graph::node_t;
     std::vector<std::tuple<py::dict<node_t, BFSInfo<node_t>>, node_t, node_t>> cycles;
-
-    int depth_limit = static_cast<int>(ugraph.number_of_nodes());
-
-    for (const auto& source : ugraph) {
-        if (coverset.contains(source)) continue;
-
-        py::dict<node_t, BFSInfo<node_t>> info;
-        info.insert_or_assign(source, BFSInfo<node_t>(source, depth_limit));
-
-        std::queue<node_t> queue;
-        queue.push(source);
-
-        while (!queue.empty()) {
-            node_t parent = queue.front();
-            queue.pop();
-
-            const auto& parent_info = info.at(parent);
-            node_t succ = parent_info.parent;
-            int depth_now = parent_info.depth;
-
-            for (const auto& child : ugraph[parent]) {
-                if (coverset.contains(child)) continue;
-
-                if (!info.contains(child)) {
-                    info.insert_or_assign(child, BFSInfo<node_t>(parent, depth_now - 1));
-                    queue.push(child);
-                    continue;
-                }
-
-                if (succ == child) continue;
-
-                cycles.emplace_back(info, parent, child);
-            }
-        }
-    }
-
+    detail::scan_cycles<Graph, CoverSet>(ugraph, coverset,
+                                         [&cycles](const auto& info, node_t parent, node_t child) {
+                                             cycles.emplace_back(info, parent, child);
+                                             return false;
+                                         });
     return cycles;
 }
 
@@ -139,7 +108,16 @@ auto min_vertex_cover(const Graph& ugraph, WeightMap& weight, CoverSet& coverset
         };
     };
 
-    return pd_cover(make_violate_graph, weight, coverset);
+    // Removing a vertex can only expose edges incident to it, so redundancy is
+    // an O(deg) neighbour check instead of an O(E) rescan of every edge.
+    auto redundant = [&ugraph, &coverset](const node_t& v) -> bool {
+        for (const auto& nb : ugraph[v]) {
+            if (!coverset.contains(nb)) return false;
+        }
+        return true;
+    };
+
+    return pd_cover(make_violate_graph, weight, coverset, redundant);
 }
 
 template auto min_vertex_cover<xnetwork::SimpleGraph, py::dict<uint32_t, int>, py::set<uint32_t>>(
@@ -157,17 +135,19 @@ auto min_odd_cycle_cover(const Graph& ugraph, WeightMap& weight, CoverSet& cover
 
     auto make_violate = [&]() {
         return [&ugraph, &coverset]() -> std::optional<std::vector<node_t>> {
-            auto cycles = generic_bfs_cycle<Graph, CoverSet>(ugraph, coverset);
-            if (cycles.empty()) return std::nullopt;
-            for (const auto& [info, parent, child] : cycles) {
-                const auto& info_parent = info.at(parent);
-                const auto& info_child = info.at(child);
-                if ((info_parent.depth - info_child.depth) % 2 == 0) {
+            std::optional<std::vector<node_t>> result;
+            detail::scan_cycles<Graph, CoverSet>(
+                ugraph, coverset, [&result](const auto& info, node_t parent, node_t child) {
+                    const auto& info_parent = info.at(parent);
+                    const auto& info_child = info.at(child);
+                    if ((info_parent.depth - info_child.depth) % 2 != 0) {
+                        return false;  // keep scanning for an odd cycle
+                    }
                     auto cycle_deque = construct_cycle<node_t>(info, parent, child);
-                    return std::vector<node_t>(cycle_deque.begin(), cycle_deque.end());
-                }
-            }
-            return std::nullopt;
+                    result = std::vector<node_t>(cycle_deque.begin(), cycle_deque.end());
+                    return true;
+                });
+            return result;
         };
     };
 
