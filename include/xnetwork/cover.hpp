@@ -15,6 +15,7 @@
 #include <optional>
 #include <py2cpp/dict.hpp>
 #include <py2cpp/set.hpp>
+#include <queue>
 #include <utility>
 #include <vector>
 
@@ -43,14 +44,18 @@
  *   or std::nullopt when exhausted.
  * @tparam WeightMap Weight mapping (mutable)
  * @tparam SolutionSet Set-like container for the solution
+ * @tparam RedundantFunc Callable ``bool(node)``: true iff removing @p node keeps
+ *   the solution valid. Lets callers supply a cheap local test instead of
+ *   re-scanning every violation.
  * @param make_violator Factory that creates fresh violators
  * @param weight Weight function for vertices
  * @param soln Solution set (will be modified)
+ * @param redundant Fast per-node redundancy predicate (see @p RedundantFunc)
  * @return std::pair<SolutionSet, typename WeightMap::mapped_type> Solution and total primal cost
  */
-template <typename MakeViolator, typename WeightMap, typename SolutionSet>
-auto pd_cover(MakeViolator make_violator, WeightMap& weight, SolutionSet& soln)
-    -> std::pair<SolutionSet, typename WeightMap::mapped_type> {
+template <typename MakeViolator, typename WeightMap, typename SolutionSet, typename RedundantFunc>
+auto pd_cover(MakeViolator make_violator, WeightMap& weight, SolutionSet& soln,
+              RedundantFunc redundant) -> std::pair<SolutionSet, typename WeightMap::mapped_type> {
     using CostType = typename WeightMap::mapped_type;
     using NodeType = typename SolutionSet::value_type;
 
@@ -89,17 +94,7 @@ auto pd_cover(MakeViolator make_violator, WeightMap& weight, SolutionSet& soln)
     // Phase 2: Reverse-Delete Post-Processing
     for (auto it = added_order.rbegin(); it != added_order.rend(); ++it) {
         soln.erase(*it);
-        bool is_redundant = true;
-        {
-            auto check = make_violator();
-            while (auto opt = check()) {
-                if (!opt->empty()) {
-                    is_redundant = false;
-                    break;
-                }
-            }
-        }
-        if (!is_redundant) {
+        if (!redundant(*it)) {
             soln.insert(*it);
         }
     }
@@ -111,6 +106,25 @@ auto pd_cover(MakeViolator make_violator, WeightMap& weight, SolutionSet& soln)
 
     assert(total_dual_cost <= final_prml_cost);
     return std::make_pair(soln, final_prml_cost);
+}
+
+/**
+ * @brief Overload that validates each removal by re-running the violator.
+ *
+ * Slower than the explicit-predicate overload but works for any problem where
+ * a cheap local redundancy test is not available.
+ */
+template <typename MakeViolator, typename WeightMap, typename SolutionSet>
+auto pd_cover(MakeViolator make_violator, WeightMap& weight,
+              SolutionSet& soln) -> std::pair<SolutionSet, typename WeightMap::mapped_type> {
+    auto redundant = [&](const auto& /*vtx*/) -> bool {
+        auto check = make_violator();
+        while (auto opt = check()) {
+            if (!opt->empty()) return false;
+        }
+        return true;
+    };
+    return pd_cover(make_violator, weight, soln, redundant);
 }
 
 /**
@@ -152,6 +166,62 @@ template <typename Node> struct BFSInfo {
     BFSInfo& operator=(BFSInfo&&) = default;
     ~BFSInfo() = default;
 };
+
+namespace detail {
+
+    /**
+     * @brief Visit every BFS back edge, one connected component at a time.
+     *
+     * Each component is traversed once (from its first uncovered vertex), so
+     * the scan is O(V + E) instead of O(V * (V + E)). Calls @p accept with
+     * (info, parent, child) for each back edge and stops as soon as @p accept
+     * returns true.
+     */
+    template <typename Graph, typename CoverSet, typename Accept>
+    void scan_cycles(const Graph& ugraph, const CoverSet& coverset, Accept&& accept) {
+        using node_t = typename Graph::node_t;
+        const int depth_limit = static_cast<int>(ugraph.number_of_nodes());
+        py::set<node_t> visited;
+
+        for (const auto& source : ugraph) {
+            if (coverset.contains(source) || visited.contains(source)) continue;
+
+            py::dict<node_t, BFSInfo<node_t>> info;
+            info.insert_or_assign(source, BFSInfo<node_t>(source, depth_limit));
+            visited.insert(source);
+
+            std::queue<node_t> queue;
+            queue.push(source);
+
+            while (!queue.empty()) {
+                node_t parent = queue.front();
+                queue.pop();
+
+                const auto& parent_info = info.at(parent);
+                const node_t succ = parent_info.parent;
+                const int depth_now = parent_info.depth;
+
+                for (const auto& child : ugraph[parent]) {
+                    if (coverset.contains(child)) continue;
+
+                    if (!info.contains(child)) {
+                        info.insert_or_assign(child, BFSInfo<node_t>(parent, depth_now - 1));
+                        visited.insert(child);
+                        queue.push(child);
+                        continue;
+                    }
+
+                    if (succ == child) continue;
+
+                    if (std::forward<Accept>(accept)(info, parent, child)) {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+}  // namespace detail
 
 /**
  * @brief Constructs a cycle from BFS information
@@ -202,11 +272,14 @@ auto min_cycle_cover(const Graph& ugraph, WeightMap& weight, CoverSet& coverset)
     // and returns the first cycle found (or nullopt if none).
     auto make_violate = [&]() {
         return [&ugraph, &coverset]() -> std::optional<std::vector<node_t>> {
-            auto cycles = generic_bfs_cycle<Graph, CoverSet>(ugraph, coverset);
-            if (cycles.empty()) return std::nullopt;
-            const auto& [info, parent, child] = cycles[0];
-            auto cycle_deque = construct_cycle<node_t>(info, parent, child);
-            return std::vector<node_t>(cycle_deque.begin(), cycle_deque.end());
+            std::optional<std::vector<node_t>> result;
+            detail::scan_cycles<Graph, CoverSet>(
+                ugraph, coverset, [&result](const auto& info, node_t parent, node_t child) {
+                    auto cycle_deque = construct_cycle<node_t>(info, parent, child);
+                    result = std::vector<node_t>(cycle_deque.begin(), cycle_deque.end());
+                    return true;  // stop at the first cycle
+                });
+            return result;
         };
     };
 
