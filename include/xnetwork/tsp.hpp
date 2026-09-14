@@ -32,6 +32,7 @@
 #include <tuple>
 #include <vector>
 #include <xnetwork/classes/graph.hpp>
+#include <xnetwork/detail/blossom.hpp>
 
 // ---------------------------------------------------------------------------
 // Helper: calculate_total_distance
@@ -136,52 +137,6 @@ namespace detail {
     }
 
     /**
-     * @brief Greedy minimum-weight perfect matching - O(k^2 log k).
-     *
-     * Builds a sorted list of all candidate edges among ``odd_nodes`` and
-     * greedily picks the cheapest non-adjacent pair.  This is a heuristic;
-     * for a provable 3/2 bound a blossom algorithm would be required.
-     */
-    template <typename Node, typename WeightFunc>
-    auto greedy_min_weight_matching(const std::vector<Node>& odd_nodes, WeightFunc&& weight)
-        -> std::vector<std::pair<Node, Node>> {
-        const size_t k = odd_nodes.size();
-        if (k < 2) return {};
-
-        // Build edge list sorted by weight
-        std::vector<std::tuple<double, Node, Node>> edges;
-        edges.reserve(k * (k - 1) / 2);
-        for (size_t i = 0; i < k; ++i) {
-            for (size_t j = i + 1; j < k; ++j) {
-                edges.emplace_back(std::forward<WeightFunc>(weight)(odd_nodes[i], odd_nodes[j]),
-                                   odd_nodes[i], odd_nodes[j]);
-            }
-        }
-        std::sort(edges.begin(), edges.end(),
-                  [](const auto& a, const auto& b) { return std::get<0>(a) < std::get<0>(b); });
-
-        std::vector<bool> used(k, false);
-        std::vector<std::pair<Node, Node>> matching;
-        matching.reserve(k / 2);
-
-        for (const auto& [w, u, v] : edges) {
-            // Map node -> index in odd_nodes (linear scan, k is small)
-            size_t iu = 0;
-            size_t iv = 0;
-            for (size_t t = 0; t < k; ++t) {
-                if (odd_nodes[t] == u) iu = t;
-                if (odd_nodes[t] == v) iv = t;
-            }
-            if (!used[iu] && !used[iv]) {
-                matching.emplace_back(u, v);
-                used[iu] = true;
-                used[iv] = true;
-            }
-        }
-        return matching;
-    }
-
-    /**
      * @brief Build a multigraph adjacency list (MST + matching).
      *
      * Parallel edges are preserved via ``std::multiset`` so that the graph
@@ -275,9 +230,9 @@ auto christofides_tsp(const Graph& G, WeightFunc&& weight) -> std::vector<typena
     // 2. Odd-degree vertices in the MST
     const auto odd_nodes = detail::find_odd_degree_nodes(mst_edges, n);
 
-    // 3. Minimum-weight perfect matching on odd vertices
-    const auto matching
-        = detail::greedy_min_weight_matching(odd_nodes, std::forward<WeightFunc>(weight));
+    // 3. Minimum-weight perfect matching on odd vertices (Edmonds' blossom)
+    const auto matching = detail::blossom_min_weight_perfect_matching(
+        odd_nodes, std::forward<WeightFunc>(weight));
 
     // 4. Build the Eulerian multigraph (MST + matching)
     auto adj = detail::build_multigraph<Node>(n, mst_edges, matching);

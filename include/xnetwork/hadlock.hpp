@@ -26,6 +26,7 @@
 #include <set>
 #include <utility>
 #include <vector>
+#include <xnetwork/detail/blossom.hpp>
 #include <xnetwork/thread_pool.hpp>
 
 // Hash for std::pair - needed by py::set<std::pair<...>> (backed by unordered_set)
@@ -153,31 +154,21 @@ namespace detail {
     // -------------------------------------------------------------------
 
     /**
-     * Greedy 2-approximation for MWPM on a metric complete graph.
-     */
-    template <typename Node>
-    auto greedy_mwpm(const std::vector<int>& odd_faces, const std::vector<std::vector<int>>& dist)
-        -> std::vector<std::pair<int, int>>;
-
-    /**
-     * Exact MWPM via DP over subsets (n <= 18, 2^18 = 262k states).
-     */
-    template <typename Node>
-    auto exact_mwpm(const std::vector<int>& odd_faces, const std::vector<std::vector<int>>& dist)
-        -> std::vector<std::pair<int, int>>;
-
-    /**
-     * Dispatch MWPM: exact DP for small n, greedy for large n.
+     * @brief Minimum-weight perfect matching via Edmonds' blossom algorithm.
+     *
+     * `dist` is the all-pairs distance matrix indexed by face id; only the
+     * entries for `odd_faces` are used. This replaces the exact/greedy dispatch
+     * (whose DP reconstruction was wrong) so MAX-CUT keeps its guarantee for
+     * large odd-face sets.
      */
     template <typename Node>
     auto min_weight_perfect_matching(const std::vector<int>& odd_faces,
                                      const std::vector<std::vector<int>>& dist)
         -> std::vector<std::pair<int, int>> {
-        const int n = static_cast<int>(odd_faces.size());
-        if (n <= 18) {
-            return exact_mwpm<Node>(odd_faces, dist);
-        }
-        return greedy_mwpm<Node>(odd_faces, dist);
+        auto weight = [&dist](int a, int b) -> double {
+            return static_cast<double>(dist[a][b]);
+        };
+        return blossom_min_weight_perfect_matching(odd_faces, weight);
     }
 
     // -------------------------------------------------------------------

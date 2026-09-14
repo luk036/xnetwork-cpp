@@ -80,63 +80,6 @@ namespace detail {
     }
 
     // -------------------------------------------------------------------
-    // exact_mwpm: DP over subsets - Node template for type generality
-    // -------------------------------------------------------------------
-
-    template <typename Node>
-    auto exact_mwpm(const std::vector<int>& odd_faces, const std::vector<std::vector<int>>& dist)
-        -> std::vector<std::pair<int, int>> {
-        const auto n = odd_faces.size();
-        const auto size = static_cast<size_t>(1) << n;
-
-        // Precompute first_unset[mask]: smallest i where bit i is 0 in mask
-        // Recurrence: first_unset[mask] = (mask & 1) ? first_unset[mask >> 1] + 1 : 0
-        // Precompute first_set[mask]: smallest i where bit i is 1 in mask
-        // Recurrence: first_set[mask] = (mask & 1) ? 0 : first_set[mask >> 1] + 1
-        std::vector<unsigned> first_unset(size, 0U);
-        std::vector<unsigned> first_set(size, 0U);
-        for (size_t mask = 1; mask < size; ++mask) {
-            first_unset[mask] = (mask & 1U) ? first_unset[mask >> 1] + 1U : 0U;
-            first_set[mask] = (mask & 1U) ? 0U : first_set[mask >> 1] + 1U;
-        }
-
-        std::vector<int> dp(size, INF);
-        dp[0] = 0;
-
-        for (size_t mask = 0; mask < size; ++mask) {
-            if (dp[mask] == INF) continue;
-            const auto first = first_unset[mask];
-            if (first >= n) continue;
-
-            for (auto j = first + 1; j < n; ++j) {
-                if (mask & (static_cast<size_t>(1) << j)) continue;
-                const auto new_mask
-                    = mask | (static_cast<size_t>(1) << first) | (static_cast<size_t>(1) << j);
-                const int w = dist[odd_faces[first]][odd_faces[j]];
-                dp[new_mask] = std::min(dp[mask] + w, dp[new_mask]);
-            }
-        }
-
-        std::vector<std::pair<int, int>> matching;
-        auto mask = size - 1;
-        while (mask) {
-            const auto first = first_set[mask];
-            for (auto j = first + 1; j < n; ++j) {
-                if (!(mask & (static_cast<size_t>(1) << j))) continue;
-                const auto prev_mask
-                    = mask ^ (static_cast<size_t>(1) << first) ^ (static_cast<size_t>(1) << j);
-                const int w = dist[odd_faces[first]][odd_faces[j]];
-                if (dp[mask] == dp[prev_mask] + w) {
-                    matching.emplace_back(odd_faces[first], odd_faces[j]);
-                    mask = prev_mask;
-                    break;
-                }
-            }
-        }
-        return matching;
-    }
-
-    // -------------------------------------------------------------------
     // dijkstra
     // -------------------------------------------------------------------
 
@@ -167,47 +110,11 @@ namespace detail {
         return {dist, prev};
     }
 
-    // -------------------------------------------------------------------
-    // greedy_mwpm
-    // -------------------------------------------------------------------
-
-    template <typename Node>
-    auto greedy_mwpm(const std::vector<int>& odd_faces, const std::vector<std::vector<int>>& dist)
-        -> std::vector<std::pair<int, int>> {
-        const auto n = odd_faces.size();
-        std::vector<std::tuple<int, int, int>> edges;
-        edges.reserve(n * (n - 1) / 2);
-        for (size_t i = 0; i < n; ++i)
-            for (size_t j = i + 1; j < n; ++j)
-                edges.emplace_back(dist[odd_faces[i]][odd_faces[j]], odd_faces[i], odd_faces[j]);
-
-        std::sort(edges.begin(), edges.end());
-
-        std::unordered_set<int> used;
-        std::vector<std::pair<int, int>> matching;
-        for (const auto& [w, u, v] : edges) {
-            if (used.count(u) || used.count(v)) continue;
-            used.insert(u);
-            used.insert(v);
-            matching.emplace_back(u, v);
-            if (used.size() == n) break;
-        }
-        return matching;
-    }
-
     // Explicit instantiations
     template auto biconnected_components<xnetwork::SimpleGraph>(const xnetwork::SimpleGraph& G)
         -> std::vector<py::set<typename xnetwork::SimpleGraph::node_t>>;
 
-    template auto exact_mwpm<uint32_t>(const std::vector<int>&,
-                                       const std::vector<std::vector<int>>&)
-        -> std::vector<std::pair<int, int>>;
-
     template auto dijkstra<uint32_t>(const std::vector<std::vector<DualEdge<uint32_t>>>&, int)
         -> std::pair<std::vector<int>, std::vector<int>>;
-
-    template auto greedy_mwpm<uint32_t>(const std::vector<int>&,
-                                        const std::vector<std::vector<int>>&)
-        -> std::vector<std::pair<int, int>>;
 
 }  // namespace detail

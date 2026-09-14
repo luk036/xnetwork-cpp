@@ -9,6 +9,7 @@
 #include <set>
 #include <vector>
 #include <xnetwork/classes/graph.hpp>
+#include <xnetwork/detail/blossom.hpp>
 #include <xnetwork/tsp.hpp>
 
 using SimpleGraph = xnetwork::SimpleGraph;
@@ -293,4 +294,29 @@ TEST_CASE("Combined solver manhattan 3/2 bound check") {
     const auto tour = solve_christofides_2opt_tsp(G, weight);
     CHECK(is_valid_hamiltonian_cycle(tour, 10));
     CHECK_GT(calculate_total_distance(tour, weight), 0.0);
+}
+
+// ---------------------------------------------------------------------------
+// Minimum-weight perfect matching (blossom)
+// ---------------------------------------------------------------------------
+
+TEST_CASE("Blossom MWPM finds the optimal matching") {
+    // Three well-separated close pairs: the optimum pairs each close pair.
+    const std::vector<std::pair<double, double>> pts
+        = {{0.0, 0.0}, {1.0, 0.0}, {10.0, 0.0}, {11.0, 0.0}, {20.0, 0.0}, {21.0, 0.0}};
+    const std::vector<uint32_t> nodes = {0, 1, 2, 3, 4, 5};
+    const auto weight = EuclideanWeight{pts};
+
+    const auto matching = detail::blossom_min_weight_perfect_matching(nodes, weight);
+    CHECK_EQ(matching.size(), 3u);
+
+    double total = 0.0;
+    std::set<uint32_t> used;
+    for (const auto& [a, b] : matching) {
+        total += weight(a, b);
+        CHECK(used.insert(a).second);
+        CHECK(used.insert(b).second);
+    }
+    CHECK_EQ(used.size(), 6u);
+    CHECK(total == doctest::Approx(3.0));
 }
