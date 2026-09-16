@@ -24,9 +24,11 @@
 #include <py2cpp/set.hpp>
 #include <queue>
 #include <set>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 #include <xnetwork/detail/blossom.hpp>
+#include <xnetwork/exception.hpp>
 #include <xnetwork/thread_pool.hpp>
 
 // Hash for std::pair - needed by py::set<std::pair<...>> (backed by unordered_set)
@@ -88,7 +90,8 @@ namespace detail {
         -> std::vector<std::vector<DualEdge<Node>>> {
         const auto n_face = faces.size();
 
-        std::map<std::pair<Node, Node>, std::vector<int>> edge_face_map;
+        std::unordered_map<std::pair<Node, Node>, std::vector<int>> edge_face_map;
+        edge_face_map.reserve(n_face * 2);
         for (size_t fi = 0; fi < n_face; ++fi) {
             const auto& f = faces[fi];
             const auto sz = f.size();
@@ -100,7 +103,8 @@ namespace detail {
             }
         }
 
-        std::map<std::pair<int, int>, std::pair<int, std::pair<Node, Node>>> best;
+        std::unordered_map<std::pair<int, int>, std::pair<int, std::pair<Node, Node>>> best;
+        best.reserve(edge_face_map.size());
         for (const auto& [primal_key, face_ids] : edge_face_map) {
             if (face_ids.size() < 2) continue;
             const auto& [u, v] = primal_key;
@@ -109,6 +113,7 @@ namespace detail {
                 for (size_t b = a + 1; b < face_ids.size(); ++b) {
                     int fi = face_ids[a];
                     int fj = face_ids[b];
+                    if (fi == fj) continue;  // bridge: both traversals hit the same face
                     if (fi > fj) std::swap(fi, fj);
                     auto it = best.find({fi, fj});
                     if (it == best.end() || w < it->second.first) {
@@ -254,39 +259,31 @@ namespace detail {
             return all_edges;
         }
 
-        // Odd number of odd faces -> drop one (planar graphs have even #odd faces)
+        // Handshaking on the face list (sum of face lengths = 2|E|) guarantees an
+        // even number of odd faces. An odd count means the supplied face set is
+        // malformed; dropping a terminal here would silently return a suboptimal cut.
         if (odd_faces.size() % 2 != 0) {
-            odd_faces.pop_back();
-            if (odd_faces.size() < 2) {
-                py::set<std::pair<node_t, node_t>> all_edges;
-                for (const auto& e : G.edges()) {
-                    all_edges.insert(e);
-                }
-                return all_edges;
-            }
+            throw xnetwork::XNetworkAlgorithmError(
+                "hadlock: odd number of odd-degree faces; the face list is malformed");
         }
 
         const auto n_odd = odd_faces.size();
+        const auto n_face = faces.size();
 
-        // odd_faces[k] -> k lookup
-        std::map<int, size_t> odd_idx;
-        for (size_t k = 0; k < n_odd; ++k) {
-            odd_idx[odd_faces[k]] = k;
-        }
+        std::vector<char> is_odd(n_face, 0);
+        for (const auto f : odd_faces) is_odd[f] = 1;
 
-        // (3) All-pairs shortest paths between odd faces
-        std::vector<std::vector<int>> dist_mat(n_odd);
-        std::vector<std::vector<std::vector<int>>> path_mat(n_odd,
-                                                            std::vector<std::vector<int>>(n_odd));
+        // (3) Shortest paths from every odd face, keyed by face id (the matching
+        //     weight function indexes rows by face id, not by odd-face position).
+        //     Only predecessors are retained; matched-pair paths are reconstructed
+        //     on demand in step (5), avoiding the O(n_odd^2) all-pairs path table.
+        std::vector<std::vector<int>> dist_mat(n_face);
+        std::vector<std::vector<int>> prev_mat(n_face);
 
         for (size_t i = 0; i < n_odd; ++i) {
             auto [dist, prev] = dijkstra<node_t>(dual, odd_faces[i]);
-            dist_mat[i] = std::move(dist);
-            for (size_t j = 0; j < n_odd; ++j) {
-                if (i != j) {
-                    path_mat[i][j] = reconstruct_path(prev, odd_faces[i], odd_faces[j]);
-                }
-            }
+            dist_mat[odd_faces[i]] = std::move(dist);
+            prev_mat[odd_faces[i]] = std::move(prev);
         }
 
         // (4) Minimum weight perfect matching on odd-face distances
@@ -294,7 +291,8 @@ namespace detail {
 
         // (5) Collect primal edges excluded from the cut
         // Build dual-edge -> primal-edge lookup
-        std::map<std::pair<int, int>, std::pair<node_t, node_t>> dedge_primal;
+        std::unordered_map<std::pair<int, int>, std::pair<node_t, node_t>> dedge_primal;
+        dedge_primal.reserve(dual.size() * 3);
         for (size_t fi = 0; fi < dual.size(); ++fi) {
             for (const auto& e : dual[fi]) {
                 int a = static_cast<int>(fi);
@@ -307,11 +305,9 @@ namespace detail {
         // Walk each matched-pair path in the dual to find primal edges to exclude
         std::set<std::pair<node_t, node_t>> excluded;
         for (const auto& [u_face, v_face] : matching) {
-            auto ui = odd_idx.find(u_face);
-            auto vi = odd_idx.find(v_face);
-            if (ui == odd_idx.end() || vi == odd_idx.end()) continue;
+            if (!is_odd[u_face] || !is_odd[v_face]) continue;
 
-            const auto& path = path_mat[ui->second][vi->second];
+            const auto path = reconstruct_path(prev_mat[u_face], u_face, v_face);
             for (size_t k = 0; k + 1 < path.size(); ++k) {
                 int a = path[k];
                 int b = path[k + 1];

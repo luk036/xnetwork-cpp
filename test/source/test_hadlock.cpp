@@ -6,6 +6,7 @@
 #include <utility>
 #include <vector>
 #include <xnetwork/classes/graph.hpp>  // for SimpleGraph
+#include <xnetwork/exception.hpp>
 #include <xnetwork/hadlock.hpp>
 
 // ===================================================================
@@ -335,4 +336,71 @@ TEST_CASE("BC-optimized - component_faces mismatch handled gracefully") {
     // Should not crash - returns partial cut
     auto cut = solve_hadlock_max_cut(G, unit_weight, component_faces);
     CHECK_GE(cut.size(), 0);  // at least the first component's cut
+}
+
+// ===================================================================
+// Tests: face-order independence and scale
+// ===================================================================
+
+TEST_CASE("Wheel W_4 - outer face listed first") {
+    // Hub 0 + rim 1-2-3-4-1 (unit weights). Max cut = 6 of 8 edges:
+    // each of the 4 triangles forces >= 1 uncut edge, and 2 uncut spokes suffice.
+    TestGraph G(5, {{0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 2}, {2, 3}, {3, 4}, {4, 1}});
+    std::vector<std::vector<uint32_t>> faces = {
+        {1, 2, 3, 4}, {0, 1, 2}, {0, 2, 3}, {0, 3, 4}, {0, 4, 1}};
+
+    auto cut = solve_hadlock_max_cut(G, unit_weight, faces);
+    auto [ok, val] = validate_max_cut(G, cut, unit_weight);
+
+    CHECK(ok);
+    CHECK_EQ(val, 6);
+}
+
+TEST_CASE("Wheel W_100 - large instance, even outer face") {
+    // For even n the max cut is 3n/2: hub in one side, rim alternating.
+    const uint32_t n = 100;
+    std::vector<std::pair<uint32_t, uint32_t>> edges;
+    for (uint32_t i = 1; i <= n; ++i) edges.push_back({0, i});
+    for (uint32_t i = 1; i < n; ++i) edges.push_back({i, i + 1});
+    edges.push_back({n, 1});
+    TestGraph G(n + 1, edges);
+
+    std::vector<std::vector<uint32_t>> faces;
+    std::vector<uint32_t> outer;
+    for (uint32_t i = 1; i <= n; ++i) outer.push_back(i);
+    faces.push_back(outer);
+    for (uint32_t i = 1; i < n; ++i) faces.push_back({0, i, i + 1});
+    faces.push_back({0, n, 1});
+
+    auto cut = solve_hadlock_max_cut(G, unit_weight, faces);
+    auto [ok, val] = validate_max_cut(G, cut, unit_weight);
+
+    CHECK(ok);
+    CHECK_EQ(val, static_cast<int>(3 * n / 2));
+}
+
+TEST_CASE("Triangular prism - odd faces listed last") {
+    // The three quads come first, so the odd face ids (3, 4) exceed n_odd (2).
+    // A distance table indexed by odd-face position rather than face id would
+    // read out of bounds here. Max cut = 7 of 9 unit edges.
+    TestGraph G(6, {{0, 1}, {1, 2}, {2, 0}, {3, 4}, {4, 5}, {5, 3}, {0, 3}, {1, 4}, {2, 5}});
+    std::vector<std::vector<uint32_t>> faces
+        = {{0, 1, 4, 3}, {1, 2, 5, 4}, {2, 0, 3, 5}, {0, 1, 2}, {3, 4, 5}};
+
+    auto cut = solve_hadlock_max_cut(G, unit_weight, faces);
+    auto [ok, val] = validate_max_cut(G, cut, unit_weight);
+
+    CHECK(ok);
+    CHECK_EQ(val, 7);
+}
+
+TEST_CASE("Malformed face list with an odd number of odd faces throws") {
+    // Wheel W_4 with triangle {0,1,2} omitted: three odd faces remain, an odd
+    // count, so the face list is malformed and must be rejected instead of
+    // silently truncating a terminal (which would yield a suboptimal cut).
+    TestGraph G(5, {{0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 2}, {2, 3}, {3, 4}, {4, 1}});
+    std::vector<std::vector<uint32_t>> faces = {{1, 2, 3, 4}, {0, 2, 3}, {0, 3, 4}, {0, 4, 1}};
+
+    CHECK_THROWS_AS(solve_hadlock_max_cut(G, unit_weight, faces),
+                    xnetwork::XNetworkAlgorithmError);
 }
