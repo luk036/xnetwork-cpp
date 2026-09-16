@@ -637,9 +637,8 @@ private:
     static Node* join_right(Node* ltree, Node* node, Node* rtree)
     {
         assert(ltree);
-        unsigned int lh = ltree->height_;
         unsigned int rh = get_node_height(rtree);
-        assert(lh > rh + 1);
+        assert(ltree->height_ > rh + 1);
 
         /*
          * Descend down the right spine of "ltree".
@@ -709,8 +708,7 @@ private:
     {
         assert(rtree);
         unsigned int lh = get_node_height(ltree);
-        unsigned int rh = rtree->height_;
-        assert(lh + 1 < rh);
+        assert(lh + 1 < rtree->height_);
 
         /*
          * Descend down the left spine of "rtree".

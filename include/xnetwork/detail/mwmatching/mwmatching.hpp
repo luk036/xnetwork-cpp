@@ -1325,10 +1325,9 @@ public:
         }
 
         // Check that the path is cyclic.
-        VertexId pos = 0;
-        for (VertexPair edge : path.edges) {
-            pos = (pos + 1) % subblossoms.size();
-            assert(top_level_blossom(edge.second) == subblossoms[pos]);
+        for (std::size_t i = 0; i < path.edges.size(); ++i) {
+            assert(top_level_blossom(path.edges[i].second)
+                   == subblossoms[(i + 1) % subblossoms.size()]);
         }
 
         // Blossom must start and end with an S-blossom.
