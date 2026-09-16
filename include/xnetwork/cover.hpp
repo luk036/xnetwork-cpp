@@ -183,6 +183,37 @@ auto generic_bfs_cycle(const Graph& ugraph, const CoverSet& coverset)
                               typename Graph::node_t, typename Graph::node_t>>;
 
 /**
+ * @brief Reconstructs the odd cycle closed by a same-colour edge
+ *
+ * @tparam Node Node type
+ * @param parent BFS parent mapping (a root node maps to itself)
+ * @param utx One endpoint of the conflicting (same-colour) edge
+ * @param vtx The other endpoint of the conflicting edge
+ * @return std::vector<Node> Cycle vertices, ordered from the lowest common ancestor
+ */
+template <typename Node>
+auto extract_odd_cycle(const py::dict<Node, Node>& parent, Node utx, Node vtx) -> std::vector<Node>;
+
+/**
+ * @brief Finds an odd cycle avoiding coverset using BFS 2-colouring
+ *
+ * @details A graph is bipartite if and only if it admits a proper 2-colouring.
+ *   A BFS that encounters an edge whose endpoints share a colour has found an
+ *   odd cycle, which is reconstructed from the BFS parent pointers. This runs
+ *   in O(V + E) per call instead of restarting a BFS from every source.
+ *
+ * @tparam Graph Graph type
+ * @tparam CoverSet Cover set type
+ * @param ugraph Input graph
+ * @param coverset Set of covered vertices (excluded from search)
+ * @return std::optional<std::vector<typename Graph::node_t>> An odd cycle, or
+ *   std::nullopt when the graph induced by V \ coverset is bipartite
+ */
+template <typename Graph, typename CoverSet>
+auto find_odd_cycle(const Graph& ugraph,
+                    const CoverSet& coverset) -> std::optional<std::vector<typename Graph::node_t>>;
+
+/**
  * @brief Performs minimum cycle cover using primal-dual approximation.
  *
  * @tparam Graph Graph type

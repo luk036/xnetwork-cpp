@@ -117,6 +117,102 @@ template auto generic_bfs_cycle<xnetwork::SimpleGraph, py::set<uint32_t>>(
     -> std::vector<std::tuple<py::dict<uint32_t, BFSInfo<uint32_t>>, uint32_t, uint32_t>>;
 
 // -----------------------------------------------------------------------
+// _extract_odd_cycle
+// -----------------------------------------------------------------------
+
+template <typename Node> auto extract_odd_cycle(const py::dict<Node, Node>& parent, Node utx,
+                                                Node vtx) -> std::vector<Node> {
+    py::set<Node> ancestors;
+    Node node = utx;
+    while (true) {
+        ancestors.insert(node);
+        const Node par = parent.at(node);
+        if (par == node) break;
+        node = par;
+    }
+
+    node = vtx;
+    while (!ancestors.contains(node)) {
+        node = parent.at(node);
+    }
+    const Node lca = node;
+
+    std::vector<Node> branch_u;
+    node = utx;
+    while (node != lca) {
+        branch_u.emplace_back(node);
+        node = parent.at(node);
+    }
+
+    std::vector<Node> branch_v;
+    node = vtx;
+    while (node != lca) {
+        branch_v.emplace_back(node);
+        node = parent.at(node);
+    }
+
+    std::vector<Node> cycle;
+    cycle.reserve(branch_u.size() + branch_v.size() + 1);
+    cycle.emplace_back(lca);
+    for (auto it = branch_u.rbegin(); it != branch_u.rend(); ++it) {
+        cycle.emplace_back(*it);
+    }
+    for (const auto& vtx_in_branch : branch_v) {
+        cycle.emplace_back(vtx_in_branch);
+    }
+    return cycle;
+}
+
+template auto extract_odd_cycle<uint32_t>(const py::dict<uint32_t, uint32_t>&, uint32_t,
+                                          uint32_t) -> std::vector<uint32_t>;
+
+// -----------------------------------------------------------------------
+// _find_odd_cycle
+// -----------------------------------------------------------------------
+
+template <typename Graph, typename CoverSet>
+auto find_odd_cycle(const Graph& ugraph, const CoverSet& coverset)
+    -> std::optional<std::vector<typename Graph::node_t>> {
+    using node_t = typename Graph::node_t;
+
+    py::dict<node_t, int> color;
+    py::dict<node_t, node_t> parent;
+
+    for (const auto& source : ugraph) {
+        if (coverset.contains(source) || color.contains(source)) continue;
+
+        color.insert_or_assign(source, 0);
+        parent.insert_or_assign(source, source);
+
+        std::queue<node_t> queue;
+        queue.push(source);
+
+        while (!queue.empty()) {
+            const node_t utx = queue.front();
+            queue.pop();
+            const int utx_color = color.at(utx);
+
+            for (const auto& vtx : ugraph[utx]) {
+                if (coverset.contains(vtx)) continue;
+
+                if (!color.contains(vtx)) {
+                    color.insert_or_assign(vtx, utx_color ^ 1);
+                    parent.insert_or_assign(vtx, utx);
+                    queue.push(vtx);
+                } else if (color.at(vtx) == utx_color) {
+                    return extract_odd_cycle<node_t>(parent, utx, vtx);
+                }
+            }
+        }
+    }
+
+    return std::nullopt;
+}
+
+template auto find_odd_cycle<xnetwork::SimpleGraph, py::set<uint32_t>>(
+    const xnetwork::SimpleGraph&, const py::set<uint32_t>&) -> std::optional<std::vector<uint32_t>>;
+
+// -----------------------------------------------------------------------
 // min_vertex_cover
 // -----------------------------------------------------------------------
 
@@ -157,17 +253,7 @@ auto min_odd_cycle_cover(const Graph& ugraph, WeightMap& weight, CoverSet& cover
 
     auto make_violate = [&]() {
         return [&ugraph, &coverset]() -> std::optional<std::vector<node_t>> {
-            auto cycles = generic_bfs_cycle<Graph, CoverSet>(ugraph, coverset);
-            if (cycles.empty()) return std::nullopt;
-            for (const auto& [info, parent, child] : cycles) {
-                const auto& info_parent = info.at(parent);
-                const auto& info_child = info.at(child);
-                if ((info_parent.depth - info_child.depth) % 2 == 0) {
-                    auto cycle_deque = construct_cycle<node_t>(info, parent, child);
-                    return std::vector<node_t>(cycle_deque.begin(), cycle_deque.end());
-                }
-            }
-            return std::nullopt;
+            return find_odd_cycle<Graph, CoverSet>(ugraph, coverset);
         };
     };
 

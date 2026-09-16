@@ -84,6 +84,22 @@ TEST_CASE("Test min_odd_cycle_cover triangle") {
     CHECK_GE(cost, 1);
 }
 
+TEST_CASE("Test odd cycle cover even cycle") {
+    // An even cycle is bipartite -> the odd cycle cover should be empty
+    xnetwork::SimpleGraph ugraph(4);
+    ugraph.add_edge(0, 1);
+    ugraph.add_edge(1, 2);
+    ugraph.add_edge(2, 3);
+    ugraph.add_edge(3, 0);
+    py::dict<uint32_t, int> weight{{0, 1}, {1, 1}, {2, 1}, {3, 1}};
+
+    py::set<uint32_t> soln;
+    auto [covered, cost] = min_odd_cycle_cover(ugraph, weight, soln);
+
+    CHECK(covered.empty());
+    CHECK_EQ(cost, 0);
+}
+
 TEST_CASE("Test construct_cycle") {
     py::dict<uint32_t, BFSInfo<uint32_t>> info;
 
