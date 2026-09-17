@@ -44,8 +44,9 @@ namespace detail {
      * @param  weight     pairwise cost function
      * @return vector of matched pairs
      */
-    template <typename Node, typename WeightFunc> auto blossom_min_weight_perfect_matching(
-        const std::vector<Node>& nodes, WeightFunc&& weight) -> std::vector<std::pair<Node, Node>> {
+    template <typename Node, typename WeightFunc>
+    auto blossom_min_weight_perfect_matching(const std::vector<Node>& nodes, WeightFunc&& weight)
+        -> std::vector<std::pair<Node, Node>> {
         const auto k = nodes.size();
         if (k < 2) return {};
 

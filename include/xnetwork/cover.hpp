@@ -210,8 +210,8 @@ auto extract_odd_cycle(const py::dict<Node, Node>& parent, Node utx, Node vtx) -
  *   std::nullopt when the graph induced by V \ coverset is bipartite
  */
 template <typename Graph, typename CoverSet>
-auto find_odd_cycle(const Graph& ugraph,
-                    const CoverSet& coverset) -> std::optional<std::vector<typename Graph::node_t>>;
+auto find_odd_cycle(const Graph& ugraph, const CoverSet& coverset)
+    -> std::optional<std::vector<typename Graph::node_t>>;
 
 /**
  * @brief Performs minimum cycle cover using primal-dual approximation.

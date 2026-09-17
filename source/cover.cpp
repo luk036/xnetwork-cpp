@@ -163,8 +163,8 @@ template <typename Node> auto extract_odd_cycle(const py::dict<Node, Node>& pare
     return cycle;
 }
 
-template auto extract_odd_cycle<uint32_t>(const py::dict<uint32_t, uint32_t>&, uint32_t,
-                                          uint32_t) -> std::vector<uint32_t>;
+template auto extract_odd_cycle<uint32_t>(const py::dict<uint32_t, uint32_t>&, uint32_t, uint32_t)
+    -> std::vector<uint32_t>;
 
 // -----------------------------------------------------------------------
 // _find_odd_cycle
@@ -209,8 +209,9 @@ auto find_odd_cycle(const Graph& ugraph, const CoverSet& coverset)
     return std::nullopt;
 }
 
-template auto find_odd_cycle<xnetwork::SimpleGraph, py::set<uint32_t>>(
-    const xnetwork::SimpleGraph&, const py::set<uint32_t>&) -> std::optional<std::vector<uint32_t>>;
+template auto find_odd_cycle<xnetwork::SimpleGraph, py::set<uint32_t>>(const xnetwork::SimpleGraph&,
+                                                                       const py::set<uint32_t>&)
+    -> std::optional<std::vector<uint32_t>>;
 
 // -----------------------------------------------------------------------
 // min_vertex_cover

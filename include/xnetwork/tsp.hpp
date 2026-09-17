@@ -231,8 +231,8 @@ auto christofides_tsp(const Graph& G, WeightFunc&& weight) -> std::vector<typena
     const auto odd_nodes = detail::find_odd_degree_nodes(mst_edges, n);
 
     // 3. Minimum-weight perfect matching on odd vertices (Edmonds' blossom)
-    const auto matching = detail::blossom_min_weight_perfect_matching(
-        odd_nodes, std::forward<WeightFunc>(weight));
+    const auto matching
+        = detail::blossom_min_weight_perfect_matching(odd_nodes, std::forward<WeightFunc>(weight));
 
     // 4. Build the Eulerian multigraph (MST + matching)
     auto adj = detail::build_multigraph<Node>(n, mst_edges, matching);

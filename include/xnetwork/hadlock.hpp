@@ -170,9 +170,7 @@ namespace detail {
     auto min_weight_perfect_matching(const std::vector<int>& odd_faces,
                                      const std::vector<std::vector<int>>& dist)
         -> std::vector<std::pair<int, int>> {
-        auto weight = [&dist](int a, int b) -> double {
-            return static_cast<double>(dist[a][b]);
-        };
+        auto weight = [&dist](int a, int b) -> double { return static_cast<double>(dist[a][b]); };
         return blossom_min_weight_perfect_matching(odd_faces, weight);
     }
 

@@ -346,8 +346,8 @@ TEST_CASE("Wheel W_4 - outer face listed first") {
     // Hub 0 + rim 1-2-3-4-1 (unit weights). Max cut = 6 of 8 edges:
     // each of the 4 triangles forces >= 1 uncut edge, and 2 uncut spokes suffice.
     TestGraph G(5, {{0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 2}, {2, 3}, {3, 4}, {4, 1}});
-    std::vector<std::vector<uint32_t>> faces = {
-        {1, 2, 3, 4}, {0, 1, 2}, {0, 2, 3}, {0, 3, 4}, {0, 4, 1}};
+    std::vector<std::vector<uint32_t>> faces
+        = {{1, 2, 3, 4}, {0, 1, 2}, {0, 2, 3}, {0, 3, 4}, {0, 4, 1}};
 
     auto cut = solve_hadlock_max_cut(G, unit_weight, faces);
     auto [ok, val] = validate_max_cut(G, cut, unit_weight);
@@ -401,6 +401,5 @@ TEST_CASE("Malformed face list with an odd number of odd faces throws") {
     TestGraph G(5, {{0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 2}, {2, 3}, {3, 4}, {4, 1}});
     std::vector<std::vector<uint32_t>> faces = {{1, 2, 3, 4}, {0, 2, 3}, {0, 3, 4}, {0, 4, 1}};
 
-    CHECK_THROWS_AS(solve_hadlock_max_cut(G, unit_weight, faces),
-                    xnetwork::XNetworkAlgorithmError);
+    CHECK_THROWS_AS(solve_hadlock_max_cut(G, unit_weight, faces), xnetwork::XNetworkAlgorithmError);
 }
