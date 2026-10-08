@@ -308,7 +308,7 @@ TEST_CASE("Blossom MWPM finds the optimal matching") {
     const auto weight = EuclideanWeight{pts};
 
     const auto matching = detail::blossom_min_weight_perfect_matching(nodes, weight);
-    CHECK_EQ(matching.size(), 3u);
+    CHECK_EQ(matching.size(), 3U);
 
     double total = 0.0;
     std::set<uint32_t> used;
@@ -317,6 +317,6 @@ TEST_CASE("Blossom MWPM finds the optimal matching") {
         CHECK(used.insert(a).second);
         CHECK(used.insert(b).second);
     }
-    CHECK_EQ(used.size(), 6u);
+    CHECK_EQ(used.size(), 6U);
     CHECK(total == doctest::Approx(3.0));
 }

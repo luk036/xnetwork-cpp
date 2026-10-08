@@ -360,9 +360,9 @@ TEST_CASE("Wheel W_100 - large instance, even outer face") {
     // For even n the max cut is 3n/2: hub in one side, rim alternating.
     const uint32_t n = 100;
     std::vector<std::pair<uint32_t, uint32_t>> edges;
-    for (uint32_t i = 1; i <= n; ++i) edges.push_back({0, i});
-    for (uint32_t i = 1; i < n; ++i) edges.push_back({i, i + 1});
-    edges.push_back({n, 1});
+    for (uint32_t i = 1; i <= n; ++i) edges.emplace_back(0, i);
+    for (uint32_t i = 1; i < n; ++i) edges.emplace_back(i, i + 1);
+    edges.emplace_back(n, 1);
     TestGraph G(n + 1, edges);
 
     std::vector<std::vector<uint32_t>> faces;
