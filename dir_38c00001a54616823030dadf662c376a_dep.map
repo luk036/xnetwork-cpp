@@ -1,9 +1,12 @@
 <map id="xnetwork" name="xnetwork">
-<area shape="rect" id="node2" href="dir_a816b66f854c935cd1b5f829f213b409.html" title="classes" alt="" coords="94,100,165,125"/>
-<area shape="poly" id="edge1" href="dir_000004_000000.html" alt="" coords="178,54,149,91,145,88,174,51"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000004_000000.html" title="2" alt="" coords="152,84,161,98"/>
-<area shape="rect" id="node3" href="dir_10b695111bf97c06dd1742e71c208823.html" title="generators" alt="" coords="27,27,119,52"/>
-<area shape="poly" id="edge2" href="dir_000002_000000.html" alt="" coords="85,51,114,88,110,91,80,54"/>
-<area shape="rect" id="edge2-headlabel" href="dir_000002_000000.html" title="1" alt="" coords="111,73,120,88"/>
+<area shape="rect" id="node2" href="dir_a816b66f854c935cd1b5f829f213b409.html" title="classes" alt="" coords="49,100,119,125"/>
+<area shape="poly" id="edge2" href="dir_000006_000000.html" alt="" coords="171,54,113,94,110,90,168,50"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000006_000000.html" title="2" alt="" coords="116,89,125,104"/>
+<area shape="rect" id="node3" href="dir_52c795b131ca29b1a0a56b1d383a2d0b.html" title="detail" alt="" coords="156,100,215,125"/>
+<area shape="poly" id="edge1" href="dir_000006_000001.html" alt="" coords="188,52,188,86,183,86,183,52"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000006_000001.html" title="3" alt="" coords="189,74,198,89"/>
+<area shape="rect" id="node4" href="dir_10b695111bf97c06dd1742e71c208823.html" title="generators" alt="" coords="27,27,119,52"/>
+<area shape="poly" id="edge3" href="dir_000003_000000.html" alt="" coords="78,52,83,86,78,87,72,53"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000003_000000.html" title="1" alt="" coords="83,73,93,88"/>
 <area shape="rect" id="clust1" href="dir_38c00001a54616823030dadf662c376a.html" alt="" coords="16,16,237,136"/>
 </map>

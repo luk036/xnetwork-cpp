@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.8</span>
+   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.9</span>
    </div>
   </td>
  </tr>
@@ -97,13 +97,16 @@ $(function() {
 <code>#include &lt;py2cpp/set.hpp&gt;</code><br />
 <code>#include &lt;queue&gt;</code><br />
 <code>#include &lt;set&gt;</code><br />
+<code>#include &lt;unordered_map&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;<a class="el" href="blossom_8hpp_source.html">xnetwork/detail/blossom.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="exception_8hpp_source.html">xnetwork/exception.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="thread__pool_8hpp_source.html">xnetwork/thread_pool.hpp</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for hadlock.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="hadlock_8hpp__incl.svg" width="1166" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="hadlock_8hpp__incl.svg" width="2839" height="344"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="hadlock_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -133,14 +136,9 @@ Functions</h2></td></tr>
 <tr class="separator:a01225ec6cf8106ebaddf47948a2223be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0228654564138860352fafc7aa579c27" id="r_a0228654564138860352fafc7aa579c27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a0228654564138860352fafc7aa579c27">detail::reconstruct_path</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &amp;<a class="el" href="classAdjacencyView.html">prev</a>, <a class="el" href="classAdjacencyView.html">int</a> <a class="el" href="classAdjacencyView.html">src</a>, <a class="el" href="classAdjacencyView.html">int</a> <a class="el" href="classAdjacencyView.html">dst</a>) -&gt; std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt;</td></tr>
 <tr class="separator:a0228654564138860352fafc7aa579c27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5f827cc7d499eee5ca92d2634ae832e" id="r_aa5f827cc7d499eee5ca92d2634ae832e"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </td></tr>
-<tr class="memitem:aa5f827cc7d499eee5ca92d2634ae832e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#aa5f827cc7d499eee5ca92d2634ae832e">detail::greedy_mwpm</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &amp;<a class="el" href="classAdjacencyView.html">odd_faces</a>, <a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">dist</a>) -&gt; std::vector&lt; std::pair&lt; <a class="el" href="classAdjacencyView.html">int</a>, <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt;</td></tr>
-<tr class="separator:aa5f827cc7d499eee5ca92d2634ae832e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12c0ef7287a7f3ed89b2eb37dc889c89" id="r_a12c0ef7287a7f3ed89b2eb37dc889c89"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </td></tr>
-<tr class="memitem:a12c0ef7287a7f3ed89b2eb37dc889c89"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a12c0ef7287a7f3ed89b2eb37dc889c89">detail::exact_mwpm</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &amp;<a class="el" href="classAdjacencyView.html">odd_faces</a>, <a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">dist</a>) -&gt; std::vector&lt; std::pair&lt; <a class="el" href="classAdjacencyView.html">int</a>, <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt;</td></tr>
-<tr class="separator:a12c0ef7287a7f3ed89b2eb37dc889c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9efa56ae67b5b491836a70628dadd835" id="r_a9efa56ae67b5b491836a70628dadd835"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </td></tr>
 <tr class="memitem:a9efa56ae67b5b491836a70628dadd835"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a9efa56ae67b5b491836a70628dadd835">detail::min_weight_perfect_matching</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &amp;<a class="el" href="classAdjacencyView.html">odd_faces</a>, <a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">dist</a>) -&gt; std::vector&lt; std::pair&lt; <a class="el" href="classAdjacencyView.html">int</a>, <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt;</td></tr>
+<tr class="memdesc:a9efa56ae67b5b491836a70628dadd835"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum-weight perfect matching via Edmonds' blossom algorithm.  <br /></td></tr>
 <tr class="separator:a9efa56ae67b5b491836a70628dadd835"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09261b2d37f331014147c3b62f1df44c" id="r_a09261b2d37f331014147c3b62f1df44c"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Graph &gt; </td></tr>
 <tr class="memitem:a09261b2d37f331014147c3b62f1df44c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a09261b2d37f331014147c3b62f1df44c">detail::biconnected_components</a> (<a class="el" href="classAdjacencyView.html">const</a> Graph &amp;<a class="el" href="classAdjacencyView.html">G</a>) -&gt; std::vector&lt; <a class="el" href="classAdjacencyView.html#a334355d54106a13e02b2070dfbd4d816">py::set</a>&lt; <a class="el" href="classAdjacencyView.html">typename</a> Graph::node_t &gt; &gt;</td></tr>

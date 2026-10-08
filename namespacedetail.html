@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.8</span>
+   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.9</span>
    </div>
   </td>
  </tr>
@@ -91,6 +91,10 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a0617f645353447042ae1183c76c78c4c" id="r_a0617f645353447042ae1183c76c78c4c"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node , <a class="el" href="classAdjacencyView.html">typename</a> <a class="el" href="classAdjacencyView.html">WeightFunc</a> &gt; </td></tr>
+<tr class="memitem:a0617f645353447042ae1183c76c78c4c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a0617f645353447042ae1183c76c78c4c">blossom_min_weight_perfect_matching</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; Node &gt; &amp;nodes, <a class="el" href="classAdjacencyView.html">WeightFunc</a> &amp;&amp;weight) -&gt; std::vector&lt; std::pair&lt; Node, Node &gt; &gt;</td></tr>
+<tr class="memdesc:a0617f645353447042ae1183c76c78c4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum-weight perfect matching on a complete graph.  <br /></td></tr>
+<tr class="separator:a0617f645353447042ae1183c76c78c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f1c98aef7ff174b360872a9fc03c9c7" id="r_a3f1c98aef7ff174b360872a9fc03c9c7"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node , <a class="el" href="classAdjacencyView.html">typename</a> <a class="el" href="classAdjacencyView.html">WeightFunc</a> &gt; </td></tr>
 <tr class="memitem:a3f1c98aef7ff174b360872a9fc03c9c7"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a3f1c98aef7ff174b360872a9fc03c9c7">build_dual</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::vector&lt; Node &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">faces</a>, <a class="el" href="classAdjacencyView.html">WeightFunc</a> weight) -&gt; std::vector&lt; std::vector&lt; <a class="el" href="structdetail_1_1DualEdge.html">DualEdge</a>&lt; Node &gt; &gt; &gt;</td></tr>
 <tr class="memdesc:a3f1c98aef7ff174b360872a9fc03c9c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build the planar dual graph: faces become vertices, shared primal edges become edges with equal weight.  <br /></td></tr>
@@ -100,14 +104,9 @@ Functions</h2></td></tr>
 <tr class="separator:a01225ec6cf8106ebaddf47948a2223be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0228654564138860352fafc7aa579c27" id="r_a0228654564138860352fafc7aa579c27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a0228654564138860352fafc7aa579c27">reconstruct_path</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &amp;<a class="el" href="classAdjacencyView.html">prev</a>, <a class="el" href="classAdjacencyView.html">int</a> <a class="el" href="classAdjacencyView.html">src</a>, <a class="el" href="classAdjacencyView.html">int</a> <a class="el" href="classAdjacencyView.html">dst</a>) -&gt; std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt;</td></tr>
 <tr class="separator:a0228654564138860352fafc7aa579c27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5f827cc7d499eee5ca92d2634ae832e" id="r_aa5f827cc7d499eee5ca92d2634ae832e"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </td></tr>
-<tr class="memitem:aa5f827cc7d499eee5ca92d2634ae832e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#aa5f827cc7d499eee5ca92d2634ae832e">greedy_mwpm</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &amp;<a class="el" href="classAdjacencyView.html">odd_faces</a>, <a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">dist</a>) -&gt; std::vector&lt; std::pair&lt; <a class="el" href="classAdjacencyView.html">int</a>, <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt;</td></tr>
-<tr class="separator:aa5f827cc7d499eee5ca92d2634ae832e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12c0ef7287a7f3ed89b2eb37dc889c89" id="r_a12c0ef7287a7f3ed89b2eb37dc889c89"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </td></tr>
-<tr class="memitem:a12c0ef7287a7f3ed89b2eb37dc889c89"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a12c0ef7287a7f3ed89b2eb37dc889c89">exact_mwpm</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &amp;<a class="el" href="classAdjacencyView.html">odd_faces</a>, <a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">dist</a>) -&gt; std::vector&lt; std::pair&lt; <a class="el" href="classAdjacencyView.html">int</a>, <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt;</td></tr>
-<tr class="separator:a12c0ef7287a7f3ed89b2eb37dc889c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9efa56ae67b5b491836a70628dadd835" id="r_a9efa56ae67b5b491836a70628dadd835"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </td></tr>
 <tr class="memitem:a9efa56ae67b5b491836a70628dadd835"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a9efa56ae67b5b491836a70628dadd835">min_weight_perfect_matching</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &amp;<a class="el" href="classAdjacencyView.html">odd_faces</a>, <a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">dist</a>) -&gt; std::vector&lt; std::pair&lt; <a class="el" href="classAdjacencyView.html">int</a>, <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt;</td></tr>
+<tr class="memdesc:a9efa56ae67b5b491836a70628dadd835"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum-weight perfect matching via Edmonds' blossom algorithm.  <br /></td></tr>
 <tr class="separator:a9efa56ae67b5b491836a70628dadd835"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09261b2d37f331014147c3b62f1df44c" id="r_a09261b2d37f331014147c3b62f1df44c"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Graph &gt; </td></tr>
 <tr class="memitem:a09261b2d37f331014147c3b62f1df44c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a09261b2d37f331014147c3b62f1df44c">biconnected_components</a> (<a class="el" href="classAdjacencyView.html">const</a> Graph &amp;<a class="el" href="classAdjacencyView.html">G</a>) -&gt; std::vector&lt; <a class="el" href="classAdjacencyView.html#a334355d54106a13e02b2070dfbd4d816">py::set</a>&lt; <a class="el" href="classAdjacencyView.html">typename</a> Graph::node_t &gt; &gt;</td></tr>
@@ -129,16 +128,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a590f10b21c75f81b82a4a89e28c6cab4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a590f10b21c75f81b82a4a89e28c6cab4">find_odd_degree_nodes</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::pair&lt; Node, Node &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">mst_edges</a>, <a class="el" href="classAdjacencyView.html">size_t</a> <a class="el" href="classAdjacencyView.html">n</a>) -&gt; std::vector&lt; Node &gt;</td></tr>
 <tr class="memdesc:a590f10b21c75f81b82a4a89e28c6cab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collect vertices with odd degree in the MST.  <br /></td></tr>
 <tr class="separator:a590f10b21c75f81b82a4a89e28c6cab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b3aa0e2cae12e303fbb1ea4958d7866" id="r_a7b3aa0e2cae12e303fbb1ea4958d7866"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node , <a class="el" href="classAdjacencyView.html">typename</a> <a class="el" href="classAdjacencyView.html">WeightFunc</a> &gt; </td></tr>
-<tr class="memitem:a7b3aa0e2cae12e303fbb1ea4958d7866"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a7b3aa0e2cae12e303fbb1ea4958d7866">greedy_min_weight_matching</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; Node &gt; &amp;<a class="el" href="classAdjacencyView.html">odd_nodes</a>, <a class="el" href="classAdjacencyView.html">WeightFunc</a> &amp;&amp;weight) -&gt; std::vector&lt; std::pair&lt; Node, Node &gt; &gt;</td></tr>
-<tr class="memdesc:a7b3aa0e2cae12e303fbb1ea4958d7866"><td class="mdescLeft">&#160;</td><td class="mdescRight">Greedy minimum-weight perfect matching - O(k^2 log k).  <br /></td></tr>
-<tr class="separator:a7b3aa0e2cae12e303fbb1ea4958d7866"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acff03b00b5bdd7f9b30f38004a9aad45" id="r_acff03b00b5bdd7f9b30f38004a9aad45"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </td></tr>
 <tr class="memitem:acff03b00b5bdd7f9b30f38004a9aad45"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#acff03b00b5bdd7f9b30f38004a9aad45">build_multigraph</a> (<a class="el" href="classAdjacencyView.html">size_t</a> <a class="el" href="classAdjacencyView.html">n</a>, <a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::pair&lt; Node, Node &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">mst_edges</a>, <a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::pair&lt; Node, Node &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">matching_edges</a>) -&gt; std::vector&lt; std::multiset&lt; Node &gt; &gt;</td></tr>
 <tr class="memdesc:acff03b00b5bdd7f9b30f38004a9aad45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a multigraph adjacency list (MST + matching).  <br /></td></tr>
 <tr class="separator:acff03b00b5bdd7f9b30f38004a9aad45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc4c777a4603702801538a8278f9412b" id="r_acc4c777a4603702801538a8278f9412b"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </td></tr>
-<tr class="memitem:acc4c777a4603702801538a8278f9412b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#acc4c777a4603702801538a8278f9412b">hierholzer</a> (std::vector&lt; std::multiset&lt; Node &gt; &gt; adj, Node <a class="el" href="classAdjacencyView.html">start</a>) -&gt; std::vector&lt; std::pair&lt; Node, Node &gt; &gt;</td></tr>
+<tr class="memitem:acc4c777a4603702801538a8278f9412b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#acc4c777a4603702801538a8278f9412b">hierholzer</a> (std::vector&lt; std::multiset&lt; Node &gt; &gt; adj, Node start) -&gt; std::vector&lt; std::pair&lt; Node, Node &gt; &gt;</td></tr>
 <tr class="memdesc:acc4c777a4603702801538a8278f9412b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hierholzer's algorithm - find an Eulerian circuit.  <br /></td></tr>
 <tr class="separator:acc4c777a4603702801538a8278f9412b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5978ab54ba8e96926520c4bdc0dfb5e5" id="r_a5978ab54ba8e96926520c4bdc0dfb5e5"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </td></tr>
@@ -186,6 +181,55 @@ template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Graph &gt;
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Vector of node-sets, one per biconnected component. Articulation points may appear in multiple components; each edge belongs to exactly one component. </dd></dl>
+
+</div>
+</div>
+<a id="a0617f645353447042ae1183c76c78c4c" name="a0617f645353447042ae1183c76c78c4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0617f645353447042ae1183c76c78c4c">&#9670;&#160;</a></span>blossom_min_weight_perfect_matching()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node , <a class="el" href="classAdjacencyView.html">typename</a> <a class="el" href="classAdjacencyView.html">WeightFunc</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAdjacencyView.html">auto</a> detail::blossom_min_weight_perfect_matching </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; Node &gt; &amp;&#160;</td>
+          <td class="paramname"><em>nodes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAdjacencyView.html">WeightFunc</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>weight</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::vector&lt;std::pair&lt;Node, Node&gt;&gt; </td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum-weight perfect matching on a complete graph. </p>
+<p><code>weight(u, v)</code> returns the cost of pairing <code>u</code> with <code>v</code>. The graph is assumed complete (every pair is pairable); <code>nodes</code> should have even size.</p>
+<p>Weights are shifted by <code>w = C - cost</code> (<code>C</code> greater than every cost) so the maximum-weight solver maximizes <code>sum(C - cost)</code>, <a class="el" href="classAdjacencyView.html#a334355d54106a13e02b2070dfbd4d816" title="Construct an AdjacencyView from an Atlas container.">i.e</a>. minimizes the total cost, while every weight stays positive. Maximum cardinality then forces a perfect matching.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Node</td><td>vertex id type </td></tr>
+    <tr><td class="paramname">WeightFunc</td><td>callable <code>(Node, Node) -&gt; numeric cost</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodes</td><td>vertices to match (even count) </td></tr>
+    <tr><td class="paramname">weight</td><td>pairwise cost function </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>vector of matched pairs </dd></dl>
 
 </div>
 </div>
@@ -307,37 +351,6 @@ template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; 
 
 </div>
 </div>
-<a id="a12c0ef7287a7f3ed89b2eb37dc889c89" name="a12c0ef7287a7f3ed89b2eb37dc889c89"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12c0ef7287a7f3ed89b2eb37dc889c89">&#9670;&#160;</a></span>exact_mwpm()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classAdjacencyView.html">auto</a> detail::exact_mwpm </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>odd_faces</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>dist</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt;  std::vector&lt; std::pair&lt; <a class="el" href="classAdjacencyView.html">int</a>, <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Exact MWPM via DP over subsets (n &lt;= 18, 2^18 = 262k states). </p>
-
-</div>
-</div>
 <a id="a590f10b21c75f81b82a4a89e28c6cab4" name="a590f10b21c75f81b82a4a89e28c6cab4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a590f10b21c75f81b82a4a89e28c6cab4">&#9670;&#160;</a></span>find_odd_degree_nodes()</h2>
 
@@ -367,70 +380,6 @@ template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; 
 </div><div class="memdoc">
 
 <p>Collect vertices with odd degree in the MST. </p>
-
-</div>
-</div>
-<a id="a7b3aa0e2cae12e303fbb1ea4958d7866" name="a7b3aa0e2cae12e303fbb1ea4958d7866"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7b3aa0e2cae12e303fbb1ea4958d7866">&#9670;&#160;</a></span>greedy_min_weight_matching()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node , <a class="el" href="classAdjacencyView.html">typename</a> <a class="el" href="classAdjacencyView.html">WeightFunc</a> &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classAdjacencyView.html">auto</a> detail::greedy_min_weight_matching </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; Node &gt; &amp;&#160;</td>
-          <td class="paramname"><em>odd_nodes</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classAdjacencyView.html">WeightFunc</a> &amp;&amp;&#160;</td>
-          <td class="paramname"><em>weight</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; std::vector&lt;std::pair&lt;Node, Node&gt;&gt; </td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Greedy minimum-weight perfect matching - O(k^2 log k). </p>
-<p>Builds a sorted list of all candidate edges among <code>odd_nodes</code> and greedily picks the cheapest non-adjacent pair. This is a heuristic; for a provable 3/2 bound a blossom algorithm would be required. </p>
-
-</div>
-</div>
-<a id="aa5f827cc7d499eee5ca92d2634ae832e" name="aa5f827cc7d499eee5ca92d2634ae832e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa5f827cc7d499eee5ca92d2634ae832e">&#9670;&#160;</a></span>greedy_mwpm()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classAdjacencyView.html">auto</a> detail::greedy_mwpm </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>odd_faces</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::vector&lt; <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>dist</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt;  std::vector&lt; std::pair&lt; <a class="el" href="classAdjacencyView.html">int</a>, <a class="el" href="classAdjacencyView.html">int</a> &gt; &gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Greedy 2-approximation for MWPM on a metric complete graph. </p>
 
 </div>
 </div>
@@ -502,7 +451,9 @@ template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; 
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Dispatch MWPM: exact DP for small n, greedy for large n. </p>
+
+<p>Minimum-weight perfect matching via Edmonds' blossom algorithm. </p>
+<p><code>dist</code> is the all-pairs distance matrix indexed by face id; only the entries for <code>odd_faces</code> are used. This replaces the exact/greedy dispatch (whose DP reconstruction was wrong) so MAX-CUT keeps its guarantee for large odd-face sets. </p>
 
 </div>
 </div>

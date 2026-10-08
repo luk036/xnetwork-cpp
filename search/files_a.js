@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xnetwork_5fconfig_2ehpp_0',['xnetwork_config.hpp',['../xnetwork__config_8hpp.html',1,'']]]
+  ['priority_5fqueue_2ehpp_0',['priority_queue.hpp',['../priority__queue_8hpp.html',1,'']]]
 ];

@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['value_5ftype_0',['value_type',['../classxnetwork_1_1DiGraphS.html#a5ac1ac6213866d7aa88026f381e36f23',1,'xnetwork::DiGraphS::value_type'],['../classxnetwork_1_1Graph.html#a0e50e14429e0f3c83cc5bb27295592c8',1,'xnetwork::Graph::value_type'],['../graph_8hpp.html#aa9102c191b3e4d99b904a4860739563c',1,'Value_type:&#160;graph.hpp']]]
+  ['node_0',['node',['../classxnetwork_1_1DiGraphS.html#ab98dbe4e47ef8cb15623041ea0a2947e',1,'xnetwork::DiGraphS::Node'],['../classxnetwork_1_1Graph.html#acc6e64d3d29a7d7f973f2898c9611474',1,'xnetwork::Graph::Node']]],
+  ['node_5ft_1',['node_t',['../classxnetwork_1_1Graph.html#ab6e9ed68a58e5c958ba35c71a6cb69f0',1,'xnetwork::Graph']]],
+  ['nodeview_5ft_2',['nodeview_t',['../classxnetwork_1_1Graph.html#a58c462cdc08b49a497345155a65bc627',1,'xnetwork::Graph']]],
+  ['nontrivialblossomt_3',['NonTrivialBlossomT',['../classmwmatching_1_1impl_1_1MatchingContext.html#afc4ecfd93a3e4e95006c93b26e840929',1,'mwmatching::impl::MatchingContext']]]
 ];

@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.8</span>
+   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.9</span>
    </div>
   </td>
  </tr>
@@ -99,10 +99,11 @@ $(function() {
 <code>#include &lt;tuple&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;<a class="el" href="graph_8hpp_source.html">xnetwork/classes/graph.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="blossom_8hpp_source.html">xnetwork/detail/blossom.hpp</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for tsp.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="tsp_8hpp__incl.svg" width="1120" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="tsp_8hpp__incl.svg" width="2370" height="344"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="tsp_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -126,16 +127,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a590f10b21c75f81b82a4a89e28c6cab4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a590f10b21c75f81b82a4a89e28c6cab4">detail::find_odd_degree_nodes</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::pair&lt; Node, Node &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">mst_edges</a>, <a class="el" href="classAdjacencyView.html">size_t</a> <a class="el" href="classAdjacencyView.html">n</a>) -&gt; std::vector&lt; Node &gt;</td></tr>
 <tr class="memdesc:a590f10b21c75f81b82a4a89e28c6cab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collect vertices with odd degree in the MST.  <br /></td></tr>
 <tr class="separator:a590f10b21c75f81b82a4a89e28c6cab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b3aa0e2cae12e303fbb1ea4958d7866" id="r_a7b3aa0e2cae12e303fbb1ea4958d7866"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node , <a class="el" href="classAdjacencyView.html">typename</a> <a class="el" href="classAdjacencyView.html">WeightFunc</a> &gt; </td></tr>
-<tr class="memitem:a7b3aa0e2cae12e303fbb1ea4958d7866"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a7b3aa0e2cae12e303fbb1ea4958d7866">detail::greedy_min_weight_matching</a> (<a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; Node &gt; &amp;<a class="el" href="classAdjacencyView.html">odd_nodes</a>, <a class="el" href="classAdjacencyView.html">WeightFunc</a> &amp;&amp;weight) -&gt; std::vector&lt; std::pair&lt; Node, Node &gt; &gt;</td></tr>
-<tr class="memdesc:a7b3aa0e2cae12e303fbb1ea4958d7866"><td class="mdescLeft">&#160;</td><td class="mdescRight">Greedy minimum-weight perfect matching - O(k^2 log k).  <br /></td></tr>
-<tr class="separator:a7b3aa0e2cae12e303fbb1ea4958d7866"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acff03b00b5bdd7f9b30f38004a9aad45" id="r_acff03b00b5bdd7f9b30f38004a9aad45"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </td></tr>
 <tr class="memitem:acff03b00b5bdd7f9b30f38004a9aad45"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#acff03b00b5bdd7f9b30f38004a9aad45">detail::build_multigraph</a> (<a class="el" href="classAdjacencyView.html">size_t</a> <a class="el" href="classAdjacencyView.html">n</a>, <a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::pair&lt; Node, Node &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">mst_edges</a>, <a class="el" href="classAdjacencyView.html">const</a> std::vector&lt; std::pair&lt; Node, Node &gt; &gt; &amp;<a class="el" href="classAdjacencyView.html">matching_edges</a>) -&gt; std::vector&lt; std::multiset&lt; Node &gt; &gt;</td></tr>
 <tr class="memdesc:acff03b00b5bdd7f9b30f38004a9aad45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a multigraph adjacency list (MST + matching).  <br /></td></tr>
 <tr class="separator:acff03b00b5bdd7f9b30f38004a9aad45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc4c777a4603702801538a8278f9412b" id="r_acc4c777a4603702801538a8278f9412b"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </td></tr>
-<tr class="memitem:acc4c777a4603702801538a8278f9412b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#acc4c777a4603702801538a8278f9412b">detail::hierholzer</a> (std::vector&lt; std::multiset&lt; Node &gt; &gt; adj, Node <a class="el" href="classAdjacencyView.html">start</a>) -&gt; std::vector&lt; std::pair&lt; Node, Node &gt; &gt;</td></tr>
+<tr class="memitem:acc4c777a4603702801538a8278f9412b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#acc4c777a4603702801538a8278f9412b">detail::hierholzer</a> (std::vector&lt; std::multiset&lt; Node &gt; &gt; adj, Node start) -&gt; std::vector&lt; std::pair&lt; Node, Node &gt; &gt;</td></tr>
 <tr class="memdesc:acc4c777a4603702801538a8278f9412b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hierholzer's algorithm - find an Eulerian circuit.  <br /></td></tr>
 <tr class="separator:acc4c777a4603702801538a8278f9412b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5978ab54ba8e96926520c4bdc0dfb5e5" id="r_a5978ab54ba8e96926520c4bdc0dfb5e5"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </td></tr>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['weight_0',['weight',['../structdetail_1_1DualEdge.html#a2b1dcbf8e5d9ff6db2dbd64761aae9a1',1,'detail::DualEdge']]]
+  ['graph_0',['graph',['../classmwmatching_1_1impl_1_1MatchingContext.html#a976bbe85a1d58e36322ad2bf2a114af1',1,'mwmatching::impl::MatchingContext']]]
 ];

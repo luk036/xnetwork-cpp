@@ -1,0 +1,7 @@
+<map id="mwmatching::impl::Blossom&lt; WeightType &gt;" name="mwmatching::impl::Blossom&lt; WeightType &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="393,53,601,93"/>
+<area shape="rect" id="Node000002" href="$classmwmatching_1_1ConcatenableQueue.html" title=" " alt="" coords="5,5,252,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="266,45,394,59,393,64,266,50"/>
+<area shape="rect" id="Node000003" href="$classmwmatching_1_1PriorityQueue.html" title=" " alt="" coords="26,84,231,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="245,97,393,81,393,86,246,102"/>
+</map>

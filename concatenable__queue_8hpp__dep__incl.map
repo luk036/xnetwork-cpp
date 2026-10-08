@@ -1,0 +1,11 @@
+<map id="xnetwork/detail/mwmatching/concatenable_queue.hpp" name="xnetwork/detail/mwmatching/concatenable_queue.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="69,5,282,45"/>
+<area shape="rect" id="Node000002" href="$mwmatching_8hpp.html" title=" " alt="" coords="69,93,282,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,59,178,93,173,93,173,59"/>
+<area shape="rect" id="Node000003" href="$blossom_8hpp.html" title="Minimum&#45;weight perfect matching via Edmonds&#39; blossom algorithm." alt="" coords="70,181,281,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="178,147,178,181,173,181,173,147"/>
+<area shape="rect" id="Node000004" href="$hadlock_8hpp.html" title=" " alt="" coords="5,255,172,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="153,217,105,257,101,252,149,213"/>
+<area shape="rect" id="Node000005" href="$tsp_8hpp.html" title="Traveling Salesman Problem (TSP) approximation algorithms." alt="" coords="196,255,331,280"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="202,213,251,252,247,257,198,217"/>
+</map>

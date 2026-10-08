@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['simpledigraphs_0',['SimpleDiGraphS',['../namespacexnetwork.html#a3cadaf8568c8e1c06b47e2ea4575bf47',1,'xnetwork']]],
-  ['simplegraph_1',['SimpleGraph',['../namespacexnetwork.html#a704122a757267692f20523d09de137d1',1,'xnetwork']]],
-  ['size_5ftype_2',['size_type',['../classAtlasView.html#a0f6d799778b7e892831622f5ce0868e0',1,'AtlasView']]]
+  ['key_5ftype_0',['key_type',['../classxnetwork_1_1DiGraphS.html#a12eb1139cea042605d9326ed62358d1a',1,'xnetwork::DiGraphS::key_type'],['../classxnetwork_1_1Graph.html#a9ae92abe0c7c523eca8ac18f8fb69133',1,'xnetwork::Graph::key_type']]]
 ];

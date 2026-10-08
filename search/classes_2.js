@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['digraphs_0',['DiGraphS',['../classxnetwork_1_1DiGraphS.html',1,'xnetwork']]],
-  ['dualedge_1',['DualEdge',['../structdetail_1_1DualEdge.html',1,'detail']]]
+  ['concatenablequeue_0',['ConcatenableQueue',['../classmwmatching_1_1ConcatenableQueue.html',1,'mwmatching']]],
+  ['concatenablequeue_3c_20weighttype_2c_20mwmatching_3a_3aimpl_3a_3ablossom_20_2a_2c_20edgeid_20_3e_1',['ConcatenableQueue&lt; WeightType, mwmatching::impl::Blossom *, EdgeId &gt;',['../classmwmatching_1_1ConcatenableQueue.html',1,'mwmatching']]]
 ];

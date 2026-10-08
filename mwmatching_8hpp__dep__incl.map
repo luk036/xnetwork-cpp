@@ -1,0 +1,9 @@
+<map id="xnetwork/detail/mwmatching/mwmatching.hpp" name="xnetwork/detail/mwmatching/mwmatching.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="69,5,282,45"/>
+<area shape="rect" id="Node000002" href="$blossom_8hpp.html" title="Minimum&#45;weight perfect matching via Edmonds&#39; blossom algorithm." alt="" coords="70,93,281,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,59,178,93,173,93,173,59"/>
+<area shape="rect" id="Node000003" href="$hadlock_8hpp.html" title=" " alt="" coords="5,167,172,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="153,129,105,169,101,164,149,125"/>
+<area shape="rect" id="Node000004" href="$tsp_8hpp.html" title="Traveling Salesman Problem (TSP) approximation algorithms." alt="" coords="196,167,331,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="202,125,251,164,247,169,198,129"/>
+</map>

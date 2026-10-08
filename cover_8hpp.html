@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.8</span>
+   <div id="projectname">XNetwork<span id="projectnumber">&#160;1.7.9</span>
    </div>
   </td>
  </tr>
@@ -133,6 +133,14 @@ Functions</h2></td></tr>
 <tr class="memitem:a3167ee52b3db8d62cf30e74a8da9d364"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="cover_8hpp.html#a3167ee52b3db8d62cf30e74a8da9d364">generic_bfs_cycle</a> (<a class="el" href="classAdjacencyView.html">const</a> Graph &amp;<a class="el" href="classAdjacencyView.html">ugraph</a>, <a class="el" href="classAdjacencyView.html">const</a> <a class="el" href="classAdjacencyView.html">CoverSet</a> &amp;<a class="el" href="classAdjacencyView.html">coverset</a>) -&gt; std::vector&lt; std::tuple&lt; <a class="el" href="classAdjacencyView.html#a334355d54106a13e02b2070dfbd4d816">py::dict</a>&lt; <a class="el" href="classAdjacencyView.html">typename</a> Graph::node_t, <a class="el" href="structBFSInfo.html">BFSInfo</a>&lt; <a class="el" href="classAdjacencyView.html">typename</a> Graph::node_t &gt; &gt;, <a class="el" href="classAdjacencyView.html">typename</a> Graph::node_t, <a class="el" href="classAdjacencyView.html">typename</a> Graph::node_t &gt; &gt;</td></tr>
 <tr class="memdesc:a3167ee52b3db8d62cf30e74a8da9d364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic BFS cycle detection.  <br /></td></tr>
 <tr class="separator:a3167ee52b3db8d62cf30e74a8da9d364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8066380cf943815836dc78d8ccda2cd" id="r_aa8066380cf943815836dc78d8ccda2cd"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </td></tr>
+<tr class="memitem:aa8066380cf943815836dc78d8ccda2cd"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="cover_8hpp.html#aa8066380cf943815836dc78d8ccda2cd">extract_odd_cycle</a> (<a class="el" href="classAdjacencyView.html">const</a> <a class="el" href="classAdjacencyView.html#a334355d54106a13e02b2070dfbd4d816">py::dict</a>&lt; Node, Node &gt; &amp;parent, Node <a class="el" href="classAdjacencyView.html">utx</a>, Node <a class="el" href="classAdjacencyView.html">vtx</a>) -&gt; std::vector&lt; Node &gt;</td></tr>
+<tr class="memdesc:aa8066380cf943815836dc78d8ccda2cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstructs the odd cycle closed by a same-colour edge.  <br /></td></tr>
+<tr class="separator:aa8066380cf943815836dc78d8ccda2cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaebd240dfae3d94e36689979a6e9833a" id="r_aaebd240dfae3d94e36689979a6e9833a"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Graph , <a class="el" href="classAdjacencyView.html">typename</a> <a class="el" href="classAdjacencyView.html">CoverSet</a> &gt; </td></tr>
+<tr class="memitem:aaebd240dfae3d94e36689979a6e9833a"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="cover_8hpp.html#aaebd240dfae3d94e36689979a6e9833a">find_odd_cycle</a> (<a class="el" href="classAdjacencyView.html">const</a> Graph &amp;<a class="el" href="classAdjacencyView.html">ugraph</a>, <a class="el" href="classAdjacencyView.html">const</a> <a class="el" href="classAdjacencyView.html">CoverSet</a> &amp;<a class="el" href="classAdjacencyView.html">coverset</a>) -&gt; std::optional&lt; std::vector&lt; <a class="el" href="classAdjacencyView.html">typename</a> Graph::node_t &gt; &gt;</td></tr>
+<tr class="memdesc:aaebd240dfae3d94e36689979a6e9833a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds an odd cycle avoiding coverset using BFS 2-colouring.  <br /></td></tr>
+<tr class="separator:aaebd240dfae3d94e36689979a6e9833a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84eec1f235a369ef1c5fa11102ccaaf4" id="r_a84eec1f235a369ef1c5fa11102ccaaf4"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Graph , <a class="el" href="classAdjacencyView.html">typename</a> <a class="el" href="classAdjacencyView.html">WeightMap</a> , <a class="el" href="classAdjacencyView.html">typename</a> <a class="el" href="classAdjacencyView.html">CoverSet</a> &gt; </td></tr>
 <tr class="memitem:a84eec1f235a369ef1c5fa11102ccaaf4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classAdjacencyView.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="cover_8hpp.html#a84eec1f235a369ef1c5fa11102ccaaf4">min_cycle_cover</a> (<a class="el" href="classAdjacencyView.html">const</a> Graph &amp;<a class="el" href="classAdjacencyView.html">ugraph</a>, <a class="el" href="classAdjacencyView.html">WeightMap</a> &amp;weight, <a class="el" href="classAdjacencyView.html">CoverSet</a> &amp;<a class="el" href="classAdjacencyView.html">coverset</a>) -&gt; std::pair&lt; <a class="el" href="classAdjacencyView.html">CoverSet</a>, <a class="el" href="classAdjacencyView.html">typename</a> <a class="el" href="classAdjacencyView.html#a334355d54106a13e02b2070dfbd4d816">WeightMap::mapped_type</a> &gt;</td></tr>
 <tr class="memdesc:a84eec1f235a369ef1c5fa11102ccaaf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs minimum cycle cover using primal-dual approximation.  <br /></td></tr>
@@ -204,6 +212,107 @@ template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::deque&lt;Node&gt; The constructed cycle </dd></dl>
+
+</div>
+</div>
+<a id="aa8066380cf943815836dc78d8ccda2cd" name="aa8066380cf943815836dc78d8ccda2cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8066380cf943815836dc78d8ccda2cd">&#9670;&#160;</a></span>extract_odd_cycle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Node &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAdjacencyView.html">auto</a> extract_odd_cycle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAdjacencyView.html">const</a> <a class="el" href="classAdjacencyView.html#a334355d54106a13e02b2070dfbd4d816">py::dict</a>&lt; Node, Node &gt; &amp;&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Node&#160;</td>
+          <td class="paramname"><em>utx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Node&#160;</td>
+          <td class="paramname"><em>vtx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt;  std::vector&lt; Node &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reconstructs the odd cycle closed by a same-colour edge. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Node</td><td>Node type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>BFS parent mapping (a root node maps to itself) </td></tr>
+    <tr><td class="paramname">utx</td><td>One endpoint of the conflicting (same-colour) edge </td></tr>
+    <tr><td class="paramname">vtx</td><td>The other endpoint of the conflicting edge </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Node&gt; Cycle vertices, ordered from the lowest common ancestor </dd></dl>
+
+</div>
+</div>
+<a id="aaebd240dfae3d94e36689979a6e9833a" name="aaebd240dfae3d94e36689979a6e9833a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaebd240dfae3d94e36689979a6e9833a">&#9670;&#160;</a></span>find_odd_cycle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classAdjacencyView.html">typename</a> Graph , <a class="el" href="classAdjacencyView.html">typename</a> <a class="el" href="classAdjacencyView.html">CoverSet</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAdjacencyView.html">auto</a> find_odd_cycle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAdjacencyView.html">const</a> Graph &amp;&#160;</td>
+          <td class="paramname"><em>ugraph</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAdjacencyView.html">const</a> <a class="el" href="classAdjacencyView.html">CoverSet</a> &amp;&#160;</td>
+          <td class="paramname"><em>coverset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt;  std::optional&lt; std::vector&lt; <a class="el" href="classAdjacencyView.html">typename</a> Graph::node_t &gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds an odd cycle avoiding coverset using BFS 2-colouring. </p>
+<p>A graph is bipartite if and only if it admits a proper 2-colouring. A BFS that encounters an edge whose endpoints share a colour has found an odd cycle, which is reconstructed from the BFS parent pointers. This runs in O(V + E) per call instead of restarting a BFS from every source.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Graph</td><td>Graph type </td></tr>
+    <tr><td class="paramname">CoverSet</td><td>Cover set type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ugraph</td><td>Input graph </td></tr>
+    <tr><td class="paramname">coverset</td><td>Set of covered vertices (excluded from search) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::optional&lt;std::vector&lt;typename Graph::node_t&gt;&gt; An odd cycle, or std::nullopt when the graph induced by V \ coverset is bipartite </dd></dl>
 
 </div>
 </div>

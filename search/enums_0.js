@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['languagecode_0',['LanguageCode',['../namespacexnetwork.html#a6f7dc0186dc3c5390bca427b40b19fdd',1,'xnetwork']]]
+  ['blossomlabel_0',['BlossomLabel',['../namespacemwmatching_1_1impl.html#a6c7addc49096191db4c5281ea51bf7a4',1,'mwmatching::impl']]]
 ];

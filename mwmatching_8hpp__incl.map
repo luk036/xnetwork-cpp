@@ -1,0 +1,39 @@
+<map id="xnetwork/detail/mwmatching/mwmatching.hpp" name="xnetwork/detail/mwmatching/mwmatching.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="528,5,742,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="8,167,94,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="528,33,381,41,220,53,84,71,38,83,14,95,8,109,11,124,31,155,27,158,6,126,3,108,10,92,36,78,83,66,219,48,381,35,528,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="262,167,331,192"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="529,40,407,62,357,77,323,95,314,108,307,122,300,153,295,152,302,121,309,105,320,91,355,72,406,56,528,35"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="604,93,666,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="638,46,638,79,632,79,632,46"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="690,93,761,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="659,44,704,82,700,86,655,48"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="785,93,848,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="680,43,778,85,776,90,677,48"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="872,93,942,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="701,43,859,88,858,93,700,48"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="395,167,454,192"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="610,48,453,161,450,156,607,43"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="967,93,1010,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="742,43,841,63,955,91,953,96,840,68,741,48"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="1034,93,1092,119"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="742,40,872,61,1022,91,1021,96,871,66,741,45"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="1116,93,1202,119"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="742,37,908,60,1103,90,1102,96,907,65,742,43"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="136,167,190,192"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="529,41,418,61,359,77,303,96,241,127,191,161,188,156,238,122,301,91,358,72,417,56,528,36"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="1226,93,1286,119"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="742,31,957,52,1084,69,1213,91,1213,96,1083,74,956,57,742,37"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="516,167,578,192"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="625,47,595,95,562,155,557,153,590,92,620,44"/>
+<area shape="rect" id="Node000015" href="$concatenable__queue_8hpp.html" title=" " alt="" coords="24,93,208,119"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="529,45,206,94,205,89,528,40"/>
+<area shape="rect" id="Node000016" href="$priority__queue_8hpp.html" title=" " alt="" coords="334,93,478,119"/>
+<area shape="poly" id="edge18_Node000001_Node000016" title=" " alt="" coords="581,48,453,91,451,86,579,43"/>
+<area shape="poly" id="edge15_Node000015_Node000002" title=" " alt="" coords="108,121,73,158,69,155,104,117"/>
+<area shape="poly" id="edge16_Node000015_Node000003" title=" " alt="" coords="146,116,255,159,253,164,144,121"/>
+<area shape="poly" id="edge17_Node000015_Node000012" title=" " alt="" coords="126,118,150,154,146,157,122,120"/>
+<area shape="poly" id="edge19_Node000016_Node000003" title=" " alt="" coords="390,121,327,161,324,157,387,116"/>
+<area shape="poly" id="edge20_Node000016_Node000008" title=" " alt="" coords="411,118,421,153,415,154,406,120"/>
+<area shape="poly" id="edge21_Node000016_Node000014" title=" " alt="" coords="430,116,513,158,511,163,427,121"/>
+</map>

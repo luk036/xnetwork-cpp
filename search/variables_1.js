@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['depth_0',['depth',['../structBFSInfo.html#a6841f08e439247327ca66115a9979f02',1,'BFSInfo']]]
+  ['adjacent_5fedges_0',['adjacent_edges',['../structmwmatching_1_1impl_1_1Graph.html#a7c653ffeeeda7052abcd7b0b676f6d12',1,'mwmatching::impl::Graph']]]
 ];

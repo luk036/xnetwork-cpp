@@ -1,0 +1,9 @@
+<map id="xnetwork/detail/mwmatching/concatenable_queue.hpp" name="xnetwork/detail/mwmatching/concatenable_queue.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="43,5,256,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,91,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,48,76,87,73,82,123,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="115,93,184,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="152,46,152,79,147,79,147,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="209,93,263,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="172,44,215,82,211,86,169,48"/>
+</map>
