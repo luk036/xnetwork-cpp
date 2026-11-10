@@ -26,13 +26,13 @@ template <typename Graph> static void do_case(const Graph& gra) {
     CHECK_EQ(gra.degree(1U), deg);
 }
 
-TEST_CASE("Test Cycle Ratio") {
+TEST_CASE("Test xnetwork::DiGraphS with test case 1") {
     const auto indices = std::array<int, 5>{0, -1, 2, 3, 4};
     auto gra = create_test_case1(indices);
     do_case(gra);
 }
 
-TEST_CASE("Test Cycle Ratio of Timing Graph") {
+TEST_CASE("Test xnetwork::DiGraphS with test case 2") {
     // make sure no parallel edges!!!
 
     const auto indices = std::array<int, 6>{0, 1, -2, 3, 4, 5};

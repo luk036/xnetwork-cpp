@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <algorithm>
 #include <cassert>
 #include <cstdint>
 #include <py2cpp/py2cpp.hpp>
@@ -169,10 +170,43 @@ namespace xnetwork {
             @return Iterator past the last node */
         auto end() const { return std::end(this->_node); }
 
+      protected:
+        template <typename C>
+        static auto node_contains_impl(const C& container, const Node& node, int)
+            -> decltype(container.contains(node), bool()) {
+            return container.contains(node);
+        }
+
+        template <typename C>
+        static auto node_contains_impl(const C& container, const Node& node, long) -> bool {
+            return std::find(container.begin(), container.end(), node) != container.end();
+        }
+
+        template <typename C> static auto node_contains(const C& container, const Node& node)
+            -> bool {
+            return node_contains_impl(container, node, 0);
+        }
+
+        template <typename C>
+        static auto map_contains_impl(const C& container, const Node& node, int)
+            -> decltype(container.contains(node), bool()) {
+            return container.contains(node);
+        }
+
+        template <typename C> static auto map_contains_impl(const C&, const Node&, long) -> bool {
+            return true;
+        }
+
+        template <typename C> static auto map_contains(const C& container, const Node& node)
+            -> bool {
+            return map_contains_impl(container, node, 0);
+        }
+
+      public:
         /** @brief Check if a node is in the graph
             @param[in] node The node to check
             @return true if the node exists, false otherwise */
-        auto contains(const Node& node) const -> bool { return this->_node.contains(node); }
+        auto contains(const Node& node) const -> bool { return node_contains(this->_node, node); }
 
         /** @brief Access adjacency dict of a node (const version)
             @param[in] node The node to look up
@@ -235,7 +269,7 @@ namespace xnetwork {
         /** @brief Check if the graph contains a node
             @param[in] node The node to check
             @return true if the node exists, false otherwise */
-        auto has_node(const Node& node) const -> bool { return this->_node.contains(node); }
+        auto has_node(const Node& node) const -> bool { return node_contains(this->_node, node); }
 
         /** @brief Add an edge between two nodes (for simple key type, SFINAE)
             @tparam U Key type parameter for SFINAE dispatch
@@ -243,6 +277,7 @@ namespace xnetwork {
             @param[in] node_v Second endpoint of the edge */
         template <typename U = key_type> auto add_edge(const Node& node_u, const Node& node_v) ->
             typename std::enable_if<std::is_same<U, value_type>::value>::type {
+            if (this->_adj[node_u].contains(node_v)) return;
             this->_adj[node_u].insert(node_v);
             this->_adj[node_v].insert(node_u);
             ++this->_num_of_edges;
@@ -255,10 +290,11 @@ namespace xnetwork {
         template <typename U = key_type> auto add_edge(const Node& node_u, const Node& node_v) ->
             typename std::enable_if<!std::is_same<U, value_type>::value>::type {
             using T = typename adjlist_t::mapped_type;
+            const bool is_new = !this->_adj[node_u].contains(node_v);
             auto data = this->_adj[node_u].get(node_v, T{});
             this->_adj[node_u][node_v] = data;
             this->_adj[node_v][node_u] = data;
-            ++this->_num_of_edges;
+            if (is_new) ++this->_num_of_edges;
         }
 
         /** @brief Add an edge with attached data
@@ -267,9 +303,10 @@ namespace xnetwork {
             @param[in] node_v Second endpoint
             @param[in] data Data to associate with the edge */
         template <typename T> auto add_edge(const Node& node_u, const Node& node_v, const T& data) {
+            const bool is_new = !this->_adj[node_u].contains(node_v);
             this->_adj[node_u][node_v] = data;
             this->_adj[node_v][node_u] = data;
-            ++this->_num_of_edges;
+            if (is_new) ++this->_num_of_edges;
         }
 
         /** @brief Add edges from a container of edge pairs
@@ -299,19 +336,23 @@ namespace xnetwork {
             @param[in] node_v Second endpoint
             @return true if the edge exists, false otherwise */
         auto has_edge(const Node& node_u, const Node& node_v) const -> bool {
-            return this->_adj.at(node_u).contains(node_v);
+            return node_contains(this->_node, node_u) && map_contains(this->_adj, node_u)
+                   && this->_adj.at(node_u).contains(node_v);
         }
 
         /** @brief Get the degree of a node
             @param[in] node The node to get the degree for
-            @return The number of edges incident to the node */
-        auto degree(const Node& node) const { return this->_adj[node].size(); }
+            @return The number of edges incident to the node (0 for unknown nodes) */
+        auto degree(const Node& node) const {
+            return node_contains(this->_node, node) && map_contains(this->_adj, node)
+                       ? this->_adj.at(node).size()
+                       : 0;
+        }
 
-        /** @brief Remove all nodes and edges from the graph */
+        /** @brief Remove all edges from the graph, keeping the nodes */
         auto clear() {
             this->_adj.clear();
-            // this->_node.clear();
-            // this->graph.clear();
+            this->_num_of_edges = 0;
         }
 
         /** @brief Apply a callable to each edge without materializing a vector
@@ -323,7 +364,7 @@ namespace xnetwork {
             for (const auto& node : this->_node) {
                 for (const auto& nbr : this->_adj[node]) {
                     if (node < nbr) {
-                        std::forward<F>(func)(node, nbr);
+                        func(node, nbr);
                     }
                 }
             }

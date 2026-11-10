@@ -320,7 +320,7 @@ TEST_CASE("BC-optimized - mixed: triangle + square") {
     CHECK_EQ(val, 6);
 }
 
-TEST_CASE("BC-optimized - component_faces mismatch handled gracefully") {
+TEST_CASE("BC-optimized - component_faces mismatch is rejected") {
     // Only provide faces for 1 component but graph has 2
     xnetwork::SimpleGraph G(5);
     G.add_edge(0, 1);
@@ -333,9 +333,8 @@ TEST_CASE("BC-optimized - component_faces mismatch handled gracefully") {
     // Only 1 face list for a 2-component graph
     std::vector<std::vector<std::vector<uint32_t>>> component_faces = {{{0, 1, 2}, {0, 2, 1}}};
 
-    // Should not crash - returns partial cut
-    auto cut = solve_hadlock_max_cut(G, unit_weight, component_faces);
-    CHECK_GE(cut.size(), 0);  // at least the first component's cut
+    CHECK_THROWS_AS(solve_hadlock_max_cut(G, unit_weight, component_faces),
+                    xnetwork::XNetworkAlgorithmError);
 }
 
 // ===================================================================

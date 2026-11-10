@@ -48,7 +48,7 @@ namespace detail {
                               Validator&& is_valid) {
         for (auto it = added_order.rbegin(); it != added_order.rend(); ++it) {
             soln.erase(*it);
-            if (!std::forward<Validator>(is_valid)()) {
+            if (!is_valid()) {
                 soln.insert(*it);
             }
         }

@@ -1,6 +1,6 @@
-#include <cassert>
 #include <py2cpp/dict.hpp>
 #include <py2cpp/set.hpp>
+#include <stdexcept>
 #include <utility>
 #include <xnetwork/classes/graph.hpp>
 #include <xnetwork/graph_algo.hpp>
@@ -46,7 +46,10 @@ auto min_maximal_independant_set(const Graph& ugraph, WeightMap& weight, IndSet&
         for (const auto& vtx : ugraph[utx]) gap[vtx] -= min_val;
     }
 
-    assert(total_dual_cost <= total_prml_cost);
+    if (total_dual_cost > total_prml_cost) {
+        throw std::logic_error(
+            "min_maximal_independant_set: dual cost exceeds primal cost (invalid weights?)");
+    }
     return std::make_pair(indset, total_prml_cost);
 }
 
@@ -80,7 +83,10 @@ auto min_vertex_cover_fast(const Graph& ugraph, WeightMap& weight, CoverSet& cov
         gap[vtx] = 0;
     });
 
-    assert(total_dual_cost <= total_prml_cost);
+    if (total_dual_cost > total_prml_cost) {
+        throw std::logic_error(
+            "min_vertex_cover_fast: dual cost exceeds primal cost (invalid weights?)");
+    }
     return std::make_pair(coverset, total_prml_cost);
 }
 

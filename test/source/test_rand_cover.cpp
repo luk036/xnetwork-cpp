@@ -4,6 +4,7 @@
 #include <py2cpp/dict.hpp>
 #include <py2cpp/range.hpp>
 #include <py2cpp/set.hpp>
+#include <stdexcept>
 #include <utility>
 #include <xnetwork/classes/graph.hpp>  // for SimpleGraph
 #include <xnetwork/rand_cover.hpp>
@@ -125,6 +126,25 @@ TEST_CASE("rand_vertex_cover with initial coverset") {
 // ============================================================================
 // rand_vertex_cover_mt (multi-threaded)
 // ============================================================================
+
+TEST_CASE("rand_vertex_cover zero weights") {
+    xnetwork::SimpleGraph ugraph(2);
+    ugraph.add_edge(0, 1);
+    py::dict<uint32_t, int> weight{{0, 0}, {1, 0}};
+
+    auto [soln, cost] = rand_vertex_cover(ugraph, weight, 0);
+    CHECK_EQ(soln.size(), 1);
+    CHECK_EQ(cost, 0);
+    CHECK(is_valid_vertex_cover(ugraph, soln));
+}
+
+TEST_CASE("rand_vertex_cover_mt rejects zero trials") {
+    xnetwork::SimpleGraph ugraph(2);
+    ugraph.add_edge(0, 1);
+    py::dict<uint32_t, int> weight{{0, 1}, {1, 1}};
+
+    CHECK_THROWS_AS(rand_vertex_cover_mt(ugraph, weight, 0), std::invalid_argument);
+}
 
 TEST_CASE("rand_vertex_cover_mt simple triangle") {
     xnetwork::SimpleGraph ugraph(3);

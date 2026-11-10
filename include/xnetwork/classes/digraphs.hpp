@@ -44,6 +44,8 @@ namespace xnetwork {
         using key_type = typename _Base::key_type;
         using value_type = typename _Base::value_type;
 
+        using _Base::add_edges_from;
+
       public:
         // adjlist_outer_dict_factory &_adj; // successor
 
@@ -168,7 +170,9 @@ namespace xnetwork {
             @param[in] node_v Potential successor node
             @return true if the edge u->v exists */
         auto has_successor(const Node& node_u, const Node& node_v) const -> bool {
-            return this->_node.contains(node_u) && this->_adj.at(node_u).contains(node_v);
+            return this->node_contains(this->_node, node_u)
+                   && this->map_contains(this->_adj, node_u)
+                   && this->_adj.at(node_u).contains(node_v);
         }
 
         /** @brief Get iterator over successors of a node (non-const)
@@ -179,12 +183,16 @@ namespace xnetwork {
         /** @brief Get iterator over successors of a node (const)
             @param[in] node The node to get successors for
             @return Const reference to the adjacency list of the node */
-        auto successors(const Node& node) const -> const auto& { return this->_adj[node]; }
+        auto successors(const Node& node) const -> const auto& { return this->_adj.at(node); }
 
         /** @brief Get the out-degree of a node in the directed graph
             @param[in] node The node to get the degree for
-            @return The number of outgoing edges from the node */
-        auto degree(const Node& node) const { return this->_adj[node].size(); }
+            @return The number of outgoing edges (0 for unknown nodes) */
+        auto degree(const Node& node) const {
+            return this->node_contains(this->_node, node) && this->map_contains(this->_adj, node)
+                       ? this->_adj.at(node).size()
+                       : 0;
+        }
 
         /** @brief Get the number of edges in the directed graph
             @details Iterates through the adjacency structure to count edges.
@@ -192,17 +200,17 @@ namespace xnetwork {
         auto number_of_edges() const -> size_t {
             size_t n_edges = 0;
             for (const auto& node : this->_node) {
-                n_edges += this->_adj.at(node).size();
+                if (this->map_contains(this->_adj, node)) {
+                    n_edges += this->_adj.at(node).size();
+                }
             }
             return n_edges;  // No division needed since it's a directed graph
         }
 
-        /** @brief Remove all nodes and edges from the graph */
+        /** @brief Remove all edges from the graph, keeping the nodes */
         auto clear() {
             this->_adj.clear();
-            // this->_pred.clear()
-            // this->_node.clear();
-            this->graph.clear();
+            this->_num_of_edges = 0;
         }
 
         /** @brief Check if the graph is a multigraph

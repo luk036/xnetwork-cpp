@@ -143,12 +143,17 @@ namespace detail {
 
     inline auto reconstruct_path(const std::vector<int>& prev, int src, int dst)
         -> std::vector<int> {
-        std::vector<int> path;
-        const auto* p = prev.data();
-        for (int v = dst; v != -1 && v != src; v = p[v]) {
-            path.push_back(v);
+        if (src == dst) return std::vector<int>{src};
+        if (dst < 0 || static_cast<size_t>(dst) >= prev.size() || prev[dst] == -1) {
+            return {};
         }
-        if (path.empty() && src != dst) return {};
+        std::vector<int> path;
+        int v = dst;
+        while (v != -1 && v != src) {
+            path.push_back(v);
+            v = prev[v];
+        }
+        if (v != src) return {};
         path.push_back(src);
         std::reverse(path.begin(), path.end());
         return path;
@@ -380,7 +385,12 @@ template <typename Graph, typename WeightFunc> auto solve_hadlock_max_cut(
     // Decompose into biconnected components
     auto comp_nodes = detail::biconnected_components(G);
 
-    const auto n_comps = std::min(comp_nodes.size(), component_faces.size());
+    if (comp_nodes.size() != component_faces.size()) {
+        throw xnetwork::XNetworkAlgorithmError(
+            "solve_hadlock_max_cut: component_faces count does not match the number of "
+            "biconnected components");
+    }
+    const auto n_comps = comp_nodes.size();
 
     // Components are independent (edges are disjoint), so no
     // synchronization is needed beyond collecting results.

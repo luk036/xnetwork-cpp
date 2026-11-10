@@ -105,6 +105,7 @@ auto generic_bfs_cycle(const Graph& ugraph, const CoverSet& coverset)
                 if (succ == child) continue;
 
                 cycles.emplace_back(info, parent, child);
+                return cycles;
             }
         }
     }

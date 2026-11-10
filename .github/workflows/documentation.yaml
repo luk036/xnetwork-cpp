@@ -4,6 +4,9 @@ on:
   push:
     tags: ["*"]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build and publish documentation
@@ -13,6 +16,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt-get update
           sudo apt-get install -y --no-install-recommends doxygen graphviz
 
       - name: Build
@@ -21,7 +25,7 @@ jobs:
           cmake --build build --target GenerateDocs
 
       - name: Publish
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/doxygen/html

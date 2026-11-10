@@ -16,37 +16,37 @@ A **NetworkX-inspired** modern C++ graph library for network analysis and graph 
 
 - **20 GitHub stars** - our most popular algorithm library
 - **High performance** - C++ implementation for speed-critical applications
-- **Header-only** - easy integration into existing projects
+- **Installable** - CMake package with `find_package(XNetwork)`
 - **Modern CMake** - easy to build and install
 - **Cross-platform** - tested on macOS, Windows, and Ubuntu
 
 ## ✨ Features
 
-- Graph data structures (undirected, directed, weighted)
-- Graph generators (random, lattice, complete)
-- Common graph algorithms (BFS, DFS, shortest path, etc.)
-- Network analysis metrics (centrality, connectivity, etc.)
-- Compatible with [py2cpp](https://github.com/luk036/py2cpp) for Python bindings
+- Undirected (`Graph`/`SimpleGraph`) and directed (`DiGraphS`) graph containers
+- Primal-dual covering algorithms (vertex cover, cycle cover, odd-cycle cover)
+- Randomized vertex cover (single- and multi-threaded)
+- Planar MAX-CUT (Hadlock) and Metric TSP (Christofides + 2-opt)
+- Test-case graph generators
+- Installable CMake package with `find_package(XNetwork)`
 
 ## Quick Start
 
 ```cpp
-#include <xnetwork/xnetwork.hpp>
+#include <cstddef>
+
+#include <xnetwork/classes/graph.hpp>
 
 int main() {
-    using namespace xnetwork;
-
-    // Create a simple graph
-    SimpleGraph<> G(5);
+    // Create a simple graph with 5 nodes
+    xnetwork::SimpleGraph G(5);
     G.add_edge(0, 1);
     G.add_edge(1, 2);
     G.add_edge(2, 3);
     G.add_edge(3, 4);
 
-    // Run BFS from node 0
-    auto distances = bfs_distances(G, 0);
-
-    return 0;
+    const auto edges = G.edges();
+    const auto degree = G.degree(0);
+    return static_cast<int>(edges.size() + degree);
 }
 ```
 

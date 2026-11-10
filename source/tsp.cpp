@@ -1,7 +1,7 @@
 #include <algorithm>
-#include <cassert>
 #include <py2cpp/set.hpp>
 #include <set>
+#include <stdexcept>
 #include <vector>
 #include <xnetwork/tsp.hpp>
 
@@ -22,7 +22,9 @@ namespace detail {
 
                 auto& vn = adj[static_cast<size_t>(v)];
                 const auto it = vn.find(u);
-                assert(it != vn.end() && "graph must be undirected");
+                if (it == vn.end()) {
+                    throw std::logic_error("hierholzer: graph must be undirected");
+                }
                 vn.erase(it);
 
                 stack.push_back(v);
