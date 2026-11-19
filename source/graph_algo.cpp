@@ -55,8 +55,8 @@ auto min_maximal_independant_set(const Graph& ugraph, WeightMap& weight, IndSet&
 
 template auto min_maximal_independant_set<xnetwork::SimpleGraph, py::dict<uint32_t, int>,
                                           py::set<uint32_t>, py::set<uint32_t>>(
-    const xnetwork::SimpleGraph&, py::dict<uint32_t, int>&, py::set<uint32_t>&, py::set<uint32_t>&)
-    -> std::pair<py::set<uint32_t>, int>;
+    const xnetwork::SimpleGraph&, py::dict<uint32_t, int>&, py::set<uint32_t>&,
+    py::set<uint32_t>&) -> std::pair<py::set<uint32_t>, int>;
 
 // -----------------------------------------------------------------------
 // min_vertex_cover_fast
@@ -90,7 +90,7 @@ auto min_vertex_cover_fast(const Graph& ugraph, WeightMap& weight, CoverSet& cov
     return std::make_pair(coverset, total_prml_cost);
 }
 
-template auto min_vertex_cover_fast<xnetwork::SimpleGraph, py::dict<uint32_t, int>,
-                                    py::set<uint32_t>>(const xnetwork::SimpleGraph&,
-                                                       py::dict<uint32_t, int>&, py::set<uint32_t>&)
-    -> std::pair<py::set<uint32_t>, int>;
+template auto
+min_vertex_cover_fast<xnetwork::SimpleGraph, py::dict<uint32_t, int>, py::set<uint32_t>>(
+    const xnetwork::SimpleGraph&, py::dict<uint32_t, int>&,
+    py::set<uint32_t>&) -> std::pair<py::set<uint32_t>, int>;

@@ -7,10 +7,9 @@
 #include <xnetwork/classes/graph.hpp>
 #include <xnetwork/rand_cover.hpp>
 
-template <typename Graph, typename WeightMap, typename RNG>
-auto rand_vertex_cover_trial(const Graph& ugraph, const WeightMap& weight,
-                             const py::set<typename Graph::node_t>& coverset, RNG& rng)
-    -> std::pair<py::set<typename Graph::node_t>, typename WeightMap::mapped_type> {
+template <typename Graph, typename WeightMap, typename RNG> auto rand_vertex_cover_trial(
+    const Graph& ugraph, const WeightMap& weight, const py::set<typename Graph::node_t>& coverset,
+    RNG& rng) -> std::pair<py::set<typename Graph::node_t>, typename WeightMap::mapped_type> {
     using node_t = typename Graph::node_t;
     using CostType = typename WeightMap::mapped_type;
 

@@ -49,8 +49,8 @@
  * @return std::pair<SolutionSet, typename WeightMap::mapped_type> Solution and total primal cost
  */
 template <typename MakeViolator, typename WeightMap, typename SolutionSet>
-auto pd_cover(MakeViolator make_violator, WeightMap& weight, SolutionSet& soln)
-    -> std::pair<SolutionSet, typename WeightMap::mapped_type> {
+auto pd_cover(MakeViolator make_violator, WeightMap& weight,
+              SolutionSet& soln) -> std::pair<SolutionSet, typename WeightMap::mapped_type> {
     using CostType = typename WeightMap::mapped_type;
     using NodeType = typename SolutionSet::value_type;
 
@@ -128,8 +128,8 @@ auto pd_cover(MakeViolator make_violator, WeightMap& weight, SolutionSet& soln)
  * @return std::pair<CoverSet, typename WeightMap::mapped_type> Cover set and total weight
  */
 template <typename Graph, typename WeightMap, typename CoverSet>
-auto min_vertex_cover(const Graph& ugraph, WeightMap& weight, CoverSet& coverset)
-    -> std::pair<CoverSet, typename WeightMap::mapped_type>;
+auto min_vertex_cover(const Graph& ugraph, WeightMap& weight,
+                      CoverSet& coverset) -> std::pair<CoverSet, typename WeightMap::mapped_type>;
 
 /**
  * @brief Overload without pre-existing coverset
@@ -212,8 +212,8 @@ auto extract_odd_cycle(const py::dict<Node, Node>& parent, Node utx, Node vtx) -
  *   std::nullopt when the graph induced by V \ coverset is bipartite
  */
 template <typename Graph, typename CoverSet>
-auto find_odd_cycle(const Graph& ugraph, const CoverSet& coverset)
-    -> std::optional<std::vector<typename Graph::node_t>>;
+auto find_odd_cycle(const Graph& ugraph,
+                    const CoverSet& coverset) -> std::optional<std::vector<typename Graph::node_t>>;
 
 /**
  * @brief Performs minimum cycle cover using primal-dual approximation.
@@ -227,8 +227,8 @@ auto find_odd_cycle(const Graph& ugraph, const CoverSet& coverset)
  * @return std::pair<CoverSet, typename WeightMap::mapped_type> Cover set and total weight
  */
 template <typename Graph, typename WeightMap, typename CoverSet>
-auto min_cycle_cover(const Graph& ugraph, WeightMap& weight, CoverSet& coverset)
-    -> std::pair<CoverSet, typename WeightMap::mapped_type> {
+auto min_cycle_cover(const Graph& ugraph, WeightMap& weight,
+                     CoverSet& coverset) -> std::pair<CoverSet, typename WeightMap::mapped_type> {
     using node_t = typename Graph::node_t;
 
     // Factory: returns a violator that does a fresh BFS each call

@@ -12,8 +12,8 @@
 
 namespace detail {
 
-    template <typename Graph> auto biconnected_components(const Graph& G)
-        -> std::vector<py::set<typename Graph::node_t>> {
+    template <typename Graph>
+    auto biconnected_components(const Graph& G) -> std::vector<py::set<typename Graph::node_t>> {
         using node_t = typename Graph::node_t;
 
         std::vector<py::set<node_t>> components;
@@ -84,8 +84,8 @@ namespace detail {
     // -------------------------------------------------------------------
 
     template <typename Node>
-    auto dijkstra(const std::vector<std::vector<DualEdge<Node>>>& dual, int src)
-        -> std::pair<std::vector<int>, std::vector<int>> {
+    auto dijkstra(const std::vector<std::vector<DualEdge<Node>>>& dual,
+                  int src) -> std::pair<std::vector<int>, std::vector<int>> {
         const auto n = dual.size();
         std::vector<int> dist(n, INF);
         std::vector<int> prev(n, -1);
@@ -114,7 +114,7 @@ namespace detail {
     template auto biconnected_components<xnetwork::SimpleGraph>(const xnetwork::SimpleGraph& G)
         -> std::vector<py::set<typename xnetwork::SimpleGraph::node_t>>;
 
-    template auto dijkstra<uint32_t>(const std::vector<std::vector<DualEdge<uint32_t>>>&, int)
-        -> std::pair<std::vector<int>, std::vector<int>>;
+    template auto dijkstra<uint32_t>(const std::vector<std::vector<DualEdge<uint32_t>>>&,
+                                     int) -> std::pair<std::vector<int>, std::vector<int>>;
 
 }  // namespace detail

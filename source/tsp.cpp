@@ -7,8 +7,8 @@
 
 namespace detail {
 
-    template <typename Node> auto hierholzer(std::vector<std::multiset<Node>> adj, Node start)
-        -> std::vector<std::pair<Node, Node>> {
+    template <typename Node> auto hierholzer(std::vector<std::multiset<Node>> adj,
+                                             Node start) -> std::vector<std::pair<Node, Node>> {
         std::vector<std::pair<Node, Node>> circuit;
         std::vector<Node> stack = {start};
 
@@ -38,7 +38,7 @@ namespace detail {
         return circuit;
     }
 
-    template auto hierholzer<uint32_t>(std::vector<std::multiset<uint32_t>>, uint32_t)
-        -> std::vector<std::pair<uint32_t, uint32_t>>;
+    template auto hierholzer<uint32_t>(std::vector<std::multiset<uint32_t>>,
+                                       uint32_t) -> std::vector<std::pair<uint32_t, uint32_t>>;
 
 }  // namespace detail

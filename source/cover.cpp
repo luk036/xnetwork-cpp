@@ -164,8 +164,8 @@ template <typename Node> auto extract_odd_cycle(const py::dict<Node, Node>& pare
     return cycle;
 }
 
-template auto extract_odd_cycle<uint32_t>(const py::dict<uint32_t, uint32_t>&, uint32_t, uint32_t)
-    -> std::vector<uint32_t>;
+template auto extract_odd_cycle<uint32_t>(const py::dict<uint32_t, uint32_t>&, uint32_t,
+                                          uint32_t) -> std::vector<uint32_t>;
 
 // -----------------------------------------------------------------------
 // _find_odd_cycle
@@ -210,17 +210,16 @@ auto find_odd_cycle(const Graph& ugraph, const CoverSet& coverset)
     return std::nullopt;
 }
 
-template auto find_odd_cycle<xnetwork::SimpleGraph, py::set<uint32_t>>(const xnetwork::SimpleGraph&,
-                                                                       const py::set<uint32_t>&)
-    -> std::optional<std::vector<uint32_t>>;
+template auto find_odd_cycle<xnetwork::SimpleGraph, py::set<uint32_t>>(
+    const xnetwork::SimpleGraph&, const py::set<uint32_t>&) -> std::optional<std::vector<uint32_t>>;
 
 // -----------------------------------------------------------------------
 // min_vertex_cover
 // -----------------------------------------------------------------------
 
 template <typename Graph, typename WeightMap, typename CoverSet>
-auto min_vertex_cover(const Graph& ugraph, WeightMap& weight, CoverSet& coverset)
-    -> std::pair<CoverSet, typename WeightMap::mapped_type> {
+auto min_vertex_cover(const Graph& ugraph, WeightMap& weight,
+                      CoverSet& coverset) -> std::pair<CoverSet, typename WeightMap::mapped_type> {
     using node_t = typename Graph::node_t;
 
     auto make_violate_graph = [&]() {
@@ -241,8 +240,8 @@ auto min_vertex_cover(const Graph& ugraph, WeightMap& weight, CoverSet& coverset
 }
 
 template auto min_vertex_cover<xnetwork::SimpleGraph, py::dict<uint32_t, int>, py::set<uint32_t>>(
-    const xnetwork::SimpleGraph&, py::dict<uint32_t, int>&, py::set<uint32_t>&)
-    -> std::pair<py::set<uint32_t>, int>;
+    const xnetwork::SimpleGraph&, py::dict<uint32_t, int>&,
+    py::set<uint32_t>&) -> std::pair<py::set<uint32_t>, int>;
 
 // -----------------------------------------------------------------------
 // min_odd_cycle_cover
@@ -262,7 +261,7 @@ auto min_odd_cycle_cover(const Graph& ugraph, WeightMap& weight, CoverSet& cover
     return pd_cover(make_violate, weight, coverset);
 }
 
-template auto min_odd_cycle_cover<xnetwork::SimpleGraph, py::dict<uint32_t, int>,
-                                  py::set<uint32_t>>(const xnetwork::SimpleGraph&,
-                                                     py::dict<uint32_t, int>&, py::set<uint32_t>&)
-    -> std::pair<py::set<uint32_t>, int>;
+template auto
+min_odd_cycle_cover<xnetwork::SimpleGraph, py::dict<uint32_t, int>, py::set<uint32_t>>(
+    const xnetwork::SimpleGraph&, py::dict<uint32_t, int>&,
+    py::set<uint32_t>&) -> std::pair<py::set<uint32_t>, int>;

@@ -71,8 +71,8 @@ namespace detail {
      * @param weight   edge-weight function
      * @return vector of undirected edges forming the MST
      */
-    template <typename Node, typename WeightFunc> auto prim_mst(size_t n, WeightFunc&& weight)
-        -> std::vector<std::pair<Node, Node>> {
+    template <typename Node, typename WeightFunc>
+    auto prim_mst(size_t n, WeightFunc&& weight) -> std::vector<std::pair<Node, Node>> {
         constexpr double INF = std::numeric_limits<double>::max();
 
         if (n == 0) return {};
@@ -124,8 +124,8 @@ namespace detail {
      * @brief Collect vertices with odd degree in the MST.
      */
     template <typename Node>
-    auto find_odd_degree_nodes(const std::vector<std::pair<Node, Node>>& mst_edges, size_t n)
-        -> std::vector<Node> {
+    auto find_odd_degree_nodes(const std::vector<std::pair<Node, Node>>& mst_edges,
+                               size_t n) -> std::vector<Node> {
         std::vector<int> deg(n, 0);
         for (const auto& [u, v] : mst_edges) {
             ++deg[static_cast<size_t>(u)];
@@ -167,16 +167,15 @@ namespace detail {
      * @param start  start vertex
      * @return vector of directed edges ``(u, v)`` forming the circuit
      */
-    template <typename Node> auto hierholzer(std::vector<std::multiset<Node>> adj, Node start)
-        -> std::vector<std::pair<Node, Node>>;
+    template <typename Node> auto hierholzer(std::vector<std::multiset<Node>> adj,
+                                             Node start) -> std::vector<std::pair<Node, Node>>;
 
     /**
      * @brief Convert an Eulerian circuit to a Hamiltonian cycle by skipping
      *        repeated vertices (shortcut).
      */
-    template <typename Node>
-    auto shortcut_eulerian(const std::vector<std::pair<Node, Node>>& eulerian_circuit)
-        -> std::vector<Node> {
+    template <typename Node> auto shortcut_eulerian(
+        const std::vector<std::pair<Node, Node>>& eulerian_circuit) -> std::vector<Node> {
         std::vector<Node> path;
         py::set<Node> visited;
         for (const auto& [u, v] : eulerian_circuit) {
@@ -292,8 +291,8 @@ auto christofides_tsp(const Graph& G, WeightFunc&& weight) -> std::vector<typena
  * @return locally optimal tour
  */
 template <typename Graph, typename WeightFunc>
-auto two_opt(std::vector<typename Graph::node_t> path, const Graph& G, WeightFunc&& weight)
-    -> std::vector<typename Graph::node_t> {
+auto two_opt(std::vector<typename Graph::node_t> path, const Graph& G,
+             WeightFunc&& weight) -> std::vector<typename Graph::node_t> {
     (void)G;  // only used for type deduction
 
     bool improved = true;
@@ -347,8 +346,8 @@ auto two_opt(std::vector<typename Graph::node_t> path, const Graph& G, WeightFun
  * @return refined Hamiltonian cycle ``[v0, v1, ..., vn, v0]``
  */
 template <typename Graph, typename WeightFunc>
-auto solve_christofides_2opt_tsp(const Graph& G, WeightFunc&& weight)
-    -> std::vector<typename Graph::node_t> {
+auto solve_christofides_2opt_tsp(const Graph& G,
+                                 WeightFunc&& weight) -> std::vector<typename Graph::node_t> {
     auto path = christofides_tsp(G, weight);
     if (path.size() <= 3) return path;
     return two_opt(std::move(path), G, weight);

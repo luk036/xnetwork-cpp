@@ -172,8 +172,8 @@ namespace xnetwork {
 
       protected:
         template <typename C>
-        static auto node_contains_impl(const C& container, const Node& node, int)
-            -> decltype(container.contains(node), bool()) {
+        static auto node_contains_impl(const C& container, const Node& node,
+                                       int) -> decltype(container.contains(node), bool()) {
             return container.contains(node);
         }
 
@@ -182,14 +182,14 @@ namespace xnetwork {
             return std::find(container.begin(), container.end(), node) != container.end();
         }
 
-        template <typename C> static auto node_contains(const C& container, const Node& node)
-            -> bool {
+        template <typename C>
+        static auto node_contains(const C& container, const Node& node) -> bool {
             return node_contains_impl(container, node, 0);
         }
 
         template <typename C>
-        static auto map_contains_impl(const C& container, const Node& node, int)
-            -> decltype(container.contains(node), bool()) {
+        static auto map_contains_impl(const C& container, const Node& node,
+                                      int) -> decltype(container.contains(node), bool()) {
             return container.contains(node);
         }
 
@@ -197,8 +197,8 @@ namespace xnetwork {
             return true;
         }
 
-        template <typename C> static auto map_contains(const C& container, const Node& node)
-            -> bool {
+        template <typename C>
+        static auto map_contains(const C& container, const Node& node) -> bool {
             return map_contains_impl(container, node, 0);
         }
 
