@@ -1,3 +1,29 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classmwmatching_1_1PriorityQueue.html" title=" " alt="" coords="5,5,211,60"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,192,144,220"/>
+<area shape="rect" id="Node000001" href="$structxnetwork_1_1XNetworkException.html" title="Base class for all XNetwork exceptions." alt="" coords="192,192,410,220"/>
+<area shape="poly" id="edge4_Node000000_Node000001" title=" " alt="" coords="158,203,194,204,189,207,160,208"/>
+<area shape="rect" id="Node000002" href="$structxnetwork_1_1AmbiguousSolution.html" title="Raised when more than one valid solution exists for an intermediary step of an algorithm." alt="" coords="482,5,698,33"/>
+<area shape="poly" id="edge5_Node000001_Node000002" title=" " alt="" coords="318,177,374,109,413,73,457,43,489,32,485,35,459,48,416,78,378,113,322,181"/>
+<area shape="rect" id="Node000003" href="$structxnetwork_1_1ExceededMaxIterations.html" title="Raised when a loop exceeds the maximum number of iterations." alt="" coords="468,57,712,85"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="328,180,385,136,420,114,457,95,497,84,492,87,459,100,423,119,388,141,331,184"/>
+<area shape="rect" id="Node000004" href="$structxnetwork_1_1HasACycle.html" title="Raised if a graph has a cycle when an algorithm expects no cycles." alt="" coords="510,109,670,137"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="351,184,457,147,512,136,507,138,459,152,353,188"/>
+<area shape="rect" id="Node000005" href="$structxnetwork_1_1NodeNotFound.html" title="Exception raised when a requested node is not present in the graph." alt="" coords="497,161,683,189"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="425,190,499,184,494,186,426,195"/>
+<area shape="rect" id="Node000006" href="$structxnetwork_1_1XNetworkAlgorithmError.html" title="Exception for unexpected termination of algorithms." alt="" coords="481,213,699,258"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="425,216,483,224,478,225,426,221"/>
+<area shape="rect" id="Node000011" href="$structxnetwork_1_1XNetworkError.html" title="Exception for a serious error in XNetwork." alt="" coords="498,281,683,309"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="346,224,400,246,459,267,504,281,499,281,457,272,398,251,346,229"/>
+<area shape="rect" id="Node000012" href="$structxnetwork_1_1XNetworkNotImplemented.html" title="Exception raised by algorithms not implemented for a type of graph." alt="" coords="458,333,722,361"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="328,228,386,275,422,298,459,318,496,333,490,333,457,323,419,303,383,279,327,233"/>
+<area shape="rect" id="Node000013" href="$structxnetwork_1_1XNetworkPointlessConcept.html" title="Raised when a null graph is provided as input to an algorithm that cannot use it." alt="" coords="484,385,697,430"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="321,230,378,301,416,339,459,370,486,385,480,384,457,375,413,343,374,305,319,235"/>
+<area shape="rect" id="Node000007" href="$structxnetwork_1_1XNetworkUnbounded.html" title="Exception raised when a maximization or minimization problem instance is unbounded." alt="" coords="770,196,999,224"/>
+<area shape="poly" id="edge10_Node000006_Node000007" title=" " alt="" coords="714,222,772,219,767,220,715,227"/>
+<area shape="rect" id="Node000008" href="$structxnetwork_1_1XNetworkUnfeasible.html" title="Exception raised by algorithms trying to solve a problem instance that has no feasible solution." alt="" coords="772,248,997,276"/>
+<area shape="poly" id="edge11_Node000006_Node000008" title=" " alt="" coords="715,244,774,251,769,252,715,249"/>
+<area shape="rect" id="Node000009" href="$structxnetwork_1_1XNetworkNoCycle.html" title="Exception for algorithms that should return a cycle when running on graphs where such a cycle does no..." alt="" coords="1047,221,1255,249"/>
+<area shape="poly" id="edge12_Node000008_Node000009" title=" " alt="" coords="1012,246,1049,245,1043,246,1013,252"/>
+<area shape="rect" id="Node000010" href="$structxnetwork_1_1XNetworkNoPath.html" title="Exception for algorithms that should return a path when running on graphs where such a path does not ..." alt="" coords="1051,273,1251,301"/>
+<area shape="poly" id="edge13_Node000008_Node000010" title=" " alt="" coords="1012,271,1053,278,1048,278,1012,277"/>
 </map>

@@ -10,6 +10,6 @@ var searchData=
   ['delta3_5fadd_5fedge_7',['delta3_add_edge',['../classmwmatching_1_1impl_1_1MatchingContext.html#a9b42a1fc7e00c4d41916a604126e031a',1,'mwmatching::impl::MatchingContext']]],
   ['delta3_5fget_5fmin_5fedge_8',['delta3_get_min_edge',['../classmwmatching_1_1impl_1_1MatchingContext.html#a5a7d9bbe2ec6c6c961bb201e10ff0117',1,'mwmatching::impl::MatchingContext']]],
   ['delta3_5fremove_5fedge_9',['delta3_remove_edge',['../classmwmatching_1_1impl_1_1MatchingContext.html#a6b530ad7a80463a193bd33e73301556f',1,'mwmatching::impl::MatchingContext']]],
-  ['digraphs_10',['digraphs',['../classxnetwork_1_1DiGraphS.html#aba7b37ae9ae484a72daece45952a132c',1,'xnetwork::DiGraphS::DiGraphS(const nodeview_t &amp;Nodes)'],['../classxnetwork_1_1DiGraphS.html#ada3a64076bb32a0ed6051dc7546553e0',1,'xnetwork::DiGraphS::DiGraphS(uint32_t num_nodes)']]],
+  ['digraphs_10',['DiGraphS',['../classxnetwork_1_1DiGraphS.html#aba7b37ae9ae484a72daece45952a132c',1,'xnetwork::DiGraphS::DiGraphS(const nodeview_t &amp;Nodes)'],['../classxnetwork_1_1DiGraphS.html#ada3a64076bb32a0ed6051dc7546553e0',1,'xnetwork::DiGraphS::DiGraphS(uint32_t num_nodes)']]],
   ['dijkstra_11',['dijkstra',['../namespacedetail.html#a01225ec6cf8106ebaddf47948a2223be',1,'detail']]]
 ];

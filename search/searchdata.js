@@ -11,7 +11,7 @@ var indexSectionsWithContent =
   8: "defl",
   9: "cp",
   10: "_x",
-  11: "ax"
+  11: "abcdefghilnopqrstuwxy✨❓⭐📊"
 };
 
 var indexSectionNames =

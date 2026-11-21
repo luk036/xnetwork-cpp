@@ -1,20 +1,22 @@
 <map id="xnetwork/classes/graph.hpp" name="xnetwork/classes/graph.hpp">
-<area shape="rect" id="Node000001" title="Undirected graph data structure for XNetwork." alt="" coords="306,5,510,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,75,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="341,33,89,81,88,76,340,28"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="99,79,165,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="364,33,179,81,178,76,363,28"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="190,79,338,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="386,33,301,75,299,70,384,28"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="362,79,454,104"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="411,31,411,65,405,65,405,31"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="478,79,541,104"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="426,28,483,68,480,73,423,33"/>
-<area shape="rect" id="Node000007" href="$coreviews_8hpp.html" title="Read&#45;only view classes for graph data structures." alt="" coords="565,79,798,104"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="453,28,625,73,623,78,451,33"/>
-<area shape="rect" id="Node000009" href="$reportviews_8hpp.html" title="View classes for nodes, edges, and degrees in XNetwork graphs." alt="" coords="822,79,1066,104"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="494,28,845,74,844,80,494,33"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="777,152,847,177"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="704,102,780,143,778,148,701,106"/>
-<area shape="poly" id="edge9_Node000009_Node000008" title=" " alt="" coords="924,106,847,148,844,143,922,102"/>
+<area shape="rect" id="Node000001" title="Undirected graph data structure for XNetwork." alt="" coords="339,5,542,33"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,81,90,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="360,36,105,83,104,78,360,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="113,81,182,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="384,36,197,83,196,78,388,32"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="206,81,271,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="402,35,287,79,285,74,407,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="295,81,442,109"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="430,32,394,72,391,68,426,35"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="467,81,558,109"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="455,31,492,70,487,69,453,36"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="583,81,645,109"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="472,31,572,75,567,75,471,36"/>
+<area shape="rect" id="Node000008" href="$coreviews_8hpp.html" title="Read&#45;only view classes for graph data structures." alt="" coords="670,81,902,109"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="503,31,712,77,706,78,503,36"/>
+<area shape="rect" id="Node000010" href="$reportviews_8hpp.html" title="View classes for nodes, edges, and degrees in XNetwork graphs." alt="" coords="926,81,1169,109"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="543,30,926,78,921,80,543,35"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="882,157,952,184"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="810,107,883,149,878,148,809,112"/>
+<area shape="poly" id="edge10_Node000010_Node000009" title=" " alt="" coords="1027,109,954,151,952,146,1022,110"/>
 </map>

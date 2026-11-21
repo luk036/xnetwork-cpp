@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['edge_0',['edge',['../structmwmatching_1_1Edge.html#a30288eeaf43c5318755d7b6154e9e5dc',1,'mwmatching::Edge::Edge(VertexPair vt, WeightType w)'],['../structmwmatching_1_1Edge.html#ac6c0367eee24ec04de9040ce07f6aefc',1,'mwmatching::Edge::Edge(VertexId x, VertexId y, WeightType w)']]],
+  ['edge_0',['Edge',['../structmwmatching_1_1Edge.html#a30288eeaf43c5318755d7b6154e9e5dc',1,'mwmatching::Edge::Edge(VertexPair vt, WeightType w)'],['../structmwmatching_1_1Edge.html#ac6c0367eee24ec04de9040ce07f6aefc',1,'mwmatching::Edge::Edge(VertexId x, VertexId y, WeightType w)']]],
   ['edge_5fpseudo_5fslack_1',['edge_pseudo_slack',['../classmwmatching_1_1impl_1_1MatchingContext.html#aa0cf4503d9e5e333640e048f45b83e65',1,'mwmatching::impl::MatchingContext']]],
   ['edges_2',['edges',['../classxnetwork_1_1Graph.html#a24ecaec42681c909da0bea371a25c559',1,'xnetwork::Graph']]],
   ['empty_3',['empty',['../classmwmatching_1_1PriorityQueue.html#acc5146063216721f51b462e7580baa6f',1,'mwmatching::PriorityQueue']]],

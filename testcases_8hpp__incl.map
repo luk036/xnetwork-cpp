@@ -1,34 +1,36 @@
 <map id="xnetwork/generators/testcases.hpp" name="xnetwork/generators/testcases.hpp">
-<area shape="rect" id="Node000001" title="Test case generators for XNetwork algorithms." alt="" coords="331,5,488,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="300,93,356,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="391,47,352,85,348,82,388,44"/>
-<area shape="rect" id="Node000003" href="$digraphs_8hpp.html" title="Directed graph data structure for XNetwork." alt="" coords="379,93,602,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="431,44,470,82,467,85,427,47"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="5,240,75,265"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="435,121,347,142,249,169,156,204,78,237,76,232,154,199,247,164,345,136,434,116"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="99,240,247,265"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="438,121,369,141,296,169,242,201,199,234,195,229,239,196,293,164,367,135,436,116"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="271,240,363,265"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="383,121,342,139,324,152,309,168,303,182,302,196,309,227,303,228,296,197,298,180,304,165,320,148,339,134,381,116"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="701,167,761,192"/>
-<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="530,116,688,163,687,168,528,121"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="479,240,542,265"/>
-<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="505,117,523,138,537,166,540,182,538,199,528,229,523,227,533,198,535,182,532,168,518,141,501,120"/>
-<area shape="rect" id="Node000009" href="$coreviews_8hpp.html" title="Read&#45;only view classes for graph data structures." alt="" coords="834,240,1067,265"/>
-<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="515,116,592,152,690,189,785,216,873,235,872,240,783,221,688,195,590,157,513,121"/>
-<area shape="rect" id="Node000011" href="$graph_8hpp.html" title="Undirected graph data structure for XNetwork." alt="" coords="319,167,523,192"/>
-<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="481,121,444,159,440,155,477,117"/>
-<area shape="rect" id="Node000013" href="$reportviews_8hpp.html" title="View classes for nodes, edges, and degrees in XNetwork graphs." alt="" coords="566,240,810,265"/>
-<area shape="poly" id="edge19_Node000003_Node000013" title=" " alt="" coords="508,117,662,229,659,234,505,121"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="783,313,854,339"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="931,268,853,309,851,304,928,263"/>
-<area shape="poly" id="edge11_Node000011_Node000004" title=" " alt="" coords="350,195,89,242,88,237,349,189"/>
-<area shape="poly" id="edge13_Node000011_Node000005" title=" " alt="" coords="382,195,227,239,226,234,381,189"/>
-<area shape="poly" id="edge14_Node000011_Node000006" title=" " alt="" coords="406,194,347,234,344,230,403,190"/>
-<area shape="poly" id="edge15_Node000011_Node000008" title=" " alt="" coords="437,190,487,229,484,233,434,194"/>
-<area shape="poly" id="edge16_Node000011_Node000009" title=" " alt="" coords="507,189,852,235,851,241,506,195"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="388,240,455,265"/>
-<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="424,192,424,226,419,226,419,192"/>
-<area shape="poly" id="edge17_Node000011_Node000013" title=" " alt="" coords="465,189,632,234,631,239,463,195"/>
-<area shape="poly" id="edge18_Node000013_Node000010" title=" " alt="" coords="710,263,787,304,784,309,708,268"/>
+<area shape="rect" id="Node000001" title="Test case generators for XNetwork algorithms." alt="" coords="283,5,439,50"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="252,98,307,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="341,49,305,89,301,85,338,52"/>
+<area shape="rect" id="Node000003" href="$digraphs_8hpp.html" title="Directed graph data structure for XNetwork." alt="" coords="331,98,553,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="383,48,421,87,416,87,382,53"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,249,74,277"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="404,127,278,176,89,246,87,241,276,171,409,125"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="98,249,245,277"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="420,128,210,244,207,239,417,124"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="270,249,361,277"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="433,125,392,175,338,240,334,236,388,172,429,128"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="738,174,797,201"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="506,124,720,171,726,174,720,174,719,176,506,129"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="386,249,448,277"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="431,125,414,149,401,174,399,205,406,236,402,234,393,206,396,173,410,146,427,128"/>
+<area shape="rect" id="Node000009" href="$coreviews_8hpp.html" title="Read&#45;only view classes for graph data structures." alt="" coords="670,249,902,277"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="490,124,555,144,626,171,695,205,755,241,750,241,692,210,624,176,554,149,490,129"/>
+<area shape="rect" id="Node000011" href="$graph_8hpp.html" title="Undirected graph data structure for XNetwork." alt="" coords="410,174,613,201"/>
+<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="455,124,491,162,486,162,454,129"/>
+<area shape="rect" id="Node000014" href="$reportviews_8hpp.html" title="View classes for nodes, edges, and degrees in XNetwork graphs." alt="" coords="926,249,1169,277"/>
+<area shape="poly" id="edge20_Node000003_Node000014" title=" " alt="" coords="505,124,585,144,671,171,699,185,727,199,826,226,925,246,920,246,825,231,725,204,697,190,669,176,584,149,505,129"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="882,325,952,353"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="810,275,883,318,878,317,809,280"/>
+<area shape="poly" id="edge12_Node000011_Node000004" title=" " alt="" coords="407,201,262,222,90,252,88,246,262,217,412,199"/>
+<area shape="poly" id="edge14_Node000011_Node000005" title=" " alt="" coords="448,203,248,248,247,243,453,200"/>
+<area shape="poly" id="edge15_Node000011_Node000006" title=" " alt="" coords="479,201,365,246,364,241,474,203"/>
+<area shape="poly" id="edge16_Node000011_Node000008" title=" " alt="" coords="497,201,447,242,444,237,492,203"/>
+<area shape="poly" id="edge17_Node000011_Node000009" title=" " alt="" coords="561,199,725,245,720,245,560,205"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="472,249,556,277"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="514,200,515,235,511,232,510,204"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="580,249,646,277"/>
+<area shape="poly" id="edge13_Node000011_Node000013" title=" " alt="" coords="530,199,585,240,580,240,529,204"/>
+<area shape="poly" id="edge18_Node000011_Node000014" title=" " alt="" coords="608,199,938,246,933,247,608,205"/>
+<area shape="poly" id="edge19_Node000014_Node000010" title=" " alt="" coords="1027,277,954,320,952,315,1022,278"/>
 </map>

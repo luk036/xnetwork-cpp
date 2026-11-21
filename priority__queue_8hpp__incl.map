@@ -1,9 +1,9 @@
 <map id="xnetwork/detail/mwmatching/priority_queue.hpp" name="xnetwork/detail/mwmatching/priority_queue.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="21,5,235,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,75,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,48,65,86,62,82,105,44"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="99,93,157,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="131,46,131,79,125,79,125,46"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="182,93,245,119"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="150,44,192,82,189,86,147,48"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="21,5,234,50"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,98,74,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,49,66,89,63,85,102,51"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="98,98,157,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="129,48,130,83,125,81,126,52"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="180,98,243,126"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="151,48,190,87,184,87,149,53"/>
 </map>

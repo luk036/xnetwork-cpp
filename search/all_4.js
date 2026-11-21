@@ -2,7 +2,7 @@ var searchData=
 [
   ['de_0',['DE',['../namespacexnetwork.html#a6f7dc0186dc3c5390bca427b40b19fdda3a52f3c22ed6fcde5bf696a6c02c9e73',1,'xnetwork']]],
   ['degree_1',['degree',['../classxnetwork_1_1DiGraphS.html#aebf766e69a7473723f0171f6e8f2fc5a',1,'xnetwork::DiGraphS::degree()'],['../classxnetwork_1_1Graph.html#accdc2e5f14d7c7ce199a21784daf39dd',1,'xnetwork::Graph::degree()']]],
-  ['degreeview_2',['DegreeView',['../namespacexnetwork.html#autotoc_md25',1,'']]],
+  ['degreeview_2',['DegreeView',['../namespacexnetwork.html#autotoc_md30',1,'']]],
   ['delta2_5fadd_5fedge_3',['delta2_add_edge',['../classmwmatching_1_1impl_1_1MatchingContext.html#a2db91d4d7828e18a69de9f6c1288d59d',1,'mwmatching::impl::MatchingContext']]],
   ['delta2_5fclear_5fvertex_4',['delta2_clear_vertex',['../classmwmatching_1_1impl_1_1MatchingContext.html#a1a4bf4db311f4dcc8bda854f273a07af',1,'mwmatching::impl::MatchingContext']]],
   ['delta2_5fdisable_5fblossom_5',['delta2_disable_blossom',['../classmwmatching_1_1impl_1_1MatchingContext.html#afb7c3d2e4d47c43095b85e35d639f45a',1,'mwmatching::impl::MatchingContext']]],
@@ -22,10 +22,12 @@ var searchData=
   ['deltastep_19',['DeltaStep',['../structmwmatching_1_1impl_1_1MatchingContext_1_1DeltaStep.html',1,'mwmatching::impl::MatchingContext']]],
   ['depth_20',['depth',['../structBFSInfo.html#a6841f08e439247327ca66115a9979f02',1,'BFSInfo']]],
   ['detail_21',['detail',['../namespacedetail.html',1,'']]],
-  ['digraphs_22',['digraphs',['../classxnetwork_1_1DiGraphS.html',1,'xnetwork::DiGraphS&lt; nodeview_t, adjlist_t, adjlist_outer_dict_factory &gt;'],['../classxnetwork_1_1DiGraphS.html#ada3a64076bb32a0ed6051dc7546553e0',1,'xnetwork::DiGraphS::DiGraphS(uint32_t num_nodes)'],['../classxnetwork_1_1DiGraphS.html#aba7b37ae9ae484a72daece45952a132c',1,'xnetwork::DiGraphS::DiGraphS(const nodeview_t &amp;Nodes)']]],
+  ['digraphs_22',['DiGraphS',['../classxnetwork_1_1DiGraphS.html',1,'xnetwork::DiGraphS&lt; nodeview_t, adjlist_t, adjlist_outer_dict_factory &gt;'],['../classxnetwork_1_1DiGraphS.html#aba7b37ae9ae484a72daece45952a132c',1,'xnetwork::DiGraphS::DiGraphS(const nodeview_t &amp;Nodes)'],['../classxnetwork_1_1DiGraphS.html#ada3a64076bb32a0ed6051dc7546553e0',1,'xnetwork::DiGraphS::DiGraphS(uint32_t num_nodes)']]],
   ['digraphs_2ehpp_23',['digraphs.hpp',['../digraphs_8hpp.html',1,'']]],
-  ['dijkstra_24',['dijkstra',['../namespacedetail.html#a01225ec6cf8106ebaddf47948a2223be',1,'detail']]],
-  ['documentation_25',['documentation',['../index.html#autotoc_md11',1,'Build the documentation'],['../about.html#doc',1,'XNetwork Documentation']]],
-  ['dual_5fvar_26',['dual_var',['../structmwmatching_1_1impl_1_1NonTrivialBlossom.html#ab4ce6e82240a6fb22f79535635762f0b',1,'mwmatching::impl::NonTrivialBlossom']]],
-  ['dualedge_27',['DualEdge',['../structdetail_1_1DualEdge.html',1,'detail']]]
+  ['digraphs_3c_20decltype_28py_3a_3arange_3c_20uint32_5ft_20_3e_28uint32_5ft_7b_7d_29_29_2c_20py_3a_3adict_3c_20uint32_5ft_2c_20int_20_3e_2c_20std_3a_3avector_3c_20py_3a_3adict_3c_20uint32_5ft_2c_20int_20_3e_20_3e_20_3e_24',['DiGraphS&lt; decltype(py::range&lt; uint32_t &gt;(uint32_t{})), py::dict&lt; uint32_t, int &gt;, std::vector&lt; py::dict&lt; uint32_t, int &gt; &gt; &gt;',['../classxnetwork_1_1DiGraphS.html',1,'xnetwork']]],
+  ['dijkstra_25',['dijkstra',['../namespacedetail.html#a01225ec6cf8106ebaddf47948a2223be',1,'detail']]],
+  ['documentation_26',['XNetwork Documentation',['../about.html#doc',1,'']]],
+  ['documentation_27',['Build the documentation',['../index.html#autotoc_md11',1,'']]],
+  ['dual_5fvar_28',['dual_var',['../structmwmatching_1_1impl_1_1NonTrivialBlossom.html#ab4ce6e82240a6fb22f79535635762f0b',1,'mwmatching::impl::NonTrivialBlossom']]],
+  ['dualedge_29',['DualEdge',['../structdetail_1_1DualEdge.html',1,'detail']]]
 ];

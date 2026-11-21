@@ -1,9 +1,9 @@
 <map id="mwmatching::impl::MatchingContext&lt; WeightType &gt;" name="mwmatching::impl::MatchingContext&lt; WeightType &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="361,85,573,125"/>
-<area shape="rect" id="Node000002" href="$classmwmatching_1_1PriorityQueue.html" title=" " alt="" coords="10,5,215,60"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,53,368,82,367,87,228,59"/>
-<area shape="rect" id="Node000003" href="$classmwmatching_1_1PriorityQueue.html" title=" " alt="" coords="11,85,215,125"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="228,102,361,102,361,107,228,107"/>
-<area shape="rect" id="Node000004" href="$classmwmatching_1_1PriorityQueue.html" title=" " alt="" coords="5,149,220,204"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="233,150,367,122,368,127,234,155"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="363,91,574,136"/>
+<area shape="rect" id="Node000002" href="$classmwmatching_1_1PriorityQueue.html" title=" " alt="" coords="10,5,214,67"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,57,339,80,375,90,370,91,338,85,229,62"/>
+<area shape="rect" id="Node000003" href="$classmwmatching_1_1PriorityQueue.html" title=" " alt="" coords="10,91,214,136"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="229,111,365,112,360,115,229,116"/>
+<area shape="rect" id="Node000004" href="$classmwmatching_1_1PriorityQueue.html" title=" " alt="" coords="5,160,219,222"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="233,164,338,141,374,136,368,137,339,146,234,169"/>
 </map>

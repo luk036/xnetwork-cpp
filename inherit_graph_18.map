@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classmwmatching_1_1PriorityQueue.html" title=" " alt="" coords="5,5,220,60"/>
+<area shape="rect" id="Node000000" href="$classxnetwork_1_1Graph.html" title="Undirected graph with arbitrary node types." alt="" coords="5,31,220,92"/>
+<area shape="rect" id="Node000001" href="$classxnetwork_1_1DiGraphS.html" title=" " alt="" coords="268,5,489,118"/>
+<area shape="poly" id="edge17_Node000000_Node000001" title=" " alt="" coords="235,59,270,61,265,62,235,64"/>
 </map>
