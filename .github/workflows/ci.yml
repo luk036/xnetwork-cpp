@@ -56,7 +56,9 @@ jobs:
       - name: Test
         run: ctest --test-dir build --output-on-failure
       - name: Generate coverage XML
-        run: gcovr --root . --xml coverage.xml --exclude test/ --exclude build/
+        run: >-
+          gcovr --root . --xml coverage.xml --exclude test/ --exclude build/
+          --gcov-ignore-parse-errors negative_hits.warn
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
