@@ -1,6 +1,9 @@
 #include <xnetwork/greeter.h>
 #include <xnetwork/version.h>
 
+// cxxopts < 3.3 uses uint8_t/intmax_t without including <cstdint>, which breaks with newer
+// libstdc++; include it first so a system-provided cxxopts keeps working too.
+#include <cstdint>
 #include <cxxopts.hpp>
 #include <iostream>
 #include <string>

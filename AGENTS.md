@@ -2,15 +2,21 @@
 
 ## Project Overview
 
-This is a **header-only C++ graph library** inspired by Python's NetworkX. The project uses modern CMake, C++14, and the doctest framework.
+This is a C++ graph library inspired by Python's NetworkX. The project uses CMake/xmake, C++17, and the doctest framework.
 
 ---
 
 ## Build Commands
 
-### Full Build
+### Full Build (xmake)
 ```bash
-# Build everything (library + tests + standalone)
+xmake f -y -m release
+xmake build -y
+xmake test -y
+```
+
+### Full Build (CMake)
+```bash
 cmake -B build
 cmake --build build
 ```
@@ -60,8 +66,8 @@ cmake --build build --target clang-tidy
 ## Code Style Guidelines
 
 ### General Rules
-- **C++ Standard**: C++14 (enforced in test/CMakeLists.txt)
-- **Header-only library**: All code in `include/xnetwork/`
+- **C++ Standard**: C++17
+- **Headers + sources**: public headers in `include/xnetwork/`, explicit instantiations in `source/`
 - **Formatting**: clang-format with Google-based style (see `.clang-format`)
 
 ### Formatting Rules (.clang-format)
@@ -123,14 +129,16 @@ include/xnetwork/
   │   └── reportviews.hpp
   ├── generators/    # Graph generators
   │   └── testcases.hpp
+  ├── cover.hpp      # primal-dual covering algorithms
+  ├── graph_algo.hpp # vertex cover / independent set
+  ├── rand_cover.hpp # randomized vertex cover
+  ├── hadlock.hpp    # planar MAX-CUT
+  ├── tsp.hpp        # Christofides + 2-opt
   ├── exception.hpp  # Custom exceptions
   └── xnetwork_config.hpp  # Configuration and version
 
-test/source/
-  ├── main.cpp
-  ├── test_xnGraph.cpp
-  ├── test_xnDiGraphS.cpp
-  └── test_xnDiGraphS2.cpp
+source/             # explicit template instantiations
+test/source/        # doctest test files
 ```
 
 ---

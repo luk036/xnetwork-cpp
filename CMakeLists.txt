@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14...3.22)
 
 project(
   XNetwork
-  VERSION 1.7.9
+  VERSION 1.7.10
   LANGUAGES CXX
 )
 
@@ -79,9 +79,24 @@ if(NOT fmt_FOUND)
   )
 endif()
 
+# cxxopts is a header-only CLI parser used by the standalone examples (ours and Py2Cpp's). It is
+# resolved *before* Py2Cpp so both targets share one copy instead of Py2Cpp pulling its own pin;
+# cxxopts < 3.3 uses uint8_t/intmax_t without including <cstdint>, which no longer compiles with
+# recent libstdc++. Require >= 3.3 (upstream fix) and fall back to CPM otherwise.
+if(XNETWORK_BUILD_STANDALONE AND NOT TARGET cxxopts::cxxopts)
+  find_package(cxxopts 3.3 CONFIG QUIET)
+  if(NOT cxxopts_FOUND)
+    CPMAddPackage(
+      GITHUB_REPOSITORY jarro2783/cxxopts
+      VERSION 3.3.1
+      OPTIONS "CXXOPTS_BUILD_EXAMPLES NO" "CXXOPTS_BUILD_TESTS NO" "CXXOPTS_ENABLE_INSTALL NO"
+    )
+  endif()
+endif()
+
 CPMAddPackage(
   NAME Py2Cpp
-  GIT_TAG v1.6.6
+  GIT_TAG v1.6.7
   GITHUB_REPOSITORY luk036/py2cpp
   OPTIONS "INSTALL_ONLY YES" "PY2CPP_BUILD_TESTS OFF"
 )
@@ -135,7 +150,7 @@ packageProject(
   INCLUDE_DESTINATION include/${PROJECT_NAME}-${PROJECT_VERSION}
   VERSION_HEADER "${VERSION_HEADER_LOCATION}"
   COMPATIBILITY SameMajorVersion
-  DEPENDENCIES "fmt 12.1.0" "Py2Cpp 1.6.5"
+  DEPENDENCIES "fmt 12.1.0" "Py2Cpp 1.6.6"
 )
 
 # ---------------------------------------------------------------------------
@@ -143,16 +158,6 @@ packageProject(
 # ---------------------------------------------------------------------------
 
 if(XNETWORK_BUILD_STANDALONE)
-  # cxxopts is a header-only CLI parser used by the standalone example. Prefer a consumer- or
-  # system-provided cxxopts; only fall back to CPM when no cxxopts target is available.
-  find_package(cxxopts CONFIG QUIET)
-  if(NOT cxxopts_FOUND AND NOT TARGET cxxopts::cxxopts)
-    CPMAddPackage(
-      GITHUB_REPOSITORY jarro2783/cxxopts
-      VERSION 3.2.1
-      OPTIONS "CXXOPTS_BUILD_EXAMPLES NO" "CXXOPTS_BUILD_TESTS NO" "CXXOPTS_ENABLE_INSTALL NO"
-    )
-  endif()
   # keep third-party headers out of our -Werror scope
   if(TARGET cxxopts::cxxopts)
     get_target_property(CXXOPTS_INCLUDE_DIRS cxxopts::cxxopts INTERFACE_INCLUDE_DIRECTORIES)

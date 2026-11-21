@@ -86,8 +86,8 @@ namespace detail {
      * @return vector of adjacency lists for the dual graph
      */
     template <typename Node, typename WeightFunc>
-    auto build_dual(const std::vector<std::vector<Node>>& faces, WeightFunc weight)
-        -> std::vector<std::vector<DualEdge<Node>>> {
+    auto build_dual(const std::vector<std::vector<Node>>& faces,
+                    WeightFunc weight) -> std::vector<std::vector<DualEdge<Node>>> {
         const auto n_face = faces.size();
 
         std::unordered_map<std::pair<Node, Node>, std::vector<int>> edge_face_map;
@@ -138,17 +138,22 @@ namespace detail {
     // Dijkstra shortest path
     // -------------------------------------------------------------------
     template <typename Node>
-    auto dijkstra(const std::vector<std::vector<DualEdge<Node>>>& dual, int src)
-        -> std::pair<std::vector<int>, std::vector<int>>;
+    auto dijkstra(const std::vector<std::vector<DualEdge<Node>>>& dual,
+                  int src) -> std::pair<std::vector<int>, std::vector<int>>;
 
-    inline auto reconstruct_path(const std::vector<int>& prev, int src, int dst)
-        -> std::vector<int> {
-        std::vector<int> path;
-        const auto* p = prev.data();
-        for (int v = dst; v != -1 && v != src; v = p[v]) {
-            path.push_back(v);
+    inline auto reconstruct_path(const std::vector<int>& prev, int src,
+                                 int dst) -> std::vector<int> {
+        if (src == dst) return std::vector<int>{src};
+        if (dst < 0 || static_cast<size_t>(dst) >= prev.size() || prev[dst] == -1) {
+            return {};
         }
-        if (path.empty() && src != dst) return {};
+        std::vector<int> path;
+        int v = dst;
+        while (v != -1 && v != src) {
+            path.push_back(v);
+            v = prev[v];
+        }
+        if (v != src) return {};
         path.push_back(src);
         std::reverse(path.begin(), path.end());
         return path;
@@ -166,10 +171,9 @@ namespace detail {
      * (whose DP reconstruction was wrong) so MAX-CUT keeps its guarantee for
      * large odd-face sets.
      */
-    template <typename Node>
-    auto min_weight_perfect_matching(const std::vector<int>& odd_faces,
-                                     const std::vector<std::vector<int>>& dist)
-        -> std::vector<std::pair<int, int>> {
+    template <typename Node> auto min_weight_perfect_matching(
+        const std::vector<int>& odd_faces,
+        const std::vector<std::vector<int>>& dist) -> std::vector<std::pair<int, int>> {
         auto weight = [&dist](int a, int b) -> double { return static_cast<double>(dist[a][b]); };
         return blossom_min_weight_perfect_matching(odd_faces, weight);
     }
@@ -195,8 +199,8 @@ namespace detail {
      *                Articulation points may appear in multiple components;
      *                each edge belongs to exactly one component.
      */
-    template <typename Graph> auto biconnected_components(const Graph& G)
-        -> std::vector<py::set<typename Graph::node_t>>;
+    template <typename Graph>
+    auto biconnected_components(const Graph& G) -> std::vector<py::set<typename Graph::node_t>>;
 
     // -------------------------------------------------------------------
     // Core Hadlock solver (single component)
@@ -380,7 +384,12 @@ template <typename Graph, typename WeightFunc> auto solve_hadlock_max_cut(
     // Decompose into biconnected components
     auto comp_nodes = detail::biconnected_components(G);
 
-    const auto n_comps = std::min(comp_nodes.size(), component_faces.size());
+    if (comp_nodes.size() != component_faces.size()) {
+        throw xnetwork::XNetworkAlgorithmError(
+            "solve_hadlock_max_cut: component_faces count does not match the number of "
+            "biconnected components");
+    }
+    const auto n_comps = comp_nodes.size();
 
     // Components are independent (edges are disjoint), so no
     // synchronization is needed beyond collecting results.
@@ -469,9 +478,9 @@ template <typename Graph, typename WeightFunc> auto validate_max_cut(
     return {is_bipartite, total_weight};
 }
 
-template <typename Graph> auto validate_max_cut(
-    [[maybe_unused]] const Graph& G,
-    const py::set<std::pair<typename Graph::node_t, typename Graph::node_t>>& cut_edges)
-    -> std::pair<bool, int> {
+template <typename Graph>
+auto validate_max_cut([[maybe_unused]] const Graph& G,
+                      const py::set<std::pair<typename Graph::node_t, typename Graph::node_t>>&
+                          cut_edges) -> std::pair<bool, int> {
     return validate_max_cut(G, cut_edges, [](auto, auto) { return 1; });
 }

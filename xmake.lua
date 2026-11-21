@@ -4,12 +4,15 @@ add_requires("doctest", {alias = "doctest"})
 add_requires("fmt", {alias = "fmt"})
 -- add_requires("benchmark", {alias = "benchmark"})
 
-if is_mode("coverage") then
+if is_mode("coverage") and not is_plat("windows") then
     add_cxflags("-ftest-coverage", "-fprofile-arcs", {force = true})
 end
 
-if is_plat("linux") then
-    add_cxflags("-Wconversion", {force = true})
+if is_plat("linux") or is_plat("macosx") then
+    set_warnings("all", "error")
+    if is_plat("linux") then
+        add_cxflags("-Wconversion", {force = true})
+    end
     -- Check if we're on Termux/Android
     local termux_prefix = os.getenv("PREFIX")
     if termux_prefix then
@@ -18,7 +21,7 @@ if is_plat("linux") then
         add_sysincludedirs(termux_prefix .. "/include", {public = true})
     end
 elseif is_plat("windows") then
-    add_cxflags("/EHsc /W4 /WX /wd4702", {force = true})
+    add_cxflags("/EHsc /utf-8 /W4 /WX /wd4702 /wd4819", {force = true})
 end
 
 

@@ -1,15 +1,15 @@
 #include <future>
 #include <py2cpp/set.hpp>
 #include <random>
+#include <stdexcept>
 #include <utility>
 #include <vector>
 #include <xnetwork/classes/graph.hpp>
 #include <xnetwork/rand_cover.hpp>
 
-template <typename Graph, typename WeightMap, typename RNG>
-auto rand_vertex_cover_trial(const Graph& ugraph, const WeightMap& weight,
-                             const py::set<typename Graph::node_t>& coverset, RNG& rng)
-    -> std::pair<py::set<typename Graph::node_t>, typename WeightMap::mapped_type> {
+template <typename Graph, typename WeightMap, typename RNG> auto rand_vertex_cover_trial(
+    const Graph& ugraph, const WeightMap& weight, const py::set<typename Graph::node_t>& coverset,
+    RNG& rng) -> std::pair<py::set<typename Graph::node_t>, typename WeightMap::mapped_type> {
     using node_t = typename Graph::node_t;
     using CostType = typename WeightMap::mapped_type;
 
@@ -25,8 +25,8 @@ auto rand_vertex_cover_trial(const Graph& ugraph, const WeightMap& weight,
 
         auto w_u = weight[u];
         auto w_v = weight[v];
-        const double threshold
-            = static_cast<double>(w_v) / (static_cast<double>(w_u) + static_cast<double>(w_v));
+        const double denom = static_cast<double>(w_u) + static_cast<double>(w_v);
+        const double threshold = denom == 0.0 ? 0.5 : static_cast<double>(w_v) / denom;
 
         if (dist(rng) < threshold) {
             soln.insert(u);
@@ -66,6 +66,10 @@ auto rand_vertex_cover_mt(const Graph& ugraph, const WeightMap& weight, unsigned
     using node_t = typename Graph::node_t;
     using CostType = typename WeightMap::mapped_type;
     using Result = std::pair<py::set<node_t>, CostType>;
+
+    if (num_trials == 0) {
+        throw std::invalid_argument("rand_vertex_cover_mt: num_trials must be positive");
+    }
 
     xnetwork::thread_pool pool;
     std::vector<std::future<Result>> futures;

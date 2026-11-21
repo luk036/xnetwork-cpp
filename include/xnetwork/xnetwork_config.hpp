@@ -18,12 +18,15 @@
 #ifndef XNETWORK_CONFIG_HPP
 #define XNETWORK_CONFIG_HPP
 
+#include <cstdlib>
+#include <iostream>
+
 /** @brief Major version number */
-#define XNETWORK_VERSION_MAJOR 0
+#define XNETWORK_VERSION_MAJOR 1
 /** @brief Minor version number */
-#define XNETWORK_VERSION_MINOR 1
+#define XNETWORK_VERSION_MINOR 7
 /** @brief Patch version number */
-#define XNETWORK_VERSION_PATCH 1
+#define XNETWORK_VERSION_PATCH 9
 
 #ifndef __has_feature
 #    define __has_feature(x) 0

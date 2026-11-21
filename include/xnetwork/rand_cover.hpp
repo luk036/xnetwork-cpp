@@ -48,7 +48,7 @@ namespace detail {
                               Validator&& is_valid) {
         for (auto it = added_order.rbegin(); it != added_order.rend(); ++it) {
             soln.erase(*it);
-            if (!std::forward<Validator>(is_valid)()) {
+            if (!is_valid()) {
                 soln.insert(*it);
             }
         }
@@ -94,10 +94,9 @@ namespace detail {
  * @param coverset Initial vertex cover (preserved in the result)
  * @return std::pair<py::set<typename Graph::node_t>, typename WeightMap::mapped_type>
  */
-template <typename Graph, typename WeightMap, typename RNG>
-auto rand_vertex_cover_trial(const Graph& ugraph, const WeightMap& weight,
-                             const py::set<typename Graph::node_t>& coverset, RNG& rng)
-    -> std::pair<py::set<typename Graph::node_t>, typename WeightMap::mapped_type>;
+template <typename Graph, typename WeightMap, typename RNG> auto rand_vertex_cover_trial(
+    const Graph& ugraph, const WeightMap& weight, const py::set<typename Graph::node_t>& coverset,
+    RNG& rng) -> std::pair<py::set<typename Graph::node_t>, typename WeightMap::mapped_type>;
 
 // -----------------------------------------------------------------------
 // Convenience overload - single trial with seed

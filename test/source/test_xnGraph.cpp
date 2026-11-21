@@ -42,6 +42,7 @@ TEST_CASE("Test xnetwork::Graph") {
     gra.add_edge(a1, n2);
     gra.add_edge(a2, n2);
 
+    CHECK_EQ(gra.number_of_edges(), 3);  // duplicate edge is not counted twice
     do_case(gra);
 }
 
@@ -114,6 +115,8 @@ TEST_CASE("Test xnetwork::Graph (has_edge)") {
     gra.add_edges_from(edges);
     CHECK(gra.has_edge(0, 1));
     CHECK_FALSE(gra.has_edge(0, 2));
+    CHECK_FALSE(gra.has_edge(0, 99));  // unknown node is not an error
+    CHECK_EQ(gra.degree(99), 0);
 }
 
 TEST_CASE("Test xnetwork::Graph (order)") {
@@ -134,6 +137,7 @@ TEST_CASE("Test xnetwork::Graph (clear)") {
     gra.clear();
     CHECK_EQ(gra.number_of_nodes(), 4);
     CHECK_EQ(gra.adj().size(), 0);
+    CHECK_EQ(gra.number_of_edges(), 0);
 }
 
 TEST_CASE("Test xnetwork::Graph (is_multigraph)") {

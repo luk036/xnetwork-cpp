@@ -10,11 +10,11 @@
 #pragma once
 
 #include <algorithm>
-#include <cassert>
 #include <deque>
 #include <optional>
 #include <py2cpp/dict.hpp>
 #include <py2cpp/set.hpp>
+#include <stdexcept>
 #include <utility>
 #include <vector>
 
@@ -49,8 +49,8 @@
  * @return std::pair<SolutionSet, typename WeightMap::mapped_type> Solution and total primal cost
  */
 template <typename MakeViolator, typename WeightMap, typename SolutionSet>
-auto pd_cover(MakeViolator make_violator, WeightMap& weight, SolutionSet& soln)
-    -> std::pair<SolutionSet, typename WeightMap::mapped_type> {
+auto pd_cover(MakeViolator make_violator, WeightMap& weight,
+              SolutionSet& soln) -> std::pair<SolutionSet, typename WeightMap::mapped_type> {
     using CostType = typename WeightMap::mapped_type;
     using NodeType = typename SolutionSet::value_type;
 
@@ -109,7 +109,10 @@ auto pd_cover(MakeViolator make_violator, WeightMap& weight, SolutionSet& soln)
         final_prml_cost += weight[vtx];
     }
 
-    assert(total_dual_cost <= final_prml_cost);
+    if (total_dual_cost > final_prml_cost) {
+        throw std::logic_error(
+            "pd_cover: primal-dual invariant violated (dual cost exceeds primal cost)");
+    }
     return std::make_pair(soln, final_prml_cost);
 }
 
@@ -125,8 +128,8 @@ auto pd_cover(MakeViolator make_violator, WeightMap& weight, SolutionSet& soln)
  * @return std::pair<CoverSet, typename WeightMap::mapped_type> Cover set and total weight
  */
 template <typename Graph, typename WeightMap, typename CoverSet>
-auto min_vertex_cover(const Graph& ugraph, WeightMap& weight, CoverSet& coverset)
-    -> std::pair<CoverSet, typename WeightMap::mapped_type>;
+auto min_vertex_cover(const Graph& ugraph, WeightMap& weight,
+                      CoverSet& coverset) -> std::pair<CoverSet, typename WeightMap::mapped_type>;
 
 /**
  * @brief Overload without pre-existing coverset
@@ -172,10 +175,9 @@ template <typename Node> auto construct_cycle(const py::dict<Node, BFSInfo<Node>
  * @tparam CoverSet Cover set type
  * @param ugraph Input graph
  * @param coverset Set of covered vertices (excluded from search)
- * @return std::vector<std::tuple<py::dict<typename Graph::node_t, BFSInfo<typename Graph::node_t>>,
- *                                typename Graph::node_t,
- *                                typename Graph::node_t>>
- *         Vector of (BFS info, parent, child) tuples for each cycle found
+ * @details Stops at the first cycle found; callers only need one violation per
+ *   round, and returning every cycle would copy a full BFS tree per back edge.
+ * @return std::vector of (BFS info, parent, child) tuples (at most one entry)
  */
 template <typename Graph, typename CoverSet>
 auto generic_bfs_cycle(const Graph& ugraph, const CoverSet& coverset)
@@ -210,8 +212,8 @@ auto extract_odd_cycle(const py::dict<Node, Node>& parent, Node utx, Node vtx) -
  *   std::nullopt when the graph induced by V \ coverset is bipartite
  */
 template <typename Graph, typename CoverSet>
-auto find_odd_cycle(const Graph& ugraph, const CoverSet& coverset)
-    -> std::optional<std::vector<typename Graph::node_t>>;
+auto find_odd_cycle(const Graph& ugraph,
+                    const CoverSet& coverset) -> std::optional<std::vector<typename Graph::node_t>>;
 
 /**
  * @brief Performs minimum cycle cover using primal-dual approximation.
@@ -225,8 +227,8 @@ auto find_odd_cycle(const Graph& ugraph, const CoverSet& coverset)
  * @return std::pair<CoverSet, typename WeightMap::mapped_type> Cover set and total weight
  */
 template <typename Graph, typename WeightMap, typename CoverSet>
-auto min_cycle_cover(const Graph& ugraph, WeightMap& weight, CoverSet& coverset)
-    -> std::pair<CoverSet, typename WeightMap::mapped_type> {
+auto min_cycle_cover(const Graph& ugraph, WeightMap& weight,
+                     CoverSet& coverset) -> std::pair<CoverSet, typename WeightMap::mapped_type> {
     using node_t = typename Graph::node_t;
 
     // Factory: returns a violator that does a fresh BFS each call

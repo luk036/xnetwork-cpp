@@ -81,8 +81,8 @@ namespace xnetwork {
          * @param task  Callable to execute
          * @return  std::future<T> holding the result (or exception)
          */
-        template <typename F> auto enqueue(F&& task)
-            -> std::future<std::invoke_result_t<std::decay_t<F>>> {
+        template <typename F>
+        auto enqueue(F&& task) -> std::future<std::invoke_result_t<std::decay_t<F>>> {
             using return_type = std::invoke_result_t<std::decay_t<F>>;
 
             auto packaged
