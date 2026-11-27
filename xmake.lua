@@ -12,6 +12,7 @@ if is_plat("linux") or is_plat("macosx") then
     set_warnings("all", "error")
     if is_plat("linux") then
         add_cxflags("-Wconversion", {force = true})
+        add_syslinks("pthread")
     end
     -- Check if we're on Termux/Android
     local termux_prefix = os.getenv("PREFIX")
