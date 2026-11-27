@@ -101,6 +101,9 @@ CPMAddPackage(
   OPTIONS "INSTALL_ONLY YES" "PY2CPP_BUILD_TESTS OFF"
 )
 
+# Tests use std::thread, which needs an explicit pthread link on some platforms (e.g. Linux)
+find_package(Threads REQUIRED)
+
 # Compiler-specific conformance flags (coroutines require C++20 on MSVC)
 if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   add_compile_options(-stdlib=libc++)
@@ -195,16 +198,19 @@ if(XNETWORK_BUILD_TESTS)
   CPMAddPackage("gh:TheLartians/Format.cmake@1.7.3")
 
   # Property-based testing (tests only)
+  # Pin to a commit (not a branch) so reconfigures don't hit the network to re-fetch HEAD
   CPMAddPackage(
     NAME rapidcheck
     GITHUB_REPOSITORY emil-e/rapidcheck
-    GIT_TAG master
+    GIT_TAG 2c3c4365aca21ef4e612768fdc95b1ce8b39a651
     OPTIONS "RC_BUILD_TESTS OFF" "RC_BUILD_EXAMPLES OFF" "RC_INSTALL OFF"
   )
 
   file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS "test/source/*.cpp")
   add_executable(XNetworkTests ${TEST_SOURCES})
-  target_link_libraries(XNetworkTests PRIVATE doctest::doctest XNetwork::XNetwork rapidcheck)
+  target_link_libraries(XNetworkTests PRIVATE doctest::doctest XNetwork::XNetwork rapidcheck
+                                       Threads::Threads
+  )
   target_include_directories(XNetworkTests PRIVATE ${rapidcheck_SOURCE_DIR}/include)
   target_compile_definitions(XNetworkTests PRIVATE RAPIDCHECK_H)
   set_target_properties(XNetworkTests PROPERTIES CXX_STANDARD 17)
